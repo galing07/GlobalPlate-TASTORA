@@ -624,21 +624,33 @@
     <!-- LEFT MAIN COLUMN -->
     <main class="main-column">
       <header class="topbar">
-        <div class="brand" onclick="window.scrollTo({top:0, behavior:'smooth'})">
-          <span class="brand-mark">✦</span>
-          <span>MEXICAN<br>COCINA TRADICIONAL</span>
-        </div>
-        <nav>
-          <a href="javascript:void(0)" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="active">Home</a>
-          <a href="javascript:void(0)" onclick="viewAllRecipes()">Recipes</a>
-          <a href="javascript:void(0)" onclick="focusCategories()">Categories</a>
-          <a href="javascript:void(0)" onclick="openAboutModal()">About</a>
-        </nav>
-        <div class="search">
-          <input type="text" id="recipeSearchInput" placeholder="Search 30 recipes..." aria-label="Search recipes" />
-          <b id="recipeSearchBtn">⌕</b>
-        </div>
-      </header>
+    <div class="brand" onclick="window.location.href='index.html'">
+        <span class="brand-mark">♛</span>
+        <span>SWEDISH<br>RECIPES</span>
+    </div>
+    
+    <!-- BACK TO HOME BUTTON (Sticky Style) -->
+    <div onclick="window.location.href='index.html'" 
+         style="cursor:pointer; background:rgba(248,113,113,0.1); border:1px solid #f87171; color:#f87171; 
+                font-family:Georgia,serif; font-size:11px; font-weight:700; 
+                padding:6px 14px; border-radius:999px; letter-spacing:0.5px; 
+                display:flex; align-items:center; gap:6px; transition:all 0.2s;">
+        ← BACK TO HOME
+    </div>
+
+    <nav>
+        <a href="javascript:void(0)" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="active">Home</a>
+        <a href="javascript:void(0)" onclick="viewAllRecipes()">Recipes</a>
+        <a href="javascript:void(0)" onclick="focusCategories()">Categories</a>
+        <a href="javascript:void(0)" onclick="openAboutModal()">About</a>
+    </nav>
+    
+    <div class="search">
+        <input type="text" id="recipeSearchInput" placeholder="Search 30 recipes..." aria-label="Search recipes" />
+        <b id="recipeSearchBtn">⌕</b>
+    </div>
+</header>
+Cara pakai:
 
       <section class="hero">
         <div class="hero-photo" style="background-image: linear-gradient(90deg, #140f0cF2 0%, #140f0cB8 41%, #140f0c0D 80%), url('https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=1200&q=85');"></div>
