@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Italy Recipes - ITALIAN CUISINE</title>
+  <meta name="description" content="Discover the Art of Italian Cooking - Authentic Italy culinary traditions, recipes, and culture." />
+  <style>
+    /* Reset & Base Setup */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100%;
+      background: #140f0c;
+      color: #f9f3ec;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    /* Magazine App Shell */
+    .app-shell {
+      width: 100%;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(650px, 62%) minmax(400px, 38%);
+      gap: 7px;
+      padding: 6px 14px;
+    }
+
+    .main-column, .detail-panel {
+      border: 1px solid #966d51;
+      border-radius: 9px;
+      overflow: hidden;
+      background: #1a1310;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Topbar */
+    .topbar {
+      height: 48px;
+      background: #0d0a08;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: Georgia, serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .brand-mark {
+      font-size: 20px;
+      color: #e07a38;
+    }
+    .topbar nav {
+      display: flex;
+      gap: 16px;
+    }
+    .topbar nav a {
+      color: #d1d5db;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 11px;
+      transition: color 0.15s ease;
+      cursor: pointer;
+    }
+    .topbar nav a:hover, .topbar nav a.active {
+      color: #e07a38;
+    }
+    .search {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 28px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid #4b5563;
+      border-radius: 4px;
+      overflow: hidden;
+      width: 170px;
+    }
+    .search input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 10px;
+      padding: 0 8px;
+      width: 135px;
+    }
+    .search input::placeholder { color: #9ca3af; }
+    .search b {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 28px;
+      background: #e07a38;
+      color: #211208;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 290px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #111;
+    }
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      padding: 24px 28px;
+      max-width: 440px;
+    }
+    .hero-copy em {
+      display: block;
+      font-family: Georgia, serif;
+      font-style: italic;
+      color: #e07a38;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+    .hero-copy h1 {
+      font-family: Georgia, serif;
+      font-size: 32px;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 7px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    }
+    .hero-copy p {
+      font-size: 12px;
+      color: #e5e7eb;
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+    .hero-actions button {
+      background: #e27d3c;
+      color: #211208;
+      border: 1px solid #e07a38;
+      font-weight: bold;
+      font-size: 11px;
+      padding: 7px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .hero-actions button:hover { opacity: 0.9; transform: translateY(-1px); }
+    .hero-actions button.dark-button {
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      border: 1px solid #6b7280;
+      backdrop-filter: blur(4px);
+    }
+    .hero-actions button.dark-button:hover {
+      background: rgba(0,0,0,0.8);
+      border-color: #e07a38;
+    }
+
+    /* Popular Section */
+    .popular {
+      background: #ede0d1;
+      color: #241711;
+      padding: 14px 16px;
+      flex: 1;
+    }
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .section-heading h2 {
+      font-family: Georgia, serif;
+      font-size: 17px;
+      font-weight: bold;
+      color: #241711;
+    }
+    .section-heading button {
+      background: #fff;
+      border: 1px solid #d6c5b2;
+      color: #241711;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .section-heading button:hover { background: #f3f4f6; }
+
+    /* Category Filter Chips */
+    .categories-bar {
+      display: flex;
+      gap: 5px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+    }
+    .cat-chip {
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 9px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #374151;
+      transition: all 0.15s ease;
+    }
+    .cat-chip:hover { background: #f9fafb; }
+    .cat-chip.active {
+      background: #b45309;
+      color: #fff;
+      border-color: #92400e;
+    }
+
+    /* Grid */
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+      gap: 7px;
+    }
+    .recipe-card {
+      background: #faf5ee;
+      border: 1px solid #d6c5b2;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+    .recipe-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    }
+    .recipe-card.active-card {
+      border: 2px solid #e07a38;
+      box-shadow: 0 0 0 1px #e07a38;
+    }
+    .card-photo {
+      height: 75px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      background-color: #374151;
+    }
+    .card-badge {
+      position: absolute;
+      bottom: 4px;
+      left: 4px;
+      background: rgba(0,0,0,0.75);
+      color: #fff;
+      font-size: 7px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+    .recipe-card-content {
+      padding: 6px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .recipe-card h3 {
+      font-size: 10px;
+      font-weight: bold;
+      color: #111827;
+      line-height: 1.25;
+      margin-bottom: 2px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .recipe-card p {
+      font-size: 8px;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 3px;
+      margin-top: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Detail Panel */
+    .detail-panel {
+      background: #f5ede3;
+      color: #241711;
+    }
+    .detail-image {
+      min-height: 175px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .detail-content {
+      padding: 10px 14px;
+    }
+    .breadcrumbs {
+      font-size: 9px;
+      color: #6b7280;
+      margin-bottom: 3px;
+    }
+    .detail-content h2 {
+      font-family: Georgia, serif;
+      font-size: 19px;
+      color: #241711;
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+    .rating {
+      color: #d97706;
+      font-size: 11px;
+      margin-bottom: 6px;
+    }
+    .rating small { color: #6b7280; font-size: 9px; }
+    .intro {
+      font-size: 10px;
+      color: #374151;
+      line-height: 1.45;
+      margin-bottom: 8px;
+    }
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      background: rgba(0,0,0,0.04);
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,0,0,0.06);
+      font-size: 9px;
+      color: #1f2937;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* 2 Column Ingredients & Instructions */
+    .ingredients-instructions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 10px 14px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.4);
+    }
+    .ingredients-instructions h3 {
+      font-family: Georgia, serif;
+      font-size: 12px;
+      font-weight: bold;
+      color: #111827;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+    }
+    .ingredients-instructions ul, .ingredients-instructions ol {
+      padding-left: 14px;
+      font-size: 9.5px;
+      color: #374151;
+      line-height: 1.5;
+    }
+    .ingredients-instructions li { margin-bottom: 3px; }
+
+    /* Tips & Variations */
+    .tips {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      padding: 6px 14px 10px;
+    }
+    .tip-card {
+      background: #15313d;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 1.35;
+    }
+    .tip-card strong {
+      display: block;
+      color: #e07a38;
+      font-size: 10px;
+      margin-bottom: 2px;
+      font-family: Georgia, serif;
+    }
+    .variation-card {
+      background: #164332;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 1.35;
+    }
+    .variation-card strong {
+      display: block;
+      color: #a7f3d0;
+      font-size: 10px;
+      margin-bottom: 2px;
+      font-family: Georgia, serif;
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 6px 14px;
+    }
+    .faq h3 {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #111827;
+    }
+    .faq-item {
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 3px;
+      margin-bottom: 4px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .faq-item div {
+      padding: 5px 8px;
+      font-weight: bold;
+      font-size: 9.5px;
+      color: #1f2937;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-item small {
+      display: none;
+      padding: 5px 8px 7px;
+      font-size: 9px;
+      color: #4b5563;
+      border-top: 1px solid #f3f4f6;
+      line-height: 1.4;
+      background: #f9fafb;
+    }
+    .faq-item.open small { display: block; }
+
+    /* You Might Also Like */
+    .also {
+      background: #213a29;
+      color: #fff;
+      padding: 10px 14px;
+      margin-top: auto;
+    }
+    .also h3 {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .also-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+    .also-card {
+      cursor: pointer;
+      text-align: center;
+    }
+    .also-card .mini {
+      height: 48px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 3px;
+      transition: border-color 0.15s;
+    }
+    .also-card:hover .mini { border-color: #e07a38; }
+    .also-card span {
+      font-size: 8.5px;
+      font-weight: bold;
+      color: #e5e7eb;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Modal for About Swedish Cuisine */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(6px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-container {
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      background: #0e161c;
+      border: 1px solid rgba(217, 119, 6, 0.4);
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      color: #e2e8f0;
+    }
+    .modal-header {
+      padding: 16px 20px;
+      background: linear-gradient(90deg, #0d222b, #122c37);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-header h2 {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      color: #fff;
+    }
+    .modal-close {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-nav {
+      display: flex;
+      gap: 6px;
+      padding: 8px 16px;
+      background: #091116;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      overflow-x: auto;
+    }
+    .modal-tab-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .modal-tab-btn.active {
+      background: #d97706;
+      color: #0f172a;
+      font-weight: bold;
+    }
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .modal-section { display: none; }
+    .modal-section.active { display: block; }
+    .modal-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .modal-card h4 {
+      font-size: 12px;
+      color: #fbbf24;
+      margin-bottom: 4px;
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 950px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+        padding: 4px 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-shell" id="topAnchor">
+    <!-- LEFT MAIN COLUMN -->
+    <main class="main-column">
+      <header class="topbar">
+        <div class="brand" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+          <span class="brand-mark">⚜</span>
+          <span>ITALIAN<br>CUISINE</span>
+        </div>
+        <nav>
+          <a href="javascript:void(0)" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="active">Home</a>
+          <a href="javascript:void(0)" onclick="viewAllRecipes()">Recipes</a>
+          <a href="javascript:void(0)" onclick="focusCategories()">Categories</a>
+          <a href="javascript:void(0)" onclick="openAboutModal()">About</a>
+        </nav>
+        <div class="search">
+          <input type="text" id="recipeSearchInput" placeholder="Search 30 recipes..." aria-label="Search recipes" />
+          <b id="recipeSearchBtn">⌕</b>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-photo" style="background-image: linear-gradient(90deg, #140f0cF2 0%, #140f0cB8 41%, #140f0c0D 80%), url('https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&w=1200&q=85');"></div>
+        <div class="hero-copy">
+          <em>Discover the Art of Italian Cooking</em>
+          <h1>Authentic Italian<br>Recipes</h1>
+          <p>Artisan handmade pastas, slow-simmered ragùs, and sun-drenched<br>Mediterranean flavors from the heart of Italy.</p>
+          <div class="hero-actions">
+            <button onclick="document.getElementById('recipeGridSection').scrollIntoView({behavior:'smooth'})">Explore Recipes</button>
+            <button class="dark-button" onclick="openAboutModal()">About Italian Gastronomy</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="popular" id="recipeGridSection">
+        <div class="section-heading">
+          <h2>❧ Classic Cucina Italiana ❧</h2>
+          <button id="viewAllBtn" onclick="viewAllRecipes()">View All (30) →</button>
+        </div>
+
+        <div class="categories-bar" id="categoriesBar"></div>
+
+        <div class="recipe-grid" id="recipeGrid"></div>
+      </section>
+    </main>
+
+    <!-- RIGHT DETAIL PANEL -->
+    <aside class="detail-panel" id="detailPanel">
+      <div class="detail-image" id="detailImage" style="background-image: linear-gradient(90deg, rgba(5,15,16,.95) 0%, rgba(5,15,16,.55) 42%, transparent 70%), url('https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&w=800&q=80');"></div>
+      <div class="detail-content" id="detailContent">
+        <div class="breadcrumbs" id="detailBreadcrumbs">Home　›　Recipes　›　Primo Piatto</div>
+        <h2 id="detailTitle">Spaghetti alla Carbonara<br>(Carbonara Tradizionale Romana)</h2>
+        <div class="rating" id="detailRating">★★★★★ <small>4.9 (940 reviews)</small></div>
+        <p class="intro" id="detailIntro">The immortal Roman masterpiece: bronze-die spaghetti tossed with sizzling cured guanciale, pecorino romano cheese, golden egg yolks, and toasted black pepper. No cream, pure culinary alchemy.</p>
+        <div class="facts" id="detailFacts">
+          <span>◉ Prep 10 min</span>
+          <span>◉ Cook 15 min</span>
+          <span>◉ Yield 4 serv</span>
+          <span>◉ 520 kcal</span>
+        </div>
+      </div>
+
+      <div class="ingredients-instructions" id="ingredientsInstructions">
+        <section>
+          <h3>Ingredients</h3>
+          <ul id="detailIngredients">
+            <li>400 g bronze-die Spaghetti or Rigatoni</li><li>200 g cured Guanciale (pork jowl), cut into thick lardons</li><li>4 fresh egg yolks + 1 whole egg</li><li>100 g finely grated Pecorino Romano DOP</li><li>30 g finely grated Parmigiano Reggiano</li><li>Freshly cracked black peppercorns (toasted)</li><li>Coarse sea salt for pasta water</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Instructions</h3>
+          <ol id="detailInstructions">
+            <li>Boil spaghetti in salted water until 2 minutes before al dente.</li><li>Cook guanciale lardons in a cold skillet over medium-low heat until crispy outside and rendering clear golden fat (8-10 mins). Remove from heat.</li><li>In a bowl, whisk egg yolks, whole egg, grated Pecorino, Parmigiano, and toasted black pepper into a rich cream.</li><li>Transfer al dente pasta into skillet with guanciale fat and 2 tbsp pasta water; toss to coat.</li><li>Allow skillet to cool 30 seconds off heat. Pour in egg-cheese mixture, tossing vigorously to form a silky, velvety emulsion without scrambling.</li><li>Serve immediately crowned with crispy guanciale, extra Pecorino, and fresh pepper.</li>
+          </ol>
+        </section>
+      </div>
+
+      <div class="tips" id="tipsBlock">
+        <div class="tip-card" id="detailTips">
+          <strong>Off-Heat Emulsion</strong>
+          <p>Never add eggs over a live burner; residual pasta heat creates the velvety cream.</p>
+        </div>
+        <div class="variation-card" id="detailVariations">
+          <strong>Pasta alla Gricia</strong>
+          <p>Guanciale, Pecorino, and black pepper without eggs.</p>
+        </div>
+      </div>
+
+      <section class="faq" id="faqSection">
+        <h3>Frequently Asked Questions</h3>
+        <div id="faqContainer">
+          
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+              <div><span>Is cream used?</span><b>⌄</b></div>
+              <small>Never in traditional Roman cooking; creaminess is purely an emulsion of starch, fat, cheese, and yolk.</small>
+            </div>
+          
+        </div>
+      </section>
+
+      <section class="also" id="alsoSection">
+        <h3>You Might Also Like</h3>
+        <div class="also-grid" id="alsoContainer">
+          
+            <article class="also-card" onclick="selectRecipeByName('Classic Tiramisù')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Classic Tiramisù</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Pizza Margherita')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Pizza Margherita</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Wild Porcini Risotto')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Wild Porcini Risotto</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Lasagna Bolognese')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Lasagna Bolognese</span>
+            </article>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- ABOUT EDITORIAL MODAL -->
+  <div class="modal-overlay" id="aboutModal" onclick="closeAboutModal(event)">
+    <div class="modal-container" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div>
+          <span style="font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #fbbf24; font-weight: bold;">Editorial Compendium</span>
+          <h2>About Italian Cuisine & Gastronomy</h2>
+        </div>
+        <button class="modal-close" onclick="closeAboutModal()">✕</button>
+      </div>
+
+      <div class="modal-nav">
+        <button class="modal-tab-btn active" onclick="switchModalTab('mod-intro')">Introduction & Pillars</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-dishes')">Popular Dishes</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-fika')">Dolci & Espresso</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-ingredients')">Ingredients</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-traditions')">Traditions</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-regional')">Regional</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-faq')">FAQ</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- INTRO TAB -->
+        <div class="modal-section active" id="mod-intro">
+          <div class="modal-card" style="background: linear-gradient(135deg, rgba(217,119,6,0.15), rgba(15,23,42,0.6)); border-color: rgba(217,119,6,0.3);">
+            <em style="color: #fbbf24; font-family: Georgia, serif; font-size: 13px; display: block; margin-bottom: 4px;">From ancient Roman hearths to Renaissance feasts: the art of terroir and pure ingredients.</em>
+            <h3 style="font-family: Georgia, serif; font-size: 15px; color: #fff; margin-bottom: 8px;">Introduction to Italian Food</h3>
+            <p style="margin-bottom: 6px;">Italian cuisine is a magnificent tapestry woven from 20 distinct regions, each fiercely proud of its microclimate, dialect, olive oils, and heritage recipes passed down across centuries.</p><p style="margin-bottom: 6px;">At its philosophical core, Italian cooking is not about complicated techniques or heavy sauces; it is the art of ingredient worship—sourcing sun-ripened tomatoes, raw-milk cheeses, and bronze-die wheat, letting pristine simplicity shine on the plate.</p>
+          </div>
+
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin: 14px 0 8px;">What Is Cucina Italiana?</h3>
+          <p style="margin-bottom: 10px;">A culinary culture rooted in hyper-seasonal produce, strict PDO (DOP) geographical protections, and the conviviality of the family table.</p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>01. The Rule of Simplicity</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Rarely more than 4 to 6 ingredients per dish, each of exceptional pristine quality.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>02. Terroir & DOP Origin</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Parmigiano from Parma, San Marzano from Mount Vesuvius, Prosciutto from San Daniele.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>03. Al Dente Discipline</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Pasta cooked with firm tooth-feel to preserve digestible starch structure and mouthfeel.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>04. The Sacred Table Ritual</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Meals are an unhurried social communion of antipasto, primo, secondo, and espresso.</p>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- DISHES TAB -->
+        <div class="modal-section" id="mod-dishes">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 6px;">Popular Traditional Italian Dishes</h3>
+          <p style="margin-bottom: 12px; color: #94a3b8;">Timeless masterpieces celebrated across the trattorias, osterias, and family tables of Italy.</p>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Spaghetti alla Carbonara <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Carbonara Tradizionale)</em></h4>
+                <p style="margin-bottom: 4px;">Bronze-die spaghetti coated in a glossy emulsion of egg yolks, crispy guanciale fat, pecorino romano, and toasted black pepper.</p>
+                <small style="color: #93c5fd;">Cultural Note: Rome’s immortal culinary gift, strictly prepared without cream, peas, or garlic.</small>
+              </div>
+              <button onclick="jumpToRecipe('carbonara')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Neapolitan Pizza Margherita <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Pizza Napoletana STG)</em></h4>
+                <p style="margin-bottom: 4px;">Blistered, leopard-crusted wood-fired dough topped with crushed San Marzano tomatoes, buffalo mozzarella, and fresh sweet basil.</p>
+                <small style="color: #93c5fd;">Cultural Note: UNESCO World Intangible Cultural Heritage honoring Queen Margherita of Savoy in 1889.</small>
+              </div>
+              <button onclick="jumpToRecipe('pizza-margherita')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Wild Porcini Mushroom Risotto <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Risotto ai Porcini)</em></h4>
+                <p style="margin-bottom: 4px;">Carnaroli rice toasted in shallot butter, slowly infused with rich porcini broth, finished with Parmigiano mantecatura.</p>
+                <small style="color: #93c5fd;">Cultural Note: Northern Italy’s benchmark of culinary wave (all’onda) technique.</small>
+              </div>
+              <button onclick="jumpToRecipe('risotto-funghi')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Lasagna alla Bolognese <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Lasagne al Forno Emiliane)</em></h4>
+                <p style="margin-bottom: 4px;">Spinach egg pasta layered with 3-hour slow-cooked beef and pork ragù, nutmeg béchamel, and Parmigiano Reggiano.</p>
+                <small style="color: #93c5fd;">Cultural Note: The Sunday family feast centerpiece of Emilia-Romagna.</small>
+              </div>
+              <button onclick="jumpToRecipe('lasagna-bolognese')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Osso Buco alla Milanese <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Ossobuco con Gremolada)</em></h4>
+                <p style="margin-bottom: 4px;">Cross-cut veal shanks braised in white wine and aromatic vegetables, crowned with citrusy lemon-parsley-garlic gremolata.</p>
+                <small style="color: #93c5fd;">Cultural Note: Lombardy’s celebrated winter braise showcasing rich bone marrow.</small>
+              </div>
+              <button onclick="jumpToRecipe('osso-buco')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+        </div>
+
+        <!-- CULTURE / FIKA TAB -->
+        <div class="modal-section" id="mod-fika">
+          <div class="modal-card" style="background: rgba(180,83,9,0.15);">
+            <h4>Italian Coffee & Dessert Rituals</h4>
+            <p style="margin-bottom: 6px;">In Italy, dessert (dolce) is an elevated daily pleasure, invariably punctuated by a steaming shot of stovetop Moka or espresso.</p>
+            <p style="font-style: italic; color: #fde68a;">"Never order a cappuccino after 11:00 AM; after meals, Italians strictly sip un caffè (espresso) or an amaro digestivo to honor digestion."</p>
+          </div>
+          <h4 style="color:#fff; margin: 12px 0 8px;">Popular Regional Treats & Specialties</h4>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>Venetian Tiramisù (Tiramisù di Treviso)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Created in the Le Beccherie restaurant in Treviso, translating poetically to "pick me up" with espresso and silky mascarpone sabayon.</p>
+                <button onclick="jumpToRecipe('tiramisu')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+              <div class="modal-card">
+                <h4>Piedmontese Panna Cotta (Panna Cotta ai Frutti di Bosco)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">A delicate Piedmontese cooked cream gently set with gelatin, showcasing vanilla pods and wild forest berry compote.</p>
+                <button onclick="jumpToRecipe('panna-cotta')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+              <div class="modal-card">
+                <h4>Crispy Sicilian Cannoli (Cannoli di Ricotta di Pecora)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Crunchy fried wine pastry tubes filled to order with sweetened sheep’s milk ricotta and candied orange peel.</p>
+                <button onclick="jumpToRecipe('cannoli-siciliani')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- INGREDIENTS TAB -->
+        <div class="modal-section" id="mod-ingredients">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Key Italian Ingredients</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🫒 <strong style="color:#fff; font-size:11px;">Extra Virgin Olive Oil</strong> <em style="font-size:9px; color:#fbbf24;">(Olio Extra Vergine di Oliva)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Cold-pressed fruity green oil from centuries-old groves in Tuscany, Puglia, and Liguria.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Finishing raw on hot pastas, soups, bruschetta, and salads.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🧀 <strong style="color:#fff; font-size:11px;">Parmigiano Reggiano DOP</strong> <em style="font-size:9px; color:#fbbf24;">(Il Re dei Formaggi)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Raw cow’s milk cheese aged 24-36 months into crystalline umami-rich wheels.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Grated over pastas, shaved onto carpaccio, or eaten in chunks with aged balsamic.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🍅 <strong style="color:#fff; font-size:11px;">San Marzano Tomatoes</strong> <em style="font-size:9px; color:#fbbf24;">(Pomodoro San Marzano dell’Agro Sarnese)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Plum tomatoes grown in volcanic soil near Mount Vesuvius with sweet flesh and low acidity.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: The foundational base of pizza sauce and simmered ragùs.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🥓 <strong style="color:#fff; font-size:11px;">Guanciale</strong> <em style="font-size:9px; color:#fbbf24;">(Guanciale Stagionato)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Cured pork jowl rubbed with sea salt, black pepper, and rosemary.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Crisped in a skillet for Carbonara, Amatriciana, and Gricia.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌿 <strong style="color:#fff; font-size:11px;">Sweet Genovese Basil</strong> <em style="font-size:9px; color:#fbbf24;">(Basilico Genovese DOP)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Tender aromatic basil leaves with subtle clove and sweet floral undertones.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Pounded in marble mortars for pesto and torn fresh over hot pizza.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🏺 <strong style="color:#fff; font-size:11px;">Aged Balsamic of Modena</strong> <em style="font-size:9px; color:#fbbf24;">(Aceto Balsamico Tradizionale)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Grape must aged up to 25 years in succession barrels of oak, chestnut, and juniper.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Drizzled on aged Parmigiano, strawberries, and grilled meats.</small>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- TRADITIONS TAB -->
+        <div class="modal-section" id="mod-traditions">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Italian Food Traditions & Feasts</h3>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">La Vigilia (Feast of the Seven Fishes)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">Christmas Eve (Winter)</span>
+              </div>
+              <p style="margin-bottom: 6px;">A grand coastal banquet of 7 distinct seafood courses commemorating the eve of Christmas before midnight mass.</p>
+              <small style="color: #fbbf24;">Staples: Baccalà, Fried Calamari, Spaghetti alle Vongole, Capitone</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Pranzo della Domenica (Sunday Family Lunch)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">Year-Round Weekly</span>
+              </div>
+              <p style="margin-bottom: 6px;">The non-negotiable multi-hour family gathering where Nonna serves handmade fresh pasta and slow-braised ragù.</p>
+              <small style="color: #fbbf24;">Staples: Handmade Tagliatelle, Ragù Bolognese, Roast Lamb, Tiramisù</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Ferragosto Summer Banquet</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">August 15 (Midsummer)</span>
+              </div>
+              <p style="margin-bottom: 6px;">Peak summer holiday celebrated with outdoor seaside barbecues, watermelon feasts, and crisp chilled white wines.</p>
+              <small style="color: #fbbf24;">Staples: Insalata di Riso, Grilled Seafood, Watermelon, Vermentino Wine</small>
+            </div>
+          
+        </div>
+
+        <!-- REGIONAL TAB -->
+        <div class="modal-section" id="mod-regional">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Regional Italian Diversity</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>🧭 Northern Italy (Piedmont, Lombardy, Veneto)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Butter, polenta, carnaroli rice, rich game meats, white truffles, and Alpine cheeses.</p>
+                <small style="color: #fbbf24;">Specialties: Risotto alla Milanese, Osso Buco, Vitello Tonnato, Polenta</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 Central Italy (Tuscany, Lazio, Emilia-Romagna)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Handmade egg pastas, cured pork, pecorino cheese, thick steaks, and olive oil breads.</p>
+                <small style="color: #fbbf24;">Specialties: Carbonara, Ragù Bolognese, Bistecca alla Fiorentina, Cacio e Pepe</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 Southern Italy & Islands (Naples, Sicily, Puglia)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Sun-drenched tomatoes, fresh seafood, fiery red peppers, olive oil, eggplant, and citrus.</p>
+                <small style="color: #fbbf24;">Specialties: Pizza Margherita, Pasta alla Norma, Arancini, Cannoli</small>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- FAQ TAB -->
+        <div class="modal-section" id="mod-faq">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Frequently Asked Questions</h3>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">Why is cream forbidden in traditional Roman Carbonara?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">The luxurious creaminess comes purely from the emulsion of egg yolks, rendered pork fat, starchy cooking water, and finely microplaned Pecorino Romano cheese.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">What is the real difference between dry pasta and fresh egg pasta?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Dry pasta made from 100% durum wheat semolina is ideal for oil and tomato-based sauces; fresh egg pasta is delicate and porous, designed to absorb buttery meat ragùs.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">Is olive oil used for everything in Italy?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">In the Mediterranean South, olive oil reigns supreme; in the Alpine North (Piedmont, Lombardy), sweet unsalted butter and rendered lard are traditionally preferred.</p>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const recipes = [{"id":"carbonara","name":"Spaghetti alla Carbonara","nativeName":"Carbonara Tradizionale Romana","category":"Primo Piatto","prepTime":10,"cookTime":15,"yieldServings":4,"calories":520,"difficulty":"Medium","rating":4.9,"reviewsCount":940,"intro":"The immortal Roman masterpiece: bronze-die spaghetti tossed with sizzling cured guanciale, pecorino romano cheese, golden egg yolks, and toasted black pepper. No cream, pure culinary alchemy.","ingredients":["400 g bronze-die Spaghetti or Rigatoni","200 g cured Guanciale (pork jowl), cut into thick lardons","4 fresh egg yolks + 1 whole egg","100 g finely grated Pecorino Romano DOP","30 g finely grated Parmigiano Reggiano","Freshly cracked black peppercorns (toasted)","Coarse sea salt for pasta water"],"instructions":["Boil spaghetti in salted water until 2 minutes before al dente.","Cook guanciale lardons in a cold skillet over medium-low heat until crispy outside and rendering clear golden fat (8-10 mins). Remove from heat.","In a bowl, whisk egg yolks, whole egg, grated Pecorino, Parmigiano, and toasted black pepper into a rich cream.","Transfer al dente pasta into skillet with guanciale fat and 2 tbsp pasta water; toss to coat.","Allow skillet to cool 30 seconds off heat. Pour in egg-cheese mixture, tossing vigorously to form a silky, velvety emulsion without scrambling.","Serve immediately crowned with crispy guanciale, extra Pecorino, and fresh pepper."],"tips":{"title":"Off-Heat Emulsion","description":"Never add eggs over a live burner; residual pasta heat creates the velvety cream."},"variations":{"title":"Pasta alla Gricia","description":"Guanciale, Pecorino, and black pepper without eggs."},"faqs":[{"question":"Is cream used?","answer":"Never in traditional Roman cooking; creaminess is purely an emulsion of starch, fat, cheese, and yolk."}],"imageQuery":"spaghetti carbonara guanciale pecorino","imageUrl":"https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Classic Tiramisù","imageQuery":"tiramisu","imageUrl":"https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=800&q=80"},{"name":"Pizza Margherita","imageQuery":"pizza margherita","imageUrl":"https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80"},{"name":"Wild Porcini Risotto","imageQuery":"mushroom risotto","imageUrl":"https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?auto=format&fit=crop&w=800&q=80"},{"name":"Lasagna Bolognese","imageQuery":"lasagna bolognese","imageUrl":"https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=800&q=80"}]},{"id":"pizza-margherita","name":"Neapolitan Pizza Margherita","nativeName":"Pizza Margherita Napoletana","category":"Pizzeria","prepTime":40,"cookTime":8,"yieldServings":4,"calories":680,"difficulty":"Medium","rating":5,"reviewsCount":1120,"intro":"The colors of the Italian flag: crushed San Marzano tomatoes, creamy fresh buffalo mozzarella, fragrant basil leaves, and cold-pressed extra virgin olive oil on blistered leopard-crust dough.","ingredients":["500 g Tipo 00 Italian flour & 325 ml cold water","15 g sea salt & 2 g active dry yeast","400 g San Marzano DOP canned tomatoes, crushed","250 g fresh Buffalo Mozzarella or Fior di Latte, drained","Fresh basil leaves & Extra virgin olive oil"],"instructions":["Knead dough for 15 minutes, divide into balls, and cold ferment in fridge for 24-48 hours.","Stretch dough ball gently with fingertips, leaving a puffy cornicione outer rim.","Spread crushed San Marzano tomatoes, torn mozzarella, and fresh basil.","Drizzle olive oil and bake on preheated pizza steel at maximum oven temperature (250°C-300°C) for 6-8 minutes until blistered."],"tips":{"title":"Drain Mozzarella","description":"Draining cheese prevents water puddles in the center of the pizza."},"variations":{"title":"Pizza Marinara","description":"Top with garlic slices, wild oregano, and olive oil with no cheese."},"faqs":[{"question":"Why long fermentation?","answer":"It creates incredible airy crust pockets and rich flavor."}],"imageQuery":"pizza margherita basil mozzarella","imageUrl":"https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"tiramisu","name":"Classic Venetian Tiramisù","nativeName":"Tiramisù Tradizionale di Treviso","category":"Dolci & Bakery","prepTime":25,"cookTime":0,"yieldServings":8,"calories":390,"difficulty":"Easy","rating":4.9,"reviewsCount":880,"intro":"Treviso’s gift to the world: espresso-drenched savoiardi ladyfingers layered with an ethereal mascarpone sabayon cream and dusted with dark Dutch cocoa.","ingredients":["500 g authentic Italian Mascarpone cheese","4 large eggs, separated","100 g superfine sugar","300 g Savoiardi (Italian ladyfingers)","300 ml freshly brewed strong espresso, cooled","2 tbsp Marsala wine or dark rum (optional)","Unsweetened Dutch cocoa powder"],"instructions":["Brew espresso and let cool to room temperature with Marsala.","Beat egg yolks and sugar for 5 minutes until pale and ribbon-like.","Gently fold in mascarpone until velvety smooth.","Whip egg whites to firm peaks and fold delicately into mascarpone cream.","Dip ladyfingers briefly in espresso (1 second per side) and layer in dish.","Spread half the cream, add second layer of dipped ladyfingers, top with remaining cream, chill 6+ hours, and dust with cocoa."],"tips":{"title":"Quick Dip","description":"A swift 1-second dip keeps ladyfingers moist without falling apart."},"variations":{"title":"Pistachio Tiramisù","description":"Fold 100g Bronte pistachio paste into the mascarpone cream."},"faqs":[{"question":"How long does it keep?","answer":"Up to 4 days in refrigerator; flavor peaks on day 2."}],"imageQuery":"tiramisu dessert cocoa espresso","imageUrl":"https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"risotto-funghi","name":"Wild Porcini Mushroom Risotto","nativeName":"Risotto ai Funghi Porcini","category":"Primo Piatto","prepTime":15,"cookTime":25,"yieldServings":4,"calories":430,"difficulty":"Medium","rating":4.8,"reviewsCount":650,"intro":"Carnaroli rice toasted in shallot butter and white wine, slowly infused with rich porcini broth, finished with cold butter and Parmigiano Reggiano mantecatura.","ingredients":["320 g Carnaroli or Arborio rice","40 g dried Porcini mushrooms soaked in hot water","200 g fresh wild mushrooms","1 L vegetable or chicken broth","120 ml dry white wine & 1 minced shallot","60 g cold butter & 80 g grated Parmigiano Reggiano","Fresh Italian parsley"],"instructions":["Strain soaked porcini liquid and combine with hot broth.","Toast rice in butter and olive oil with shallots until translucent; deglaze with white wine.","Add hot broth one ladle at a time, stirring steadily until absorbed.","Stir in sautéed fresh and rehydrated porcini mushrooms after 10 minutes.","When rice is al dente with a creamy wave (all’onda), remove from heat and vigorously beat in cold butter and Parmigiano."],"tips":{"title":"Mantecatura","description":"Beat in cold butter off the flame for velvety restaurant sheen."},"variations":{"title":"Truffle Risotto","description":"Finish with shaved black truffle."},"faqs":[{"question":"Why Carnaroli rice?","answer":"It holds structure better than Arborio and releases ideal starch."}],"imageQuery":"creamy mushroom risotto parmigiano","imageUrl":"https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"lasagna-bolognese","name":"Lasagna alla Bolognese","nativeName":"Lasagne al Forno Emiliane","category":"Primo Piatto","prepTime":40,"cookTime":45,"yieldServings":8,"calories":590,"difficulty":"Advanced","rating":4.9,"reviewsCount":780,"intro":"Emilia-Romagna masterpiece: egg pasta sheets layered with slow-simmered 3-hour beef & pork Ragù alla Bolognese, silky nutmeg béchamel, and Parmigiano.","ingredients":["500 g fresh egg pasta sheets","500 g ground beef chuck & 250 g ground pork","1 onion, 1 carrot, 1 celery rib finely diced (soffritto)","100 ml white wine & 400 g tomato passata","750 ml milk, 50 g butter, 50 g flour for Béchamel","Nutmeg & 150 g Parmigiano Reggiano DOP"],"instructions":["Simmer Bolognese ragù with soffritto, meats, white wine, milk, and passata on low for 3 hours.","Cook roux with butter, flour, milk, and nutmeg into smooth béchamel sauce.","Assemble 5-6 layers in buttered dish: béchamel, pasta sheet, ragù, béchamel, and Parmigiano.","Bake at 180°C (350°F) for 35-40 minutes until golden. Rest 15 minutes before slicing."],"tips":{"title":"Resting Time","description":"Letting baked lasagna rest 15 mins ensures clean restaurant layers."},"variations":{"title":"Wild Mushroom Lasagna","description":"Layer with porcini mushrooms and fontina cheese."},"faqs":[{"question":"Is ricotta used?","answer":"In authentic Emilia-Romagna lasagna, silky béchamel is used exclusively."}],"imageQuery":"lasagna bolognese baked cheese","imageUrl":"https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"osso-buco","name":"Osso Buco alla Milanese","nativeName":"Ossobuco con Gremolada","category":"Secondo Piatto","prepTime":20,"cookTime":120,"yieldServings":4,"calories":560,"difficulty":"Medium","rating":4.8,"reviewsCount":430,"intro":"Cross-cut veal shanks braised tender in white wine and aromatic broth, crowned with fresh lemon-parsley-garlic gremolata.","ingredients":["4 thick cross-cut veal shanks with marrow bone","Flour for dredging & 3 tbsp olive oil and butter","1 onion, 1 carrot, 1 celery rib, finely diced","200 ml dry white wine & 400 ml beef broth","Gremolata: 1 bunch parsley, 1 lemon zest, 1 minced garlic clove"],"instructions":["Tie shanks with twine, season, dredge in flour, and brown in hot butter/oil (4 mins/side).","Sauté diced vegetables until soft; deglaze with white wine.","Return veal shanks, add broth, cover tightly, and braise in oven at 160°C (320°F) for 2 hours.","Sprinkle fresh gremolata over the tender shanks right before serving."],"tips":{"title":"Bone Marrow","description":"Serve with small spoons to savor the rich bone marrow."},"variations":{"title":"Pair with Saffron Risotto","description":"Traditional Milanese pairing is golden Risotto alla Milanese."},"faqs":[{"question":"Can I use slow cooker?","answer":"Yes, brown meat first then slow cook on low for 6-8 hours."}],"imageQuery":"osso buco braised veal shank","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"cacio-e-pepe","name":"Spaghetti Cacio e Pepe","nativeName":"Cacio e Pepe Romano","category":"Primo Piatto","prepTime":5,"cookTime":10,"yieldServings":2,"calories":420,"difficulty":"Medium","rating":4.8,"reviewsCount":710,"intro":"Only 3 ingredients, pure culinary perfection: al dente spaghetti, finely grated aged Pecorino Romano DOP, and freshly crushed toasted black pepper.","ingredients":["250 g bronze-die spaghetti or tonnarelli","150 g aged Pecorino Romano DOP, finely microplaned","2 tbsp whole black peppercorns, coarsely crushed"],"instructions":["Boil pasta in shallow salted water to concentrate starch.","Toast crushed black pepper in dry pan until fragrant.","In a bowl, mix Pecorino with warm starchy pasta water into a smooth paste.","Transfer al dente pasta into pepper skillet with water, toss off heat, and vigorously mix in cheese paste until creamy."],"tips":{"title":"Water Temp","description":"Never add boiling water directly to pecorino or it will clump."},"variations":{"title":"Truffle Cacio","description":"Grate fresh black summer truffle on top."},"faqs":[{"question":"Why does cheese clump?","answer":"Too much direct heat. Whisk with warm water off the flame."}],"imageQuery":"cacio e pepe spaghetti pecorino","imageUrl":"https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"arancini-siciliani","name":"Sicilian Stuffed Arancini","nativeName":"Arancini di Riso al Ragù","category":"Antipasti & Street","prepTime":35,"cookTime":25,"yieldServings":6,"calories":410,"difficulty":"Medium","rating":4.9,"reviewsCount":520,"intro":"Golden, crispy saffron rice balls stuffed with rich meat ragù, sweet green peas, and molten caciocavallo or mozzarella cheese.","ingredients":["400 g Carnaroli rice cooked with saffron and parmesan","150 g rich beef ragù with green peas","100 g cubed mozzarella or caciocavallo cheese","Flour, water batter, and breadcrumbs for breading","Oil for deep frying"],"instructions":["Spread saffron rice on a tray and cool completely.","Take a palmful of rice, cup into a bowl shape, fill center with ragù and cheese cube.","Enclose filling with rice and shape into a smooth round or conical ball.","Dip in light flour-water batter, roll in breadcrumbs, and deep-fry at 180°C (350°F) until deep golden and crispy."],"tips":{"title":"Cold Rice","description":"Chilled rice holds its shape easily during rolling and frying."},"variations":{"title":"Arancini al Burro","description":"Stuffed with diced ham, mozzarella, and béchamel."},"faqs":[{"question":"Round or cone shape?","answer":"Western Sicily makes round arancine; Eastern Sicily shapes conical arancini representing Mt. Etna."}],"imageQuery":"arancini rice balls crispy fried","imageUrl":"https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"panna-cotta","name":"Piedmontese Panna Cotta","nativeName":"Panna Cotta ai Frutti di Bosco","category":"Dolci & Bakery","prepTime":15,"cookTime":5,"yieldServings":6,"calories":310,"difficulty":"Easy","rating":4.9,"reviewsCount":610,"intro":"Silky, trembling vanilla bean cooked cream from Piedmont, accompanied by a vibrant tart wild berry coulis and fresh mint.","ingredients":["500 ml heavy cream & 100 ml whole milk","80 g sugar & 1 whole vanilla bean, split","8 g sheet gelatin bloomed in cold water","200 g mixed berries & 2 tbsp sugar for berry coulis"],"instructions":["Heat cream, milk, sugar, and scraped vanilla bean until warm (do not boil).","Remove from heat, squeeze excess water from gelatin, and whisk into warm cream until dissolved.","Strain liquid into ramekins and chill in refrigerator for at least 4 hours.","Simmer berries and sugar for 5 minutes; blend and strain.","Unmold panna cotta onto plates and spoon berry coulis over top."],"tips":{"title":"Wobble Test","description":"Authentic panna cotta should gently wobble on the plate."},"variations":{"title":"Caramel or Espresso","description":"Top with salted caramel or espresso glaze."},"faqs":[{"question":"How to unmold easily?","answer":"Dip ramekin base in warm water for 5 seconds and loosen edge with a knife tip."}],"imageQuery":"panna cotta berry coulis dessert","imageUrl":"https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"focaccia-genovese","name":"Ligurian Olive Oil Focaccia","nativeName":"Focaccia alla Genovese Tradizionale","category":"Antipasti & Street","prepTime":30,"cookTime":18,"yieldServings":8,"calories":280,"difficulty":"Medium","rating":4.9,"reviewsCount":560,"intro":"Golden Ligurian sheet bread dimpled with fingers, bathed in a saltwater and extra virgin olive oil emulsion, fragrant with fresh rosemary and sea salt flakes.","ingredients":["500 g bread flour & 350 ml warm water","7 g instant yeast & 1 tsp malt or honey","100 ml extra virgin olive oil (divided)","Brine: 60 ml water + 40 ml olive oil + 10 g sea salt","Coarse sea salt & fresh rosemary sprigs"],"instructions":["Mix wet dough, rest and fold 3 times over 2 hours.","Transfer to well-oiled baking sheet, gently stretch to edges.","Press fingertips deeply into dough to create iconic dimples.","Pour saltwater-oil brine generously over dimpled dough and let rise 45 mins.","Bake at 220°C (430°F) for 15-18 mins until golden. Brush with extra olive oil immediately."],"tips":{"title":"Brine Secret","description":"The saltwater brine creates the moist, tender interior and crispy crust."},"variations":{"title":"Focaccia con Pomodorini","description":"Press cherry tomatoes and black olives into dimples."},"faqs":[{"question":"Why so much oil?","answer":"Extra virgin olive oil is both a key ingredient and baking medium in Genoa."}],"imageQuery":"focaccia bread rosemary olive oil","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"gnocchi-sorrentina","name":"Gnocchi alla Sorrentina","nativeName":"Gnocchi alla Sorrentina al Forno","category":"Primo Piatto","prepTime":30,"cookTime":15,"yieldServings":4,"calories":460,"difficulty":"Medium","rating":4.8,"reviewsCount":490,"intro":"Pillow-soft handmade potato gnocchi tossed in sweet San Marzano tomato sauce, baked with molten fresh mozzarella and fragrant basil until bubbly.","ingredients":["1 kg russet potatoes & 250 g flour + 1 egg yolk","500 g tomato passata simmered with garlic & basil","250 g fresh mozzarella, cubed","60 g Parmigiano Reggiano","Fresh basil leaves & olive oil"],"instructions":["Boil whole potatoes in skin, peel hot, rice, and knead gently with flour and egg yolk into soft dough.","Roll into ropes, cut into 2 cm pillows, and roll over gnocchi board.","Boil in salted water until they float (2 mins); drain.","Toss gnocchi with warm tomato sauce, transfer to baking dish, top with mozzarella and Parmigiano.","Bake at 200°C (400°F) for 12-15 minutes until cheese melts and browns."],"tips":{"title":"Work Warm Potatoes","description":"Mashing warm potatoes releases moisture and prevents sticky dough."},"variations":{"title":"Gorgonzola Gnocchi","description":"Toss with creamy Gorgonzola dolce and toasted walnuts."},"faqs":[{"question":"Can I freeze fresh gnocchi?","answer":"Yes! Freeze uncooked on a tray for 1 hour, then bag and cook straight from frozen."}],"imageQuery":"gnocchi sorrentina tomato mozzarella","imageUrl":"https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"ribollita-toscana","name":"Tuscan Ribollita Soup","nativeName":"Ribollita Tradizionale Toscana","category":"Zuppa & Comfort","prepTime":20,"cookTime":60,"yieldServings":6,"calories":320,"difficulty":"Easy","rating":4.7,"reviewsCount":380,"intro":"Ancient Tuscan peasant potage: hearty cavolo nero kale, cannellini beans, root vegetables, and day-old country bread simmered and reboiled with peppery olive oil.","ingredients":["1 bunch Cavolo Nero (lacinato kale), chopped","400 g cooked cannellini beans (half pureed)","1 onion, 2 carrots, 2 celery ribs, 2 potatoes","1 Savoy cabbage & 2 tbsp tomato paste","250 g stale crusty Tuscan bread, sliced","Extra virgin olive oil & fresh rosemary"],"instructions":["Sauté soffritto vegetables in olive oil until sweet.","Add chopped kale, cabbage, potatoes, whole beans, bean purée, and vegetable broth.","Simmer gently for 45 minutes.","Layer stale bread in a clay pot, ladle hot vegetable soup over bread, and let rest.","Reboil (ribollire) next day and serve with a generous thread of raw spicy olive oil."],"tips":{"title":"Better the Next Day","description":"Ribollita literally means reboiled; it reaches maximum flavor after sitting overnight."},"variations":{"title":"Pappa al Pomodoro","description":"Simmered purely with tomatoes, garlic, basil, and bread."},"faqs":[{"question":"What bread is best?","answer":"Dense sourdough or rustic Tuscan country bread with a sturdy crust."}],"imageQuery":"ribollita tuscan soup kale beans","imageUrl":"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"saltimbocca-romana","name":"Saltimbocca alla Romana","nativeName":"Saltimbocca con Prosciutto e Salvia","category":"Secondo Piatto","prepTime":15,"cookTime":8,"yieldServings":4,"calories":380,"difficulty":"Easy","rating":4.9,"reviewsCount":510,"intro":"Tender milk-fed veal cutlets wrapped with salty Prosciutto di Parma and fresh sage, pan-seared in butter and deglazed with dry white wine. Literally \"jumps in the mouth.\"","ingredients":["8 thin veal cutlets (scaloppine)","8 slices Prosciutto di Parma DOP","8 large fresh sage leaves","50 g butter & 2 tbsp olive oil","100 ml dry white wine & flour for dusting"],"instructions":["Pound veal cutlets paper thin between parchment.","Place a slice of prosciutto and a sage leaf on each cutlet; secure with a toothpick.","Lightly dust the underside with flour.","Melt butter and oil in skillet; sear veal prosciutto-side down for 1 minute, flip for 1-2 minutes.","Deglaze with white wine, simmer 1 minute to create a glossy pan sauce, and serve immediately."],"tips":{"title":"Do Not Overcook","description":"Thin veal cooks in under 3 minutes; high heat and speed keep it tender."},"variations":{"title":"Chicken Saltimbocca","description":"Substitute pounded chicken breasts."},"faqs":[{"question":"Why flour only one side?","answer":"Leaving prosciutto un-floured allows it to crisp while underside thickens the wine sauce."}],"imageQuery":"saltimbocca veal prosciutto sage","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"bistecca-fiorentina","name":"Bistecca alla Fiorentina","nativeName":"Bistecca alla Fiorentina Chianina","category":"Secondo Piatto","prepTime":10,"cookTime":15,"yieldServings":4,"calories":720,"difficulty":"Medium","rating":5,"reviewsCount":890,"intro":"The crowning glory of Tuscany: a monumental 1.2 kg dry-aged Chianina T-bone steak grilled over hardwood coals, served rare with rosemary and sea salt.","ingredients":["1 thick-cut bone-in Porterhouse / T-bone steak (1.2 kg, 4-5 cm thick)","Coarse sea salt (Sale grosso di Cervia)","Freshly cracked black pepper","Extra virgin olive oil & fresh rosemary sprig"],"instructions":["Bring steak to room temperature 2 hours before cooking.","Grill over searing-hot charcoal for 5-6 minutes on each side without piercing the meat.","Stand the steak upright on its bone on the grill for 5-7 minutes to conduct heat into the core.","Rest for 5 minutes on a warm wooden board.","Carve meat off the bone into thick slices, finish with coarse sea salt and peppery olive oil."],"tips":{"title":"Room Temperature","description":"Cold steak will cool the coals and cook unevenly inside."},"variations":{"title":"Tagliata di Manzo","description":"Sliced sirloin served over wild arugula with shaved parmesan and balsamic."},"faqs":[{"question":"Can it be cooked well-done?","answer":"In Florence, asking for Fiorentina well-done is considered sacrilege; it is strictly served rare (al sangue)."}],"imageQuery":"bistecca fiorentina grilled steak t-bone","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"caprese-salad","name":"Caprese Salad with Buffalo Mozzarella","nativeName":"Insalata Caprese di Capri","category":"Antipasti & Street","prepTime":10,"cookTime":0,"yieldServings":4,"calories":260,"difficulty":"Easy","rating":4.9,"reviewsCount":670,"intro":"The island of Capri on a plate: vine-ripened summer heirloom tomatoes, fresh Campania Buffalo Mozzarella, torn sweet basil, sea salt, and cold-pressed olive oil.","ingredients":["4 large ripe heirloom or beefsteak tomatoes, sliced","300 g fresh Buffalo Mozzarella DOP, sliced","Fresh sweet basil leaves","Extra virgin olive oil & Flaky sea salt","Aged Balsamic Vinegar of Modena (optional)"],"instructions":["Slice tomatoes and buffalo mozzarella into even 8 mm rounds.","Alternate overlapping slices of tomato and mozzarella on a serving platter.","Tuck fresh basil leaves between each slice.","Sprinkle generously with flaky sea salt and freshly cracked black pepper.","Drizzle lavishly with high-grade extra virgin olive oil just before serving."],"tips":{"title":"Never Refrigerate Tomatoes","description":"Cold refrigeration ruins the sweet floral aromatics and texture of fresh tomatoes."},"variations":{"title":"Burrata Caprese","description":"Substitute mozzarella with a creamy burrata bulb in center."},"faqs":[{"question":"Is balsamic traditional?","answer":"Traditional Caprese has no balsamic, but aged Modena balsamic is a popular modern pairing."}],"imageQuery":"caprese salad mozzarella tomato basil","imageUrl":"https://images.unsplash.com/photo-1592417817098-8f3d69109853?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"polenta-concia","name":"Valle d’Aosta Polenta Concia","nativeName":"Polenta Concia ai Formaggi Fusi","category":"Zuppa & Comfort","prepTime":10,"cookTime":45,"yieldServings":4,"calories":490,"difficulty":"Easy","rating":4.8,"reviewsCount":320,"intro":"Creamy slow-cooked coarse yellow cornmeal enriched with melted Fontina DOP cheese, mountain butter, and grated Parmigiano.","ingredients":["300 g coarse Bramata cornmeal","1.2 L water & 1 tbsp coarse salt","200 g Alpine Fontina DOP cheese, cubed","100 g cold butter & 60 g Parmigiano Reggiano"],"instructions":["Bring salted water to a boil, whisk in cornmeal in a steady stream to avoid lumps.","Cook over low heat for 40 minutes, stirring steadily with a wooden spoon.","Stir in cubed Fontina, butter, and Parmigiano until completely melted and stringy.","Pour hot into shallow bowls and top with browned foaming sage butter."],"tips":{"title":"Constant Stirring","description":"Stirring prevents scorching and develops a silky, velvety texture."},"variations":{"title":"Polenta with Sausage Ragù","description":"Top with slow-cooked fennel pork sausage sauce."},"faqs":[{"question":"Can leftovers be sliced?","answer":"Yes! Pour leftovers into a loaf pan, chill, slice, and grill or fry until crispy."}],"imageQuery":"creamy polenta cheese butter fontina","imageUrl":"https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"cannoli-siciliani","name":"Authentic Sicilian Cannoli","nativeName":"Cannoli Siciliani con Ricotta di Pecora","category":"Dolci & Bakery","prepTime":40,"cookTime":15,"yieldServings":12,"calories":320,"difficulty":"Medium","rating":5,"reviewsCount":790,"intro":"Blistered, wine-infused crispy pastry shells piped to order with sweet sheep’s milk ricotta cream, studded with dark chocolate chips and candied orange peel.","ingredients":["Shells: 250 g flour, 30 g lard/butter, 50 ml Marsala wine, 1 tbsp cocoa","Filling: 500 g drained sheep’s milk ricotta, 150 g powdered sugar","50 g dark chocolate chips & 40 g candied orange peel","Crushed Bronte pistachios for garnish & oil for frying"],"instructions":["Knead dough, rest 1 hour, roll paper-thin through pasta roller.","Cut circles, wrap around metal cannoli tubes, seal with egg white.","Deep-fry at 180°C (350°F) until golden and covered with blisters (1-2 mins). Cool.","Sift ricotta with sugar until silky, fold in chocolate chips.","Pipe into shells right before serving, dip ends in crushed pistachios and candied orange."],"tips":{"title":"Fill Last Minute","description":"Fill cannoli right before eating so shells stay shatteringly crisp."},"variations":{"title":"Pistachio Cannoli","description":"Fold pistachio cream into the ricotta."},"faqs":[{"question":"Why sheep’s milk ricotta?","answer":"Sheep’s milk ricotta is richer and denser than cow’s milk, providing authentic Sicilian flavor."}],"imageQuery":"sicilian cannoli ricotta pistachio chocolate","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"minestrone-classico","name":"Classic Italian Minestrone","nativeName":"Minestrone di Verdure con Pasta","category":"Zuppa & Comfort","prepTime":20,"cookTime":35,"yieldServings":6,"calories":240,"difficulty":"Easy","rating":4.7,"reviewsCount":430,"intro":"Hearty garden soup packed with seasonal zucchini, carrots, celery, borlotti beans, ditalini pasta, and a rich Parmigiano Reggiano rind simmered into the broth.","ingredients":["2 zucchini, 2 carrots, 2 celery ribs, 1 potato, diced","1 can (400 g) whole San Marzano tomatoes, crushed","250 g cooked borlotti or cannellini beans","1 piece Parmigiano Reggiano rind (cleaned)","150 g Ditalini pasta & fresh basil","1 L vegetable broth & extra virgin olive oil"],"instructions":["Sauté diced vegetables in olive oil for 8 minutes until softened.","Add crushed tomatoes, broth, and parmesan rind; simmer for 20 minutes.","Stir in beans and ditalini pasta; cook 10 minutes until pasta is al dente.","Remove parmesan rind, season with sea salt and black pepper.","Ladle into bowls with fresh basil, extra grated cheese, and a drizzle of olive oil."],"tips":{"title":"Save Cheese Rinds","description":"Simmering parmesan cheese rinds adds immense depth and savory umami to soups."},"variations":{"title":"Genovese Minestrone","description":"Swirl in a spoonful of fresh basil pesto before serving."},"faqs":[{"question":"Can I freeze minestrone?","answer":"Yes! Freeze soup before adding pasta, then add fresh pasta when reheating."}],"imageQuery":"minestrone vegetable soup pasta beans","imageUrl":"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"vitello-tonnato","name":"Piedmontese Vitello Tonnato","nativeName":"Vitello Tonnato con Salsa Tonata","category":"Antipasti & Street","prepTime":25,"cookTime":35,"yieldServings":6,"calories":340,"difficulty":"Medium","rating":4.8,"reviewsCount":390,"intro":"Delicate chilled slices of poached veal tenderloin coated in a velvety emulsion of tuna, salted capers, anchovies, egg yolks, and lemon.","ingredients":["700 g veal tenderloin or eye of round, tied","Aromatics: 1 carrot, 1 onion, 1 celery, white wine, bay leaf","Sauce: 200 g canned tuna in olive oil, 4 anchovy fillets","2 tbsp salted capers (rinsed), 2 egg yolks, lemon juice, olive oil","Caperberries for decoration"],"instructions":["Simmer veal in seasoned broth with aromatics and wine for 35 mins. Chill completely in broth.","Blend tuna, anchovies, capers, egg yolks, and lemon juice; drizzle olive oil to form a velvety sauce.","Slice cold veal paper-thin across the grain.","Arrange overlapping slices on a platter, nap with tuna sauce, and garnish with caperberries."],"tips":{"title":"Chill Before Slicing","description":"Chilling meat makes it easy to slice paper-thin with a sharp knife."},"variations":{"title":"Pollo Tonnato","description":"Poached chicken breast makes an accessible, delicious alternative."},"faqs":[{"question":"Is it served hot or cold?","answer":"Strictly served cold or at cellar temperature as a summer antipasto."}],"imageQuery":"vitello tonnato veal tuna sauce capers","imageUrl":"https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"carpaccio-manzo","name":"Venetian Beef Carpaccio","nativeName":"Carpaccio di Manzo alla Cipriani","category":"Antipasti & Street","prepTime":15,"cookTime":0,"yieldServings":4,"calories":220,"difficulty":"Easy","rating":4.9,"reviewsCount":520,"intro":"Invented at Harry’s Bar in Venice: translucent raw beef tenderloin dressed with a delicate Dijon-Worcestershire mayonnaise cream, peppery arugula, and shaved Parmigiano.","ingredients":["350 g prime beef tenderloin (chilled firm)","100 g wild arugula leaves","50 g shaved Parmigiano Reggiano DOP","Universal Sauce: 4 tbsp homemade mayonnaise, 1 tsp Dijon mustard, 1 tsp Worcestershire, lemon juice, cream","Extra virgin olive oil & flaky sea salt"],"instructions":["Wrap beef tightly in plastic wrap and freeze 45 minutes to firm up.","Slice beef paper-thin with a sharp knife, flatten gently between parchment with rolling pin.","Arrange translucent beef slices covering a cold serving plate.","Drizzle with Cipriani sauce, top with dressed arugula and shaved parmesan."],"tips":{"title":"Prime Quality Meat","description":"Use only pristine butcher-grade beef tenderloin from a trusted source."},"variations":{"title":"Tuna Carpaccio","description":"Made with sashimi-grade yellowfin tuna."},"faqs":[{"question":"Why is it called Carpaccio?","answer":"Named by Giuseppe Cipriani after Renaissance painter Vittore Carpaccio for his vivid red tones."}],"imageQuery":"beef carpaccio raw meat parmesan arugula","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"spaghetti-vongole","name":"Spaghetti alle Vongole","nativeName":"Spaghetti con Vongole Veraci","category":"Primo Piatto","prepTime":15,"cookTime":12,"yieldServings":4,"calories":440,"difficulty":"Medium","rating":4.9,"reviewsCount":820,"intro":"Coastal Campania at its finest: spaghetti tossed with sweet clams opened in garlic, chili flakes, white wine, and flat-leaf parsley.","ingredients":["400 g bronze-die spaghetti","1 kg fresh Vongole Veraci (clams), purged in saltwater","4 cloves garlic, thinly sliced","1 dried red chili & 120 ml dry white wine","Extra virgin olive oil & fresh Italian parsley"],"instructions":["Heat olive oil, garlic, and chili in wide skillet until fragrant.","Add purged clams and white wine, cover with lid on high heat for 3-4 mins until shells open.","Transfer clams to bowl, strain pan juices to catch any grit.","Cook spaghetti 3 mins short of al dente; transfer into clam juices with olive oil and parsley, tossing rapidly to emulsify.","Return clams to pan, toss together, and serve steaming hot."],"tips":{"title":"Purge Clams","description":"Soak clams in salty water for 2 hours to release all sand."},"variations":{"title":"Vongole in Rosso","description":"Add a handful of halved sweet cherry tomatoes."},"faqs":[{"question":"Is cheese added?","answer":"Never add cheese to seafood pasta in traditional Italian gastronomy."}],"imageQuery":"spaghetti alle vongole clams pasta","imageUrl":"https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"parmigiana-melanzane","name":"Classic Eggplant Parmigiana","nativeName":"Parmigiana di Melanzane al Forno","category":"Secondo Piatto","prepTime":35,"cookTime":35,"yieldServings":6,"calories":410,"difficulty":"Medium","rating":4.9,"reviewsCount":730,"intro":"Southern Italian comfort: layers of fried eggplant slices, sweet basil tomato sauce, fresh mozzarella, and grated Parmigiano baked until bubbly and golden.","ingredients":["1.2 kg Italian globe eggplants, sliced into 5 mm rounds","800 g San Marzano tomato passata with basil & garlic","350 g fresh mozzarella, drained and shredded","120 g Parmigiano Reggiano DOP","Flour and oil for frying & fresh basil leaves"],"instructions":["Salt eggplant slices in a colander for 30 minutes, rinse and pat dry.","Dust lightly in flour and shallow-fry in hot oil until golden (2 mins/side); drain on towels.","Spread tomato sauce in baking dish, layer fried eggplant, sauce, mozzarella, basil, and Parmigiano.","Repeat for 4 layers, finishing with sauce and cheese.","Bake at 190°C (375°F) for 30-35 minutes until bubbling. Rest 20 minutes before serving."],"tips":{"title":"Rest Before Slicing","description":"Resting allows the layers to settle so neat squares can be cut."},"variations":{"title":"Grilled Parmigiana","description":"Grill eggplant rounds instead of frying for a lighter version."},"faqs":[{"question":"Why salt eggplants?","answer":"Salting extracts excess water and eliminates any natural bitterness."}],"imageQuery":"eggplant parmigiana baked cheese tomato","imageUrl":"https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"brasato-barolo","name":"Piedmontese Beef in Barolo Wine","nativeName":"Brasato al Barolo Tradizionale","category":"Secondo Piatto","prepTime":25,"cookTime":180,"yieldServings":6,"calories":580,"difficulty":"Advanced","rating":4.9,"reviewsCount":410,"intro":"Piedmontese royal feast: prime beef chuck marinated overnight in Nebbiolo Barolo wine with cinnamon and cloves, then slow-braised until tender as velvet.","ingredients":["1.2 kg beef chuck roast (Cappello del Prete)","1 bottle (750 ml) Barolo or Nebbiolo red wine","2 carrots, 2 onions, 2 celery stalks, 3 garlic cloves","Spices: 1 cinnamon stick, 4 cloves, 1 sprig rosemary, 3 bay leaves","Butter, olive oil, and sea salt"],"instructions":["Marinate beef with wine, chopped vegetables, and spices in fridge for 12-24 hours.","Remove beef and pat dry. Strain and reserve wine and vegetables.","Brown beef deeply on all sides in butter and oil in a heavy Dutch oven (10 mins).","Add marinated vegetables and brown; pour in Barolo wine.","Cover and simmer on low heat for 3 hours until meat is fork-tender.","Purée the braising vegetables into a silky wine sauce and spoon over sliced beef."],"tips":{"title":"Overnight Marinade","description":"Marinating infuses the wine’s tannins and spices deep into the beef fibers."},"variations":{"title":"Serve with Polenta","description":"The ultimate pairing is warm yellow cornmeal polenta."},"faqs":[{"question":"Can I use another wine?","answer":"Nebbiolo or Langhe Rosso provide the same authentic Piedmontese profile."}],"imageQuery":"brasato barolo braised beef red wine","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"tortellini-brodo","name":"Bolognese Tortellini in Brodo","nativeName":"Tortellini di Bologna in Brodo di Cappone","category":"Primo Piatto","prepTime":60,"cookTime":10,"yieldServings":6,"calories":380,"difficulty":"Advanced","rating":5,"reviewsCount":650,"intro":"Emilia-Romagna’s holiday treasure: handmade navel-shaped egg pasta filled with prosciutto, mortadella, pork loin, and aged Parmigiano, floating in golden capon broth.","ingredients":["Pasta: 300 g Italian 00 flour & 3 fresh eggs","Filling: 100 g pork loin, 100 g Prosciutto di Parma, 100 g Mortadella Bologna IGP, 150 g Parmigiano Reggiano, 1 egg, nutmeg","2 L golden clear capon or beef bone broth"],"instructions":["Grind pork loin, prosciutto, and mortadella 3 times; blend with parmesan, egg, and nutmeg into smooth paste.","Roll egg pasta paper thin, cut into 3x3 cm squares.","Place a tiny ball of filling in center, fold diagonally into a triangle, wrap corners around fingertip to seal.","Bring rich capon broth to a gentle simmer.","Drop tortellini into broth and cook for 3 minutes until floating and tender; serve directly in broth with grated cheese."],"tips":{"title":"Clear Broth","description":"Skim broth carefully during simmering to keep it crystal clear and golden."},"variations":{"title":"Tortellini alla Panna","description":"Tossed in rich heavy cream and parmesan."},"faqs":[{"question":"Why shape like a navel?","answer":"Legend says the pasta shape was inspired by the navel of Venus."}],"imageQuery":"tortellini in brodo soup bologna pasta","imageUrl":"https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"pesto-genovese","name":"Trofiette with Genovese Pesto","nativeName":"Trofie al Pesto Genovese Tradizionale","category":"Primo Piatto","prepTime":15,"cookTime":8,"yieldServings":4,"calories":460,"difficulty":"Easy","rating":4.9,"reviewsCount":810,"intro":"Crushed in a marble mortar: baby Ligurian basil leaves, toasted Mediterranean pine nuts, garlic, sea salt, Parmigiano, Pecorino Fiore Sardo, and olive oil over twisted trofie pasta.","ingredients":["50 g fresh young Genovese basil leaves (dry)","1 clove sweet garlic & pinch coarse sea salt","30 g toasted Italian pine nuts (pinoli)","50 g Parmigiano Reggiano & 30 g Pecorino Fiore Sardo","100 ml Ligurian extra virgin olive oil","400 g fresh Trofie pasta, 1 diced potato, green beans"],"instructions":["Grind garlic and salt in mortar to a paste; add pine nuts and crush.","Add basil leaves with a circular grinding motion against mortar walls until bruised and vibrant green.","Stir in grated cheeses, then slowly stream in olive oil until creamy.","Boil trofie with diced potato and green beans in salted water; drain.","Toss pasta with fresh pesto in a cold bowl, adding 2 tbsp pasta water."],"tips":{"title":"Cold Friction","description":"Never heat pesto; residual heat from cooked pasta activates the fresh aromas."},"variations":{"title":"Pesto Trapanese","description":"Sicilian style with almonds, cherry tomatoes, and basil."},"faqs":[{"question":"Why use mortar?","answer":"Blades tear and oxidize basil cells, turning it dark; grinding extracts sweet essential oils."}],"imageQuery":"pesto genovese basil trofie pasta","imageUrl":"https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"affogato-caffe","name":"Affogato al Caffè","nativeName":"Affogato al Caffè con Gelato alla Vaniglia","category":"Dolci & Bakery","prepTime":5,"cookTime":2,"yieldServings":2,"calories":180,"difficulty":"Easy","rating":4.9,"reviewsCount":470,"intro":"The ultimate 2-minute Italian dessert: a generous scoop of artisanal fior di latte or vanilla bean gelato drowned in a freshly pulled shot of piping hot espresso.","ingredients":["2 generous scoops high-grade artisanal Fior di Latte or vanilla gelato","2 freshly brewed shots hot Italian espresso","Shaved dark chocolate or amaretti biscuit crumbs (optional)"],"instructions":["Chill glass dessert cups in freezer for 15 minutes.","Place one round scoop of dense gelato in each glass.","Pull fresh hot espresso shots.","Pour hot espresso directly over the cold gelato at the table and serve immediately with a spoon."],"tips":{"title":"Hot vs Cold Contrast","description":"Serve instantly so the hot espresso melts the exterior into sweet coffee cream while core stays icy."},"variations":{"title":"Amaretto Splash","description":"Add 1 tsp Amaretto Disaronno liqueur to the espresso."},"faqs":[{"question":"Is it a drink or dessert?","answer":"Both! Eaten first with a spoon, then the remaining liquid is sipped."}],"imageQuery":"affogato coffee espresso vanilla gelato","imageUrl":"https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"bruschetta-pomodoro","name":"Classic Tomato & Basil Bruschetta","nativeName":"Bruschetta al Pomodoro e Basilico","category":"Antipasti & Street","prepTime":10,"cookTime":5,"yieldServings":4,"calories":190,"difficulty":"Easy","rating":4.8,"reviewsCount":620,"intro":"Charcoal-grilled rustic sourdough slices rubbed with raw garlic cloves, crowned with marinated summer tomatoes, fresh basil, and peppery olive oil.","ingredients":["4 thick slices rustic Italian country bread (Pane Casereccio)","4 ripe vine tomatoes, deseeded and diced","2 cloves fresh garlic (cut in half)","Handful fresh basil leaves, torn","Extra virgin olive oil & flaky sea salt"],"instructions":["Toss diced tomatoes with torn basil, 2 tbsp olive oil, and sea salt; rest 10 mins.","Grill bread slices on hot grill or skillet until toasted with char marks.","Vigorously rub the cut side of garlic clove over the rough surface of the hot bread.","Spoon seasoned tomatoes and their juices generously onto the garlic-rubbed bread and finish with flaky salt."],"tips":{"title":"Rub While Hot","description":"The toasted bread acts like a grater, melting the garlic aroma right into the crust."},"variations":{"title":"Bruschetta with Stracciatella","description":"Spread creamy stracciatella cheese under tomatoes."},"faqs":[{"question":"Pronunciation?","answer":"Pronounced \"broo-SKET-tah\", not \"broo-shet-tah\"."}],"imageQuery":"tomato basil bruschetta garlic bread","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"panettone-milanese","name":"Artisan Milanese Panettone","nativeName":"Panettone Tradizionale di Milano","category":"Dolci & Bakery","prepTime":60,"cookTime":50,"yieldServings":10,"calories":360,"difficulty":"Advanced","rating":5,"reviewsCount":510,"intro":"Milan’s towering holiday brioche: fermented naturally with Lievito Madre wild yeast, loaded with sweet butter, egg yolks, fragrant candied citrus peel, and plump raisins.","ingredients":["500 g Manitoba flour & 150 g active sweet sourdough starter","200 g butter & 150 g sugar + 6 egg yolks","150 g sultana raisins soaked in rum","100 g candied orange & citron peel","Vanilla bean, orange zest, and honey"],"instructions":["Prepare double fermentation dough over 36 hours using sourdough starter, butter, and yolks.","Fold in candied citrus and plump raisins.","Shape into panettone paper molds, proof until doming above rim.","Cross cut top with razor, place butter pat in center, bake at 170°C (340°F) for 50 minutes.","Pierce base with skewers and hang upside down for 12 hours to maintain airy dome structure."],"tips":{"title":"Hang Upside Down","description":"Hanging prevents the butter-rich, airy cake from collapsing while cooling."},"variations":{"title":"Chocolate Panettone","description":"Replaces candied fruits with dark chocolate chips."},"faqs":[{"question":"How long does it stay soft?","answer":"Natural sourdough fermentation keeps panettone fresh and soft for up to a month."}],"imageQuery":"panettone italian christmas cake bread","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"sfogliatella-napoletana","name":"Neapolitan Sfogliatella Riccia","nativeName":"Sfogliatella Riccia Napoletana","category":"Dolci & Bakery","prepTime":60,"cookTime":25,"yieldServings":8,"calories":340,"difficulty":"Advanced","rating":4.9,"reviewsCount":420,"intro":"Naples’ iconic pastry shell: hundreds of razor-thin, crispy laminated layers resembling a seashell, filled with sweet semolina-ricotta cream scented with cinnamon and orange blossom.","ingredients":["Dough: 500 g flour, 200 ml water, 1 tsp salt, 150 g lard or butter for laminating","Filling: 300 ml milk, 100 g semolina flour, 250 g fresh ricotta","100 g sugar, 1 egg, candied orange peel, cinnamon, orange blossom water","Powdered sugar for dusting"],"instructions":["Roll dough paper-thin, coat with lard, roll into a tight cylinder, and chill.","Slice cylinder into 1 cm disks; press with thumbs to shape into cone pouches.","Cook semolina in milk, cool, and blend with ricotta, sugar, egg, citrus, and spices.","Fill pastry pouches generously and seal edges lightly.","Bake at 200°C (400°F) for 20-25 mins until crisp and golden brown. Dust with powdered sugar."],"tips":{"title":"Use Lard for Crunch","description":"Traditional pork lard provides unmatched shatteringly crisp layer lamination."},"variations":{"title":"Sfogliatella Frolla","description":"Enclosed in tender sweet shortcrust pastry instead of laminated layers."},"faqs":[{"question":"Best eaten warm?","answer":"Yes! Eaten fresh from the oven when the shell is crispy and filling is warm and fragrant."}],"imageQuery":"sfogliatella napoletana pastry dessert","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"frittata-zucchine","name":"Roman Zucchini & Mint Frittata","nativeName":"Frittata di Zucchine e Menta Romana","category":"Antipasti & Street","prepTime":10,"cookTime":15,"yieldServings":4,"calories":260,"difficulty":"Easy","rating":4.8,"reviewsCount":390,"intro":"Golden Italian skillet egg cake folded with sweet sliced zucchini, fresh Roman mint, grated Pecorino Romano, and a hint of black pepper.","ingredients":["6 large fresh eggs, beaten","3 medium zucchini, thinly sliced into rounds","50 g Pecorino Romano DOP, grated","Fresh mint leaves & 3 tbsp olive oil","Sea salt & freshly ground black pepper"],"instructions":["Sauté zucchini rounds in olive oil over medium heat until tender and golden (8 mins).","Whisk eggs with grated Pecorino, chopped mint, salt, and pepper.","Pour egg mixture over zucchini in skillet.","Cook on low heat until bottom is golden and edges set.","Flip with the aid of a plate or slide under broiler for 2 minutes to cook the top."],"tips":{"title":"Low and Slow","description":"Low heat ensures a custardy, tender interior without rubbery edges."},"variations":{"title":"Frittata di Cipolle","description":"Made with slow-caramelized sweet white onions."},"faqs":[{"question":"Can it be served cold?","answer":"Frittata is excellent at room temperature, making it ideal for picnics and antipasti."}],"imageQuery":"italian frittata zucchini eggs herbs","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[]}];
+    let activeRecipeId = 'carbonara';
+    let activeCategory = 'All';
+
+    function getCategories() {
+      const cats = { 'All': recipes.length };
+      recipes.forEach(r => {
+        cats[r.category] = (cats[r.category] || 0) + 1;
+      });
+      return cats;
+    }
+
+    function renderCategories() {
+      const container = document.getElementById('categoriesBar');
+      if (!container) return;
+      const cats = getCategories();
+      container.innerHTML = Object.keys(cats).map(cat => {
+        const isActive = cat === activeCategory;
+        return `<button class="cat-chip ${isActive ? 'active' : ''}" onclick="filterCategory('${cat}')">${cat} (${cats[cat]})</button>`;
+      }).join('');
+    }
+
+    function filterCategory(cat) {
+      activeCategory = cat;
+      renderCategories();
+      renderGrid(document.getElementById('recipeSearchInput')?.value || '');
+    }
+
+    function renderGrid(filter = '') {
+      const grid = document.getElementById('recipeGrid');
+      const filtered = recipes.filter(r => {
+        const matchSearch = r.name.toLowerCase().includes(filter.toLowerCase()) || 
+                            r.nativeName.toLowerCase().includes(filter.toLowerCase()) ||
+                            r.category.toLowerCase().includes(filter.toLowerCase());
+        const matchCat = activeCategory === 'All' || r.category === activeCategory;
+        return matchSearch && matchCat;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; padding: 24px; text-align: center; color: #6b7280; background: #fff; border-radius: 4px; border: 1px dashed #d1d5db;">No recipes found matching your query. <a href="javascript:void(0)" onclick="viewAllRecipes()" style="color:#d97706; font-weight:bold;">View all ' + recipes.length + ' recipes</a></div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map((r) => {
+        const isActive = r.id === activeRecipeId;
+        return `
+          <article class="recipe-card ${isActive ? 'active-card' : ''}" onclick="selectRecipe('${r.id}')" title="Click to view details for ${r.name}">
+            <div class="card-photo" style="background-image:url('${r.imageUrl}')">
+              <span class="card-badge">${r.category}</span>
+            </div>
+            <div class="recipe-card-content">
+              <h3>${r.name}</h3>
+              <p><span>◷ ${r.prepTime + r.cookTime}m</span> <span>♨ ${r.difficulty}</span></p>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function selectRecipe(id) {
+      const recipe = recipes.find(r => r.id === id);
+      if (!recipe) return;
+      activeRecipeId = id;
+
+      document.getElementById('detailImage').style.backgroundImage = 
+        "linear-gradient(90deg, rgba(5,15,16,.95) 0%, rgba(5,15,16,.55) 42%, transparent 70%), url('" + recipe.imageUrl + "')";
+      
+      document.getElementById('detailBreadcrumbs').innerText = 'Home　›　Recipes　›　' + recipe.category;
+      document.getElementById('detailTitle').innerHTML = recipe.name + '<br>(' + recipe.nativeName + ')';
+      document.getElementById('detailRating').innerHTML = '★★★★★ <small>' + recipe.rating + ' (' + recipe.reviewsCount + ' reviews)</small>';
+      document.getElementById('detailIntro').innerText = recipe.intro;
+
+      document.getElementById('detailFacts').innerHTML = 
+        '<span>◉ Prep ' + recipe.prepTime + ' min</span>' +
+        '<span>◉ Cook ' + recipe.cookTime + ' min</span>' +
+        '<span>◉ Yield ' + recipe.yieldServings + ' serv</span>' +
+        '<span>◉ ' + recipe.calories + ' kcal</span>';
+
+      document.getElementById('detailIngredients').innerHTML = 
+        recipe.ingredients.map(ing => '<li>' + ing + '</li>').join('');
+
+      document.getElementById('detailInstructions').innerHTML = 
+        recipe.instructions.map(ins => '<li>' + ins + '</li>').join('');
+
+      document.getElementById('detailTips').innerHTML = 
+        '<strong>' + recipe.tips.title + '</strong><p>' + recipe.tips.description + '</p>';
+
+      document.getElementById('detailVariations').innerHTML = 
+        '<strong>' + recipe.variations.title + '</strong><p>' + recipe.variations.description + '</p>';
+
+      document.getElementById('faqContainer').innerHTML = 
+        recipe.faqs.map(faq => 
+          '<div class="faq-item" onclick="this.classList.toggle(\'open\')">' +
+          '<div><span>' + faq.question + '</span><b>⌄</b></div>' +
+          '<small>' + faq.answer + '</small>' +
+          '</div>'
+        ).join('');
+
+      const recs = (recipe.alsoLike && recipe.alsoLike.length > 0) 
+        ? recipe.alsoLike 
+        : recipes.filter(r => r.id !== recipe.id).slice(0, 4);
+
+      document.getElementById('alsoContainer').innerHTML = 
+        recs.map((also) => 
+          '<article class="also-card" onclick="selectRecipeByName(\'' + also.name.replace(/'/g, "\\'") + '\')">' +
+          '<div class="mini" style="background-image:url(\'' + also.imageUrl + '\')"></div>' +
+          '<span>' + also.name + '</span>' +
+          '</article>'
+        ).join('');
+
+      renderGrid(document.getElementById('recipeSearchInput')?.value || '');
+
+      if (window.innerWidth <= 950) {
+        document.getElementById('detailPanel').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function selectRecipeByName(name) {
+      const found = recipes.find(r => r.name.toLowerCase().includes(name.toLowerCase()) || r.nativeName.toLowerCase().includes(name.toLowerCase()));
+      if (found) {
+        selectRecipe(found.id);
+      }
+    }
+
+    function viewAllRecipes() {
+      activeCategory = 'All';
+      renderCategories();
+      const input = document.getElementById('recipeSearchInput');
+      if (input) input.value = '';
+      renderGrid('');
+      document.getElementById('recipeGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function focusCategories() {
+      document.getElementById('recipeGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* Modal Handlers */
+    function openAboutModal() {
+      document.getElementById('aboutModal').classList.add('open');
+    }
+    function closeAboutModal(e) {
+      if (!e || e.target === document.getElementById('aboutModal') || e.target.classList.contains('modal-close')) {
+        document.getElementById('aboutModal').classList.remove('open');
+      }
+    }
+    function switchModalTab(tabId) {
+      document.querySelectorAll('.modal-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.modal-section').forEach(s => s.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(tabId)?.classList.add('active');
+    }
+    function jumpToRecipe(id) {
+      closeAboutModal();
+      selectRecipe(id);
+      document.getElementById('detailPanel').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCategories();
+      renderGrid();
+
+      const searchInput = document.getElementById('recipeSearchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          renderGrid(e.target.value);
+        });
+      }
+
+      const searchBtn = document.getElementById('recipeSearchBtn');
+      if (searchBtn) {
+        searchBtn.addEventListener('click', () => {
+          renderGrid(searchInput.value);
+        });
+      }
+    });
+
+    renderCategories();
+    renderGrid();
+  </script>
+</body>
+</html>

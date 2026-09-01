@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thailand Recipes - THAI ROYAL KITCHEN</title>
+  <meta name="description" content="Harmony of Sweet, Sour, Spicy & Umami - Authentic Thailand culinary traditions, recipes, and culture." />
+  <style>
+    /* Reset & Base Setup */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100%;
+      background: #110e0c;
+      color: #fbf4e8;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    /* Magazine App Shell */
+    .app-shell {
+      width: 100%;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(650px, 62%) minmax(400px, 38%);
+      gap: 7px;
+      padding: 6px 14px;
+    }
+
+    .main-column, .detail-panel {
+      border: 1px solid #8c6b4b;
+      border-radius: 9px;
+      overflow: hidden;
+      background: #181310;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Topbar */
+    .topbar {
+      height: 48px;
+      background: #0a0705;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: Georgia, serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .brand-mark {
+      font-size: 20px;
+      color: #f09e2e;
+    }
+    .topbar nav {
+      display: flex;
+      gap: 16px;
+    }
+    .topbar nav a {
+      color: #d1d5db;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 11px;
+      transition: color 0.15s ease;
+      cursor: pointer;
+    }
+    .topbar nav a:hover, .topbar nav a.active {
+      color: #f09e2e;
+    }
+    .search {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 28px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid #4b5563;
+      border-radius: 4px;
+      overflow: hidden;
+      width: 170px;
+    }
+    .search input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 10px;
+      padding: 0 8px;
+      width: 135px;
+    }
+    .search input::placeholder { color: #9ca3af; }
+    .search b {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 28px;
+      background: #f09e2e;
+      color: #261502;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 290px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #111;
+    }
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      padding: 24px 28px;
+      max-width: 440px;
+    }
+    .hero-copy em {
+      display: block;
+      font-family: Georgia, serif;
+      font-style: italic;
+      color: #f09e2e;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+    .hero-copy h1 {
+      font-family: Georgia, serif;
+      font-size: 32px;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 7px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    }
+    .hero-copy p {
+      font-size: 12px;
+      color: #e5e7eb;
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+    .hero-actions button {
+      background: #f09e2e;
+      color: #261502;
+      border: 1px solid #f09e2e;
+      font-weight: bold;
+      font-size: 11px;
+      padding: 7px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .hero-actions button:hover { opacity: 0.9; transform: translateY(-1px); }
+    .hero-actions button.dark-button {
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      border: 1px solid #6b7280;
+      backdrop-filter: blur(4px);
+    }
+    .hero-actions button.dark-button:hover {
+      background: rgba(0,0,0,0.8);
+      border-color: #f09e2e;
+    }
+
+    /* Popular Section */
+    .popular {
+      background: #ede0ce;
+      color: #261b11;
+      padding: 14px 16px;
+      flex: 1;
+    }
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .section-heading h2 {
+      font-family: Georgia, serif;
+      font-size: 17px;
+      font-weight: bold;
+      color: #261b11;
+    }
+    .section-heading button {
+      background: #fff;
+      border: 1px solid #d7c4aa;
+      color: #261b11;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .section-heading button:hover { background: #f3f4f6; }
+
+    /* Category Filter Chips */
+    .categories-bar {
+      display: flex;
+      gap: 5px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+    }
+    .cat-chip {
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 9px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #374151;
+      transition: all 0.15s ease;
+    }
+    .cat-chip:hover { background: #f9fafb; }
+    .cat-chip.active {
+      background: #b45309;
+      color: #fff;
+      border-color: #92400e;
+    }
+
+    /* Grid */
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+      gap: 7px;
+    }
+    .recipe-card {
+      background: #faf5eb;
+      border: 1px solid #d7c4aa;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+    .recipe-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    }
+    .recipe-card.active-card {
+      border: 2px solid #f09e2e;
+      box-shadow: 0 0 0 1px #f09e2e;
+    }
+    .card-photo {
+      height: 75px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      background-color: #374151;
+    }
+    .card-badge {
+      position: absolute;
+      bottom: 4px;
+      left: 4px;
+      background: rgba(0,0,0,0.75);
+      color: #fff;
+      font-size: 7px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+    .recipe-card-content {
+      padding: 6px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .recipe-card h3 {
+      font-size: 10px;
+      font-weight: bold;
+      color: #111827;
+      line-height: 1.25;
+      margin-bottom: 2px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .recipe-card p {
+      font-size: 8px;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 3px;
+      margin-top: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Detail Panel */
+    .detail-panel {
+      background: #f5eee3;
+      color: #261b11;
+    }
+    .detail-image {
+      min-height: 175px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .detail-content {
+      padding: 10px 14px;
+    }
+    .breadcrumbs {
+      font-size: 9px;
+      color: #6b7280;
+      margin-bottom: 3px;
+    }
+    .detail-content h2 {
+      font-family: Georgia, serif;
+      font-size: 19px;
+      color: #261b11;
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+    .rating {
+      color: #d97706;
+      font-size: 11px;
+      margin-bottom: 6px;
+    }
+    .rating small { color: #6b7280; font-size: 9px; }
+    .intro {
+      font-size: 10px;
+      color: #374151;
+      line-height: 1.45;
+      margin-bottom: 8px;
+    }
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      background: rgba(0,0,0,0.04);
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,0,0,0.06);
+      font-size: 9px;
+      color: #1f2937;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* 2 Column Ingredients & Instructions */
+    .ingredients-instructions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 10px 14px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.4);
+    }
+    .ingredients-instructions h3 {
+      font-family: Georgia, serif;
+      font-size: 12px;
+      font-weight: bold;
+      color: #111827;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+    }
+    .ingredients-instructions ul, .ingredients-instructions ol {
+      padding-left: 14px;
+      font-size: 9.5px;
+      color: #374151;
+      line-height: 1.5;
+    }
+    .ingredients-instructions li { margin-bottom: 3px; }
+
+    /* Tips & Variations */
+    .tips {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      padding: 6px 14px 10px;
+    }
+    .tip-card {
+      background: #15313d;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 1.35;
+    }
+    .tip-card strong {
+      display: block;
+      color: #f09e2e;
+      font-size: 10px;
+      margin-bottom: 2px;
+      font-family: Georgia, serif;
+    }
+    .variation-card {
+      background: #164332;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 1.35;
+    }
+    .variation-card strong {
+      display: block;
+      color: #a7f3d0;
+      font-size: 10px;
+      margin-bottom: 2px;
+      font-family: Georgia, serif;
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 6px 14px;
+    }
+    .faq h3 {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #111827;
+    }
+    .faq-item {
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 3px;
+      margin-bottom: 4px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .faq-item div {
+      padding: 5px 8px;
+      font-weight: bold;
+      font-size: 9.5px;
+      color: #1f2937;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-item small {
+      display: none;
+      padding: 5px 8px 7px;
+      font-size: 9px;
+      color: #4b5563;
+      border-top: 1px solid #f3f4f6;
+      line-height: 1.4;
+      background: #f9fafb;
+    }
+    .faq-item.open small { display: block; }
+
+    /* You Might Also Like */
+    .also {
+      background: #143c30;
+      color: #fff;
+      padding: 10px 14px;
+      margin-top: auto;
+    }
+    .also h3 {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .also-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+    .also-card {
+      cursor: pointer;
+      text-align: center;
+    }
+    .also-card .mini {
+      height: 48px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 3px;
+      transition: border-color 0.15s;
+    }
+    .also-card:hover .mini { border-color: #f09e2e; }
+    .also-card span {
+      font-size: 8.5px;
+      font-weight: bold;
+      color: #e5e7eb;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Modal for About Swedish Cuisine */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(6px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-container {
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      background: #0e161c;
+      border: 1px solid rgba(217, 119, 6, 0.4);
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      color: #e2e8f0;
+    }
+    .modal-header {
+      padding: 16px 20px;
+      background: linear-gradient(90deg, #0d222b, #122c37);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-header h2 {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      color: #fff;
+    }
+    .modal-close {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-nav {
+      display: flex;
+      gap: 6px;
+      padding: 8px 16px;
+      background: #091116;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      overflow-x: auto;
+    }
+    .modal-tab-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .modal-tab-btn.active {
+      background: #d97706;
+      color: #0f172a;
+      font-weight: bold;
+    }
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .modal-section { display: none; }
+    .modal-section.active { display: block; }
+    .modal-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .modal-card h4 {
+      font-size: 12px;
+      color: #fbbf24;
+      margin-bottom: 4px;
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 950px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+        padding: 4px 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-shell" id="topAnchor">
+    <!-- LEFT MAIN COLUMN -->
+    <main class="main-column">
+      <header class="topbar">
+        <div class="brand" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+          <span class="brand-mark">🪷</span>
+          <span>THAI<br>ROYAL KITCHEN</span>
+        </div>
+        <nav>
+          <a href="javascript:void(0)" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="active">Home</a>
+          <a href="javascript:void(0)" onclick="viewAllRecipes()">Recipes</a>
+          <a href="javascript:void(0)" onclick="focusCategories()">Categories</a>
+          <a href="javascript:void(0)" onclick="openAboutModal()">About</a>
+        </nav>
+        <div class="search">
+          <input type="text" id="recipeSearchInput" placeholder="Search 30 recipes..." aria-label="Search recipes" />
+          <b id="recipeSearchBtn">⌕</b>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-photo" style="background-image: linear-gradient(90deg, #110e0cF2 0%, #110e0cB8 41%, #110e0c0D 80%), url('https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=1200&q=85');"></div>
+        <div class="hero-copy">
+          <em>Harmony of Sweet, Sour, Spicy & Umami</em>
+          <h1>Authentic Thai<br>Recipes</h1>
+          <p>Fragrant lemongrass river prawn tom yum, aromatic green curry,<br>wok-seared pad thai, and sweet mango sticky rice.</p>
+          <div class="hero-actions">
+            <button onclick="document.getElementById('recipeGridSection').scrollIntoView({behavior:'smooth'})">Explore Thai Recipes</button>
+            <button class="dark-button" onclick="openAboutModal()">About Thai Gastronomy</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="popular" id="recipeGridSection">
+        <div class="section-heading">
+          <h2>❧ Masterpieces of Thai Cuisine ❧</h2>
+          <button id="viewAllBtn" onclick="viewAllRecipes()">View All (30) →</button>
+        </div>
+
+        <div class="categories-bar" id="categoriesBar"></div>
+
+        <div class="recipe-grid" id="recipeGrid"></div>
+      </section>
+    </main>
+
+    <!-- RIGHT DETAIL PANEL -->
+    <aside class="detail-panel" id="detailPanel">
+      <div class="detail-image" id="detailImage" style="background-image: linear-gradient(90deg, rgba(5,15,16,.95) 0%, rgba(5,15,16,.55) 42%, transparent 70%), url('https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=800&q=80');"></div>
+      <div class="detail-content" id="detailContent">
+        <div class="breadcrumbs" id="detailBreadcrumbs">Home　›　Recipes　›　เส้น & ผัด (Noodles & Stir-Fries)</div>
+        <h2 id="detailTitle">Authentic Royal Pad Thai Boran<br>(ผัดไทยโบราณกุ้งแม่น้ำสด)</h2>
+        <div class="rating" id="detailRating">★★★★★ <small>5 (2850 reviews)</small></div>
+        <p class="intro" id="detailIntro">Wok-seared chewy rice noodles with sweet, sour, and savory tamarind reduction, dried shrimp, yellow firm tofu, preserved sweet radish, fresh bean sprouts, Chinese chives, and butterflied river prawns.</p>
+        <div class="facts" id="detailFacts">
+          <span>◉ Prep 20 min</span>
+          <span>◉ Cook 10 min</span>
+          <span>◉ Yield 2 serv</span>
+          <span>◉ 520 kcal</span>
+        </div>
+      </div>
+
+      <div class="ingredients-instructions" id="ingredientsInstructions">
+        <section>
+          <h3>Ingredients</h3>
+          <ul id="detailIngredients">
+            <li>200 g dry chantaburi thin rice noodles (soaked in room-temperature water for 45 mins)</li><li>4 jumbo raw river prawns, butterflied down the back</li><li>Pad Thai Sauce: 3 tbsp pure tamarind paste, 3 tbsp palm sugar, 2.5 tbsp fish sauce (nam pla), 1 tbsp water</li><li>50 g yellow firm tofu (diced), 2 tbsp sweet preserved radish (chai poh, minced), 1 tbsp dried shrimp (kung haeng)</li><li>2 farm eggs, 2 cups fresh mung bean sprouts, 1 cup Chinese garlic chives (kuichei, cut into 3cm lengths)</li><li>Condiments: Crushed roasted peanuts, toasted chili flakes (prik pon), and fresh lime wedges</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Instructions</h3>
+          <ol id="detailInstructions">
+            <li>Simmer tamarind paste, palm sugar, fish sauce, and water over low heat until sugar melts and sauce is thick; set aside.</li><li>Heat 2 tbsp oil in smoking hot wok; sear prawns until charred and cooked (2 mins); remove.</li><li>In same wok, sauté diced tofu, sweet preserved radish, and dried shrimp for 1 minute until fragrant.</li><li>Add soaked rice noodles and 4 tbsp Pad Thai tamarind sauce; splash 2 tbsp water and toss vigorously until noodles absorb sauce and turn chewy and glossy.</li><li>Push noodles to one side of the wok; crack eggs into the empty side, scramble lightly, and fold noodles over eggs.</li><li>Toss in bean sprouts and garlic chives for 30 seconds (keep them crunchy!).</li><li>Plate noodles, crown with seared river prawns, and serve with crushed roasted peanuts, chili flakes, and fresh lime.</li>
+          </ol>
+        </section>
+      </div>
+
+      <div class="tips" id="tipsBlock">
+        <div class="tip-card" id="detailTips">
+          <strong>Cold Water Soak</strong>
+          <p>Never boil Pad Thai noodles in hot water; soaking them in room-temperature water keeps them elastic and prevents a mushy texture in the wok.</p>
+        </div>
+        <div class="variation-card" id="detailVariations">
+          <strong>Pad Thai Hor Khai</strong>
+          <p>Wrapped inside an ultra-thin delicate lacy egg crepe net.</p>
+        </div>
+      </div>
+
+      <section class="faq" id="faqSection">
+        <h3>Frequently Asked Questions</h3>
+        <div id="faqContainer">
+          
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+              <div><span>What gives Pad Thai its signature flavor?</span><b>⌄</b></div>
+              <small>The sacred holy trinity of tart tamarind, sweet palm sugar, and savory fish sauce.</small>
+            </div>
+          
+        </div>
+      </section>
+
+      <section class="also" id="alsoSection">
+        <h3>You Might Also Like</h3>
+        <div class="also-grid" id="alsoContainer">
+          
+            <article class="also-card" onclick="selectRecipeByName('Tom Yum Goong')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1548943487-a2e4e43b4853?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Tom Yum Goong</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Green Chicken Curry')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Green Chicken Curry</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Som Tum Papaya Salad')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Som Tum Papaya Salad</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Mango Sticky Rice')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Mango Sticky Rice</span>
+            </article>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- ABOUT EDITORIAL MODAL -->
+  <div class="modal-overlay" id="aboutModal" onclick="closeAboutModal(event)">
+    <div class="modal-container" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div>
+          <span style="font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #fbbf24; font-weight: bold;">Editorial Compendium</span>
+          <h2>About Swedish Cuisine</h2>
+        </div>
+        <button class="modal-close" onclick="closeAboutModal()">✕</button>
+      </div>
+
+      <div class="modal-nav">
+        <button class="modal-tab-btn active" onclick="switchModalTab('mod-intro')">Introduction & Pillars</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-dishes')">Popular Dishes</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-fika')">Fika & Baking</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-ingredients')">Ingredients</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-traditions')">Traditions</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-regional')">Regional</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-faq')">FAQ</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- INTRO TAB -->
+        <div class="modal-section active" id="mod-intro">
+          <div class="modal-card" style="background: linear-gradient(135deg, rgba(217,119,6,0.15), rgba(15,23,42,0.6)); border-color: rgba(217,119,6,0.3);">
+            <em style="color: #fbbf24; font-family: Georgia, serif; font-size: 13px; display: block; margin-bottom: 4px;">From Viking hearths to Michelin tables: a deep journey into Nordic culinary heritage.</em>
+            <h3 style="font-family: Georgia, serif; font-size: 15px; color: #fff; margin-bottom: 8px;">Introduction to Swedish Food</h3>
+            <p style="margin-bottom: 6px;">Swedish gastronomy is defined by an intimate connection with nature, shaped by dramatic northern seasons, vast archipelagos, dense boreal forests, and long Arctic winters.</p><p style="margin-bottom: 6px;">Historically, surviving sub-zero Nordic winters required master craftsmanship in preservation: curing with sea salt, pickling with vinegar and mustard, smoking over juniper wood, drying, and fermenting.</p><p style="margin-bottom: 6px;">Today, Swedish food combines these ancestral preservation arts with pure simplicity, seasonal foraging, and a reverence for pristine ingredients — creating one of the most vibrant and sustainable food cultures in the modern world.</p>
+          </div>
+
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin: 14px 0 8px;">What Is Swedish Cuisine?</h3>
+          <p style="margin-bottom: 10px;">At its essence, Swedish food is grounded in the concept of "Husmanskost" — traditional, unpretentious home-cooked meals originally prepared by agrarian families. It emphasizes warmth, honest nourishment, and the golden principle of "Lagom" (not too little, not too much, but just right).</p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>01. Husmanskost (Heritage Comfort)</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Satisfying, wholesome dishes made with root vegetables, pork, wild game, dairy butter, and pantry staples designed to sustain hard-working bodies.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>02. The Smörgåsbord Concept</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">A grand buffet of cold and hot courses, eaten in strict traditional sequence starting with pickled herring, progressing to cold meats and salmon, then warm casseroles, and ending with cheese.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>03. Allemansrätten (Right to Roam)</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Constitutional freedom allowing every citizen to forage wild lingonberries, cloudberries, blueberries, and golden chanterelle mushrooms in forests across Sweden.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>04. Purity & Seasonality</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Minimalist preparation where the natural flavors of cold-water seafood, fresh dill, butter, and pristine root vegetables take center stage.</p>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- DISHES TAB -->
+        <div class="modal-section" id="mod-dishes">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 6px;">Traditional Swedish Foods & Popular Dishes</h3>
+          <p style="margin-bottom: 12px; color: #94a3b8;">While modern Sweden embraces global flavors, these iconic cornerstone dishes represent the heart and soul of authentic Swedish dining.</p>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Swedish Meatballs <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Köttbullar med Gräddsås)</em></h4>
+                <p style="margin-bottom: 4px;">Tender meatballs made from a blend of pork and beef, soaked breadcrumbs, onion, and a hint of allspice. Simmered in velvety cream sauce with buttery mashed potatoes and tart lingonberries.</p>
+                <small style="color: #93c5fd;">Cultural Note: The undisputed national dish, immortalized worldwide and cherished at every Swedish family table.</small>
+              </div>
+              <button onclick="jumpToRecipe('meatballs')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Gravlax <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Gravad Lax med Hovmästarsås)</em></h4>
+                <p style="margin-bottom: 4px;">Fresh Nordic salmon cured for 48 hours in coarse sea salt, sugar, cracked white pepper, and mountains of fresh dill. Sliced paper-thin and paired with sweet dill mustard sauce.</p>
+                <small style="color: #93c5fd;">Cultural Note: Dating back to medieval times when fishermen buried salted salmon in the earth ("grava") to cure.</small>
+              </div>
+              <button onclick="jumpToRecipe('gravlax')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Raggmunk <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Raggmunk med Stekt Fläsk)</em></h4>
+                <p style="margin-bottom: 4px;">Crisp, lacy potato pancakes prepared with freshly grated starchy potatoes in a light flour-milk batter, fried in rich butter until shatteringly crisp at the perimeter.</p>
+                <small style="color: #93c5fd;">Cultural Note: Served with thick salted crispy pork belly and tart lingonberries, the benchmark of Swedish weekday comfort.</small>
+              </div>
+              <button onclick="jumpToRecipe('raggmunk')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Janssons Frestelse <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Janssons Frestelse)</em></h4>
+                <p style="margin-bottom: 4px;">A decadent gratin of julienned potatoes, caramelized onions, and spiced sprats (ansjovis) baked in heavy cream and breadcrumbs until bubbling golden.</p>
+                <small style="color: #93c5fd;">Cultural Note: The essential midnight centerpiece of every Christmas Julbord, Easter, and Midsummer celebration.</small>
+              </div>
+              <button onclick="jumpToRecipe('janssons-frestelse')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Kåldolmar <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Kåldolmar med Gräddsås)</em></h4>
+                <p style="margin-bottom: 4px;">Tender cabbage rolls packed with spiced pork, beef, and rice, browned in dark syrup and butter, then braised with rich stock and cream.</p>
+                <small style="color: #93c5fd;">Cultural Note: Brought back by King Charles XII from the Ottoman Empire in the 1700s, adapted with Nordic white cabbage and lingonberries.</small>
+              </div>
+              <button onclick="jumpToRecipe('kaldolmar')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+        </div>
+
+        <!-- CULTURE / FIKA TAB -->
+        <div class="modal-section" id="mod-fika">
+          <div class="modal-card" style="background: rgba(180,83,9,0.15);">
+            <h4>Swedish Baking Culture & Fika Tradition</h4>
+            <p style="margin-bottom: 6px;">Fika is far more than a simple coffee break — it is an essential Swedish social institution and a state of mind. Twice a day, colleagues, friends, and families set aside work to sit down together over freshly brewed filter coffee and freshly baked pastries.</p>
+            <p style="font-style: italic; color: #fde68a;">"In Sweden, enjoying fika represents slowing down, cultivating genuine human presence, and savoring sweet craftsmanship. Historic etiquette honored "Sju sorters kakor" (Seven Types of Cookies) served from elegant porcelain tins."</p>
+          </div>
+          <h4 style="color:#fff; margin: 12px 0 8px;">Popular Regional Treats & Specialties</h4>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>Kanelbullar (Svenska Kanelbullar)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Scented with freshly ground cardamom, filled with cinnamon-sugar butter, and baked with crunchy pearl sugar. Celebrated every October 4th on National Cinnamon Bun Day.</p>
+                <button onclick="jumpToRecipe('kanelbullar')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+              <div class="modal-card">
+                <h4>Semlor (Klassiska Semlor)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">A cardamom wheat bun filled with almond paste and billowing whipped cream. Traditionally eaten on Fettisdagen (Fat Tuesday) and throughout winter.</p>
+                <button onclick="jumpToRecipe('semlor')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+              <div class="modal-card">
+                <h4>Kladdkaka (Svensk Kladdkaka)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Sweden’s signature gooey, fudgy sticky chocolate cake with a paper-thin crackly crust, served warm with unsweetened whipped cream and tart raspberries.</p>
+                <button onclick="jumpToRecipe('kladdkaka')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- INGREDIENTS TAB -->
+        <div class="modal-section" id="mod-ingredients">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Key Swedish Ingredients</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🥔 <strong style="color:#fff; font-size:11px;">Potatoes</strong> <em style="font-size:9px; color:#fbbf24;">(Potatis)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">The foundational carbohydrate of Nordic cuisine since the 18th century, prepared boiled with dill, whipped into velvety mos, or grated into raggmunk.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Mashed with meatballs, boiled with herring, or julienned into Janssons gratin.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🐟 <strong style="color:#fff; font-size:11px;">Salmon</strong> <em style="font-size:9px; color:#fbbf24;">(Lax)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Pristine cold-water fish prepared cured (gravlax), hot-smoked, cold-smoked, pan-seared, or baked into celebratory smörgåstårta.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Cured with dill and sea salt, or poached with hollandaise sauce.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌊 <strong style="color:#fff; font-size:11px;">Herring</strong> <em style="font-size:9px; color:#fbbf24;">(Sill & Strömming)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">The silver of the sea. Baltic herring (strömming) and Atlantic herring (sill) are preserved in sweet-tangy vinegar brines with onion, mustard, or fried crisp in rye flour.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Pickled with red onion and allspice, or pan-fried with potatoes.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🍒 <strong style="color:#fff; font-size:11px;">Lingonberries</strong> <em style="font-size:9px; color:#fbbf24;">(Lingon)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Tart, ruby-red wild berries foraged in autumn pine forests. Stirred raw with sugar (rårörda lingon) to provide sweet-sour balance to rich meat dishes.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Essential companion for meatballs, cabbage rolls, blood pudding, and potato pancakes.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌿 <strong style="color:#fff; font-size:11px;">Dill</strong> <em style="font-size:9px; color:#fbbf24;">(Dill)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">The quintessential green herb of Scandinavia, providing fresh aniseed aroma to seafood, sauces, potato salads, and crayfish broths.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Chopped over boiled potatoes, infused into gravlax cure, and tossed into Skagen mayonnaise.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌾 <strong style="color:#fff; font-size:11px;">Rye</strong> <em style="font-size:9px; color:#fbbf24;">(Råg)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Hearty whole-grain cereal used for centuries to bake sturdy sourdough loaves and crisp, dry knäckebröd flatbreads with extraordinary shelf life.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Knäckebröd crispbreads with butter and aged cheese, or dark limpa loaves.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">✨ <strong style="color:#fff; font-size:11px;">Cardamom</strong> <em style="font-size:9px; color:#fbbf24;">(Kardemumma)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Introduced by Viking trade routes with Constantinople, whole green cardamom pods are freshly crushed into virtually all Swedish bakery doughs.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Cardamom knots (kardemummabullar), cinnamon buns, semlor, and holiday cakes.</small>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- TRADITIONS TAB -->
+        <div class="modal-section" id="mod-traditions">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Swedish Food Traditions & Celebrations</h3>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Midsummer (Midsommar)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">Late June (Summer Solstice)</span>
+              </div>
+              <p style="margin-bottom: 6px;">The most magical Swedish holiday celebrating endless daylight. Families gather around maypoles for an open-air banquet of pickled herring, boiled fresh new potatoes with dill and sour cream, Västerbotten cheese tart, snaps songs, and fresh Swedish strawberries with cream.</p>
+              <small style="color: #fbbf24;">Staples: Inlagd Sill, New Potatoes with Dill, Västerbottensostpaj, Fresh Strawberries & Cream, Akvavit</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Christmas (Julbord)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">December</span>
+              </div>
+              <p style="margin-bottom: 6px;">A lavish multi-course holiday feast starting with glögg and gingerbread with blue cheese, followed by herring and salmon, then warm meatballs, prince sausages (prinskorv), Jansson’s Temptation, Christmas ham (julskinka), and saffron buns (lussekatter).</p>
+              <small style="color: #fbbf24;">Staples: Julskinka (Christmas Ham), Janssons Frestelse, Köttbullar, Lussekatter, Pepparkakor med Ädelost</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Easter (Påsk)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">Spring (March/April)</span>
+              </div>
+              <p style="margin-bottom: 6px;">A cheerful springtime smörgåsbord filled with decorated eggs, cured gravlax, lamb roast with herbs, gubbröra on crispbread, and vibrant candy-filled Easter eggs.</p>
+              <small style="color: #fbbf24;">Staples: Hard-boiled Eggs with Kalles Kaviar, Gravlax, Gubbröra, Roast Lamb</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Crayfish Party (Kräftskiva)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">August</span>
+              </div>
+              <p style="margin-bottom: 6px;">Boisterous outdoor gatherings under moon-shaped paper lanterns. Swedes slurp boiled freshwater crayfish cooked in beer and dill-seed broth, wearing funny paper hats and singing traditional snapsvisor.</p>
+              <small style="color: #fbbf24;">Staples: Dill-boiled Crayfish, Västerbottensostpaj, Crispbread & Butter, Chilled Aquavit</small>
+            </div>
+          
+        </div>
+
+        <!-- REGIONAL TAB -->
+        <div class="modal-section" id="mod-regional">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Regional Swedish Cuisine</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>🧭 Norrland & Lapland (The Great North)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Dominated by Arctic forests and indigenous Sámi traditions. Rich in wild game like moose (älg) and reindeer (ren), arctic char, wild cloudberries (hjortron), and thin soft flatbread (tunnbröd).</p>
+                <small style="color: #fbbf24;">Specialties: Suovas (Smoked Reindeer), Älgkalops (Moose Stew), Hjortronsylt (Cloudberry Jam), Västerbotten Cheese</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 Skåne & Southern Farmlands</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Sweden’s fertile breadbasket with rich European influences, producing grain, sugar beets, smoked pork, goose dinners on Saint Martin’s Eve (Mårten Gås), and towering spettekaka cakes.</p>
+                <small style="color: #fbbf24;">Specialties: Gåslever & Roast Goose, Svartsoppa, Spettekaka, Rökt Fläsk (Smoked Pork)</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 The West Coast (Bohuslän & Gothenburg)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">World-renowned for cold, nutrient-rich waters yielding sweet Norway lobsters (havskräftor), deep-sea prawns, oysters, and fresh Atlantic herring.</p>
+                <small style="color: #fbbf24;">Specialties: Toast Skagen, Kräftor (Boiled Crayfish), Fresh Oysters, Stekt Strömming</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 Dalarna & Central Lake District</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Deep folklore heritage, home to the iconic Falukorv sausage, traditional rye crispbread mills, and freshwater pike and perch from Lake Siljan.</p>
+                <small style="color: #fbbf24;">Specialties: Falukorv i Ugn, Leksands Knäckebröd, Lake Fish Terrines</small>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- FAQ TAB -->
+        <div class="modal-section" id="mod-faq">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Frequently Asked Questions</h3>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">What is the philosophy behind Swedish Husmanskost?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Husmanskost refers to honest, nourishing home cooking rooted in Swedish agrarian history. It prioritizes wholesome local ingredients, balanced portions (Lagom), and satisfying flavors made from scratch.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">Why is Fika so culturally important in Sweden?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Fika is a valued daily ritual that fosters social connection and mindfulness. It is a scheduled opportunity to step away from screens, enjoy high-quality coffee and freshly baked cardamom or cinnamon buns, and bond with peers.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">What is the difference between Swedish ansjovis and Mediterranean anchovies?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Swedish ansjovis are actually small sprats (skarpsill) cured in a sweet, aromatic brine with cinnamon, ginger, cloves, and sandalwood. Mediterranean anchovies are salty, fermented true anchovies in oil. They cannot be directly substituted in Janssons Frestelse.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">Why do Swedish cinnamon buns taste different from American cinnamon rolls?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Swedish Kanelbullar incorporate freshly crushed cardamom into the yeast dough, are folded into intricate knotted buns rather than thick spiral slabs, are crowned with crunchy pearl sugar, and do not use heavy powdered sugar glaze or cream cheese frosting.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">How does the Swedish right of public access (Allemansrätten) influence cooking?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Allemansrätten legally allows anyone to forage wild berries (lingonberries, bilberries, cloudberries) and wild mushrooms (chanterelles, porcini) freely in nature, keeping wild foraging at the heart of home cooking.</p>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const recipes = [{"id":"pad-thai-boran","name":"Authentic Royal Pad Thai Boran","nativeName":"ผัดไทยโบราณกุ้งแม่น้ำสด","category":"เส้น & ผัด (Noodles & Stir-Fries)","prepTime":20,"cookTime":10,"yieldServings":2,"calories":520,"difficulty":"Medium","rating":5,"reviewsCount":2850,"intro":"Wok-seared chewy rice noodles with sweet, sour, and savory tamarind reduction, dried shrimp, yellow firm tofu, preserved sweet radish, fresh bean sprouts, Chinese chives, and butterflied river prawns.","ingredients":["200 g dry chantaburi thin rice noodles (soaked in room-temperature water for 45 mins)","4 jumbo raw river prawns, butterflied down the back","Pad Thai Sauce: 3 tbsp pure tamarind paste, 3 tbsp palm sugar, 2.5 tbsp fish sauce (nam pla), 1 tbsp water","50 g yellow firm tofu (diced), 2 tbsp sweet preserved radish (chai poh, minced), 1 tbsp dried shrimp (kung haeng)","2 farm eggs, 2 cups fresh mung bean sprouts, 1 cup Chinese garlic chives (kuichei, cut into 3cm lengths)","Condiments: Crushed roasted peanuts, toasted chili flakes (prik pon), and fresh lime wedges"],"instructions":["Simmer tamarind paste, palm sugar, fish sauce, and water over low heat until sugar melts and sauce is thick; set aside.","Heat 2 tbsp oil in smoking hot wok; sear prawns until charred and cooked (2 mins); remove.","In same wok, sauté diced tofu, sweet preserved radish, and dried shrimp for 1 minute until fragrant.","Add soaked rice noodles and 4 tbsp Pad Thai tamarind sauce; splash 2 tbsp water and toss vigorously until noodles absorb sauce and turn chewy and glossy.","Push noodles to one side of the wok; crack eggs into the empty side, scramble lightly, and fold noodles over eggs.","Toss in bean sprouts and garlic chives for 30 seconds (keep them crunchy!).","Plate noodles, crown with seared river prawns, and serve with crushed roasted peanuts, chili flakes, and fresh lime."],"tips":{"title":"Cold Water Soak","description":"Never boil Pad Thai noodles in hot water; soaking them in room-temperature water keeps them elastic and prevents a mushy texture in the wok."},"variations":{"title":"Pad Thai Hor Khai","description":"Wrapped inside an ultra-thin delicate lacy egg crepe net."},"faqs":[{"question":"What gives Pad Thai its signature flavor?","answer":"The sacred holy trinity of tart tamarind, sweet palm sugar, and savory fish sauce."}],"imageQuery":"authentic pad thai noodles prawns lime peanuts tamarind wok","imageUrl":"https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Tom Yum Goong","imageQuery":"tom yum goong","imageUrl":"https://images.unsplash.com/photo-1548943487-a2e4e43b4853?auto=format&fit=crop&w=800&q=80"},{"name":"Green Chicken Curry","imageQuery":"green curry thai","imageUrl":"https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&w=800&q=80"},{"name":"Som Tum Papaya Salad","imageQuery":"som tum papaya","imageUrl":"https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80"},{"name":"Mango Sticky Rice","imageQuery":"mango sticky rice","imageUrl":"https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80"}]},{"id":"tom-yum-goong","name":"Creamy Tom Yum Goong Mae Nam","nativeName":"ต้มยำกุ้งน้ำข้นแม่น้ำสูตรโบราณ","category":"แกง & ต้ม (Soups & Curries)","prepTime":15,"cookTime":15,"yieldServings":4,"calories":240,"difficulty":"Easy","rating":5,"reviewsCount":3100,"intro":"Thailand’s legendary spicy, sour, and aromatic soup: giant river prawns with head tomalley simmered in lemongrass, galangal, torn makrut lime leaves, Thai chili jam (nam prik pao), and a splash of evaporated milk.","ingredients":["500 g jumbo freshwater river prawns with head fat intact","750 ml rich prawn head or chicken stock","Aromatics: 3 stalks lemongrass (bruised & sliced into 5cm segments), 6 slices fresh galangal, 6 fresh makrut lime leaves (torn), 6-8 bird’s eye chilies (prik kee noo, lightly crushed)","150 g fresh oyster or straw mushrooms (halved)","Seasoning: 2 tbsp Thai roasted chili jam (nam prik pao), 3 tbsp fish sauce, 3.5 tbsp freshly squeezed lime juice, 60 ml evaporated milk (for nam khon style)","Fresh cilantro and sawtooth coriander (culantro) for garnish"],"instructions":["Bring stock to a rolling boil in a pot; add crushed lemongrass, galangal slices, and torn makrut lime leaves. Simmer 3 minutes to release essential oils.","Stir in Thai chili jam (nam prik pao) and halved mushrooms.","Add whole river prawns and crushed bird’s eye chilies; simmer gently for 3-4 minutes until prawns turn bright orange and cook through.","Stir in fish sauce and evaporated milk; remove from heat immediately.","Squeeze fresh lime juice into the off-heat soup (never boil lime juice, or it turns bitter).","Garnish generously with sawtooth coriander and cilantro leaves; serve piping hot with jasmine rice."],"tips":{"title":"Off-Heat Lime Juice","description":"Always add freshly squeezed lime juice after removing soup from heat to preserve its vibrant floral citrus acidity."},"variations":{"title":"Tom Yum Nam Sai","description":"The clear broth version without evaporated milk or chili jam."},"faqs":[{"question":"What are Makrut Lime Leaves?","answer":"Double-lobed citrus leaves with intense herbal perfume that cannot be substituted with regular lime zest."}],"imageQuery":"tom yum goong spicy sour shrimp soup lemongrass galangal","imageUrl":"https://images.unsplash.com/photo-1548943487-a2e4e43b4853?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"gaeng-kiew-wan-gai","name":"Authentic Thai Green Curry with Chicken","nativeName":"แกงเขียวหวานไก่มะเขือเปราะ","category":"แกง & ต้ม (Soups & Curries)","prepTime":20,"cookTime":25,"yieldServings":4,"calories":460,"difficulty":"Medium","rating":5,"reviewsCount":2450,"intro":"Vibrant green curry simmered in rich coconut cream with tender chicken thighs, round Thai eggplants, pea eggplants, fragrant Thai sweet basil (bai horapha), and torn makrut lime leaves.","ingredients":["500 g skinless boneless chicken thighs, sliced into bite-sized pieces","400 ml fresh thick coconut cream (hua kati) & 250 ml light coconut milk (hang kati)","3 tbsp authentic fresh Thai green curry paste (prik gaeng kiew wan)","6 round Thai green eggplants (makhuea pro, quartered), 2 tbsp pea eggplants (makhuea phuang)","4 fresh makrut lime leaves (torn), 1 cup fresh Thai sweet basil leaves (bai horapha), 1 red spur chili (sliced for garnish)","2 tbsp fish sauce & 1 tbsp shaved palm sugar"],"instructions":["In a heavy pot, heat 150ml of thick coconut cream over medium heat; cook stirring for 5 minutes until it \"cracks\" and separates into clear coconut oil.","Add green curry paste to the split coconut oil; fry for 3 minutes until aromatic and oil turns a gorgeous translucent green.","Add chicken slices; toss to coat in paste for 2 minutes.","Pour in remaining coconut cream and coconut milk; bring to gentle simmer.","Add quartered Thai eggplants and pea eggplants; simmer 8-10 minutes until eggplants are tender.","Season with fish sauce and palm sugar.","Turn off heat; stir in torn makrut lime leaves and Thai sweet basil so they wilt and release perfume.","Garnish with red chili strips and serve with steaming Jasmine rice or rice noodles (khanom jeen)."],"tips":{"title":"Cracking the Coconut Cream","description":"Frying curry paste in separated coconut oil (instead of vegetable oil) yields an authentic glossy coconut fat surface."},"variations":{"title":"Green Curry with Beef & Roti","description":"Made with tender beef shank and served with flaky layered roti flatbread."},"faqs":[{"question":"Why are Thai eggplants round?","answer":"Thai eggplants are crisp and absorb curry sauce like little sponges without becoming mushy."}],"imageQuery":"thai green curry chicken coconut basil eggplant green chili","imageUrl":"https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"pad-kra-pao-gai","name":"Holy Basil Minced Chicken (Pad Kra Pao)","nativeName":"ผัดกะเพราไก่สับไข่ดาวกรอบ","category":"เส้น & ผัด (Noodles & Stir-Fries)","prepTime":10,"cookTime":5,"yieldServings":2,"calories":480,"difficulty":"Easy","rating":5,"reviewsCount":3400,"intro":"Thailand’s undisputed street food staple: coarse hand-minced chicken flash-fried in a blazing wok with garlic, fiery bird’s eye chilies, and pungent holy basil, served over Jasmine rice with a crispy-edged fried egg (khai dao).","ingredients":["350 g chicken thigh or breast, coarsely hand-chopped with a cleaver","8-10 fresh Thai bird’s eye chilies & 6 cloves garlic (pounded together in stone mortar)","2 cups fresh authentic Thai Holy Basil leaves (bai kra pao)","Sauce: 1 tbsp oyster sauce, 1 tbsp light soy sauce, 1 tsp dark sweet soy sauce (for rich color), 1 tsp fish sauce, 1/2 tsp sugar","2 tbsp cooking oil & 2 farm eggs (for Khai Dao)","Steaming hot Jasmine rice & Prik Nam Pla (fish sauce with sliced chilies and lime)"],"instructions":["Pound garlic and bird’s eye chilies in a stone mortar into a coarse, fragrant paste.","Heat 1/2 cup oil in a wok over high heat; crack an egg and spoon hot oil over whites until edges are bubbly, blistered, and shatteringly crispy while yolk stays runny (khai dao). Remove egg and drain.","Leave 2 tbsp oil in wok; add pounded garlic and chilies over high heat, stir-frying for 20 seconds until intensely aromatic.","Add minced chicken; stir-fry vigorously, breaking up meat until almost cooked (2 mins).","Splash in oyster sauce, light soy sauce, dark soy sauce, fish sauce, and sugar; toss 30 seconds.","Turn off heat; toss in holy basil leaves, folding gently for 10 seconds until wilted by residual heat.","Spoon over warm Jasmine rice, crown with the crispy fried egg, and serve with Prik Nam Pla."],"tips":{"title":"Holy Basil vs Sweet Basil","description":"Authentic Pad Kra Pao strictly requires Holy Basil (Kra Pao), which has peppery, clove-like notes, rather than Sweet Basil (Horapha)."},"variations":{"title":"Pad Kra Pao Moo Krob","description":"Made with crispy Chinese-style pork belly cubes."},"faqs":[{"question":"What is Khai Dao?","answer":"The iconic Thai-style fried egg deep-fried in hot oil for a lacy, blistered crunchy skirt."}],"imageQuery":"pad kra pao chicken holy basil fried egg crispy jasmine rice","imageUrl":"https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"som-tum-thai","name":"Isan Green Papaya Salad (Som Tum Thai)","nativeName":"ส้มตำไทยถั่วลิสงกุ้งแห้ง","category":"ยำ & สลัด (Salads)","prepTime":15,"cookTime":0,"yieldServings":2,"calories":180,"difficulty":"Easy","rating":5,"reviewsCount":2750,"intro":"Shredded crisp green unripe papaya pounded in a wooden mortar with bird’s eye chilies, garlic, long beans, sweet tomatoes, dried shrimp, toasted peanuts, palm sugar, fish sauce, and fresh lime juice.","ingredients":["250 g green unripe papaya, peeled and hand-shredded into crisp matchsticks","4 cloves garlic & 3-5 fresh bird’s eye chilies (prik kee noo)","2 long yardlong beans (thua fak yao, cut into 3cm pieces)","6 cherry tomatoes (halved) or 1 Roma tomato (wedged)","2 tbsp roasted unsalted peanuts & 1.5 tbsp dried shrimp (kung haeng)","Dressing: 1.5 tbsp shaved palm sugar, 2 tbsp fish sauce, 2.5 tbsp fresh lime juice, 1 tsp tamarind water"],"instructions":["In a traditional clay or wooden mortar (krok), lightly pound garlic and chilies with a wooden pestle (saak) until crushed.","Add long beans and dried shrimp; bruise gently with pestle.","Add palm sugar, fish sauce, lime juice, and tamarind water; pound and stir with a spoon until sugar dissolves into a glossy dressing.","Add tomato halves; press gently to release sweet juices.","Add shredded green papaya and roasted peanuts.","Pound gently with pestle in one hand while using a spoon in the other hand to toss and mix ingredients for 1 minute until papaya is bruised and fully saturated with dressing.","Transfer to a platter, top with extra roasted peanuts, and serve with sticky rice (khao niew) and grilled chicken (gai yang)."],"tips":{"title":"Hand-Chopped Papaya","description":"Chopping papaya with a knife before shredding yields uneven rustic textures that hold dressing far better than a mandoline."},"variations":{"title":"Som Tum Pu Pla Ra","description":"Isan countryside version seasoned with fermented fish sauce (pla ra) and salted field crab."},"faqs":[{"question":"What is Krok and Saak?","answer":"The traditional Thai clay mortar and wooden pestle used to bruise ingredients without pulverizing."}],"imageQuery":"som tum green papaya salad peanuts lime chili thai","imageUrl":"https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"massaman-curry","name":"Royal Massaman Beef Curry","nativeName":"แกงมัสมั่นเนื้อน่องลายสูตรชาววัง","category":"แกง & ต้ม (Soups & Curries)","prepTime":25,"cookTime":120,"yieldServings":6,"calories":590,"difficulty":"Advanced","rating":5,"reviewsCount":2600,"intro":"Voted the World’s Most Delicious Food: tender beef chuck and beef shank slow-simmered in rich coconut milk with Persian-influenced toasted warm spices (cinnamon, cardamom, star anise), potatoes, sweet onions, and roasted peanuts.","ingredients":["1 kg beef chuck roast or beef shank, cut into large 4cm chunks","400 ml thick coconut cream & 400 ml coconut milk","4 tbsp authentic Massaman curry paste (prik gaeng massaman)","Whole Spices: 1 cinnamon stick, 4 whole green cardamom pods (bruised), 2 star anise, 1 bay leaf","3 medium Yukon Gold potatoes (peeled and cut into large chunks), 2 sweet onions (quartered)","50 g roasted unsalted peanuts","Seasoning: 3 tbsp tamarind paste, 3 tbsp shaved palm sugar, 3 tbsp fish sauce"],"instructions":["In a Dutch oven, simmer beef chunks in coconut milk with a pinch of salt on low for 60 minutes until semi-tender.","In a separate skillet, fry Massaman curry paste in 150ml thick coconut cream until fragrant and red oil separates.","Add toasted cinnamon, cardamom pods, and star anise to the paste; stir 1 min.","Pour spiced curry paste into the beef pot; add potato chunks, quartered onions, and roasted peanuts.","Season with tamarind paste, palm sugar, and fish sauce.","Simmer gently uncovered for 45-50 minutes until beef is meltingly tender, potatoes are cooked through, and sauce is thick and glossy.","Taste and balance: Massaman should be rich, sweet, mildly tart, and warmly spiced.","Serve warm with Jasmine rice or warm flaky roti."],"tips":{"title":"Balanced Flavor Trio","description":"Massaman is unique in Thai cooking for its warm Persian spice profile balanced with sour tamarind and sweet palm sugar."},"variations":{"title":"Massaman Gai","description":"Made with tender bone-in chicken drumsticks and thighs (cooks in 45 mins)."},"faqs":[{"question":"Where did Massaman originate?","answer":"Introduced to the Royal Court of Ayutthaya in the 17th century by Persian diplomatic merchants."}],"imageQuery":"massaman curry beef peanuts potatoes coconut cinnamon thai","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"khao-niew-mamuang","name":"Mango Sticky Rice (Khao Niew Mamuang)","nativeName":"ข้าวเหนียวมะม่วงน้ำดอกไม้ราดกะทิ","category":"ของหวาน (Desserts)","prepTime":20,"cookTime":30,"yieldServings":4,"calories":380,"difficulty":"Easy","rating":5,"reviewsCount":3600,"intro":"Steamed glutinous sweet sticky rice soaked in warm sweet coconut milk with pandan leaves, served with slices of sweet ripe Nam Dok Mai mango and crunchy toasted mung beans.","ingredients":["250 g Thai sweet glutinous sticky rice (khao niew, soaked in cold water for 4 hours)","Coconut Soaking Milk: 250 ml thick coconut milk, 100 g sugar, 1/2 tsp salt, 3 fresh pandan leaves (tied in a knot)","Salty Coconut Sauce Topping: 100 ml coconut cream, 1/4 tsp salt, 1/2 tsp rice flour (for light thickening)","2 ripe sweet Thai Nam Dok Mai or Champagne mangoes, peeled and sliced","1 tbsp crispy toasted split yellow mung beans (thua thong) for garnish"],"instructions":["Drain soaked sticky rice; place in a cheesecloth-lined steamer basket. Steam over boiling water for 25 minutes until translucent and tender.","While rice steams, heat coconut milk, sugar, salt, and knotted pandan leaves in saucepan over low heat until sugar dissolves (do not boil); discard pandan leaves.","Transfer steaming hot sticky rice to a bowl; immediately pour warm coconut milk mixture over the rice.","Stir gently, cover with lid, and let rest undisturbed for 25 minutes so the rice absorbs every drop of rich coconut milk into glossy pearls.","For Sauce: Whisk coconut cream, salt, and rice flour over low heat until gently thickened.","Mound a portion of coconut sticky rice on a plate, arrange fresh sliced mango alongside, drizzle with salted coconut cream, and sprinkle with crispy yellow mung beans."],"tips":{"title":"Steam Hot Rice + Warm Coconut","description":"Pouring warm coconut milk over freshly steamed piping-hot rice is the secret to glossy, perfectly separated grains."},"variations":{"title":"Pandan Green Sticky Rice","description":"Infuse soaking water with fresh natural pandan juice for emerald-green color and aroma."},"faqs":[{"question":"Why Nam Dok Mai mangoes?","answer":"The \"golden flower\" mango variety is fiberless, buttery-smooth, and intensely floral."}],"imageQuery":"mango sticky rice coconut cream yellow mango thai dessert","imageUrl":"https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"khao-soi-gai","name":"Chiang Mai Khao Soi Curry Noodles","nativeName":"ข้าวซอยไก่เชียงใหม่สูตรดั้งเดิม","category":"เส้น & ผัด (Noodles & Stir-Fries)","prepTime":25,"cookTime":40,"yieldServings":4,"calories":560,"difficulty":"Medium","rating":5,"reviewsCount":2300,"intro":"Northern Thailand’s iconic coconut curry noodle soup: tender bone-in chicken drumsticks simmered in aromatic yellow curry broth, served over soft egg noodles and crowned with a nest of crispy fried noodles, pickled mustard greens, and shallots.","ingredients":["4 chicken drumsticks or thighs","300 g fresh Chinese egg noodles (divided: 200g for boiling, 100g deep-fried until crispy)","400 ml coconut cream & 400 ml chicken stock","Khao Soi Paste: 3 dried spur chilies (soaked), 4 shallots, 4 cloves garlic, 1 tbsp fresh turmeric, 1 tbsp coriander seeds, 1 tsp black cardamom, 1 tsp curry powder","Seasoning: 2 tbsp fish sauce, 1.5 tbsp palm sugar, 1 tbsp dark soy sauce","Condiments: Sliced pickled mustard greens (phak kat dong), sliced shallots, lime wedges, and roasted chili oil (prik phao)"],"instructions":["Deep-fry 100g of raw egg noodles in hot oil for 30 seconds until puffed, golden, and crispy; drain on paper towels.","In a pot, fry Khao Soi paste in 150ml thick coconut cream for 3 minutes until aromatic and golden oil separates.","Add chicken drumsticks, turning to coat in paste.","Pour in remaining coconut cream and chicken stock; bring to a boil.","Add dark soy sauce, fish sauce, and palm sugar; reduce heat to low and simmer for 35 minutes until chicken is meltingly tender.","Boil remaining 200g of fresh egg noodles in water for 90 seconds; drain and divide into deep serving bowls.","Ladle the rich golden coconut curry and a chicken drumstick over the soft noodles.","Crown with a generous nest of crispy fried noodles.","Serve alongside bowls of pickled mustard greens, shallots, roasted chili oil, and fresh lime wedges."],"tips":{"title":"Crispy + Soft Noodle Contrast","description":"The interplay between soft slippery noodles in curry and crunchy fried noodles on top defines Northern Khao Soi."},"variations":{"title":"Khao Soi Neua","description":"Made with slow-braised beef shank."},"faqs":[{"question":"Where is Khao Soi from?","answer":"Originated in Chiang Mai, influenced by Chinese-Muslim Chin Haw traders along the ancient spice routes."}],"imageQuery":"khao soi chicken curry egg noodles crispy chiang mai thai","imageUrl":"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"tom-kha-gai","name":"Coconut Galangal Chicken Soup (Tom Kha Gai)","nativeName":"ต้มข่าไก่กะทิสดหอมสมุนไพร","category":"แกง & ต้ม (Soups & Curries)","prepTime":15,"cookTime":20,"yieldServings":4,"calories":340,"difficulty":"Easy","rating":5,"reviewsCount":2150,"intro":"Silky, aromatic soup of tender chicken breast and oyster mushrooms simmered in sweet coconut milk infused with fresh galangal, lemongrass, makrut lime leaves, chili, and fresh lime juice.","ingredients":["400 g chicken breast or thighs, thinly sliced","500 ml fresh coconut milk & 250 ml chicken stock","Aromatics: 8 thick slices fresh galangal (kha), 2 stalks lemongrass (bruised and cut into pieces), 5 makrut lime leaves (torn), 4-6 bird’s eye chilies (crushed)","150 g fresh oyster or straw mushrooms","Seasoning: 3 tbsp fish sauce, 1 tbsp palm sugar, 3.5 tbsp freshly squeezed lime juice","Fresh cilantro and chili oil for garnish"],"instructions":["In a saucepan, bring chicken stock and coconut milk to a gentle simmer (do not boil vigorously to prevent curdling).","Add sliced galangal, bruised lemongrass, and torn makrut lime leaves; simmer gently for 5 minutes to infuse herbal aromatics.","Add sliced chicken and mushrooms; simmer on medium-low heat for 8 minutes until chicken is cooked through and tender.","Stir in crushed bird’s eye chilies, fish sauce, and palm sugar.","Remove from heat; stir in freshly squeezed lime juice.","Ladle into soup bowls, garnish with fresh cilantro leaves, and drizzle a few drops of roasted chili oil."],"tips":{"title":"Galangal is King","description":"Galangal (kha) has a sharp, pine-like citrus aroma essential to Tom Kha; ginger cannot be used as a substitute."},"variations":{"title":"Tom Kha Hed","description":"Vegetarian version loaded with King Oyster, Shimeji, and Shiitake mushrooms."},"faqs":[{"question":"Do you eat the galangal slices?","answer":"No, the galangal, lemongrass, and makrut leaves are for infusing broth; leave them in the bowl."}],"imageQuery":"tom kha gai coconut chicken soup galangal lemongrass lime thai","imageUrl":"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"moo-ping","name":"Thai Grilled Pork Skewers (Moo Ping)","nativeName":"หมูปิ้งนมสดสูตรโบราณพร้อมน้ำจิ้มแจ่ว","category":"ย่าง & ทอด (Grilled & Fried)","prepTime":30,"cookTime":10,"yieldServings":12,"calories":140,"difficulty":"Easy","rating":5,"reviewsCount":2950,"intro":"Bangkok’s beloved street breakfast: thinly sliced pork collar marinated in evaporated milk, garlic, cilantro roots, white pepper, and palm sugar, threaded onto skewers and grilled over charcoal with coconut cream basting.","ingredients":["600 g pork collar or shoulder (with some fat for juiciness), sliced into thin 4cm strips","Marinade Paste: 4 cilantro roots (or coriander stems), 6 cloves garlic, 1 tsp white peppercorns (pounded in mortar)","Liquid Marinade: 60 ml evaporated milk (or coconut cream), 2 tbsp oyster sauce, 1.5 tbsp light soy sauce, 1 tbsp dark sweet soy sauce, 2 tbsp palm sugar, 1 tbsp fish sauce","Basting: 100 ml coconut cream","Accompaniments: Warm sticky rice in banana leaf & Nam Jim Jaew (toasted rice chili dipping sauce)"],"instructions":["Pound cilantro roots, garlic, and white peppercorns in a mortar into a fine paste.","In a bowl, mix paste with evaporated milk, oyster sauce, soy sauces, fish sauce, and palm sugar until sugar dissolves.","Add sliced pork; massage marinade into meat for 3 minutes. Cover and chill for at least 4 hours (or overnight).","Thread marinated pork strips tightly onto soaked wooden skewers (accordion style).","Grill over medium-hot charcoal grill for 6-8 minutes, turning frequently.","Brush skewers generously with coconut cream during the final 2 minutes of grilling until edges are caramelized, charred, and glossy.","Serve steaming hot with warm sticky rice and spicy Nam Jim Jaew."],"tips":{"title":"Evaporated Milk Marinade","description":"Evaporated milk (Moo Ping Nom Sod) tenderizes the pork and caramelizes over charcoal into sweet juicy glaze."},"variations":{"title":"Gai Ping","description":"Made with chicken thigh fillets."},"faqs":[{"question":"What is Nam Jim Jaew?","answer":"The iconic Isan dipping sauce made of fish sauce, lime juice, palm sugar, chili flakes, and toasted sticky rice powder."}],"imageQuery":"moo ping thai pork skewers grilled sticky rice charcoal","imageUrl":"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"panang-curry","name":"Rich Panang Beef Curry","nativeName":"พะแนงเนื้อใบมะกรูดซอย","category":"แกง & ต้ม (Soups & Curries)","prepTime":20,"cookTime":30,"yieldServings":4,"calories":520,"difficulty":"Medium","rating":5,"reviewsCount":1840,"intro":"Thick, nutty dry-style curry: thinly sliced beef sirloin simmered in reduced coconut cream with Panang curry paste, crushed roasted peanuts, palm sugar, and finely shredded makrut lime leaves.","ingredients":["500 g beef sirloin or flank steak, sliced thinly against the grain","400 ml thick coconut cream (divided)","3 tbsp authentic Panang curry paste & 2 tbsp finely crushed roasted peanuts","6 fresh makrut lime leaves (veins removed, rolled and sliced paper-thin into threads)","2 red spur chilies (sliced into thin matchsticks)","2 tbsp fish sauce & 1.5 tbsp shaved palm sugar"],"instructions":["Cook 200ml coconut cream in a pan over medium heat for 6 minutes until split and aromatic.","Add Panang curry paste and crushed roasted peanuts; fry for 3 minutes until thick and glossy.","Add sliced beef; sauté for 3 minutes to coat in the rich paste.","Pour in remaining coconut cream; season with fish sauce and palm sugar.","Simmer gently for 15 minutes until beef is tender and sauce reduces to a thick glaze that coats the meat.","Turn off heat; stir in half the shredded makrut lime leaf threads.","Plate curry, drizzle with a spoonful of fresh coconut cream, and top with remaining lime leaf threads and red chili strips."],"tips":{"title":"Paper-Thin Lime Leaves","description":"Chiffonading makrut lime leaves into paper-thin threads releases intense perfume without chewing tough fibers."},"variations":{"title":"Panang Moo","description":"Made with tender pork loin slices."},"faqs":[{"question":"How is Panang different from Red Curry?","answer":"Panang is thicker, sweeter, and enriched with roasted ground peanuts."}],"imageQuery":"panang curry beef coconut makrut lime leaves thai","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"pad-see-ew","name":"Thai Stir-Fried Wide Rice Noodles (Pad See Ew)","nativeName":"ผัดซีอิ๊วเส้นใหญ่หมูนุ่ม","category":"เส้น & ผัด (Noodles & Stir-Fries)","prepTime":15,"cookTime":8,"yieldServings":2,"calories":490,"difficulty":"Easy","rating":4.9,"reviewsCount":2600,"intro":"Wide flat rice noodles charred in a screaming-hot wok with tender marinated pork, Chinese broccoli (gai lan), scrambled eggs, and dark sweet soy sauce with rich smoky wok hei.","ingredients":["350 g fresh wide flat rice noodles (sen yai), gently separated","200 g pork tenderloin (sliced thinly and marinated in 1 tsp soy sauce, 1 tsp cornstarch, 1 tsp oil)","2 stalks Chinese broccoli (gai lan, sliced into bite-sized lengths)","2 farm eggs & 3 cloves minced garlic","Sauce: 1.5 tbsp dark sweet soy sauce (black soy), 1 tbsp light soy sauce, 1 tbsp oyster sauce, 1 tsp sugar","Wok oil & chili vinegar (prik nam som) for serving"],"instructions":["Toss wide noodles with 1 tbsp dark sweet soy sauce to coat in rich mahogany color.","Heat 2 tbsp oil in smoking hot wok; sear marinated pork for 2 minutes; push to side.","Add minced garlic and sliced Chinese broccoli stems; stir-fry 1 minute, then add leaves.","Add wide noodles in a single flat layer; let sit undisturbed over high heat for 30 seconds to char and develop smoky \"wok hei\" aroma.","Toss noodles and drizzle remaining sauce over top.","Push noodles aside, crack eggs into wok, scramble until half-set, then fold noodles over eggs.","Serve steaming hot with pickled chili vinegar and white pepper."],"tips":{"title":"Let Noodles Char","description":"Leaving noodles untouched in the smoking wok creates the caramelized smoky char known as Wok Hei."},"variations":{"title":"Pad See Ew Gai","description":"Made with thinly sliced chicken breast or thighs."},"faqs":[{"question":"What is Sen Yai?","answer":"Fresh wide sheet-cut rice noodles with a pillowy, slippery chewy bite."}],"imageQuery":"pad see ew stir fried wide noodles pork chinese broccoli","imageUrl":"https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"tod-mun-pla","name":"Thai Red Curry Fish Cakes (Tod Mun Pla)","nativeName":"ทอดมันปลากรายแท้เหนียวนุ่ม","category":"ย่าง & ทอด (Grilled & Fried)","prepTime":20,"cookTime":10,"yieldServings":4,"calories":220,"difficulty":"Medium","rating":4.9,"reviewsCount":1650,"intro":"Bouncy, springy fish cakes made from whipped featherback fish paste, red curry paste, finely sliced long beans, and shredded makrut lime leaves, fried golden and served with sweet cucumber relish.","ingredients":["400 g white fish fillet (featherback/clown knifefish or cod), chilled and minced","2 tbsp authentic Thai red curry paste","1 large egg & 1 tbsp fish sauce, 1 tsp sugar","4 long yardlong beans (finely sliced into thin rounds)","5 makrut lime leaves (finely chiffonaded into thin threads)","Cucumber Relish (Ajad): Sliced cucumber, shallots, red chili, sugar, vinegar, and crushed peanuts"],"instructions":["In a food processor or bowl, blend chilled fish with red curry paste, egg, fish sauce, and sugar until a sticky paste forms.","Slap the fish paste repeatedly against the sides of the bowl for 5 minutes (this develops myosin for signature springy bounce!).","Fold in sliced yardlong beans and shredded makrut lime leaves.","Wet hands with cold water; shape paste into 5cm flat patties.","Deep fry in 170°C (340°F) oil for 3 minutes until puffed, dark golden-brown, and cooked through.","Drain on paper towels and serve immediately with sweet, tangy cucumber Ajad relish."],"tips":{"title":"The Slap Technique","description":"Vigorously slapping fish paste against the bowl aligns proteins, creating the prized bouncy (deng) texture."},"variations":{"title":"Tod Mun Goong","description":"Shrimp cakes coated in panko and deep-fried crispy."},"faqs":[{"question":"What is Pla Krai?","answer":"Clown knifefish, the traditional freshwater fish prized in Thailand for its naturally gelatinous meat."}],"imageQuery":"tod mun pla thai fish cakes cucumber relish red curry","imageUrl":"https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"larb-gai-isan","name":"Isan Spicy Minced Chicken Salad (Larb Gai)","nativeName":"ลาบไก่สับอีสานแท้หอมข้าวคั่ว","category":"ยำ & สลัด (Salads)","prepTime":15,"cookTime":5,"yieldServings":3,"calories":210,"difficulty":"Easy","rating":5,"reviewsCount":2200,"intro":"Minced chicken poached in broth and tossed with fresh lime juice, fish sauce, toasted sticky rice powder (khao khua), dried chili flakes, sliced shallots, mint, culantro, and scallions.","ingredients":["400 g chicken breast or thighs, coarsely hand-minced","50 ml chicken broth or water","2 tbsp homemade toasted sticky rice powder (khao khua)","1.5 tbsp dried Thai chili flakes (prik pon)","2.5 tbsp fish sauce & 3 tbsp fresh lime juice, 1/2 tsp sugar","4 shallots (thinly sliced), 2 scallions (sliced), 1/2 cup fresh mint leaves, 1/4 cup sawtooth coriander (culantro)","Raw vegetable basket: Crisp cabbage wedges, long beans, Thai basil, and cucumber"],"instructions":["Make Khao Khua: Toast dry raw sticky rice in a dry skillet over low heat until deep golden brown; grind coarsely in mortar.","In a saucepan, simmer minced chicken in 50ml broth over medium heat for 3 minutes, breaking up clumps until just cooked through; remove from heat.","While warm, add fish sauce, lime juice, chili flakes, and toasted rice powder; stir to combine.","Fold in sliced shallots, scallions, fresh mint, and sawtooth coriander.","Serve warm with a basket of fresh crunchy raw vegetables and warm sticky rice."],"tips":{"title":"Fresh Toasted Rice Powder","description":"Making Khao Khua fresh from toasted raw sticky rice provides unmatched nutty crunch and smoky aroma."},"variations":{"title":"Larb Moo / Larb Neua","description":"Prepared with minced pork or finely chopped beef."},"faqs":[{"question":"Is Larb from Thailand or Laos?","answer":"Larb is the national dish of Laos and the staple culinary icon of Northeastern Thailand (Isan)."}],"imageQuery":"larb gai thai minced chicken salad mint toasted rice lime","imageUrl":"https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"pla-nueng-manao","name":"Steamed Sea Bass with Garlic & Lime Broth","nativeName":"ปลากะพงนึ่งมะนาวพริกกระเทียมสด","category":"ต้ม & นึ่ง (Steamed & Soups)","prepTime":15,"cookTime":15,"yieldServings":4,"calories":260,"difficulty":"Easy","rating":5,"reviewsCount":1980,"intro":"Whole fresh Asian sea bass steamed over lemongrass and Chinese celery, drenched in a fiery and refreshing broth of fresh lime juice, crushed garlic, bird’s eye chilies, cilantro stems, and fish sauce.","ingredients":["1 whole fresh Asian sea bass (pla kapong, approx. 700g, cleaned and scaled)","2 stalks lemongrass (bruised, stuffed in fish cavity)","Spicy Lime Dressing: 80 ml fresh lime juice, 60 ml fish sauce, 1.5 tbsp sugar, 8 cloves fresh garlic (finely minced), 8-10 red bird’s eye chilies (minced), 2 cilantro roots (minced)","1 cup Chinese celery leaves & sliced fresh lime wheels for garnish"],"instructions":["Score both sides of sea bass with 3 diagonal cuts; stuff cavity with bruised lemongrass.","Place fish on a heatproof ceramic platter; steam over high boiling water in a covered steamer for 12-14 minutes until fish flakes easily.","In a bowl, whisk fresh lime juice, fish sauce, sugar, minced garlic, bird’s eye chilies, and cilantro roots into a dressing.","Carefully drain excess steaming water from the fish platter.","Pour spicy garlic-lime dressing over the piping-hot steamed fish.","Garnish with Chinese celery leaves and lime wheels; serve immediately with Jasmine rice."],"tips":{"title":"Drain Steaming Water","description":"Pouring off the cloudy initial steaming juices ensures the lime dressing remains vibrant and pure."},"variations":{"title":"Pla Nueng See Ew","description":"Steamed with soy sauce, julienned ginger, and scallions."},"faqs":[{"question":"What is Pla Kapong?","answer":"Barramundi / Asian Sea Bass, Thailand’s favorite coastal and river fish for steaming."}],"imageQuery":"steamed sea bass lime garlic chili thai fish pla nueng manao","imageUrl":"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"pad-kee-mao","name":"Drunken Noodles (Pad Kee Mao)","nativeName":"ผัดขี้เมาเส้นใหญ่ทะเลเดือด","category":"เส้น & ผัด (Noodles & Stir-Fries)","prepTime":15,"cookTime":8,"yieldServings":2,"calories":480,"difficulty":"Easy","rating":5,"reviewsCount":2450,"intro":"Wide flat rice noodles wok-charred with giant prawns, squid, fingerroot (krachai), green peppercorn clusters, fiery chilies, garlic, and fresh holy basil in an intensely aromatic, spicy sauce.","ingredients":["300 g fresh wide flat rice noodles (sen yai)","200 g mixed seafood (prawns, squid rings, scallops)","Aromatics: 8 bird’s eye chilies & 5 cloves garlic (pounded in mortar), 2 sprigs fresh green peppercorns on stem (prik thai orn), 30 g fingerroot (krachai, julienned into matchsticks)","1 cup fresh Holy Basil leaves (bai kra pao), 1/2 onion (sliced), 1 small red bell pepper (sliced)","Sauce: 1.5 tbsp oyster sauce, 1 tbsp fish sauce, 1 tsp dark sweet soy sauce, 1 tsp sugar"],"instructions":["Heat 2 tbsp oil in smoking hot wok; add pounded chilies and garlic, stir-frying for 20 seconds.","Add seafood, sliced onion, bell pepper, green peppercorn clusters, and fingerroot matchsticks; stir-fry for 2 minutes.","Add wide rice noodles and sauce mixture; toss vigorously over maximum heat, letting noodles char against the wok surface.","Turn off heat; toss in fresh holy basil leaves until wilted.","Serve immediately steaming hot."],"tips":{"title":"Green Peppercorns & Krachai","description":"Fresh green peppercorns and aromatic fingerroot give authentic Drunken Noodles their signature medicinal heat."},"variations":{"title":"Spaghetti Kee Mao","description":"Popular modern Thai fusion made with al dente spaghetti."},"faqs":[{"question":"Why \"Drunken\" Noodles?","answer":"The fiery spice and bold herbal punch was traditionally cooked to cure late-night drinking hangovers."}],"imageQuery":"pad kee mao drunken noodles seafood holy basil green peppercorns thai","imageUrl":"https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"khao-pad-sapparod","name":"Pineapple Fried Rice with Shrimp","nativeName":"ข้าวผัดสับปะรดกุ้งสดใส่เม็ดมะม่วงหิมพานต์","category":"ข้าว (Rice Dishes)","prepTime":20,"cookTime":10,"yieldServings":2,"calories":450,"difficulty":"Easy","rating":4.9,"reviewsCount":2100,"intro":"Jasmine rice stir-fried in curry powder with juicy sweet pineapple chunks, succulent prawns, Chinese sausage (lap cheong), cashews, raisins, and fluffy pork floss in a carved pineapple boat.","ingredients":["3 cups day-old cold cooked Jasmine rice","8 large raw prawns (peeled and deveined)","1 sweet ripe pineapple (halved lengthwise and hollowed into a serving bowl, flesh cubed into bite-sized pieces)","1 Chinese sweet sausage (lap cheong, sliced thin)","1 tbsp yellow Thai curry powder, 1.5 tbsp fish sauce, 1 tbsp oyster sauce, 1 tsp sugar","1/2 cup roasted cashew nuts, 2 tbsp raisins, 2 scallions (sliced), 2 eggs","Topping: Sweet seasoned pork floss (moo yong) & cilantro"],"instructions":["Heat oil in a wok; sear sliced Chinese sausage and prawns until cooked; remove.","Scramble eggs in wok, then add cold cooked Jasmine rice.","Sprinkle curry powder, fish sauce, oyster sauce, and sugar over rice; stir-fry over high heat for 3 minutes until grains are coated in sunny golden hue.","Toss in cooked prawns, Chinese sausage, fresh pineapple chunks, roasted cashews, raisins, and sliced scallions for 1 minute.","Spoon golden fried rice into the hollowed fresh pineapple half.","Crown with fluffy sweet pork floss and cilantro."],"tips":{"title":"Day-Old Cold Rice","description":"Chilled dry rice grains separate cleanly in the wok without clumping or turning mushy."},"variations":{"title":"Crab Fried Rice (Khao Pad Poo)","description":"Classic Bangkok street fried rice loaded with sweet lump crab meat."},"faqs":[{"question":"What is Pork Floss?","answer":"Dried, seasoned, cottony shredded pork that adds savory-sweet crisp texture on top."}],"imageQuery":"pineapple fried rice shrimp cashews curry yellow thai bowl","imageUrl":"https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"gai-yang-isan","name":"Isan Grilled Lemongrass Chicken (Gai Yang)","nativeName":"ไก่ย่างบางตาลสมุนไพรพร้อมน้ำจิ้มแจ่ว","category":"ย่าง & ทอด (Grilled & Fried)","prepTime":25,"cookTime":40,"yieldServings":4,"calories":420,"difficulty":"Easy","rating":5,"reviewsCount":2350,"intro":"Whole butterflied chicken marinated in pounded lemongrass, cilantro roots, garlic, white pepper, fish sauce, and sweet soy, slow-grilled over charcoal until crispy-skinned and aromatic.","ingredients":["1 whole chicken (approx. 1.2 kg), spatchcocked (flattened with backbone removed)","Marinade Paste: 4 stalks lemongrass (minced), 6 cilantro roots, 8 cloves garlic, 1 tbsp white peppercorns (pounded in mortar)","Liquid Seasoning: 3 tbsp fish sauce, 2 tbsp oyster sauce, 1 tbsp dark sweet soy sauce, 2 tbsp palm sugar, 1 tbsp fresh turmeric (grated for color)","Nam Jim Jaew: Fish sauce, lime juice, palm sugar, chili flakes, shallots, and toasted sticky rice powder"],"instructions":["Pound marinade aromatics in a mortar into a fragrant yellow herbal paste.","Rub paste and liquid seasonings all over the spatchcocked chicken, ensuring it gets under the skin.","Marinate for at least 6 hours (or overnight) in refrigerator.","Secure chicken between bamboo grilling clamps (or place on grill rack).","Grill over medium-low charcoal heat for 35-40 minutes, turning every 5 minutes, until skin is golden, charred in spots, and juices run clear.","Chop into serving pieces with a cleaver and serve with sticky rice and spicy Nam Jim Jaew."],"tips":{"title":"Spatchcocking","description":"Flattening the chicken ensures even heat distribution across the entire bird over coals."},"variations":{"title":"Gai Tod Hat Yai","description":"Southern Thai fried chicken topped with mountain of crispy fried shallots."},"faqs":[{"question":"What completes the Isan Trinity?","answer":"Som Tum (papaya salad), Gai Yang (grilled chicken), and Khao Niew (sticky rice)."}],"imageQuery":"gai yang thai grilled chicken lemongrass charcoal herbs","imageUrl":"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"goong-ob-woon-sen","name":"Claypot Shrimp with Glass Noodles","nativeName":"กุ้งอบวุ้นเส้นหม้อดินสูตรเยาวราช","category":"เส้น & ผัด (Noodles & Stir-Fries)","prepTime":20,"cookTime":12,"yieldServings":2,"calories":380,"difficulty":"Easy","rating":5,"reviewsCount":1850,"intro":"Bangkok Chinatown specialty: slippery glass noodles infused with rich oyster sauce and dark soy, baked in a claypot over sliced pork belly, ginger, garlic, cilantro roots, whole black peppercorns, and jumbo shrimp.","ingredients":["8 large raw jumbo prawns (unpeeled with head intact)","150 g dry mung bean glass noodles (woon sen), soaked in water 15 mins and drained","Pork Belly Base: 60 g pork belly (sliced into thin strips) or bacon","Aromatics: 6 thick slices fresh ginger, 6 cloves garlic (crushed), 3 cilantro roots, 1 tbsp whole black peppercorns (crushed)","Seasoning Sauce: 2 tbsp oyster sauce, 1.5 tbsp light soy sauce, 1 tsp dark sweet soy sauce, 1 tbsp Chinese Shaoxing wine, 1 tsp sesame oil, 1 tsp sugar, 100 ml chicken broth","1 cup Chinese celery stems and leaves (khuen chai)"],"instructions":["Toss soaked glass noodles in half of the seasoning sauce until dark and glistening.","In a claypot (or heavy skillet), render pork belly slices over medium heat until fragrant oil coats the bottom.","Add ginger slices, crushed garlic, cilantro roots, and black peppercorns; fry for 1 minute.","Layer seasoned glass noodles over the aromatics.","Arrange jumbo prawns on top of the noodles; pour remaining sauce and chicken broth over top.","Cover claypot tightly with lid; cook over medium heat for 8 minutes until steam billows and prawns turn bright pink.","Scatter Chinese celery over top, cover 1 minute to wilt, and toss noodles tableside before serving."],"tips":{"title":"Pork Belly Bed","description":"The rendered pork belly at the bottom prevents glass noodles from sticking while infusing them with savory richness."},"variations":{"title":"Poo Ob Woon Sen","description":"Prepared with fresh mud crab instead of shrimp."},"faqs":[{"question":"What are Woon Sen noodles?","answer":"Translucent noodles made from 100% mung bean starch that absorb broths like a sponge without breaking."}],"imageQuery":"goong ob woon sen shrimp glass noodles claypot thai chinatown","imageUrl":"https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"tub-tim-krob","name":"Ruby Water Chestnut Jewels (Tub Tim Krob)","nativeName":"ทับทิมกรอบกะทิสดอบควันเทียน","category":"ของหวาน (Desserts)","prepTime":25,"cookTime":10,"yieldServings":4,"calories":220,"difficulty":"Easy","rating":5,"reviewsCount":1950,"intro":"Voted one of CNN’s World Top 50 Desserts: crisp diced water chestnuts dyed ruby red in syrup, coated in translucent chewy tapioca starch pearls, served in chilled smoked coconut milk with crushed ice and jackfruit strips.","ingredients":["200 g fresh peeled water chestnuts (diced into 5mm cubes)","60 ml red sala syrup (or concentrated red food dye with sugar syrup)","100 g tapioca starch (flour)","Sweet Coconut Milk: 300 ml fresh coconut milk, 100 g sugar, 1/2 tsp salt, scented with Thai dessert candle smoke (tian op, optional)","Accompaniments: Sliced ripe jackfruit (khanun) & finely crushed ice"],"instructions":["Soak diced water chestnuts in red syrup for 15 minutes until stained vibrant ruby red.","Drain excess liquid; toss red chestnuts in tapioca starch until thoroughly coated in a thick white powdery layer.","Shake off excess starch in a sieve.","Drop coated chestnuts into boiling water; cook for 2-3 minutes until they float to the surface and coating turns translucent and glassy.","Scoop out with slotted spoon and immediately transfer into a bowl of ice-cold water to set the chewy crunch.","Whisk coconut milk, sugar, and salt over low heat until dissolved; chill.","Ladle ruby jewels into bowls, add sweet coconut milk, jackfruit strips, and mound with crushed ice."],"tips":{"title":"Ice Water Shock","description":"Shocking hot tapioca-coated chestnuts in ice water sets the glassy chewy exterior while keeping water chestnuts crunchy inside."},"variations":{"title":"Ruam Mit","description":"Mixed with green pandan cendol noodles and sweet palm seeds."},"faqs":[{"question":"What does Tub Tim mean?","answer":"In Thai, \"Tub Tim\" means \"rubies\" and \"Krob\" means \"crispy.\""}],"imageQuery":"tub tim krob thai dessert ruby water chestnuts coconut ice","imageUrl":"https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"gaeng-phed-ped-yang","name":"Red Roast Duck Curry with Pineapple & Lychee","nativeName":"แกงเผ็ดเป็ดย่างผลไม้รวมชาววัง","category":"แกง (Curries)","prepTime":20,"cookTime":25,"yieldServings":4,"calories":520,"difficulty":"Medium","rating":4.9,"reviewsCount":1640,"intro":"A regal Siamese court curry marrying succulent slices of roasted Chinese duck with spicy red coconut curry, sweet tropical pineapple chunks, juicy lychees, cherry tomatoes, and Thai sweet basil.","ingredients":["400 g roasted duck breast or leg (sliced with crispy skin intact)","3 tbsp Thai red curry paste (prik gaeng phed)","400 ml coconut cream & 250 ml coconut milk","1/2 cup fresh pineapple chunks & 8 canned or fresh sweet lychees (pitted)","10 sweet cherry tomatoes (halved)","4 kaffir lime leaves (torn), 1 red spur chili (julienned)","1 cup Thai holy basil / sweet basil leaves (bai horapha)","Seasoning: 2 tbsp fish sauce, 1.5 tbsp palm sugar, 1 tsp tamarind paste"],"instructions":["In a heavy pot, heat 1/2 cup of coconut cream until coconut oil separates into shiny beads.","Add red curry paste and fry vigorously for 3 minutes until deeply aromatic and crimson red.","Add sliced roasted duck; stir gently to coat meat in curry paste.","Pour in remaining coconut cream and coconut milk; bring to a gentle simmer.","Season with fish sauce, palm sugar, and tamarind paste for a balanced sweet, savory, and spicy flavor profile.","Add pineapple chunks, lychees, and cherry tomatoes; simmer for 4 minutes so the fruit releases sweet juices into the sauce.","Fold in kaffir lime leaves and fresh Thai sweet basil leaves, then turn off heat immediately.","Serve warm alongside fragrant steamed Jasmine rice."],"tips":{"title":"Balance the Acidity","description":"The natural sweetness of lychee and tartness of pineapple cut through the rich fattiness of the roasted duck."},"variations":{"title":"Gaeng Ped Gung","description":"Substitute duck with seared tiger prawns and rambutan."},"faqs":[{"question":"Why use roasted duck instead of raw duck?","answer":"Roasting renders out gamey fat and infuses the curry with smoky Chinese five-spice aromatics."}],"imageQuery":"gaeng phed ped yang roast duck red curry lychee pineapple thai","imageUrl":"https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"kana-moo-krob","name":"Crispy Pork Belly Stir-Fried with Chinese Broccoli (Kana Moo Krob)","nativeName":"ผัดแขนงคะน้าหมูกรอบไฟแดง","category":"ผัด (Stir-Fries)","prepTime":15,"cookTime":5,"yieldServings":3,"calories":460,"difficulty":"Easy","rating":5,"reviewsCount":3120,"intro":"A street food institution: golden crunchy double-fried pork belly tossed in a roaring hot wok with crunchy Chinese broccoli stems, crushed bird’s eye chilies, garlic, and savory oyster bean sauce.","ingredients":["250 g crispy roast pork belly (moo krob), sliced into bite-sized cubes with crunchy skin","250 g Chinese broccoli (gai lan / kana), thick stems sliced on bias and leaves halved","6 cloves Thai garlic (crushed with skin on)","6-8 red Thai bird’s eye chilies (bruised with mortar and pestle)","Wok Seasoning: 2 tbsp premium oyster sauce, 1 tbsp light soy sauce, 1 tsp fermented yellow soybean paste (tao jiew), 1 tsp sugar, 2 tbsp chicken stock or water","2 tbsp high smoke-point cooking oil"],"instructions":["In a prep bowl, pile the chopped Chinese broccoli, crushed garlic, bruised chilies, and pour all sauce seasonings directly on top of the greens.","Heat a carbon steel wok over maximum flame until smoking hot.","Swirl in 2 tbsp oil; immediately dump the entire bowl of vegetables and seasonings into the center of the wok.","Stir-fry furiously for 45-60 seconds, allowing flames to lick the edges for authentic wok hei breath.","Add the crispy pork belly cubes and splash of broth; toss quickly for 20 seconds so pork is coated with glossy sauce while staying supremely crunchy.","Plate immediately onto a serving platter and serve with hot jasmine rice."],"tips":{"title":"Last-Second Pork Addition","description":"Always add the crispy pork belly at the very final seconds of stir-frying so the skin retains its glass-like crunch."},"variations":{"title":"Kana Pla Kem","description":"Stir-fried Chinese broccoli with salted kingfish chunks instead of pork belly."},"faqs":[{"question":"What does Tao Jiew add?","answer":"Salted yellow soybean paste delivers a deep umami backbone characteristic of Chinese-Thai wok cooking."}],"imageQuery":"kana moo krob stir fry crispy pork belly chinese broccoli thai wok","imageUrl":"https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"nam-tok-neua","name":"Thai Waterfall Grilled Beef Salad (Nam Tok Neua)","nativeName":"น้ำตกเนื้อย่างสมุนไพรข้าวคั่ว","category":"ยำและลาบ (Salads)","prepTime":15,"cookTime":10,"yieldServings":4,"calories":340,"difficulty":"Easy","rating":4.9,"reviewsCount":2280,"intro":"Legendary northeastern Isan specialty of medium-rare grilled ribeye steak tossed while still warm with lime juice, fish sauce, toasted sticky rice powder (khao khua), dried chili flakes, shallots, and fresh mint.","ingredients":["400 g quality ribeye or sirloin steak","Steak Marinade: 1 tbsp oyster sauce, 1 tsp fish sauce, 1/2 tsp dark soy sauce, 1/2 tsp crushed black pepper","Dressing: 2.5 tbsp fish sauce, 2.5 tbsp fresh lime juice, 1 tbsp toasted sticky rice powder (khao khua), 1.5 tbsp dried roasted chili flakes (prik bon), 1 tsp palm sugar","Herbs: 3 shallots (thinly sliced), 2 scallions (chopped), 3 culantro leaves (sawtooth herb, chopped), 1/2 cup fresh mint leaves","Serving: Sticky rice (khao niao), fresh Thai cabbage wedges, and cucumber rounds"],"instructions":["Marinate steak in oyster sauce, fish sauce, and pepper for 15 minutes.","Grill steak over hot charcoal or cast-iron skillet for 3 minutes per side until medium-rare with charred grill marks.","Rest the meat for 5 minutes, then slice against the grain into bite-sized strips, capturing all meat juices (\"waterfall dripping\").","In a mixing bowl, combine warm sliced steak and juices with lime juice, fish sauce, palm sugar, and chili flakes.","Toss in sliced shallots, scallions, sawtooth coriander, and mint leaves.","Sprinkle toasted rice powder over top and give one final gentle toss.","Serve immediately with warm sticky rice and crisp cucumber wedges."],"tips":{"title":"Toasted Sticky Rice Powder","description":"Freshly dry-roast raw sticky rice in a skillet with kaffir lime leaf and lemongrass until golden, then pound into a coarse powder for unmistakable crunch and nutty aroma."},"variations":{"title":"Nam Tok Moo","description":"Prepared with marinated grilled pork collar instead of beef."},"faqs":[{"question":"Why is it called \"Waterfall\" salad?","answer":"Nam Tok means waterfall, referring to the rich savory juices that drip like a cascade from the meat onto the charcoal embers while grilling."}],"imageQuery":"nam tok neua thai grilled beef salad toasted rice mint herbs","imageUrl":"https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"sangkhaya-bai-toey","name":"Pandan Coconut Custard with Steamed Brioche (Sangkhaya Bai Toey)","nativeName":"สังขยาใบเตยนมสดขนมปังนึ่งนุ่ม","category":"ของหวาน (Desserts)","prepTime":20,"cookTime":15,"yieldServings":6,"calories":280,"difficulty":"Medium","rating":5,"reviewsCount":1870,"intro":"The beloved Bangkok evening comfort treat: silky emerald-green custard made with fresh cold-pressed pandan leaf juice, rich coconut cream, and egg yolks, served warm with fluffy steamed white milk bread cubes.","ingredients":["10 fresh pandan leaves (blended with 100 ml water and strained through cheesecloth for concentrated green extract)","250 ml thick coconut cream & 100 ml evaporated milk","3 large egg yolks","70 g granulated palm sugar & 30 g white sugar","1.5 tbsp cornstarch & 1 tbsp tapioca starch (whisked in 2 tbsp cold water)","1/4 tsp sea salt","1 tbsp salted butter","For Serving: 1 loaf soft Japanese milk bread or brioche (cubed and steamed for 3 mins until cloud-soft), extra drizzle of evaporated milk"],"instructions":["In a heatproof bowl, whisk egg yolks, palm sugar, white sugar, and salt until pale and creamy.","Whisk in concentrated pandan juice, coconut cream, evaporated milk, and dissolved starch slurry.","Set the bowl over a saucepan of gently simmering water (bain-marie / double boiler).","Cook over medium-low heat, stirring constantly with a rubber spatula or whisk for 10-12 minutes until custard thickens to a glossy, velvety ribbon consistency.","Stir in butter for shine; remove from heat.","Steam bread cubes in a bamboo basket for 3 minutes until pillowy soft.","Ladle warm pandan custard into small serving bowls, swirl evaporated milk on top, and dip steamed bread generously."],"tips":{"title":"Gentle Double Boiler Heat","description":"Never cook pandan custard over direct flame, as eggs will scramble; a double boiler ensures a mirror-smooth texture."},"variations":{"title":"Sangkhaya Cha Thai","description":"Infused with Thai black tea and condensed milk for an orange Thai tea custard."},"faqs":[{"question":"What gives the custard its aroma?","answer":"Natural pandan leaves contain 2-acetyl-1-pyrroline, the exact aroma compound found in Basmati and Jasmine rice."}],"imageQuery":"sangkhaya bai toey pandan custard steamed bread thai sweet dip","imageUrl":"https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"khai-jiao-poo","name":"Golden Crispy Thai Crab Omelet (Khai Jiao Poo)","nativeName":"ไข่เจียวปูฟูกรอบเจ๊ไฝสไตล์","category":"จานด่วน (Street Food)","prepTime":10,"cookTime":6,"yieldServings":2,"calories":420,"difficulty":"Medium","rating":5,"reviewsCount":3840,"intro":"Inspired by Bangkok’s Michelin-starred street food legend Jay Fai: a massive, golden cylindrical roll of fluffy egg cocooning sweet, giant lump blue crab meat, fried in hot oil until blistered and crisp outside and juicy inside.","ingredients":["200 g fresh jumbo lump blue crab meat (picked clean of shells)","4 large farm eggs","1 tbsp fish sauce & 1/2 tsp light soy sauce","1 tbsp tapioca starch or cornstarch (whisked in 1 tbsp cold water)","1/4 tsp ground white pepper","1 scallion (finely chopped)","500 ml cooking oil (for shallow frying in a deep round wok)","Accompaniments: Sriracha chili sauce, fresh cilantro sprigs, lime wedge, hot Jasmine rice"],"instructions":["In a bowl, beat eggs with fish sauce, soy sauce, white pepper, and starch slurry until frothy.","Gently fold in jumbo lump crab meat and scallions, taking care not to break up the large crab chunks.","Heat oil in a round-bottomed wok over medium-high heat until a drop of egg sizzles immediately (approx. 180°C / 355°F).","Pour egg and crab mixture into the center of hot oil all at once.","As edges puff and crisp, use two metal spatulas to fold edges toward the center, shaping the omelet into a thick, tight cylindrical roll.","Baste hot oil continuously over the top until deep golden and crisp on all sides (approx. 4-5 minutes).","Lift omelet onto a wire rack to drain excess oil for 30 seconds.","Transfer to plate, garnish with cilantro, and serve with Sriracha sauce."],"tips":{"title":"Wok Oil Heat & Starch","description":"A spoonful of tapioca starch keeps the egg casing structurally intact and shatteringly crisp around the delicate crab."},"variations":{"title":"Khai Jiao Moo Sub","description":"Everyday home-style crispy omelet made with seasoned minced pork."},"faqs":[{"question":"How is Khai Jiao different from French omelets?","answer":"French omelets are cooked gently with butter for a smooth pale exterior, while Thai Khai Jiao is deep-fried in hot oil for a blistered, crunchy soufflé crust."}],"imageQuery":"khai jiao poo thai crab omelet crispy golden jay fai street food","imageUrl":"https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"kuay-teow-reua","name":"Ayutthaya Boat Noodle Soup (Kuay Teow Reua)","nativeName":"ก๋วยเตี๋ยวเรืออยุธยาน้ำตกเข้มข้น","category":"ก๋วยเตี๋ยว (Noodles)","prepTime":30,"cookTime":90,"yieldServings":6,"calories":440,"difficulty":"Advanced","rating":5,"reviewsCount":2950,"intro":"Historically served from small wooden sampans along Bangkok and Ayutthaya canals: rich, intensely spiced dark broth infused with cinnamon, star anise, pickled bean curd, and dark soy, ladled over rice noodles, tender beef, pork meatballs, and crispy pork rinds.","ingredients":["400 g thin rice noodles (sen lek) or egg noodles","Broth Base: 1 kg beef marrow bones & 300 g stewing beef slices","Aromatics: 2 cinnamon sticks, 4 star anise, 1 black cardamom, 1 tbsp coriander seeds, 1 tbsp white peppercorns, 5 cilantro roots, 8 cloves garlic, 100g pickled tofu (tao hoo yee)","Seasoning: 3 tbsp dark sweet soy sauce, 3 tbsp light soy sauce, 2 tbsp fish sauce, 20g rock sugar","Finishing: 50 ml seasoned pork blood (nam tok, whisked with lemongrass juice to prevent coagulation - optional but authentic)","Toppings: Thai pork or beef meatballs, morning glory (water spinach), bean sprouts, crispy fried garlic oil, fried pork rinds (kab moo), fresh Thai basil"],"instructions":["Roast cinnamon, star anise, and whole spices in dry pan until fragrant; wrap in cheesecloth spice pouch.","Boil marrow bones and stewing beef in 3 liters of water; skim scum thoroughly.","Add spice pouch, cilantro roots, garlic, fermented pickled tofu, dark sweet soy sauce, and rock sugar; simmer for 90 minutes.","When ready to assemble, ladle 150ml boiling broth into a small pot, whisk in 1 tbsp seasoned blood if using, and bring to rapid boil.","In a noodle basket, blanch rice noodles, bean sprouts, and morning glory in boiling water for 15 seconds; transfer into bowl.","Top with blanched tender beef slices and cooked meatballs.","Pour piping hot spiced dark broth over the noodles.","Garnish with fried garlic oil, crushed pork cracklings, Thai basil, and chili vinegar."],"tips":{"title":"Tao Hoo Yee Magic","description":"Red fermented bean curd provides the authentic boat noodle broth with subtle tanginess, deep reddish tint, and umami depth."},"variations":{"title":"Kuay Teow Reua Moo","description":"Pork boat noodles made with pork ribs, pork liver slices, and pork meatballs."},"faqs":[{"question":"Why are boat noodle bowls traditionally small?","answer":"In historical canal boats, vendors kept portions small so boiling soup wouldn’t spill in choppy canal waves."}],"imageQuery":"kuay teow reua thai boat noodles dark rich broth pork rinds","imageUrl":"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"gaeng-poo-bai-cha-plu","name":"Southern Thai Crab Curry with Betel Leaves (Gaeng Poo Bai Cha Plu)","nativeName":"แกงปูใบชะพลูเส้นหมี่ลวกปักษ์ใต้","category":"แกง (Curries)","prepTime":20,"cookTime":20,"yieldServings":4,"calories":480,"difficulty":"Medium","rating":5,"reviewsCount":1980,"intro":"A Southern Thai culinary crown jewel: fresh jumbo sweet blue crab meat simmered in rich yellow coconut curry infused with fresh turmeric and lemongrass, packed with aromatic peppery wild betel leaves (bai cha plu), served with delicate steamed rice vermicelli noodles.","ingredients":["350 g fresh jumbo lump blue crab meat","400 ml thick coconut cream & 200 ml coconut milk","30 fresh wild betel leaves (bai cha plu), washed and shredded","Southern Yellow Curry Paste: 10 dried bird’s eye chilies, 5 fresh bird’s eye chilies, 4 cloves garlic, 3 shallots, 2 stalks lemongrass, 1 thumb fresh turmeric root, 1 thumb galangal, 1 tsp shrimp paste (kapi), 1/2 tsp salt (pounded fine)","Seasoning: 2 tbsp fish sauce, 1 tsp palm sugar","Accompaniment: 200 g steamed delicate rice vermicelli (sen mee), fresh cucumber slices, boiled eggs"],"instructions":["In a heavy pot, heat 150ml coconut cream until aromatic oil separates.","Add freshly pounded Southern yellow curry paste; fry over medium-low heat for 3-4 minutes until golden yellow and intensely fragrant.","Pour in remaining coconut cream and coconut milk; bring to a steady simmer.","Season with fish sauce and palm sugar.","Gently add the fresh jumbo crab meat and shredded betel leaves into the simmering curry.","Cook for just 2-3 minutes without vigorous stirring so large crab lumps remain intact.","Taste and adjust seasoning to achieve a fiery, rich, savory, and herbal profile.","Serve in bowls alongside delicate bundles of steamed rice vermicelli and fresh vegetables."],"tips":{"title":"Fresh Turmeric & Betel Leaves","description":"Fresh southern turmeric gives vibrant sunshine yellow color while wild betel leaves impart an earthy, peppery bite."},"variations":{"title":"Gaeng Som Poo","description":"Southern sour orange curry with crab and green papaya without coconut milk."},"faqs":[{"question":"What is Bai Cha Plu?","answer":"Piper sarmentosum, also known as wild betel leaf, a peppery aromatic heart-shaped leaf prized in Thai cuisine."}],"imageQuery":"gaeng poo bai cha plu southern thai crab curry betel leaves vermicelli","imageUrl":"https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"pad-pak-boong-fai-daeng","name":"Stir-Fried Morning Glory with Fermented Soybeans (Pad Pak Boong Fai Daeng)","nativeName":"ผัดผักบุ้งไฟแดงเต้าเจี้ยวพริกสด","category":"ผัด (Stir-Fries)","prepTime":10,"cookTime":3,"yieldServings":4,"calories":140,"difficulty":"Easy","rating":4.9,"reviewsCount":3560,"intro":"The famous \"Red Fire Flying Morning Glory\" of Thai night markets: crunchy hollow water spinach flashed in a raging hot wok with salted yellow bean paste, garlic, Thai bird’s eye chilies, and oyster sauce in under 60 seconds.","ingredients":["300 g fresh water spinach / morning glory (pak boong), cut into 5cm lengths","8 cloves Thai garlic (crushed with skins)","6 red Thai bird’s eye chilies (crushed with mortar)","1.5 tbsp fermented yellow soybean paste (tao jiew)","1.5 tbsp premium oyster sauce","1 tsp light soy sauce & 1/2 tsp sugar","3 tbsp high smoke-point vegetable oil","2 tbsp water or chicken stock"],"instructions":["Stack the cut morning glory in a mixing bowl; place crushed garlic, chilies, yellow soybean paste, oyster sauce, soy sauce, and sugar directly on top of the greens.","Heat oil in a wok over maximum high heat until wok is smoking profusely (\"fai daeng\" - red fire stage).","Tip the entire bowl of greens, aromatics, and sauces into the wok in one swift motion.","Toss vigorously for 30 to 45 seconds as steam and flames flare.","Splash with 2 tbsp of water around the wok rim to create an instant emulsified glossy sauce.","Remove from heat immediately while the stems are bright green and crisp.","Serve piping hot with Jasmine rice or Thai rice porridge (khao tom)."],"tips":{"title":"High Heat Speed","description":"Total cooking time must not exceed 45 seconds to keep the hollow water spinach stems crisp and vibrantly green."},"variations":{"title":"Pad Pak Boong Moo Krob","description":"Stir-fried morning glory with crispy roast pork belly cubes."},"faqs":[{"question":"What does \"Fai Daeng\" mean?","answer":"It translates to \"red fire\" or \"flaming fire,\" referring to the towering flames ignited when oil and water meet the scorching wok."}],"imageQuery":"pad pak boong fai daeng stir fried morning glory water spinach thai","imageUrl":"https://images.unsplash.com/photo-1592417817098-8f3d69109853?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"nam-prik-ong","name":"Northern Thai Pork & Tomato Dip (Nam Prik Ong)","nativeName":"น้ำพริกอ่องแคบหมูผักสดเมืองเหนือ","category":"น้ำพริก (Dips & Relishes)","prepTime":15,"cookTime":20,"yieldServings":4,"calories":260,"difficulty":"Easy","rating":4.8,"reviewsCount":1720,"intro":"A comforting staple of Chiang Mai Lanna cuisine: minced pork slow-cooked with sweet cherry tomatoes, shallots, garlic, dried spur chilies, and fermented soybean paste (tua nao) into a savory, slightly sweet and tangy chili dip served with crispy pork rinds and raw garden vegetables.","ingredients":["250 g minced pork (with good marbling)","250 g cherry tomatoes or small native Thai tomatoes (halved)","Pounded Paste: 5 dried red spur chilies (soaked in warm water), 4 shallots, 6 cloves garlic, 1 tbsp fermented soybean disc (tua nao) or yellow bean paste, 1 tsp shrimp paste (kapi), 1/2 tsp salt","Seasoning: 1.5 tbsp fish sauce, 1 tbsp palm sugar, 1 tbsp tamarind pulp water","2 tbsp oil for frying","Accompaniments: Crispy pork cracklings (kab moo), sticky rice, cucumber rounds, raw yardlong beans, blanched cabbage, boiled eggs"],"instructions":["Pound soaked dried chilies, shallots, garlic, shrimp paste, and roasted fermented soybean disc in mortar into a smooth paste.","Heat oil in skillet; fry chili paste over medium heat for 3 minutes until oil turns red and fragrant.","Add minced pork; stir-fry, breaking up clumps, until cooked through.","Add chopped cherry tomatoes and mash them with the back of a spoon as they soften.","Simmer over low heat for 10-12 minutes until tomatoes break down completely into a rich, thick, red sauce.","Season with fish sauce, palm sugar, and tamarind water for a mellow savory, mildly tangy flavor.","Garnish with chopped cilantro and scallions; serve warm with pork cracklings, steamed vegetables, and sticky rice."],"tips":{"title":"Tua Nao Soybean Umami","description":"Tua Nao (roasted northern fermented soybean) gives the dip its authentic rustic Northern Thai depth."},"variations":{"title":"Nam Prik Noom","description":"Roasted green chili and shallot dip also famous in Northern Thailand."},"faqs":[{"question":"Is Nam Prik Ong very spicy?","answer":"No, it uses large mild dried spur chilies and sweet tomatoes, making it one of the mildest and most family-friendly Thai dips."}],"imageQuery":"nam prik ong northern thai pork tomato dip pork crackling vegetables","imageUrl":"https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"foi-thong","name":"Royal Golden Egg Yolk Threads (Foi Thong)","nativeName":"ฝอยทองชาววังหยอดมือเส้นไหมทอง","category":"ของหวาน (Desserts)","prepTime":20,"cookTime":15,"yieldServings":6,"calories":210,"difficulty":"Medium","rating":5,"reviewsCount":1520,"intro":"An exquisite Thai-Portuguese royal confectionery created in the 17th century by Maria Guyomar de Pina: luminous golden threads of duck egg yolks drizzled through a fine brass funnel into boiling jasmine-scented syrup, folded into silky golden skeins.","ingredients":["8 large duck egg yolks & 2 chicken egg yolks (duck yolks provide vibrant orange-gold color and tensile strength)","1 tsp egg white (khee tao) to loosen the yolk consistency","Jasmine Sugar Syrup: 600 g granulated sugar, 400 ml water, scented with 5 fresh organic jasmine flowers or 2 drops jasmine essence, 1 pandan leaf tied in knot","Equipment: Brass brass wok (or non-stick pan), fine-tipped Foi Thong brass funnel or parchment cone, wooden chopsticks"],"instructions":["Gently strain duck and chicken egg yolks through a fine muslin cloth (thin white cloth) into a bowl to remove all chalaza and membranes for a glassy texture.","Whisk in 1 tsp egg white until yolks flow in a smooth, continuous stream.","Combine sugar, water, and pandan leaf in a brass wok; boil until sugar dissolves and syrup forms small, steady bubbles in the center.","Pour egg yolk mixture into the brass funnel with two fine nozzle holes.","Hold funnel 15cm above the bubbling syrup; swirl in continuous circular motions 30-40 times to create long golden thread loops.","Cook threads in the simmering syrup for 25-30 seconds until set and glossy.","Use chopsticks to hook and lift the golden threads; gently fold into an elegant oval silk skein.","Drain on a wire rack and scent with traditional Thai incense candle (tian op) before serving."],"tips":{"title":"Duck Egg Yolks","description":"Duck egg yolks are essential for the traditional deep golden-orange color and elasticity that prevents the fine threads from snapping."},"variations":{"title":"Thong Yip & Thong Yod","description":"Companion golden desserts made from the same royal egg yolk and sugar syrup tradition."},"faqs":[{"question":"What is the auspicious meaning of Foi Thong?","answer":"Served at Thai weddings and celebrations, the long unbroken golden threads symbolize everlasting love and long, prosperous life."}],"imageQuery":"foi thong thai golden egg yolk threads royal dessert jasmine syrup","imageUrl":"https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80","alsoLike":[]}];
+    let activeRecipeId = 'pad-thai-boran';
+    let activeCategory = 'All';
+
+    function getCategories() {
+      const cats = { 'All': recipes.length };
+      recipes.forEach(r => {
+        cats[r.category] = (cats[r.category] || 0) + 1;
+      });
+      return cats;
+    }
+
+    function renderCategories() {
+      const container = document.getElementById('categoriesBar');
+      if (!container) return;
+      const cats = getCategories();
+      container.innerHTML = Object.keys(cats).map(cat => {
+        const isActive = cat === activeCategory;
+        return `<button class="cat-chip ${isActive ? 'active' : ''}" onclick="filterCategory('${cat}')">${cat} (${cats[cat]})</button>`;
+      }).join('');
+    }
+
+    function filterCategory(cat) {
+      activeCategory = cat;
+      renderCategories();
+      renderGrid(document.getElementById('recipeSearchInput')?.value || '');
+    }
+
+    function renderGrid(filter = '') {
+      const grid = document.getElementById('recipeGrid');
+      const filtered = recipes.filter(r => {
+        const matchSearch = r.name.toLowerCase().includes(filter.toLowerCase()) || 
+                            r.nativeName.toLowerCase().includes(filter.toLowerCase()) ||
+                            r.category.toLowerCase().includes(filter.toLowerCase());
+        const matchCat = activeCategory === 'All' || r.category === activeCategory;
+        return matchSearch && matchCat;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; padding: 24px; text-align: center; color: #6b7280; background: #fff; border-radius: 4px; border: 1px dashed #d1d5db;">No recipes found matching your query. <a href="javascript:void(0)" onclick="viewAllRecipes()" style="color:#d97706; font-weight:bold;">View all ' + recipes.length + ' recipes</a></div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map((r) => {
+        const isActive = r.id === activeRecipeId;
+        return `
+          <article class="recipe-card ${isActive ? 'active-card' : ''}" onclick="selectRecipe('${r.id}')" title="Click to view details for ${r.name}">
+            <div class="card-photo" style="background-image:url('${r.imageUrl}')">
+              <span class="card-badge">${r.category}</span>
+            </div>
+            <div class="recipe-card-content">
+              <h3>${r.name}</h3>
+              <p><span>◷ ${r.prepTime + r.cookTime}m</span> <span>♨ ${r.difficulty}</span></p>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function selectRecipe(id) {
+      const recipe = recipes.find(r => r.id === id);
+      if (!recipe) return;
+      activeRecipeId = id;
+
+      document.getElementById('detailImage').style.backgroundImage = 
+        "linear-gradient(90deg, rgba(5,15,16,.95) 0%, rgba(5,15,16,.55) 42%, transparent 70%), url('" + recipe.imageUrl + "')";
+      
+      document.getElementById('detailBreadcrumbs').innerText = 'Home　›　Recipes　›　' + recipe.category;
+      document.getElementById('detailTitle').innerHTML = recipe.name + '<br>(' + recipe.nativeName + ')';
+      document.getElementById('detailRating').innerHTML = '★★★★★ <small>' + recipe.rating + ' (' + recipe.reviewsCount + ' reviews)</small>';
+      document.getElementById('detailIntro').innerText = recipe.intro;
+
+      document.getElementById('detailFacts').innerHTML = 
+        '<span>◉ Prep ' + recipe.prepTime + ' min</span>' +
+        '<span>◉ Cook ' + recipe.cookTime + ' min</span>' +
+        '<span>◉ Yield ' + recipe.yieldServings + ' serv</span>' +
+        '<span>◉ ' + recipe.calories + ' kcal</span>';
+
+      document.getElementById('detailIngredients').innerHTML = 
+        recipe.ingredients.map(ing => '<li>' + ing + '</li>').join('');
+
+      document.getElementById('detailInstructions').innerHTML = 
+        recipe.instructions.map(ins => '<li>' + ins + '</li>').join('');
+
+      document.getElementById('detailTips').innerHTML = 
+        '<strong>' + recipe.tips.title + '</strong><p>' + recipe.tips.description + '</p>';
+
+      document.getElementById('detailVariations').innerHTML = 
+        '<strong>' + recipe.variations.title + '</strong><p>' + recipe.variations.description + '</p>';
+
+      document.getElementById('faqContainer').innerHTML = 
+        recipe.faqs.map(faq => 
+          '<div class="faq-item" onclick="this.classList.toggle(\'open\')">' +
+          '<div><span>' + faq.question + '</span><b>⌄</b></div>' +
+          '<small>' + faq.answer + '</small>' +
+          '</div>'
+        ).join('');
+
+      const recs = (recipe.alsoLike && recipe.alsoLike.length > 0) 
+        ? recipe.alsoLike 
+        : recipes.filter(r => r.id !== recipe.id).slice(0, 4);
+
+      document.getElementById('alsoContainer').innerHTML = 
+        recs.map((also) => 
+          '<article class="also-card" onclick="selectRecipeByName(\'' + also.name.replace(/'/g, "\\'") + '\')">' +
+          '<div class="mini" style="background-image:url(\'' + also.imageUrl + '\')"></div>' +
+          '<span>' + also.name + '</span>' +
+          '</article>'
+        ).join('');
+
+      renderGrid(document.getElementById('recipeSearchInput')?.value || '');
+
+      if (window.innerWidth <= 950) {
+        document.getElementById('detailPanel').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function selectRecipeByName(name) {
+      const found = recipes.find(r => r.name.toLowerCase().includes(name.toLowerCase()) || r.nativeName.toLowerCase().includes(name.toLowerCase()));
+      if (found) {
+        selectRecipe(found.id);
+      }
+    }
+
+    function viewAllRecipes() {
+      activeCategory = 'All';
+      renderCategories();
+      const input = document.getElementById('recipeSearchInput');
+      if (input) input.value = '';
+      renderGrid('');
+      document.getElementById('recipeGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function focusCategories() {
+      document.getElementById('recipeGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* Modal Handlers */
+    function openAboutModal() {
+      document.getElementById('aboutModal').classList.add('open');
+    }
+    function closeAboutModal(e) {
+      if (!e || e.target === document.getElementById('aboutModal') || e.target.classList.contains('modal-close')) {
+        document.getElementById('aboutModal').classList.remove('open');
+      }
+    }
+    function switchModalTab(tabId) {
+      document.querySelectorAll('.modal-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.modal-section').forEach(s => s.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(tabId)?.classList.add('active');
+    }
+    function jumpToRecipe(id) {
+      closeAboutModal();
+      selectRecipe(id);
+      document.getElementById('detailPanel').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCategories();
+      renderGrid();
+
+      const searchInput = document.getElementById('recipeSearchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          renderGrid(e.target.value);
+        });
+      }
+
+      const searchBtn = document.getElementById('recipeSearchBtn');
+      if (searchBtn) {
+        searchBtn.addEventListener('click', () => {
+          renderGrid(searchInput.value);
+        });
+      }
+    });
+
+    renderCategories();
+    renderGrid();
+  </script>
+</body>
+</html>

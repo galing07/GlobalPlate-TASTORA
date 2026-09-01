@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Japan Recipes - JAPANESE GASTRONOMY</title>
+  <meta name="description" content="The Essence of Washoku Tradition - Authentic Japan culinary traditions, recipes, and culture." />
+  <style>
+    /* Reset & Base Setup */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100%;
+      background: #0c1214;
+      color: #f2f7f4;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    /* Magazine App Shell */
+    .app-shell {
+      width: 100%;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(650px, 62%) minmax(400px, 38%);
+      gap: 7px;
+      padding: 6px 14px;
+    }
+
+    .main-column, .detail-panel {
+      border: 1px solid #647a75;
+      border-radius: 9px;
+      overflow: hidden;
+      background: #11191c;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Topbar */
+    .topbar {
+      height: 48px;
+      background: #060a0c;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: Georgia, serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .brand-mark {
+      font-size: 20px;
+      color: #d4af37;
+    }
+    .topbar nav {
+      display: flex;
+      gap: 16px;
+    }
+    .topbar nav a {
+      color: #d1d5db;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 11px;
+      transition: color 0.15s ease;
+      cursor: pointer;
+    }
+    .topbar nav a:hover, .topbar nav a.active {
+      color: #d4af37;
+    }
+    .search {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 28px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid #4b5563;
+      border-radius: 4px;
+      overflow: hidden;
+      width: 170px;
+    }
+    .search input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 10px;
+      padding: 0 8px;
+      width: 135px;
+    }
+    .search input::placeholder { color: #9ca3af; }
+    .search b {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 28px;
+      background: #d4af37;
+      color: #181b14;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 290px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #111;
+    }
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      padding: 24px 28px;
+      max-width: 440px;
+    }
+    .hero-copy em {
+      display: block;
+      font-family: Georgia, serif;
+      font-style: italic;
+      color: #d4af37;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+    .hero-copy h1 {
+      font-family: Georgia, serif;
+      font-size: 32px;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 7px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    }
+    .hero-copy p {
+      font-size: 12px;
+      color: #e5e7eb;
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+    .hero-actions button {
+      background: #d4af37;
+      color: #181b14;
+      border: 1px solid #d4af37;
+      font-weight: bold;
+      font-size: 11px;
+      padding: 7px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .hero-actions button:hover { opacity: 0.9; transform: translateY(-1px); }
+    .hero-actions button.dark-button {
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      border: 1px solid #6b7280;
+      backdrop-filter: blur(4px);
+    }
+    .hero-actions button.dark-button:hover {
+      background: rgba(0,0,0,0.8);
+      border-color: #d4af37;
+    }
+
+    /* Popular Section */
+    .popular {
+      background: #e3ece1;
+      color: #14201a;
+      padding: 14px 16px;
+      flex: 1;
+    }
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .section-heading h2 {
+      font-family: Georgia, serif;
+      font-size: 17px;
+      font-weight: bold;
+      color: #14201a;
+    }
+    .section-heading button {
+      background: #fff;
+      border: 1px solid #b9cbb6;
+      color: #14201a;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .section-heading button:hover { background: #f3f4f6; }
+
+    /* Category Filter Chips */
+    .categories-bar {
+      display: flex;
+      gap: 5px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+    }
+    .cat-chip {
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 9px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #374151;
+      transition: all 0.15s ease;
+    }
+    .cat-chip:hover { background: #f9fafb; }
+    .cat-chip.active {
+      background: #b45309;
+      color: #fff;
+      border-color: #92400e;
+    }
+
+    /* Grid */
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+      gap: 7px;
+    }
+    .recipe-card {
+      background: #f6faf5;
+      border: 1px solid #b9cbb6;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+    .recipe-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    }
+    .recipe-card.active-card {
+      border: 2px solid #d4af37;
+      box-shadow: 0 0 0 1px #d4af37;
+    }
+    .card-photo {
+      height: 75px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      background-color: #374151;
+    }
+    .card-badge {
+      position: absolute;
+      bottom: 4px;
+      left: 4px;
+      background: rgba(0,0,0,0.75);
+      color: #fff;
+      font-size: 7px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+    .recipe-card-content {
+      padding: 6px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .recipe-card h3 {
+      font-size: 10px;
+      font-weight: bold;
+      color: #111827;
+      line-height: 1.25;
+      margin-bottom: 2px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .recipe-card p {
+      font-size: 8px;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 3px;
+      margin-top: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Detail Panel */
+    .detail-panel {
+      background: #eef3ed;
+      color: #14201a;
+    }
+    .detail-image {
+      min-height: 175px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .detail-content {
+      padding: 10px 14px;
+    }
+    .breadcrumbs {
+      font-size: 9px;
+      color: #6b7280;
+      margin-bottom: 3px;
+    }
+    .detail-content h2 {
+      font-family: Georgia, serif;
+      font-size: 19px;
+      color: #14201a;
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+    .rating {
+      color: #d97706;
+      font-size: 11px;
+      margin-bottom: 6px;
+    }
+    .rating small { color: #6b7280; font-size: 9px; }
+    .intro {
+      font-size: 10px;
+      color: #374151;
+      line-height: 1.45;
+      margin-bottom: 8px;
+    }
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      background: rgba(0,0,0,0.04);
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,0,0,0.06);
+      font-size: 9px;
+      color: #1f2937;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* 2 Column Ingredients & Instructions */
+    .ingredients-instructions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 10px 14px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.4);
+    }
+    .ingredients-instructions h3 {
+      font-family: Georgia, serif;
+      font-size: 12px;
+      font-weight: bold;
+      color: #111827;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+    }
+    .ingredients-instructions ul, .ingredients-instructions ol {
+      padding-left: 14px;
+      font-size: 9.5px;
+      color: #374151;
+      line-height: 1.5;
+    }
+    .ingredients-instructions li { margin-bottom: 3px; }
+
+    /* Tips & Variations */
+    .tips {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      padding: 6px 14px 10px;
+    }
+    .tip-card {
+      background: #15313d;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 1.35;
+    }
+    .tip-card strong {
+      display: block;
+      color: #d4af37;
+      font-size: 10px;
+      margin-bottom: 2px;
+      font-family: Georgia, serif;
+    }
+    .variation-card {
+      background: #164332;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 1.35;
+    }
+    .variation-card strong {
+      display: block;
+      color: #a7f3d0;
+      font-size: 10px;
+      margin-bottom: 2px;
+      font-family: Georgia, serif;
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 6px 14px;
+    }
+    .faq h3 {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #111827;
+    }
+    .faq-item {
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 3px;
+      margin-bottom: 4px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .faq-item div {
+      padding: 5px 8px;
+      font-weight: bold;
+      font-size: 9.5px;
+      color: #1f2937;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-item small {
+      display: none;
+      padding: 5px 8px 7px;
+      font-size: 9px;
+      color: #4b5563;
+      border-top: 1px solid #f3f4f6;
+      line-height: 1.4;
+      background: #f9fafb;
+    }
+    .faq-item.open small { display: block; }
+
+    /* You Might Also Like */
+    .also {
+      background: #12332c;
+      color: #fff;
+      padding: 10px 14px;
+      margin-top: auto;
+    }
+    .also h3 {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .also-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+    .also-card {
+      cursor: pointer;
+      text-align: center;
+    }
+    .also-card .mini {
+      height: 48px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 3px;
+      transition: border-color 0.15s;
+    }
+    .also-card:hover .mini { border-color: #d4af37; }
+    .also-card span {
+      font-size: 8.5px;
+      font-weight: bold;
+      color: #e5e7eb;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Modal for About Swedish Cuisine */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(6px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-container {
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      background: #0e161c;
+      border: 1px solid rgba(217, 119, 6, 0.4);
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      color: #e2e8f0;
+    }
+    .modal-header {
+      padding: 16px 20px;
+      background: linear-gradient(90deg, #0d222b, #122c37);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-header h2 {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      color: #fff;
+    }
+    .modal-close {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-nav {
+      display: flex;
+      gap: 6px;
+      padding: 8px 16px;
+      background: #091116;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      overflow-x: auto;
+    }
+    .modal-tab-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .modal-tab-btn.active {
+      background: #d97706;
+      color: #0f172a;
+      font-weight: bold;
+    }
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .modal-section { display: none; }
+    .modal-section.active { display: block; }
+    .modal-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .modal-card h4 {
+      font-size: 12px;
+      color: #fbbf24;
+      margin-bottom: 4px;
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 950px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+        padding: 4px 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-shell" id="topAnchor">
+    <!-- LEFT MAIN COLUMN -->
+    <main class="main-column">
+      <header class="topbar">
+        <div class="brand" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+          <span class="brand-mark">⛩</span>
+          <span>JAPANESE<br>GASTRONOMY</span>
+        </div>
+        <nav>
+          <a href="javascript:void(0)" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="active">Home</a>
+          <a href="javascript:void(0)" onclick="viewAllRecipes()">Recipes</a>
+          <a href="javascript:void(0)" onclick="focusCategories()">Categories</a>
+          <a href="javascript:void(0)" onclick="openAboutModal()">About</a>
+        </nav>
+        <div class="search">
+          <input type="text" id="recipeSearchInput" placeholder="Search 30 recipes..." aria-label="Search recipes" />
+          <b id="recipeSearchBtn">⌕</b>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-photo" style="background-image: linear-gradient(90deg, #0c1214F2 0%, #0c1214B8 41%, #0c12140D 80%), url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1200&q=85');"></div>
+        <div class="hero-copy">
+          <em>The Essence of Washoku Tradition</em>
+          <h1>Authentic Japanese<br>Recipes</h1>
+          <p>Rich slow-simmered broths, pristine sushi cuts, and masterfully<br>balanced umami from the culinary capitals of Japan.</p>
+          <div class="hero-actions">
+            <button onclick="document.getElementById('recipeGridSection').scrollIntoView({behavior:'smooth'})">Explore Recipes</button>
+            <button class="dark-button" onclick="openAboutModal()">About Washoku Cuisine</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="popular" id="recipeGridSection">
+        <div class="section-heading">
+          <h2>❧ Masterpieces of Washoku ❧</h2>
+          <button id="viewAllBtn" onclick="viewAllRecipes()">View All (30) →</button>
+        </div>
+
+        <div class="categories-bar" id="categoriesBar"></div>
+
+        <div class="recipe-grid" id="recipeGrid"></div>
+      </section>
+    </main>
+
+    <!-- RIGHT DETAIL PANEL -->
+    <aside class="detail-panel" id="detailPanel">
+      <div class="detail-image" id="detailImage" style="background-image: linear-gradient(90deg, rgba(5,15,16,.95) 0%, rgba(5,15,16,.55) 42%, transparent 70%), url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80');"></div>
+      <div class="detail-content" id="detailContent">
+        <div class="breadcrumbs" id="detailBreadcrumbs">Home　›　Recipes　›　Noodle & Broth</div>
+        <h2 id="detailTitle">Hakata Tonkotsu Ramen<br>(博多豚骨ラーメン (Tonkotsu Ramen))</h2>
+        <div class="rating" id="detailRating">★★★★★ <small>4.9 (1250 reviews)</small></div>
+        <p class="intro" id="detailIntro">Fukuoka’s world-famous ramen: collagen-rich cloudy pork bone broth, thin straight wheat noodles, tender rolled chashu pork, seasoned ajitama soft-boiled egg, and black garlic mayu oil.</p>
+        <div class="facts" id="detailFacts">
+          <span>◉ Prep 30 min</span>
+          <span>◉ Cook 180 min</span>
+          <span>◉ Yield 4 serv</span>
+          <span>◉ 580 kcal</span>
+        </div>
+      </div>
+
+      <div class="ingredients-instructions" id="ingredientsInstructions">
+        <section>
+          <h3>Ingredients</h3>
+          <ul id="detailIngredients">
+            <li>1.5 kg pork marrow bones & 500 g pork belly roll</li><li>4 portions fresh Hakata-style thin ramen noodles</li><li>4 Ajitsuke Tamago (seasoned soft-boiled eggs)</li><li>Shoyu Tare: 100 ml soy sauce, 50 ml mirin, kombu dashi</li><li>Toppings: Wood-ear mushrooms (kikurage), chopped scallions, nori seaweed sheets, black garlic oil</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Instructions</h3>
+          <ol id="detailInstructions">
+            <li>Blanch pork bones in boiling water for 10 mins, rinse clean, then boil vigorously for 3-4 hours until broth turns milky white and rich in collagen.</li><li>Braise rolled pork belly in soy sauce, mirin, sake, garlic, and ginger for 90 mins; slice into tender chashu rounds.</li><li>Cook fresh ramen noodles in boiling water for 45-60 seconds (kata/firm texture).</li><li>Add 2 tbsp shoyu tare to warmed ramen bowls, pour in steaming milky tonkotsu broth, and fold in cooked noodles.</li><li>Top with chashu slices, halved seasoned egg, kikurage mushrooms, scallions, nori, and a drizzle of aromatic oil.</li>
+          </ol>
+        </section>
+      </div>
+
+      <div class="tips" id="tipsBlock">
+        <div class="tip-card" id="detailTips">
+          <strong>Rolling Boil</strong>
+          <p>A rapid rolling boil is essential to emulsify marrow fats and water into creamy white broth.</p>
+        </div>
+        <div class="variation-card" id="detailVariations">
+          <strong>Spicy Tonkotsu</strong>
+          <p>Whisk in 1 tbsp spicy miso chili paste and sesame oil.</p>
+        </div>
+      </div>
+
+      <section class="faq" id="faqSection">
+        <h3>Frequently Asked Questions</h3>
+        <div id="faqContainer">
+          
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+              <div><span>Can I make broth ahead?</span><b>⌄</b></div>
+              <small>Yes! Broth stores refrigerated for 4 days or frozen for 2 months.</small>
+            </div>
+          
+        </div>
+      </section>
+
+      <section class="also" id="alsoSection">
+        <h3>You Might Also Like</h3>
+        <div class="also-grid" id="alsoContainer">
+          
+            <article class="also-card" onclick="selectRecipeByName('Sushi & Sashimi')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Sushi & Sashimi</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Katsu Curry')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Katsu Curry</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Pork Gyoza')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Pork Gyoza</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Yakitori Skewers')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Yakitori Skewers</span>
+            </article>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- ABOUT EDITORIAL MODAL -->
+  <div class="modal-overlay" id="aboutModal" onclick="closeAboutModal(event)">
+    <div class="modal-container" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div>
+          <span style="font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #fbbf24; font-weight: bold;">Editorial Compendium</span>
+          <h2>About Japanese Cuisine (Washoku)</h2>
+        </div>
+        <button class="modal-close" onclick="closeAboutModal()">✕</button>
+      </div>
+
+      <div class="modal-nav">
+        <button class="modal-tab-btn active" onclick="switchModalTab('mod-intro')">Introduction & Pillars</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-dishes')">Popular Dishes</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-fika')">Tea & Chado</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-ingredients')">Ingredients</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-traditions')">Traditions</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-regional')">Regional</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-faq')">FAQ</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- INTRO TAB -->
+        <div class="modal-section active" id="mod-intro">
+          <div class="modal-card" style="background: linear-gradient(135deg, rgba(217,119,6,0.15), rgba(15,23,42,0.6)); border-color: rgba(217,119,6,0.3);">
+            <em style="color: #fbbf24; font-family: Georgia, serif; font-size: 13px; display: block; margin-bottom: 4px;">UNESCO World Heritage: harmony of five colors, seasonal mindfulness, and pure umami.</em>
+            <h3 style="font-family: Georgia, serif; font-size: 15px; color: #fff; margin-bottom: 8px;">Introduction to Washoku (和食)</h3>
+            <p style="margin-bottom: 6px;">Recognized by UNESCO as an Intangible Cultural Heritage of Humanity, Washoku represents a profound respect for nature and the seasonal rhythm of the Japanese archipelago.</p><p style="margin-bottom: 6px;">At the heart of Japanese gastronomy lies the pursuit of Shun (旬)—eating ingredients at the exact peak of their season—and extracting deep Umami through delicate dashi broths of kombu and katsuobushi.</p>
+          </div>
+
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin: 14px 0 8px;">The Principles of Washoku</h3>
+          <p style="margin-bottom: 10px;">Structured around the traditional meal format Ichiju Sansai (一汁三菜: One Soup, Three Dishes), balancing nutrition, aesthetics, and seasonal spirit.</p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>01. Ichiju Sansai (One Soup, 3 Dishes)</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Steamed rice and miso soup accompanied by one main protein and two seasonal vegetable sides.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>02. The Fifth Taste: Umami</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Glutamates and ribonucleotides extracted from kombu kelp and fermented bonito flakes.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>03. The Rule of Five Colors (Goshiki)</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Every meal incorporates red, yellow, green, white, and black for visual and nutritional harmony.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>04. Shun (Seasonal Peak)</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Celebrating the fleeting 10-day window when an ingredient is at its absolute pinnacle.</p>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- DISHES TAB -->
+        <div class="modal-section" id="mod-dishes">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 6px;">Iconic Dishes of Japanese Gastronomy</h3>
+          <p style="margin-bottom: 12px; color: #94a3b8;">From bustling street izakayas to centuries-old Kyoto kaiseki ryotei.</p>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Hakata Tonkotsu Ramen <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(博多豚骨ラーメン)</em></h4>
+                <p style="margin-bottom: 4px;">Collagen-rich cloudy pork bone broth simmered 12 hours, served with firm thin noodles, rolled chashu, and black garlic oil.</p>
+                <small style="color: #93c5fd;">Cultural Note: Fukuoka’s world-conquering soul food embodying extreme broth craft.</small>
+              </div>
+              <button onclick="jumpToRecipe('tonkotsu-ramen')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Edomae Nigiri Sushi <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(江戸前握り寿司)</em></h4>
+                <p style="margin-bottom: 4px;">Seasoned warm sushi rice topped with aged bluefin tuna, sea bream, salmon, and fresh Shizuoka wasabi.</p>
+                <small style="color: #93c5fd;">Cultural Note: Tokyo’s historic preservation technique elevated to world fine-dining art.</small>
+              </div>
+              <button onclick="jumpToRecipe('sushi-platter')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Crispy Pork Katsu Curry <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(カツカレー)</em></h4>
+                <p style="margin-bottom: 4px;">Panko-crusted pork cutlet fried golden, served with rich, aromatic Japanese curry sauce over steaming rice.</p>
+                <small style="color: #93c5fd;">Cultural Note: Japan’s beloved Yoshoku comfort food blending Western cutlets with Japanese spice craft.</small>
+              </div>
+              <button onclick="jumpToRecipe('katsu-curry')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Crispy Pan-Fried Gyoza <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(焼き餃子 (Yaki Gyoza))</em></h4>
+                <p style="margin-bottom: 4px;">Pork, cabbage, and ginger dumplings steamed and pan-fried to a golden crispy bottom lattice.</p>
+                <small style="color: #93c5fd;">Cultural Note: The ultimate izakaya and ramen accompaniment.</small>
+              </div>
+              <button onclick="jumpToRecipe('gyoza-dumplings')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Charcoal Yakitori Skewers <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(焼き鳥 (Yakitori Tare))</em></h4>
+                <p style="margin-bottom: 4px;">Tender chicken thighs and Tokyo scallions grilled over white binchotan charcoal, glazed in sweet mirin tare.</p>
+                <small style="color: #93c5fd;">Cultural Note: Smoky, convivial street food perfection.</small>
+              </div>
+              <button onclick="jumpToRecipe('yakitori')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+        </div>
+
+        <!-- CULTURE / FIKA TAB -->
+        <div class="modal-section" id="mod-fika">
+          <div class="modal-card" style="background: rgba(180,83,9,0.15);">
+            <h4>Japanese Wagashi & Tea Ceremony (Chado)</h4>
+            <p style="margin-bottom: 6px;">The ancient art of pairing bitter ceremonial Uji matcha with delicate, artistic sweets shaped like seasonal flowers and autumn leaves.</p>
+            <p style="font-style: italic; color: #fde68a;">"Before sipping bitter green matcha, guests savor a bite of sweet wagashi to prepare the palate and awaken taste receptors."</p>
+          </div>
+          <h4 style="color:#fff; margin: 12px 0 8px;">Popular Regional Treats & Specialties</h4>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>Kyoto Matcha Parfait (宇治抹茶パフェ)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Layered with ceremonial Uji green tea jelly, shiratama dango mochi, sweet red azuki beans, and matcha soft serve.</p>
+                <button onclick="jumpToRecipe('matcha-parfait')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+              <div class="modal-card">
+                <h4>Castella Honey Dorayaki (どら焼き (Dorayaki))</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Two golden pancake cushions infused with honey and mirin, sandwiching a sweet azuki red bean paste filling.</p>
+                <button onclick="jumpToRecipe('dorayaki')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+              <div class="modal-card">
+                <h4>Strawberry Ichigo Daifuku (いちご大福 (Ichigo Daifuku))</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Chewy pounded glutinous rice mochi enclosing a whole sweet strawberry and smooth white bean paste.</p>
+                <button onclick="jumpToRecipe('daifuku-mochi')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- INGREDIENTS TAB -->
+        <div class="modal-section" id="mod-ingredients">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Key Japanese Ingredients</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌊 <strong style="color:#fff; font-size:11px;">Kombu & Katsuobushi Dashi</strong> <em style="font-size:9px; color:#fbbf24;">(昆布・鰹節出汁)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Dried giant kelp from Hokkaido and smoked fermented skipjack tuna flakes.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: The foundational master stock of all soups, braises, and dipping sauces.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🥣 <strong style="color:#fff; font-size:11px;">Fermented Miso Paste</strong> <em style="font-size:9px; color:#fbbf24;">(味噌 (Miso))</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Aged fermented soybean paste ranging from sweet white (Shiromiso) to robust dark red (Akamiso).</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Soups, glazes for black cod, marinades, and ramen broth.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🍚 <strong style="color:#fff; font-size:11px;">Koshihikari Short-Grain Rice</strong> <em style="font-size:9px; color:#fbbf24;">(コシヒカリ米)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Plump, glossy Japanese rice with natural sweetness and perfect sticky chew.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: The sacred foundation of daily meals, sushi, and onigiri rice balls.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌿 <strong style="color:#fff; font-size:11px;">Fresh Hon-Wasabi</strong> <em style="font-size:9px; color:#fbbf24;">(本わさび)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Real grated wasabi rhizome grown in pure alpine riverbeds, delivering clean herbal heat.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Grated with sharkskin oroshi onto raw sushi and sashimi.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🍶 <strong style="color:#fff; font-size:11px;">Shoyu (Aged Soy Sauce)</strong> <em style="font-size:9px; color:#fbbf24;">(本醸造醤油)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Naturally brewed fermented soy sauce aged in cedar barrels (kioke).</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Seasoning tare, marinades, and dipping pristine sashimi.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🍶 <strong style="color:#fff; font-size:11px;">Mirin & Hon-Sake</strong> <em style="font-size:9px; color:#fbbf24;">(本みりん・清酒)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Naturally fermented sweet rice wine that imparts subtle sweetness and mirror gloss.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Glazes (teriyaki/yakitori), simmered dishes, and ramen tare.</small>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- TRADITIONS TAB -->
+        <div class="modal-section" id="mod-traditions">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Japanese Food Traditions & Celebrations</h3>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Osechi Ryori (New Year Feast)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">New Year (Shogatsu)</span>
+              </div>
+              <p style="margin-bottom: 6px;">Multi-tiered lacquer boxes (jubako) containing symbolic foods wishing for longevity, health, and prosperity.</p>
+              <small style="color: #fbbf24;">Staples: Kazunoko (Herring Roe), Kuromame (Sweet Black Beans), Datemaki, Ozoni Soup</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Hanami Cherry Blossom Picnics</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">Spring (April)</span>
+              </div>
+              <p style="margin-bottom: 6px;">Gathering under blooming sakura trees with bento boxes, tricolor dango mochi, and seasonal sake.</p>
+              <small style="color: #fbbf24;">Staples: Sanshoku Dango, Sakura Mochi, Chirashizushi, Tamagoyaki</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Tsukimi Autumn Moon Viewing</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">Autumn (September)</span>
+              </div>
+              <p style="margin-bottom: 6px;">Honoring the autumn harvest moon with round white rice dumplings and sweet potato dishes.</p>
+              <small style="color: #fbbf24;">Staples: Tsukimi Dango, Taro Potatoes, Chestnut Rice, Tsukimi Soba</small>
+            </div>
+          
+        </div>
+
+        <!-- REGIONAL TAB -->
+        <div class="modal-section" id="mod-regional">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Regional Japanese Flavors</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>🧭 Kanto (Tokyo & East Japan)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Bold dark soy sauce (Koikuchi), rich ramen broths, edomae nigiri sushi, and deep tempura fry.</p>
+                <small style="color: #fbbf24;">Specialties: Edomae Sushi, Shoyu Ramen, Tokyo Monjayaki, Tempura</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 Kansai (Kyoto, Osaka & West Japan)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Delicate light soy sauce (Usukuchi), elegant kaiseki multi-course meals, and Osaka street food.</p>
+                <small style="color: #fbbf24;">Specialties: Takoyaki, Okonomiyaki, Kyoto Kaiseki, Kitsune Udon</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 Kyushu & Hokkaido</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Hakata pork bone ramen, Mentai spicy cod roe, fresh King crab, scallops, and rich dairy miso.</p>
+                <small style="color: #fbbf24;">Specialties: Tonkotsu Ramen, Sapporo Miso Ramen, Hokkaido Crab, Motsunabe</small>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- FAQ TAB -->
+        <div class="modal-section" id="mod-faq">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Frequently Asked Questions</h3>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">Why should you dip sushi fish-side down into soy sauce?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Dipping the fish prevents the warm seasoned rice from absorbing excess salty soy sauce and crumbling apart in the dish.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">What gives Tonkotsu ramen broth its milky white color?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">A vigorous rolling boil for over 10 hours breaks down pork bone marrow and gelatin into a creamy, opaque emulsion.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">What is the difference between real wasabi and regular green paste?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Most commercial tubes are horseradish dyed green with mustard; real hon-wasabi is freshly grated root with a sweet, floral, sinus-clearing aroma.</p>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const recipes = [{"id":"tonkotsu-ramen","name":"Hakata Tonkotsu Ramen","nativeName":"博多豚骨ラーメン (Tonkotsu Ramen)","category":"Noodle & Broth","prepTime":30,"cookTime":180,"yieldServings":4,"calories":580,"difficulty":"Medium","rating":4.9,"reviewsCount":1250,"intro":"Fukuoka’s world-famous ramen: collagen-rich cloudy pork bone broth, thin straight wheat noodles, tender rolled chashu pork, seasoned ajitama soft-boiled egg, and black garlic mayu oil.","ingredients":["1.5 kg pork marrow bones & 500 g pork belly roll","4 portions fresh Hakata-style thin ramen noodles","4 Ajitsuke Tamago (seasoned soft-boiled eggs)","Shoyu Tare: 100 ml soy sauce, 50 ml mirin, kombu dashi","Toppings: Wood-ear mushrooms (kikurage), chopped scallions, nori seaweed sheets, black garlic oil"],"instructions":["Blanch pork bones in boiling water for 10 mins, rinse clean, then boil vigorously for 3-4 hours until broth turns milky white and rich in collagen.","Braise rolled pork belly in soy sauce, mirin, sake, garlic, and ginger for 90 mins; slice into tender chashu rounds.","Cook fresh ramen noodles in boiling water for 45-60 seconds (kata/firm texture).","Add 2 tbsp shoyu tare to warmed ramen bowls, pour in steaming milky tonkotsu broth, and fold in cooked noodles.","Top with chashu slices, halved seasoned egg, kikurage mushrooms, scallions, nori, and a drizzle of aromatic oil."],"tips":{"title":"Rolling Boil","description":"A rapid rolling boil is essential to emulsify marrow fats and water into creamy white broth."},"variations":{"title":"Spicy Tonkotsu","description":"Whisk in 1 tbsp spicy miso chili paste and sesame oil."},"faqs":[{"question":"Can I make broth ahead?","answer":"Yes! Broth stores refrigerated for 4 days or frozen for 2 months."}],"imageQuery":"tonkotsu ramen chashu egg noodles","imageUrl":"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Sushi & Sashimi","imageQuery":"sushi sashimi","imageUrl":"https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80"},{"name":"Katsu Curry","imageQuery":"katsu curry","imageUrl":"https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=800&q=80"},{"name":"Pork Gyoza","imageQuery":"gyoza dumplings","imageUrl":"https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=800&q=80"},{"name":"Yakitori Skewers","imageQuery":"yakitori","imageUrl":"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80"}]},{"id":"sushi-platter","name":"Artisan Nigiri & Sashimi","nativeName":"握り寿司と刺身 (Nigiri & Sashimi)","category":"Washoku Special","prepTime":40,"cookTime":20,"yieldServings":4,"calories":420,"difficulty":"Advanced","rating":5,"reviewsCount":980,"intro":"Mastercrafted nigiri sushi with seasoned Koshihikari sushi rice, fresh Atlantic salmon, bluefin tuna, sea bream, and authentic freshly grated Shizuoka wasabi.","ingredients":["400 g Japanese short-grain Koshihikari rice","60 ml seasoned rice vinegar (sushi-zu)","200 g sashimi-grade salmon loin","200 g sashimi-grade bluefin tuna loin","Freshly grated wasabi root & pickled sushi ginger (gari)","High-grade aged soy sauce for dipping"],"instructions":["Wash rice until water is crystal clear; cook and fold in seasoned sushi vinegar with slicing motions while fanning.","Slice sashimi fish across the grain at a 45-degree angle in one clean pull.","Dab a pinpoint of wasabi on the underside of each fish slice.","Shape 18g mounds of sushi rice gently in hand, press fish on top, and form neat nigiri pillows.","Serve with pickled ginger and aged soy sauce; dip fish-side down."],"tips":{"title":"Rice Temp","description":"Sushi rice should always be body temperature (37°C) to complement cold fresh fish."},"variations":{"title":"Aburi Salmon","description":"Lightly torch salmon nigiri and brush with sweet unagi glaze."},"faqs":[{"question":"How to dip in soy sauce?","answer":"Dip the fish topping, not the rice, to prevent rice from breaking."}],"imageQuery":"sushi nigiri sashimi salmon tuna","imageUrl":"https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"katsu-curry","name":"Crispy Pork Katsu Curry","nativeName":"カツカレー (Katsu Curry)","category":"Yoshoku","prepTime":25,"cookTime":35,"yieldServings":4,"calories":680,"difficulty":"Easy","rating":4.9,"reviewsCount":840,"intro":"Golden panko-crusted pork cutlet deep-fried to shattering crunch, served over steamed Japanese rice with rich, aromatic slow-cooked curry sauce and pickled fukujinzuke.","ingredients":["4 center-cut boneless pork loin chops","Coarse Japanese panko breadcrumbs, flour, 2 eggs","1 box Japanese curry roux blocks (S&B / Vermont)","2 onions (caramelized), 2 carrots, 2 potatoes","800 ml dashi or chicken stock & 1 tbsp grated apple","Steamed white rice & red pickled radish"],"instructions":["Sauté sliced onions until deeply golden (15 mins). Add carrots, potatoes, and stock; simmer 20 mins.","Stir in curry roux blocks and grated apple; simmer on low until thick and glossy.","Pound pork chops lightly, season with salt/pepper, dredge in flour, egg, and press firmly into coarse panko.","Deep-fry pork cutlets at 175°C (350°F) for 5-6 mins until deep golden and crunchy. Rest 3 mins and slice.","Plate steamed rice, arrange sliced pork katsu, and ladle rich curry sauce alongside."],"tips":{"title":"Coarse Panko","description":"Coarse Japanese panko creates airy, long-lasting crunch that stays crisp under curry."},"variations":{"title":"Chicken Katsu","description":"Substitute pork with boneless skinless chicken thighs."},"faqs":[{"question":"How to reheat?","answer":"Reheat katsu in an oven or air fryer at 190°C for 4 mins to restore crunch."}],"imageQuery":"japanese pork katsu curry rice","imageUrl":"https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"gyoza-dumplings","name":"Crispy Pan-Fried Pork Gyoza","nativeName":"焼き餃子 (Yaki Gyoza)","category":"Street & Izakaya","prepTime":30,"cookTime":10,"yieldServings":4,"calories":340,"difficulty":"Medium","rating":4.8,"reviewsCount":760,"intro":"Juicy pork and cabbage dumplings with thin pleats, pan-fried to a golden crispy bottom lattice and steamed until succulent.","ingredients":["30 round gyoza dumpling wrappers","300 g ground pork & 200 g finely minced cabbage","2 cloves garlic, 1 tsp grated ginger, 2 green onions","1 tbsp soy sauce, 1 tbsp sake, 1 tsp toasted sesame oil","Dipping sauce: Soy sauce, rice vinegar, chili rayu oil"],"instructions":["Salt minced cabbage, squeeze out water, and mix with ground pork, garlic, ginger, soy sauce, and sesame oil.","Place filling in wrapper, moisten edges with water, and pleat 5-6 folds to seal tightly.","Heat oil in skillet, arrange gyoza, and fry 2 minutes until bottoms are golden.","Add 60 ml water, cover immediately with lid, and steam on medium heat for 4 minutes.","Remove lid, drizzle sesame oil around edges, and crisp bottoms for 1 more minute."],"tips":{"title":"Squeeze Cabbage","description":"Squeezing moisture from cabbage prevents soggy gyoza skins."},"variations":{"title":"Ebi Gyoza","description":"Fold minced shrimp and garlic chives into the filling."},"faqs":[{"question":"Can I freeze raw gyoza?","answer":"Yes! Freeze on trays then bag; cook straight from frozen adding 2 mins steam."}],"imageQuery":"pan fried gyoza dumplings crispy","imageUrl":"https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"yakitori","name":"Charcoal Grilled Yakitori Skewers","nativeName":"焼き鳥 (Yakitori Tare)","category":"Izakaya & Grill","prepTime":20,"cookTime":12,"yieldServings":4,"calories":360,"difficulty":"Easy","rating":4.9,"reviewsCount":620,"intro":"Tender chicken thigh and sweet Tokyo scallion skewers grilled over high heat, basted in sweet-savory mirin tare glaze.","ingredients":["500 g boneless chicken thighs, cubed","4 thick Japanese scallions (negi), cut into 3 cm batons","Tare Glaze: 100 ml soy sauce, 100 ml mirin, 50 ml sake, 2 tbsp brown sugar","Shichimi togarashi (7-spice chili) for dusting"],"instructions":["Simmer soy sauce, mirin, sake, and sugar in a small saucepan for 10 mins until reduced by half into a glossy tare.","Thread alternating pieces of chicken thigh and scallion onto soaked bamboo skewers.","Grill skewers over high heat (or broil) for 3-4 mins per side until lightly charred.","Dip or brush generously with tare glaze, grill 1 more minute to caramelize, and dust with shichimi."],"tips":{"title":"Soak Skewers","description":"Soak bamboo skewers in water for 30 minutes to prevent scorching."},"variations":{"title":"Shio Yakitori","description":"Season simply with coarse sea salt and fresh lemon wedges."},"faqs":[{"question":"Best cut of chicken?","answer":"Skin-on chicken thighs deliver the juiciest, most flavorful skewers."}],"imageQuery":"charcoal yakitori chicken skewers","imageUrl":"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"tempura-moriawase","name":"Crispy Tempura Moriawase","nativeName":"天ぷら盛り合わせ (Tempura Moriawase)","category":"Washoku Special","prepTime":25,"cookTime":15,"yieldServings":4,"calories":420,"difficulty":"Medium","rating":4.9,"reviewsCount":540,"intro":"Light, lacy, ice-cold battered black tiger prawns, sweet kabocha pumpkin, lotus root, and shiso leaves fried in sesame-infused oil to featherweight crispness.","ingredients":["8 large black tiger prawns (peeled & tail-on)","Assorted veggies: kabocha pumpkin, lotus root (renkon), shiitake, shiso leaves","Batter: 1 cup ice-cold sparkling water, 1 egg yolk, 1 cup low-protein flour (cake flour)","Tentsuyu dipping sauce: 200 ml dashi, 50 ml soy sauce, 50 ml mirin + grated daikon radish","Oil for deep frying (blend of vegetable and toasted sesame oil)"],"instructions":["Score belly of prawns lightly with 3 cuts and press flat to prevent curling.","Whisk egg yolk and ice-cold water, dump in flour, and stir only 5-6 times with chopsticks (leave lumps).","Dust prawns and vegetables in dry flour, dip lightly into cold batter.","Fry in 180°C (350°F) oil for 2-3 minutes until lacy and pale golden. Drain on wire rack.","Serve immediately with warm tentsuyu dipping broth and grated daikon radish."],"tips":{"title":"Ice Cold Water","description":"Cold batter prevents gluten development, guaranteeing a gossamer-thin crispy crust."},"variations":{"title":"Kakiage Tempura","description":"Fritter clusters of julienned sweet onion, carrots, and baby shrimp."},"faqs":[{"question":"Why leave lumps in batter?","answer":"Overmixing develops gluten, which makes tempura greasy and heavy instead of light and airy."}],"imageQuery":"crispy shrimp tempura vegetables tentsuyu","imageUrl":"https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"shoyu-ramen","name":"Tokyo Classic Shoyu Ramen","nativeName":"東京醤油ラーメン (Tokyo Shoyu Ramen)","category":"Noodle & Broth","prepTime":20,"cookTime":60,"yieldServings":4,"calories":490,"difficulty":"Easy","rating":4.8,"reviewsCount":680,"intro":"The nostalgic soul of Tokyo: clear amber chicken and dashi broth seasoned with artisanal soy sauce tare, curly egg noodles, tender menma bamboo shoots, and chashu.","ingredients":["4 portions Tokyo-style wavy ramen noodles","Broth: 1 kg chicken carcasses, kombu kelp, katsuobushi flakes, ginger, scallions","Shoyu Tare: 120 ml aged Japanese dark soy sauce, 40 ml mirin, sake","Toppings: Braised chashu pork, seasoned bamboo shoots (menma), narutomaki fish cake, nori"],"instructions":["Simmer chicken carcass with aromatics on low heat for 1 hour without boiling to keep broth crystal clear.","Stir in katsuobushi flakes off heat and strain through fine mesh.","Boil wavy ramen noodles for 90 seconds until springy.","Combine 2 tbsp shoyu tare with hot chicken dashi broth in bowls.","Add cooked noodles and dress with chashu slices, menma, pink narutomaki, and scallions."],"tips":{"title":"Gentle Simmer","description":"Never boil shoyu broth rapidly; gentle simmering keeps the soup brilliant amber and clear."},"variations":{"title":"Tori Paitan","description":"Boil chicken bones furiously to produce a creamy white chicken ramen."},"faqs":[{"question":"What is Menma?","answer":"Fermented and seasoned lacto-bamboo shoots with a distinct savory crunch."}],"imageQuery":"shoyu ramen chicken broth egg nori","imageUrl":"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"miso-ramen","name":"Sapporo Butter Corn Miso Ramen","nativeName":"札幌味噌ラーメン (Sapporo Miso Ramen)","category":"Noodle & Broth","prepTime":20,"cookTime":25,"yieldServings":4,"calories":620,"difficulty":"Easy","rating":4.9,"reviewsCount":710,"intro":"Hokkaido’s winter warmth: fragrant wok-fried ground pork and bean sprouts deglazed with rich red and white miso paste, hearty yellow noodles, sweet corn, and a slab of Hokkaido butter.","ingredients":["4 portions thick yellow Hokkaido ramen noodles","150 g ground pork & 200 g fresh bean sprouts","Miso Tare: 3 tbsp red miso, 2 tbsp white miso, 1 tbsp grated garlic, 1 tbsp grated ginger, sesame paste","1 L rich chicken/pork broth & 1 tbsp lard or sesame oil","Toppings: Sweet corn kernels, pats of Hokkaido butter, sliced chashu, scallions"],"instructions":["Heat lard in a hot wok, sauté minced garlic, ginger, and ground pork until browned.","Add bean sprouts and toss over high heat (wok hei).","Add miso tare mixture and sauté 30 seconds until fragrant.","Pour in hot chicken broth and bring to a boil.","Cook noodles in a separate pot, place in bowls, ladle boiling miso broth and veggies over noodles, and top with corn and melting butter."],"tips":{"title":"Wok Hei Sauté","description":"Sautéing miso paste with lard in the wok creates an irresistible smoky aroma."},"variations":{"title":"Spicy Karai Miso","description":"Add 1 tbsp chili oil (rayu) and Sichuan peppercorns."},"faqs":[{"question":"Why butter in ramen?","answer":"Hokkaido is famous for dairy and corn; the butter enriches the savory fermented miso broth."}],"imageQuery":"sapporo miso ramen corn butter pork","imageUrl":"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"sukiyaki-beef","name":"Traditional Sukiyaki Beef Hotpot","nativeName":"すき焼き (Sukiyaki Nabemono)","category":"Nabemono & Pots","prepTime":20,"cookTime":15,"yieldServings":4,"calories":540,"difficulty":"Easy","rating":5,"reviewsCount":620,"intro":"Thinly sliced marbled A5 Wagyu beef simmered in sweet soy warishita sauce with grilled tofu, shirataki konjac noodles, enoki mushrooms, and dipped in fresh raw egg.","ingredients":["500 g thinly sliced marbled Wagyu or prime ribeye beef","1 block firm tofu (lightly grilled or charred)","1 pack shirataki konjac noodles (rinsed)","Assorted veggies: Tokyo negi scallions, enoki & shiitake mushrooms, chrysanthemum greens (shungiku)","Warishita Sauce: 100 ml soy sauce, 100 ml mirin, 100 ml sake, 3 tbsp sugar","4 fresh pasteurized eggs for dipping"],"instructions":["Render a piece of beef fat in a shallow cast iron sukiyaki pan.","Sear scallions and beef slices lightly until fragrant.","Pour in sweet warishita sauce and bring to a gentle bubble.","Arrange grilled tofu, mushrooms, shirataki noodles, and greens neatly in sections.","Simmer beef slices for 1 minute; lift directly from the bubbling pan and dip in beaten raw egg."],"tips":{"title":"Separate Beef & Shirataki","description":"Keep konjac noodles away from beef in the pot; calcium in shirataki can toughen beef proteins."},"variations":{"title":"Kansai Style Sukiyaki","description":"Sear beef with sugar first, then pour in soy sauce and sake."},"faqs":[{"question":"Why dip in raw egg?","answer":"The cold creamy egg yolk cools the scorching beef and coats it with rich umami silkiness."}],"imageQuery":"sukiyaki japanese beef hot pot egg","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"okonomiyaki-osaka","name":"Osaka Cabbage Okonomiyaki","nativeName":"大阪お好み焼き (Osaka Okonomiyaki)","category":"Street & Izakaya","prepTime":20,"cookTime":15,"yieldServings":2,"calories":510,"difficulty":"Easy","rating":4.9,"reviewsCount":780,"intro":"Osaka’s savory soul pancake: shredded sweet cabbage and dashi batter folded with pork belly slices, griddled golden, painted with sweet okonomiyaki sauce, Japanese mayo, and dancing katsuobushi bonito flakes.","ingredients":["300 g green cabbage, finely chopped & 2 eggs","100 g flour, 100 ml dashi stock, 1 tsp grated mountain yam (nagaimo)","6 strips thinly sliced pork belly","Toppings: Otafuku Okonomiyaki sauce, Kewpie mayonnaise, Aonori seaweed, Katsuobushi bonito flakes"],"instructions":["Whisk flour, dashi, grated nagaimo, and eggs into a light batter.","Fold in chopped cabbage gently without overworking.","Spoon into a round 2.5 cm thick disk on a preheated griddle (200°C/400°F).","Lay pork belly slices across the top, cover with lid, and cook 5 mins.","Flip pancake carefully, cover, and cook 5 mins until pork is crispy and interior is fluffy.","Brush generously with sweet sauce, zigzag with Kewpie mayo, dust with aonori, and shower with dancing bonito flakes."],"tips":{"title":"Grated Nagaimo","description":"Grated Japanese mountain yam gives the pancake its signature custardy, fluffy lightness."},"variations":{"title":"Hiroshima Style","description":"Layered with yakisoba noodles and fried egg underneath."},"faqs":[{"question":"Why do bonito flakes dance?","answer":"The ultra-thin flakes react to rising steam currents from the hot pancake."}],"imageQuery":"osaka okonomiyaki savory pancake bonito","imageUrl":"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"takoyaki-balls","name":"Osaka Crispy Takoyaki","nativeName":"たこ焼き (Takoyaki Octopus Balls)","category":"Street & Izakaya","prepTime":20,"cookTime":15,"yieldServings":4,"calories":380,"difficulty":"Medium","rating":4.9,"reviewsCount":890,"intro":"Street-stall classic: sphere-shaped dashi batter cakes packed with tender boiled octopus cubes, pickled red ginger (beni shoga), and crispy tenkasu tempura pearls.","ingredients":["150 g boiled octopus (tako), cut into bite-sized cubes","Batter: 200 g flour, 650 ml dashi stock, 2 eggs, 1 tsp soy sauce","Fillings: Tempura flakes (tenkasu), chopped beni shoga ginger, green onions","Sauces: Takoyaki sauce, Japanese mayonnaise, aonori seaweed, katsuobushi"],"instructions":["Oil a preheated cast iron takoyaki pan generously.","Pour dashi batter to overflow all hemispherical molds.","Drop octopus pieces, tenkasu, ginger, and green onions into each well.","As bottoms set, use metal skewers to turn balls 90 degrees, tucking excess batter inside.","Rotate continuously for 5 minutes until perfectly spherical, crispy outside, and molten inside.","Plate hot and dress with sweet brown sauce, Kewpie mayo, and bonito flakes."],"tips":{"title":"Generous Oil","description":"Ample oil in the pan creates a crunchy, golden exterior shell while keeping the interior creamy."},"variations":{"title":"Cheese Takoyaki","description":"Insert mozzarella cubes alongside octopus."},"faqs":[{"question":"Are they very hot inside?","answer":"Yes! The molten dashi interior stays boiling hot; pierce before eating."}],"imageQuery":"takoyaki octopus balls street food","imageUrl":"https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"katsudon-bowl","name":"Crispy Katsudon Pork Rice Bowl","nativeName":"カツ丼 (Katsudon)","category":"Donburi & Rice","prepTime":20,"cookTime":15,"yieldServings":2,"calories":640,"difficulty":"Easy","rating":4.9,"reviewsCount":720,"intro":"Crunchy panko pork tonkatsu simmered in sweet dashi-mirin broth with caramelized onions, bound by runny soft eggs over steamed rice.","ingredients":["2 cooked crispy Pork Tonkatsu cutlets, sliced","1 medium sweet onion, thinly sliced","3 large fresh eggs, lightly beaten (whites and yolks partially mixed)","Simmering Broth: 120 ml dashi stock, 2 tbsp soy sauce, 2 tbsp mirin, 1 tbsp sugar","2 bowls hot steamed Japanese rice & Mitsuba herb or scallions"],"instructions":["Combine dashi, soy sauce, mirin, and sugar in an 18cm shallow skillet.","Add sliced onion and simmer on medium heat for 3 minutes until tender.","Place sliced crispy pork cutlet on top of simmering onions.","Pour two-thirds of beaten eggs around the cutlet; cover and cook on medium-low for 1 minute.","Pour remaining egg over top, cover 20 seconds for runny custard texture.","Slide entire contents gently over steaming bowl of rice and garnish with mitsuba."],"tips":{"title":"Two-Stage Egg Pour","description":"Adding egg in two stages ensures velvety soft curds without drying out."},"variations":{"title":"Oyako Don","description":"Chicken and egg over rice."},"faqs":[{"question":"Why eaten before exams?","answer":"The word \"Katsu\" means \"to win\" in Japanese, making Katsudon a lucky pre-exam meal."}],"imageQuery":"katsudon pork cutlet rice bowl egg","imageUrl":"https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"unadon-eel","name":"Eel Rice Bowl (Unadon)","nativeName":"鰻丼 (Unadon Kabayaki)","category":"Donburi & Rice","prepTime":15,"cookTime":15,"yieldServings":2,"calories":580,"difficulty":"Medium","rating":5,"reviewsCount":640,"intro":"Butter-tender freshwater eel fillets charcoal-grilled and glazed in caramelized sweet tare sauce, resting on steaming Koshihikari rice dusted with fragrant sansho pepper.","ingredients":["2 prepared freshwater eel fillets (Unagi Kabayaki)","Unagi Tare: 80 ml soy sauce, 80 ml mirin, 40 ml sake, 3 tbsp sugar","2 large bowls steamed hot short-grain rice","Japanese green sansho mountain pepper"],"instructions":["Simmer soy sauce, mirin, sake, and sugar for 8 minutes until glossy and syrupy.","Grill or broil eel fillets on foil, basting generously with tare glaze 2-3 times until bubbly and caramelized (6 mins).","Drizzle a spoonful of sweet unagi tare over hot steamed rice in lacquered bowls.","Lay glistening caramelized eel fillet across the rice.","Dust with vibrant citrusy green sansho pepper and serve immediately."],"tips":{"title":"Sansho Pepper","description":"Sansho pepper provides a refreshing citrus aroma that cuts through the rich unagi fat."},"variations":{"title":"Hitsumabushi","description":"Nagoya style served in 3 stages: plain, with condiments, and finished with dashi tea."},"faqs":[{"question":"When is unagi traditionally eaten?","answer":"During Doyo no Ushi no Hi (midsummer) for stamina against hot humid days."}],"imageQuery":"unagi unadon grilled eel rice bowl","imageUrl":"https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"chawanmushi-custard","name":"Silky Savory Egg Custard (Chawanmushi)","nativeName":"茶碗蒸し (Chawanmushi)","category":"Washoku Special","prepTime":15,"cookTime":15,"yieldServings":4,"calories":140,"difficulty":"Medium","rating":4.9,"reviewsCount":390,"intro":"Pristine, mirror-smooth savory dashi egg custard steamed in lidded cups with tender chicken, prawns, shiitake mushrooms, and fragrant ginkgo nuts.","ingredients":["3 large eggs (gently beaten without frothing)","450 ml room temperature rich dashi stock","1 tsp light soy sauce (usukuchi) & 1 tsp mirin + pinch salt","Fillings: 4 small prawns, 50 g chicken thigh, 4 shiitake mushrooms, 4 ginkgo nuts (ginnan), mitsuba leaves"],"instructions":["Whisk dashi, soy sauce, mirin, and salt into eggs gently with chopsticks.","Strain egg liquid through fine sieve twice to remove all bubbles and chalaza.","Place chicken, prawn, mushroom, and ginkgo nut at the bottom of 4 chawanmushi cups.","Pour strained egg liquid over fillings; skim surface foam with paper towel.","Cover cups and steam on low heat (gentle simmer) for 12-14 minutes until set with a clear broth layer on top."],"tips":{"title":"Low Heat Steaming","description":"Steaming on low prevents air bubbles, creating a mirror-like glass surface."},"variations":{"title":"Uni Chawanmushi","description":"Topped with fresh sea urchin and dashi jelly."},"faqs":[{"question":"Ratio of egg to dashi?","answer":"The golden ratio is 1 part egg to 3 parts dashi stock by volume."}],"imageQuery":"chawanmushi savory egg custard steamed","imageUrl":"https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"tamagoyaki-omelette","name":"Japanese Rolled Omelette (Dashimaki)","nativeName":"だし巻き卵 (Dashimaki Tamagoyaki)","category":"Washoku Special","prepTime":10,"cookTime":10,"yieldServings":4,"calories":180,"difficulty":"Medium","rating":4.9,"reviewsCount":510,"intro":"Juicy, golden layered rolled omelette infused with fragrant dashi broth, mirin, and light soy sauce, shaped in a rectangular tamagoyakiki pan.","ingredients":["4 large fresh eggs","60 ml rich dashi stock & 1 tbsp mirin","1 tsp sugar & 1 tsp light soy sauce","Vegetable oil for coating pan","Grated daikon radish & soy sauce for serving"],"instructions":["Whisk eggs gently with dashi, mirin, sugar, and soy sauce; strain.","Heat rectangular pan over medium heat; oil surface using paper towel.","Pour a thin layer of egg; as it sets, roll forward into a neat cylinder.","Push roll to back of pan, oil exposed surface, pour next layer under existing roll, and roll again.","Repeat for 4-5 layers; wrap in bamboo sushi mat for 2 mins to set shape, then slice."],"tips":{"title":"Oil Between Layers","description":"Wiping the pan with oiled paper towel before each layer prevents sticking."},"variations":{"title":"Sweet Tamagoyaki","description":"Increase sugar for a sweeter bento-style omelette."},"faqs":[{"question":"What is the secret to juiciness?","answer":"High ratio of dashi stock creates a soft, custard-like juiciness in every bite."}],"imageQuery":"tamagoyaki rolled egg omelette japanese","imageUrl":"https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"agedashi-tofu","name":"Crispy Agedashi Tofu","nativeName":"揚げ出し豆腐 (Agedashi Tofu)","category":"Izakaya & Grill","prepTime":15,"cookTime":10,"yieldServings":4,"calories":220,"difficulty":"Easy","rating":4.8,"reviewsCount":430,"intro":"Silken tofu cubes coated in potato starch, deep-fried until whisper-crisp, resting in a shallow pool of warm sweet dashi broth with grated daikon and ginger.","ingredients":["1 block (400 g) medium-firm or silken tofu","Potato starch (katakuriko) for dusting","Oil for deep frying","Sauce: 150 ml dashi stock, 2 tbsp soy sauce, 2 tbsp mirin","Garnishes: Grated daikon radish, grated fresh ginger, thinly sliced scallions, katsuobushi flakes"],"instructions":["Wrap tofu in paper towels and weigh down with a plate for 15 minutes to extract excess moisture.","Cut tofu into 6 large cubes; dredge thoroughly in potato starch.","Heat oil to 180°C (350°F) and fry tofu for 3-4 minutes until crisp and lightly pale golden.","Heat dashi, soy sauce, and mirin to a simmer.","Place hot crispy tofu in shallow bowls, pour warm dashi around base, and mound grated daikon and ginger on top."],"tips":{"title":"Potato Starch","description":"Potato starch (katakuriko) creates a uniquely crisp, gelatinous crust when touched by hot broth."},"variations":{"title":"Agedashi Eggplant","description":"Score Japanese eggplants and fry alongside tofu."},"faqs":[{"question":"Can I use cornstarch?","answer":"Cornstarch works, but potato starch gives a far crispier and lighter crust."}],"imageQuery":"agedashi tofu fried dashi broth daikon","imageUrl":"https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"chicken-karaage","name":"Crispy Japanese Chicken Karaage","nativeName":"鶏の唐揚げ (Tori no Karaage)","category":"Izakaya & Grill","prepTime":30,"cookTime":12,"yieldServings":4,"calories":460,"difficulty":"Easy","rating":5,"reviewsCount":930,"intro":"Juicy chicken thigh nuggets marinated in ginger, garlic, soy sauce, and sake, coated in potato starch and double-fried for maximum shattering crunch.","ingredients":["600 g boneless chicken thighs, skin on, cut into bite-sized pieces","Marinade: 2 tbsp soy sauce, 1 tbsp sake, 1 tbsp toasted sesame oil, 1 tbsp grated ginger, 2 cloves grated garlic","Potato starch (katakuriko) for coating","Oil for deep frying & Fresh lemon wedges"],"instructions":["Marinate chicken in soy sauce, sake, garlic, and ginger for 30 minutes.","Dredge chicken pieces generously in potato starch, shaking off excess.","First fry at 165°C (330°F) for 3 minutes until light blonde; remove and rest 3 minutes.","Second fry at 190°C (375°F) for 60 seconds until deep golden and crackling crisp.","Drain on wire rack and serve immediately with fresh lemon wedges and Kewpie mayo."],"tips":{"title":"Double Frying","description":"The two-step fry drives out residual water, locking in juiciness while making the crust ultra-crunchy."},"variations":{"title":"Nanban Karaage","description":"Dipped in sweet-sour vinegar sauce and topped with egg tartar."},"faqs":[{"question":"Why keep chicken skin on?","answer":"Skin renders during frying, creating unmatched flavor and crunch."}],"imageQuery":"japanese chicken karaage crispy fried lemon","imageUrl":"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"saba-shioyaki","name":"Salt-Grilled Mackerel (Saba Shioyaki)","nativeName":"鯖の塩焼き (Saba no Shioyaki)","category":"Washoku Special","prepTime":15,"cookTime":10,"yieldServings":2,"calories":340,"difficulty":"Easy","rating":4.8,"reviewsCount":380,"intro":"Crispy skin and rich, succulent meat: fresh Pacific mackerel salted to draw moisture and broiled over high heat until sizzling and fragrant.","ingredients":["2 fresh Pacific mackerel fillets (saba)","1 tbsp coarse sea salt (Sale/Shio)","Grated daikon radish & soy sauce","Fresh lemon wedges"],"instructions":["Score criss-cross diamonds across the mackerel skin with a sharp knife.","Sprinkle coarse sea salt generously over both sides and rest 15 mins to draw moisture.","Pat dry with paper towels to eliminate fishy odors.","Broil or grill skin-side up on high heat for 6 mins until blistered and crispy; flip for 3 mins.","Serve hot with a mound of grated daikon splashed with soy sauce and lemon."],"tips":{"title":"Pre-Salting Step","description":"Salting draws out excess surface moisture and firms the delicate flesh."},"variations":{"title":"Saba Misoni","description":"Mackerel simmered in sweet ginger miso broth."},"faqs":[{"question":"Is mackerel rich in Omega-3?","answer":"Yes! Mackerel is one of the highest natural sources of healthy Omega-3 fatty acids."}],"imageQuery":"saba shioyaki grilled mackerel fish lemon","imageUrl":"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"gyudon-beef","name":"Tokyo Beef & Onion Rice Bowl (Gyudon)","nativeName":"牛丼 (Gyudon)","category":"Donburi & Rice","prepTime":10,"cookTime":12,"yieldServings":2,"calories":520,"difficulty":"Easy","rating":4.9,"reviewsCount":840,"intro":"Tokyo quick-comfort classic: paper-thin beef slices and sweet onions simmered tender in dashi, mirin, and soy sauce over steamed white rice with beni shoga pickled ginger.","ingredients":["300 g thinly sliced beef short plate or ribeye","1 large onion, sliced into wedges","Broth: 200 ml dashi stock, 3 tbsp soy sauce, 2 tbsp mirin, 2 tbsp sake, 1 tbsp sugar, 1 tsp grated ginger","2 bowls hot steamed Japanese rice","Red pickled ginger (beni shoga) & Shichimi togarashi"],"instructions":["Bring dashi, soy sauce, mirin, sake, sugar, and ginger to a simmer in a saucepan.","Add sliced onion and cook on medium heat for 5 minutes until soft and translucent.","Add thin beef slices, spreading them out to cook evenly for 3-4 minutes without overboiling.","Skim any surface foam from the simmering broth.","Spoon beef and sweet onions over hot steamed rice, ladle a little savory broth over top, and crown with pickled ginger."],"tips":{"title":"Thin Beef Cuts","description":"Use paper-thin hotpot beef slices so they cook in under 4 minutes without toughening."},"variations":{"title":"Gyudon with Onsen Egg","description":"Top with a runny soft-poached onsen tamago."},"faqs":[{"question":"What is Beni Shoga?","answer":"Pickled shredded red ginger that provides a sharp, cleansing contrast to savory beef."}],"imageQuery":"gyudon beef bowl onion rice ginger","imageUrl":"https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"oyakodon-bowl","name":"Parent & Child Rice Bowl (Oyakodon)","nativeName":"親子丼 (Oyakodon)","category":"Donburi & Rice","prepTime":10,"cookTime":10,"yieldServings":2,"calories":480,"difficulty":"Easy","rating":4.9,"reviewsCount":650,"intro":"Tender chicken thighs and sweet onions simmered in savory dashi broth, swirled with soft runny eggs and served steaming over hot rice.","ingredients":["250 g boneless chicken thigh, cut into bite-sized pieces","1/2 sweet onion, thinly sliced","3 large fresh eggs, lightly beaten","100 ml dashi stock, 2 tbsp soy sauce, 2 tbsp mirin, 1 tbsp sugar","2 bowls steamed rice & Mitsuba greens"],"instructions":["Simmer dashi, soy sauce, mirin, and sugar with sliced onion for 3 minutes.","Add chicken pieces; cover and simmer on medium heat for 4 minutes until cooked through.","Drizzle two-thirds of beaten egg in circular motion over chicken; cover 1 min.","Add remaining egg, cover 15 seconds, and slide over hot bowls of rice."],"tips":{"title":"Do Not Overwhisk","description":"Gently break egg yolks with chopsticks so ribbons of white and yolk stay distinct."},"variations":{"title":"Tanindon","description":"Substitute chicken with sliced beef or pork."},"faqs":[{"question":"Why is it called Oyakodon?","answer":"\"Oyako\" means parent and child, referencing both chicken and egg together."}],"imageQuery":"oyakodon chicken egg rice bowl japanese","imageUrl":"https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"zaru-soba","name":"Chilled Buckwheat Soba (Zaru Soba)","nativeName":"ざる蕎麦 (Zaru Soba)","category":"Noodle & Broth","prepTime":10,"cookTime":5,"yieldServings":2,"calories":320,"difficulty":"Easy","rating":4.8,"reviewsCount":490,"intro":"Refreshing summer noodles: chilled Japanese buckwheat soba served on a bamboo zaru tray with rich concentrated tsuyu dipping sauce, wasabi, and scallions.","ingredients":["200 g dried high-grade Japanese buckwheat soba noodles","Tsuyu Dipping Sauce: 150 ml dashi, 50 ml soy sauce, 50 ml mirin (chilled)","Condiments: Freshly grated wasabi, finely chopped green onions, shredded nori seaweed","Ice cubes for chilling"],"instructions":["Boil soba noodles in rolling boiling water for 4-5 minutes.","Drain immediately and wash vigorously under cold running water with hands to remove surface starch.","Shock in ice-cold water for 30 seconds and drain thoroughly.","Arrange chilled noodles on a bamboo mat (zaru), top with shredded nori.","Serve alongside individual cups of cold tsuyu dipping sauce with wasabi and scallions."],"tips":{"title":"Vigorous Washing","description":"Washing chilled cooked soba under running water strips excess surface starch for clean slurpability."},"variations":{"title":"Ten Zaru Soba","description":"Served with hot, crispy prawn and vegetable tempura."},"faqs":[{"question":"What is Sobayu?","answer":"The hot cooking water from soba noodles, poured into leftover dipping sauce to drink as a soothing broth."}],"imageQuery":"zaru soba chilled noodles dipping sauce","imageUrl":"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"kitsune-udon","name":"Kitsune Udon with Sweet Fried Tofu","nativeName":"きつねうどん (Kitsune Udon)","category":"Noodle & Broth","prepTime":15,"cookTime":10,"yieldServings":2,"calories":410,"difficulty":"Easy","rating":4.8,"reviewsCount":530,"intro":"Thick, chewy Sanuki udon noodles bathed in clear Kansai golden dashi broth, crowned with a large, sweet-simmered inari aburaage tofu pouch and sliced scallions.","ingredients":["2 portions frozen Sanuki udon noodles","2 seasoned sweet fried tofu pouches (Inari aburaage)","Clear Udon Broth: 600 ml dashi, 2 tbsp light soy sauce (usukuchi), 2 tbsp mirin, 1/2 tsp salt","Garnishes: Narutomaki fish cake, chopped scallions, Shichimi togarashi"],"instructions":["Bring dashi, light soy sauce, mirin, and salt to a gentle simmer.","Cook frozen Sanuki udon in boiling water for 1-2 minutes until bouncy; drain.","Place hot udon in bowls, ladle steaming clear golden dashi broth over top.","Place a sweet aburaage tofu pouch across the noodles.","Garnish with sliced fish cake, green onions, and a sprinkle of seven-spice chili."],"tips":{"title":"Use Frozen Sanuki Udon","description":"Flash-frozen Sanuki udon has far superior chewy \"koshi\" texture compared to dry shelf-stable noodles."},"variations":{"title":"Curry Udon","description":"Thickened with Japanese curry roux and beef slices."},"faqs":[{"question":"Why is it called \"Kitsune\"?","answer":"\"Kitsune\" means fox in Japanese; folklore holds that foxes love sweet fried tofu pouches."}],"imageQuery":"kitsune udon noodles sweet tofu pouch","imageUrl":"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"matcha-mochi","name":"Kyoto Ceremonial Matcha Mochi","nativeName":"京都抹茶大福 (Matcha Daifuku Mochi)","category":"Wagashi & Sweets","prepTime":25,"cookTime":5,"yieldServings":6,"calories":160,"difficulty":"Medium","rating":4.9,"reviewsCount":440,"intro":"Pillow-soft chewy rice cakes dusted in ceremonial Uji green tea matcha powder, filled with sweet red bean anko paste and smooth white chocolate cream.","ingredients":["100 g glutinous rice flour (Shiratamako or Mochiko)","40 g sugar & 150 ml water","1 tbsp high-grade Uji matcha powder (divided)","120 g sweet red bean paste (Koshian)","Potato starch (katakuriko) for dusting"],"instructions":["Whisk mochiko, sugar, half the matcha powder, and water in a microwave-safe bowl.","Cover with plastic wrap and microwave on high for 2 mins (or steam 15 mins) until translucent and glossy.","Dust work surface generously with potato starch, turn hot mochi onto starch, and roll flat.","Cut into 6 rounds with a cutter.","Place a ball of red bean paste in center, pinch edges tightly to seal into a smooth sphere.","Dust with vibrant green ceremonial matcha powder before serving."],"tips":{"title":"Use Shiratamako","description":"Shiratamako gives mochi an exceptionally smooth, melt-in-the-mouth texture."},"variations":{"title":"Ichigo Daifuku","description":"Wrap fresh sweet strawberries inside the red bean paste."},"faqs":[{"question":"How to store mochi?","answer":"Best enjoyed the day it is made; wrap tightly at room temp to prevent drying."}],"imageQuery":"matcha daifuku mochi green tea dessert","imageUrl":"https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"dorayaki-pancakes","name":"Honey Dorayaki Red Bean Pancakes","nativeName":"どら焼き (Dorayaki)","category":"Wagashi & Sweets","prepTime":15,"cookTime":10,"yieldServings":4,"calories":220,"difficulty":"Easy","rating":4.9,"reviewsCount":560,"intro":"Golden, honey-infused mini castella sponge pancakes sandwiched around rich, velvety sweet azuki red bean paste.","ingredients":["2 large eggs & 60 g sugar","1 tbsp Japanese wildflower honey & 1/2 tsp baking soda dissolved in 1 tbsp water","100 g all-purpose cake flour","150 g sweet red bean paste (Tsubuan or Koshian)"],"instructions":["Whisk eggs and sugar until pale and frothy; whisk in honey and dissolved baking soda.","Sift in flour and fold gently; rest batter in fridge for 15 minutes.","Pour 2 tbsp batter onto a dry non-stick griddle on low heat (do not oil pan for even browning).","When bubbles appear on top (2 mins), flip and cook 1 minute until golden.","Spread red bean paste in center of one pancake and cover with second pancake, pinching edges slightly."],"tips":{"title":"Dry Griddle","description":"Wiping all oil from the skillet produces the signature smooth, golden velvet pancake surface."},"variations":{"title":"Custard Dorayaki","description":"Fill with vanilla custard cream instead of bean paste."},"faqs":[{"question":"What character loves Dorayaki?","answer":"Dorayaki is famously the favorite snack of manga icon Doraemon."}],"imageQuery":"dorayaki red bean pancakes honey","imageUrl":"https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"onigiri-trio","name":"Artisan Onigiri Trio (Salmon, Umeboshi, Tuna Mayo)","nativeName":"おにぎり三種 (Onigiri Trio)","category":"Street & Izakaya","prepTime":20,"cookTime":0,"yieldServings":3,"calories":280,"difficulty":"Easy","rating":4.8,"reviewsCount":680,"intro":"Japan’s iconic travel food: triangular mounds of seasoned Koshihikari rice wrapped in crisp roasted nori seaweed, filled with grilled salted salmon, tart pickled plum (umeboshi), and spicy tuna mayo.","ingredients":["300 g hot steamed Koshihikari short-grain rice","3 sheets crisp Yaki Nori seaweed","Fillings: 50 g flaked grilled salted salmon, 1 pickled umeboshi plum, 50 g canned tuna mixed with Kewpie mayo","Coarse sea salt & Toasted sesame seeds"],"instructions":["Wet hands thoroughly with water and rub with coarse sea salt.","Place 100g warm rice in palm, make an indentation in center, and insert chosen filling.","Close rice around filling, cupping hands into a triangular mold and pressing gently 4-5 times.","Wrap base or entire triangle with a strip of crispy roasted nori.","Sprinkle top with toasted sesame seeds and dab extra filling on apex for identification."],"tips":{"title":"Salted Hands","description":"Salting hands flavors the rice and naturally preserves the onigiri for hours."},"variations":{"title":"Yaki Onigiri","description":"Brush triangle with soy sauce and grill over charcoal until crispy."},"faqs":[{"question":"Can I use long-grain rice?","answer":"Short-grain Japanese rice has the necessary stickiness to hold its triangular shape."}],"imageQuery":"onigiri rice balls salmon nori seaweed","imageUrl":"https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"nikujaga-beef-potato","name":"Home-Style Beef & Potato Stew (Nikujaga)","nativeName":"肉じゃが (Nikujaga)","category":"Washoku Special","prepTime":15,"cookTime":25,"yieldServings":4,"calories":360,"difficulty":"Easy","rating":4.8,"reviewsCount":420,"intro":"Quintessential Japanese comfort food: thinly sliced beef, tender potatoes, sweet onions, and carrots simmered in sweet dashi soy broth until caramelized.","ingredients":["250 g thinly sliced beef ribeye or chuck","4 medium potatoes, peeled and cut into large chunks","1 large sweet onion, cut into wedges & 1 carrot, cut into rolling wedges (rangiri)","1 pack shirataki noodles, drained","Broth: 350 ml dashi stock, 3 tbsp soy sauce, 3 tbsp mirin, 2 tbsp sugar, 1 tbsp sake","1 tbsp oil & green peas for garnish"],"instructions":["Heat oil in a pot, sauté sliced beef until just browned; remove beef.","Add potatoes, carrots, onions, and shirataki; sauté 3 minutes.","Add dashi stock, sugar, sake, and mirin; bring to a boil.","Cover with a drop lid (落とし蓋 / otoshibuta) and simmer on medium heat for 12 minutes.","Add soy sauce and return beef to pot; simmer 8 more minutes until potatoes are fork-tender and broth is glossy.","Garnish with sweet green peas and serve warm."],"tips":{"title":"Use a Drop Lid","description":"An otoshibuta drop lid circulates broth evenly over vegetables without breaking fragile potatoes."},"variations":{"title":"Pork Nikujaga","description":"Eastern Japan commonly uses sliced pork belly instead of beef."},"faqs":[{"question":"Where did Nikujaga originate?","answer":"Created in the 19th-century Japanese Navy based on British beef stew."}],"imageQuery":"nikujaga japanese beef potato stew","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"miso-soup-tofu","name":"Classic Tofu & Wakame Miso Soup","nativeName":"豆腐とわかめの味噌汁 (Miso Shiru)","category":"Washoku Special","prepTime":5,"cookTime":10,"yieldServings":4,"calories":70,"difficulty":"Easy","rating":4.9,"reviewsCount":790,"intro":"The daily cornerstone of Japanese dining: fragrant kombu and katsuobushi dashi broth infused with rich fermented miso paste, silken tofu cubes, tender wakame seaweed, and scallions.","ingredients":["800 ml fresh Awase Dashi (kombu & bonito flake broth)","3-4 tbsp Japanese miso paste (blend of red and white awase miso)","150 g silken tofu, cut into 1 cm cubes","2 tbsp dried wakame seaweed, rehydrated in water","2 green onions, finely sliced"],"instructions":["Heat dashi stock in a saucepan until simmering (do not boil violently).","Add diced silken tofu and rehydrated wakame; simmer for 1 minute.","Place miso paste in a small ladle, submerge partially in broth, and whisk with chopsticks until completely dissolved into the soup.","Turn off heat immediately before boiling to preserve delicate miso probiotics and aroma.","Ladle into lidded bowls, top with sliced scallions, and serve steaming hot."],"tips":{"title":"Never Boil Miso","description":"Boiling destroys the natural live aromas and delicate sweet fermented flavors of miso."},"variations":{"title":"Tonjiru","description":"Hearty pork, root vegetable, and miso soup."},"faqs":[{"question":"Can miso soup be reheated?","answer":"Reheat gently on low heat until warm; avoid boiling."}],"imageQuery":"miso soup tofu seaweed scallions bowl","imageUrl":"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"yakisoba-noodles","name":"Street-Style Yakisoba Noodles","nativeName":"焼きそば (Yakisoba)","category":"Street & Izakaya","prepTime":15,"cookTime":10,"yieldServings":2,"calories":460,"difficulty":"Easy","rating":4.8,"reviewsCount":670,"intro":"Festival favorite: springy steamed wheat noodles stir-fried in a scorching wok with thinly sliced pork belly, crisp cabbage, carrots, tangy sweet-savory yakisoba sauce, and red pickled ginger.","ingredients":["2 portions pre-steamed Yakisoba noodles (mushi chukamen)","150 g thinly sliced pork belly, cut into pieces","1/4 green cabbage (chopped), 1/2 carrot (julienned), 1 onion (sliced)","Yakisoba Sauce: 3 tbsp Worcestershire sauce, 2 tbsp oyster sauce, 1 tbsp soy sauce, 1 tbsp ketchup, 1 tsp sugar","Garnishes: Aonori seaweed powder, Katsuobushi flakes, Beni shoga pickled ginger"],"instructions":["Rinse noodles briefly in warm water to loosen strands; drain.","Stir-fry pork belly slices in a hot wok until rendered and crispy.","Add onion, carrots, and cabbage; toss over high heat for 2 minutes.","Add loosened noodles and 2 tbsp water; cover with lid for 1 minute to steam.","Pour in yakisoba sauce, tossing rapidly over high heat until noodles are glossy and caramelized.","Plate with a sprinkle of aonori, bonito flakes, and a mound of red ginger."],"tips":{"title":"High Heat Wok","description":"Stir-frying on high heat caramelizes the Worcestershire sauce onto the noodles."},"variations":{"title":"Yakisoba Pan","description":"Stuffed into a soft hotdog bun with Japanese mayo for a legendary school snack."},"faqs":[{"question":"Are yakisoba noodles buckwheat?","answer":"Despite the name \"soba\", yakisoba is made from wheat flour ramen-style noodles."}],"imageQuery":"yakisoba stir fried noodles pork cabbage","imageUrl":"https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"japanese-souffle-cheesecake","name":"Cotton Soft Japanese Soufflé Cheesecake","nativeName":"スフレチーズケーキ (Souffle Cheesecake)","category":"Wagashi & Sweets","prepTime":30,"cookTime":65,"yieldServings":8,"calories":220,"difficulty":"Advanced","rating":5,"reviewsCount":880,"intro":"Ethereal, jiggly, melt-in-your-mouth cloud cake: cream cheese, milk, and butter folded into glossy meringue and baked in a gentle water bath.","ingredients":["250 g cream cheese & 50 g unsalted butter","100 ml whole milk & 6 large eggs (separated)","60 g cake flour & 20 g cornstarch (sifted together)","130 g superfine sugar & 1 tbsp lemon juice + pinch cream of tartar","Warm apricot jam for glaze"],"instructions":["Melt cream cheese, butter, and milk over double boiler until smooth; cool slightly.","Whisk in egg yolks, lemon juice, and sifted flours.","Whip egg whites with cream of tartar and sugar into soft, glossy meringue peaks.","Fold one-third meringue into cheese batter, then gently fold remaining meringue.","Pour into lined 20cm round cake pan; place pan in deep tray filled with 2cm hot water.","Bake at 160°C (320°F) for 20 mins, reduce to 140°C (280°F) for 45 mins, and leave in turned-off oven with door ajar for 15 mins.","Brush top with warm apricot glaze and serve slightly chilled."],"tips":{"title":"Soft Peaks Meringue","description":"Over-whipping whites into stiff peaks causes the cake to crack during baking."},"variations":{"title":"Matcha Souffle Cake","description":"Whisk 2 tbsp ceremonial matcha into the flour mixture."},"faqs":[{"question":"Why bake in water bath?","answer":"The steam ensures gentle, even heating, producing the signature jiggly cotton cloud crumb."}],"imageQuery":"japanese souffle cheesecake cotton soft jiggly","imageUrl":"https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"mitarashi-dango","name":"Mitarashi Dango Sweet Soy Skewers","nativeName":"みたらし団子 (Mitarashi Dango)","category":"Wagashi & Sweets","prepTime":20,"cookTime":10,"yieldServings":4,"calories":190,"difficulty":"Easy","rating":4.9,"reviewsCount":460,"intro":"Chewy, springy rice dumplings skewered on bamboo sticks, lightly charred over an open flame, and coated in a glossy sweet-savory soy glaze.","ingredients":["100 g Joshinko (non-glutinous rice flour)","100 g Shiratamako (glutinous rice flour)","160 ml warm water & 1 tbsp sugar","Mitarashi Glaze: 2 tbsp soy sauce, 2 tbsp mirin, 4 tbsp sugar, 100 ml water, 1 tbsp potato starch"],"instructions":["Mix rice flours and sugar in a bowl, add warm water gradually, and knead into a soft dough (texture of earlobe).","Roll dough into 16 small round balls.","Drop balls into boiling water; once they float, cook for 2 more minutes, then transfer to ice water.","Thread 4 rice balls onto each bamboo skewer.","Sear skewers on a dry grill pan until lightly charred on both sides.","Simmer glaze ingredients until thick and translucent; brush generously over warm charred dango."],"tips":{"title":"Flour Blend","description":"Blending Joshinko and Shiratamako produces the perfect balance of bounce and chewiness."},"variations":{"title":"Hanami Dango","description":"Tri-color pink, white, and green dango for spring cherry blossom viewing."},"faqs":[{"question":"Where were they first made?","answer":"Created at Kamo Shrine in Kyoto, inspired by the bubbles of the Mitarashi stream."}],"imageQuery":"mitarashi dango sweet soy glaze skewers","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[]}];
+    let activeRecipeId = 'tonkotsu-ramen';
+    let activeCategory = 'All';
+
+    function getCategories() {
+      const cats = { 'All': recipes.length };
+      recipes.forEach(r => {
+        cats[r.category] = (cats[r.category] || 0) + 1;
+      });
+      return cats;
+    }
+
+    function renderCategories() {
+      const container = document.getElementById('categoriesBar');
+      if (!container) return;
+      const cats = getCategories();
+      container.innerHTML = Object.keys(cats).map(cat => {
+        const isActive = cat === activeCategory;
+        return `<button class="cat-chip ${isActive ? 'active' : ''}" onclick="filterCategory('${cat}')">${cat} (${cats[cat]})</button>`;
+      }).join('');
+    }
+
+    function filterCategory(cat) {
+      activeCategory = cat;
+      renderCategories();
+      renderGrid(document.getElementById('recipeSearchInput')?.value || '');
+    }
+
+    function renderGrid(filter = '') {
+      const grid = document.getElementById('recipeGrid');
+      const filtered = recipes.filter(r => {
+        const matchSearch = r.name.toLowerCase().includes(filter.toLowerCase()) || 
+                            r.nativeName.toLowerCase().includes(filter.toLowerCase()) ||
+                            r.category.toLowerCase().includes(filter.toLowerCase());
+        const matchCat = activeCategory === 'All' || r.category === activeCategory;
+        return matchSearch && matchCat;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; padding: 24px; text-align: center; color: #6b7280; background: #fff; border-radius: 4px; border: 1px dashed #d1d5db;">No recipes found matching your query. <a href="javascript:void(0)" onclick="viewAllRecipes()" style="color:#d97706; font-weight:bold;">View all ' + recipes.length + ' recipes</a></div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map((r) => {
+        const isActive = r.id === activeRecipeId;
+        return `
+          <article class="recipe-card ${isActive ? 'active-card' : ''}" onclick="selectRecipe('${r.id}')" title="Click to view details for ${r.name}">
+            <div class="card-photo" style="background-image:url('${r.imageUrl}')">
+              <span class="card-badge">${r.category}</span>
+            </div>
+            <div class="recipe-card-content">
+              <h3>${r.name}</h3>
+              <p><span>◷ ${r.prepTime + r.cookTime}m</span> <span>♨ ${r.difficulty}</span></p>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function selectRecipe(id) {
+      const recipe = recipes.find(r => r.id === id);
+      if (!recipe) return;
+      activeRecipeId = id;
+
+      document.getElementById('detailImage').style.backgroundImage = 
+        "linear-gradient(90deg, rgba(5,15,16,.95) 0%, rgba(5,15,16,.55) 42%, transparent 70%), url('" + recipe.imageUrl + "')";
+      
+      document.getElementById('detailBreadcrumbs').innerText = 'Home　›　Recipes　›　' + recipe.category;
+      document.getElementById('detailTitle').innerHTML = recipe.name + '<br>(' + recipe.nativeName + ')';
+      document.getElementById('detailRating').innerHTML = '★★★★★ <small>' + recipe.rating + ' (' + recipe.reviewsCount + ' reviews)</small>';
+      document.getElementById('detailIntro').innerText = recipe.intro;
+
+      document.getElementById('detailFacts').innerHTML = 
+        '<span>◉ Prep ' + recipe.prepTime + ' min</span>' +
+        '<span>◉ Cook ' + recipe.cookTime + ' min</span>' +
+        '<span>◉ Yield ' + recipe.yieldServings + ' serv</span>' +
+        '<span>◉ ' + recipe.calories + ' kcal</span>';
+
+      document.getElementById('detailIngredients').innerHTML = 
+        recipe.ingredients.map(ing => '<li>' + ing + '</li>').join('');
+
+      document.getElementById('detailInstructions').innerHTML = 
+        recipe.instructions.map(ins => '<li>' + ins + '</li>').join('');
+
+      document.getElementById('detailTips').innerHTML = 
+        '<strong>' + recipe.tips.title + '</strong><p>' + recipe.tips.description + '</p>';
+
+      document.getElementById('detailVariations').innerHTML = 
+        '<strong>' + recipe.variations.title + '</strong><p>' + recipe.variations.description + '</p>';
+
+      document.getElementById('faqContainer').innerHTML = 
+        recipe.faqs.map(faq => 
+          '<div class="faq-item" onclick="this.classList.toggle(\'open\')">' +
+          '<div><span>' + faq.question + '</span><b>⌄</b></div>' +
+          '<small>' + faq.answer + '</small>' +
+          '</div>'
+        ).join('');
+
+      const recs = (recipe.alsoLike && recipe.alsoLike.length > 0) 
+        ? recipe.alsoLike 
+        : recipes.filter(r => r.id !== recipe.id).slice(0, 4);
+
+      document.getElementById('alsoContainer').innerHTML = 
+        recs.map((also) => 
+          '<article class="also-card" onclick="selectRecipeByName(\'' + also.name.replace(/'/g, "\\'") + '\')">' +
+          '<div class="mini" style="background-image:url(\'' + also.imageUrl + '\')"></div>' +
+          '<span>' + also.name + '</span>' +
+          '</article>'
+        ).join('');
+
+      renderGrid(document.getElementById('recipeSearchInput')?.value || '');
+
+      if (window.innerWidth <= 950) {
+        document.getElementById('detailPanel').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function selectRecipeByName(name) {
+      const found = recipes.find(r => r.name.toLowerCase().includes(name.toLowerCase()) || r.nativeName.toLowerCase().includes(name.toLowerCase()));
+      if (found) {
+        selectRecipe(found.id);
+      }
+    }
+
+    function viewAllRecipes() {
+      activeCategory = 'All';
+      renderCategories();
+      const input = document.getElementById('recipeSearchInput');
+      if (input) input.value = '';
+      renderGrid('');
+      document.getElementById('recipeGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function focusCategories() {
+      document.getElementById('recipeGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* Modal Handlers */
+    function openAboutModal() {
+      document.getElementById('aboutModal').classList.add('open');
+    }
+    function closeAboutModal(e) {
+      if (!e || e.target === document.getElementById('aboutModal') || e.target.classList.contains('modal-close')) {
+        document.getElementById('aboutModal').classList.remove('open');
+      }
+    }
+    function switchModalTab(tabId) {
+      document.querySelectorAll('.modal-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.modal-section').forEach(s => s.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(tabId)?.classList.add('active');
+    }
+    function jumpToRecipe(id) {
+      closeAboutModal();
+      selectRecipe(id);
+      document.getElementById('detailPanel').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCategories();
+      renderGrid();
+
+      const searchInput = document.getElementById('recipeSearchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          renderGrid(e.target.value);
+        });
+      }
+
+      const searchBtn = document.getElementById('recipeSearchBtn');
+      if (searchBtn) {
+        searchBtn.addEventListener('click', () => {
+          renderGrid(searchInput.value);
+        });
+      }
+    });
+
+    renderCategories();
+    renderGrid();
+  </script>
+</body>
+</html>

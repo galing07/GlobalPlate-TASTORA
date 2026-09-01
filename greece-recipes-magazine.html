@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Greece Recipes - GREEK MEDITERRANEAN TASTE</title>
+  <meta name="description" content="Aegean Breezes & Ancient Olives - Authentic Greece culinary traditions, recipes, and culture." />
+  <style>
+    /* Reset & Base Setup */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100%;
+      background: #0c1214;
+      color: #f2f7f4;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    /* Magazine App Shell */
+    .app-shell {
+      width: 100%;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(650px, 62%) minmax(400px, 38%);
+      gap: 7px;
+      padding: 6px 14px;
+    }
+
+    .main-column, .detail-panel {
+      border: 1px solid #647a75;
+      border-radius: 9px;
+      overflow: hidden;
+      background: #11191c;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Topbar */
+    .topbar {
+      height: 48px;
+      background: #060a0c;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: Georgia, serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .brand-mark {
+      font-size: 20px;
+      color: #d4af37;
+    }
+    .topbar nav {
+      display: flex;
+      gap: 16px;
+    }
+    .topbar nav a {
+      color: #d1d5db;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 11px;
+      transition: color 0.15s ease;
+      cursor: pointer;
+    }
+    .topbar nav a:hover, .topbar nav a.active {
+      color: #d4af37;
+    }
+    .search {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 28px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid #4b5563;
+      border-radius: 4px;
+      overflow: hidden;
+      width: 170px;
+    }
+    .search input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 10px;
+      padding: 0 8px;
+      width: 135px;
+    }
+    .search input::placeholder { color: #9ca3af; }
+    .search b {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 28px;
+      background: #d4af37;
+      color: #181b14;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 290px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #111;
+    }
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      padding: 24px 28px;
+      max-width: 440px;
+    }
+    .hero-copy em {
+      display: block;
+      font-family: Georgia, serif;
+      font-style: italic;
+      color: #d4af37;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+    .hero-copy h1 {
+      font-family: Georgia, serif;
+      font-size: 32px;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 7px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    }
+    .hero-copy p {
+      font-size: 12px;
+      color: #e5e7eb;
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+    .hero-actions button {
+      background: #d4af37;
+      color: #181b14;
+      border: 1px solid #d4af37;
+      font-weight: bold;
+      font-size: 11px;
+      padding: 7px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .hero-actions button:hover { opacity: 0.9; transform: translateY(-1px); }
+    .hero-actions button.dark-button {
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      border: 1px solid #6b7280;
+      backdrop-filter: blur(4px);
+    }
+    .hero-actions button.dark-button:hover {
+      background: rgba(0,0,0,0.8);
+      border-color: #d4af37;
+    }
+
+    /* Popular Section */
+    .popular {
+      background: #e3ece1;
+      color: #14201a;
+      padding: 14px 16px;
+      flex: 1;
+    }
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .section-heading h2 {
+      font-family: Georgia, serif;
+      font-size: 17px;
+      font-weight: bold;
+      color: #14201a;
+    }
+    .section-heading button {
+      background: #fff;
+      border: 1px solid #b9cbb6;
+      color: #14201a;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .section-heading button:hover { background: #f3f4f6; }
+
+    /* Category Filter Chips */
+    .categories-bar {
+      display: flex;
+      gap: 5px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+    }
+    .cat-chip {
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 9px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #374151;
+      transition: all 0.15s ease;
+    }
+    .cat-chip:hover { background: #f9fafb; }
+    .cat-chip.active {
+      background: #b45309;
+      color: #fff;
+      border-color: #92400e;
+    }
+
+    /* Grid */
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+      gap: 7px;
+    }
+    .recipe-card {
+      background: #f6faf5;
+      border: 1px solid #b9cbb6;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+    .recipe-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    }
+    .recipe-card.active-card {
+      border: 2px solid #d4af37;
+      box-shadow: 0 0 0 1px #d4af37;
+    }
+    .card-photo {
+      height: 75px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      background-color: #374151;
+    }
+    .card-badge {
+      position: absolute;
+      bottom: 4px;
+      left: 4px;
+      background: rgba(0,0,0,0.75);
+      color: #fff;
+      font-size: 7px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+    .recipe-card-content {
+      padding: 6px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .recipe-card h3 {
+      font-size: 10px;
+      font-weight: bold;
+      color: #111827;
+      line-height: 1.25;
+      margin-bottom: 2px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .recipe-card p {
+      font-size: 8px;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 3px;
+      margin-top: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Detail Panel */
+    .detail-panel {
+      background: #eef3ed;
+      color: #14201a;
+    }
+    .detail-image {
+      min-height: 175px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .detail-content {
+      padding: 10px 14px;
+    }
+    .breadcrumbs {
+      font-size: 9px;
+      color: #6b7280;
+      margin-bottom: 3px;
+    }
+    .detail-content h2 {
+      font-family: Georgia, serif;
+      font-size: 19px;
+      color: #14201a;
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+    .rating {
+      color: #d97706;
+      font-size: 11px;
+      margin-bottom: 6px;
+    }
+    .rating small { color: #6b7280; font-size: 9px; }
+    .intro {
+      font-size: 10px;
+      color: #374151;
+      line-height: 1.45;
+      margin-bottom: 8px;
+    }
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      background: rgba(0,0,0,0.04);
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,0,0,0.06);
+      font-size: 9px;
+      color: #1f2937;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* 2 Column Ingredients & Instructions */
+    .ingredients-instructions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 10px 14px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.4);
+    }
+    .ingredients-instructions h3 {
+      font-family: Georgia, serif;
+      font-size: 12px;
+      font-weight: bold;
+      color: #111827;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+    }
+    .ingredients-instructions ul, .ingredients-instructions ol {
+      padding-left: 14px;
+      font-size: 9.5px;
+      color: #374151;
+      line-height: 1.5;
+    }
+    .ingredients-instructions li { margin-bottom: 3px; }
+
+    /* Tips & Variations */
+    .tips {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      padding: 6px 14px 10px;
+    }
+    .tip-card {
+      background: #15313d;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 1.35;
+    }
+    .tip-card strong {
+      display: block;
+      color: #d4af37;
+      font-size: 10px;
+      margin-bottom: 2px;
+      font-family: Georgia, serif;
+    }
+    .variation-card {
+      background: #164332;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 1.35;
+    }
+    .variation-card strong {
+      display: block;
+      color: #a7f3d0;
+      font-size: 10px;
+      margin-bottom: 2px;
+      font-family: Georgia, serif;
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 6px 14px;
+    }
+    .faq h3 {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #111827;
+    }
+    .faq-item {
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 3px;
+      margin-bottom: 4px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .faq-item div {
+      padding: 5px 8px;
+      font-weight: bold;
+      font-size: 9.5px;
+      color: #1f2937;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-item small {
+      display: none;
+      padding: 5px 8px 7px;
+      font-size: 9px;
+      color: #4b5563;
+      border-top: 1px solid #f3f4f6;
+      line-height: 1.4;
+      background: #f9fafb;
+    }
+    .faq-item.open small { display: block; }
+
+    /* You Might Also Like */
+    .also {
+      background: #12332c;
+      color: #fff;
+      padding: 10px 14px;
+      margin-top: auto;
+    }
+    .also h3 {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .also-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+    .also-card {
+      cursor: pointer;
+      text-align: center;
+    }
+    .also-card .mini {
+      height: 48px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 3px;
+      transition: border-color 0.15s;
+    }
+    .also-card:hover .mini { border-color: #d4af37; }
+    .also-card span {
+      font-size: 8.5px;
+      font-weight: bold;
+      color: #e5e7eb;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Modal for About Swedish Cuisine */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(6px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-container {
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      background: #0e161c;
+      border: 1px solid rgba(217, 119, 6, 0.4);
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      color: #e2e8f0;
+    }
+    .modal-header {
+      padding: 16px 20px;
+      background: linear-gradient(90deg, #0d222b, #122c37);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-header h2 {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      color: #fff;
+    }
+    .modal-close {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-nav {
+      display: flex;
+      gap: 6px;
+      padding: 8px 16px;
+      background: #091116;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      overflow-x: auto;
+    }
+    .modal-tab-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .modal-tab-btn.active {
+      background: #d97706;
+      color: #0f172a;
+      font-weight: bold;
+    }
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .modal-section { display: none; }
+    .modal-section.active { display: block; }
+    .modal-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .modal-card h4 {
+      font-size: 12px;
+      color: #fbbf24;
+      margin-bottom: 4px;
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 950px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+        padding: 4px 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-shell" id="topAnchor">
+    <!-- LEFT MAIN COLUMN -->
+    <main class="main-column">
+      <header class="topbar">
+        <div class="brand" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+          <span class="brand-mark">🏛</span>
+          <span>GREEK<br>MEDITERRANEAN TASTE</span>
+        </div>
+        <nav>
+          <a href="javascript:void(0)" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="active">Home</a>
+          <a href="javascript:void(0)" onclick="viewAllRecipes()">Recipes</a>
+          <a href="javascript:void(0)" onclick="focusCategories()">Categories</a>
+          <a href="javascript:void(0)" onclick="openAboutModal()">About</a>
+        </nav>
+        <div class="search">
+          <input type="text" id="recipeSearchInput" placeholder="Search 29 recipes..." aria-label="Search recipes" />
+          <b id="recipeSearchBtn">⌕</b>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-photo" style="background-image: linear-gradient(90deg, #0c1214F2 0%, #0c1214B8 41%, #0c12140D 80%), url('https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=1200&q=85');"></div>
+        <div class="hero-copy">
+          <em>Aegean Breezes & Ancient Olives</em>
+          <h1>Authentic Greek<br>Recipes</h1>
+          <p>Layers of spiced lamb moussaka, crisp spanakopita phyllo pies,<br>and sun-kissed extra virgin olive oil recipes from the Aegean isles.</p>
+          <div class="hero-actions">
+            <button onclick="document.getElementById('recipeGridSection').scrollIntoView({behavior:'smooth'})">Explore Greek Recipes</button>
+            <button class="dark-button" onclick="openAboutModal()">About Greek Gastronomy</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="popular" id="recipeGridSection">
+        <div class="section-heading">
+          <h2>❧ Classic Hellenic Gastronomy ❧</h2>
+          <button id="viewAllBtn" onclick="viewAllRecipes()">View All (29) →</button>
+        </div>
+
+        <div class="categories-bar" id="categoriesBar"></div>
+
+        <div class="recipe-grid" id="recipeGrid"></div>
+      </section>
+    </main>
+
+    <!-- RIGHT DETAIL PANEL -->
+    <aside class="detail-panel" id="detailPanel">
+      <div class="detail-image" id="detailImage" style="background-image: linear-gradient(90deg, rgba(5,15,16,.95) 0%, rgba(5,15,16,.55) 42%, transparent 70%), url('https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=800&q=80');"></div>
+      <div class="detail-content" id="detailContent">
+        <div class="breadcrumbs" id="detailBreadcrumbs">Home　›　Recipes　›　Κυρίως Πιάτα (Mains)</div>
+        <h2 id="detailTitle">Authentic Greek Moussaka<br>(Παραδοσιακός Μουσακάς με Μπεσαμέλ)</h2>
+        <div class="rating" id="detailRating">★★★★★ <small>5 (2350 reviews)</small></div>
+        <p class="intro" id="detailIntro">The undisputed monarch of Greek cuisine: layers of roasted eggplants and potatoes, a rich spiced minced beef sauce perfumed with cinnamon and allspice, topped with a thick, golden, fluffy Greek béchamel custard.</p>
+        <div class="facts" id="detailFacts">
+          <span>◉ Prep 40 min</span>
+          <span>◉ Cook 60 min</span>
+          <span>◉ Yield 8 serv</span>
+          <span>◉ 580 kcal</span>
+        </div>
+      </div>
+
+      <div class="ingredients-instructions" id="ingredientsInstructions">
+        <section>
+          <h3>Ingredients</h3>
+          <ul id="detailIngredients">
+            <li>3 large eggplants (melitzanes), sliced lengthwise into 1cm planks</li><li>3 large potatoes (peeled and sliced into 1/2cm rounds)</li><li>Meat Sauce: 700 g ground beef or lamb, 1 onion (diced), 3 cloves garlic, 1 tin (400 g) crushed tomatoes, 1 tbsp tomato paste, 1 cinnamon stick, 1/2 tsp allspice, 1 pinch ground cloves, 100 ml red wine, olive oil</li><li>Greek Béchamel: 100 g butter, 100 g flour, 1 L warm whole milk, 2 egg yolks, 100 g grated Kefalotyri or Graviera cheese, 1/4 tsp ground nutmeg, salt and pepper</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Instructions</h3>
+          <ol id="detailInstructions">
+            <li>Brush eggplant and potato slices with olive oil, season with salt, and roast at 200°C (400°F) for 20 minutes until golden and tender.</li><li>Sauté onion and garlic in olive oil; add ground meat and brown thoroughly. Pour in red wine to deglaze.</li><li>Add crushed tomatoes, tomato paste, cinnamon, allspice, cloves, and salt; simmer on low for 30 minutes until thick and sauce has no excess moisture.</li><li>For Béchamel: Melt butter, whisk in flour for 2 minutes, then slowly stream in warm milk while whisking until thick. Off heat, whisk in egg yolks, nutmeg, and half the grated cheese.</li><li>In a 25x35cm baking dish, layer roasted potatoes on bottom, followed by roasted eggplants.</li><li>Spread the spiced meat sauce evenly over vegetables.</li><li>Pour the thick béchamel over meat, smoothing top, and sprinkle with remaining grated cheese.</li><li>Bake at 180°C (350°F) for 50 minutes until top is deep golden-brown and bubbling.</li><li>Crucial: Let rest for 45 minutes before slicing into immaculate clean squares.</li>
+          </ol>
+        </section>
+      </div>
+
+      <div class="tips" id="tipsBlock">
+        <div class="tip-card" id="detailTips">
+          <strong>The 45-Minute Rest</strong>
+          <p>Cutting moussaka straight from the oven causes layers to slide; resting sets the custard for clean, picture-perfect slices.</p>
+        </div>
+        <div class="variation-card" id="detailVariations">
+          <strong>Moussaka Hortofagiki</strong>
+          <p>Vegetarian version layered with lentils and mushrooms.</p>
+        </div>
+      </div>
+
+      <section class="faq" id="faqSection">
+        <h3>Frequently Asked Questions</h3>
+        <div id="faqContainer">
+          
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+              <div><span>Who created modern Moussaka?</span><b>⌄</b></div>
+              <small>Chef Nikolaos Tselementes in the 1920s introduced the French béchamel crown to the ancient Greek casserole.</small>
+            </div>
+          
+        </div>
+      </section>
+
+      <section class="also" id="alsoSection">
+        <h3>You Might Also Like</h3>
+        <div class="also-grid" id="alsoContainer">
+          
+            <article class="also-card" onclick="selectRecipeByName('Souvlaki & Tzatziki')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Souvlaki & Tzatziki</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Spanakopita Pie')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Spanakopita Pie</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Greek Horiatiki Salad')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1592417817098-8f3d69109853?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Greek Horiatiki Salad</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Greek Honey Baklava')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Greek Honey Baklava</span>
+            </article>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- ABOUT EDITORIAL MODAL -->
+  <div class="modal-overlay" id="aboutModal" onclick="closeAboutModal(event)">
+    <div class="modal-container" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div>
+          <span style="font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #fbbf24; font-weight: bold;">Editorial Compendium</span>
+          <h2>About Swedish Cuisine</h2>
+        </div>
+        <button class="modal-close" onclick="closeAboutModal()">✕</button>
+      </div>
+
+      <div class="modal-nav">
+        <button class="modal-tab-btn active" onclick="switchModalTab('mod-intro')">Introduction & Pillars</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-dishes')">Popular Dishes</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-fika')">Fika & Baking</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-ingredients')">Ingredients</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-traditions')">Traditions</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-regional')">Regional</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-faq')">FAQ</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- INTRO TAB -->
+        <div class="modal-section active" id="mod-intro">
+          <div class="modal-card" style="background: linear-gradient(135deg, rgba(217,119,6,0.15), rgba(15,23,42,0.6)); border-color: rgba(217,119,6,0.3);">
+            <em style="color: #fbbf24; font-family: Georgia, serif; font-size: 13px; display: block; margin-bottom: 4px;">From Viking hearths to Michelin tables: a deep journey into Nordic culinary heritage.</em>
+            <h3 style="font-family: Georgia, serif; font-size: 15px; color: #fff; margin-bottom: 8px;">Introduction to Swedish Food</h3>
+            <p style="margin-bottom: 6px;">Swedish gastronomy is defined by an intimate connection with nature, shaped by dramatic northern seasons, vast archipelagos, dense boreal forests, and long Arctic winters.</p><p style="margin-bottom: 6px;">Historically, surviving sub-zero Nordic winters required master craftsmanship in preservation: curing with sea salt, pickling with vinegar and mustard, smoking over juniper wood, drying, and fermenting.</p><p style="margin-bottom: 6px;">Today, Swedish food combines these ancestral preservation arts with pure simplicity, seasonal foraging, and a reverence for pristine ingredients — creating one of the most vibrant and sustainable food cultures in the modern world.</p>
+          </div>
+
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin: 14px 0 8px;">What Is Swedish Cuisine?</h3>
+          <p style="margin-bottom: 10px;">At its essence, Swedish food is grounded in the concept of "Husmanskost" — traditional, unpretentious home-cooked meals originally prepared by agrarian families. It emphasizes warmth, honest nourishment, and the golden principle of "Lagom" (not too little, not too much, but just right).</p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>01. Husmanskost (Heritage Comfort)</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Satisfying, wholesome dishes made with root vegetables, pork, wild game, dairy butter, and pantry staples designed to sustain hard-working bodies.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>02. The Smörgåsbord Concept</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">A grand buffet of cold and hot courses, eaten in strict traditional sequence starting with pickled herring, progressing to cold meats and salmon, then warm casseroles, and ending with cheese.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>03. Allemansrätten (Right to Roam)</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Constitutional freedom allowing every citizen to forage wild lingonberries, cloudberries, blueberries, and golden chanterelle mushrooms in forests across Sweden.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>04. Purity & Seasonality</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Minimalist preparation where the natural flavors of cold-water seafood, fresh dill, butter, and pristine root vegetables take center stage.</p>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- DISHES TAB -->
+        <div class="modal-section" id="mod-dishes">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 6px;">Traditional Swedish Foods & Popular Dishes</h3>
+          <p style="margin-bottom: 12px; color: #94a3b8;">While modern Sweden embraces global flavors, these iconic cornerstone dishes represent the heart and soul of authentic Swedish dining.</p>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Swedish Meatballs <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Köttbullar med Gräddsås)</em></h4>
+                <p style="margin-bottom: 4px;">Tender meatballs made from a blend of pork and beef, soaked breadcrumbs, onion, and a hint of allspice. Simmered in velvety cream sauce with buttery mashed potatoes and tart lingonberries.</p>
+                <small style="color: #93c5fd;">Cultural Note: The undisputed national dish, immortalized worldwide and cherished at every Swedish family table.</small>
+              </div>
+              <button onclick="jumpToRecipe('meatballs')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Gravlax <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Gravad Lax med Hovmästarsås)</em></h4>
+                <p style="margin-bottom: 4px;">Fresh Nordic salmon cured for 48 hours in coarse sea salt, sugar, cracked white pepper, and mountains of fresh dill. Sliced paper-thin and paired with sweet dill mustard sauce.</p>
+                <small style="color: #93c5fd;">Cultural Note: Dating back to medieval times when fishermen buried salted salmon in the earth ("grava") to cure.</small>
+              </div>
+              <button onclick="jumpToRecipe('gravlax')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Raggmunk <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Raggmunk med Stekt Fläsk)</em></h4>
+                <p style="margin-bottom: 4px;">Crisp, lacy potato pancakes prepared with freshly grated starchy potatoes in a light flour-milk batter, fried in rich butter until shatteringly crisp at the perimeter.</p>
+                <small style="color: #93c5fd;">Cultural Note: Served with thick salted crispy pork belly and tart lingonberries, the benchmark of Swedish weekday comfort.</small>
+              </div>
+              <button onclick="jumpToRecipe('raggmunk')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Janssons Frestelse <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Janssons Frestelse)</em></h4>
+                <p style="margin-bottom: 4px;">A decadent gratin of julienned potatoes, caramelized onions, and spiced sprats (ansjovis) baked in heavy cream and breadcrumbs until bubbling golden.</p>
+                <small style="color: #93c5fd;">Cultural Note: The essential midnight centerpiece of every Christmas Julbord, Easter, and Midsummer celebration.</small>
+              </div>
+              <button onclick="jumpToRecipe('janssons-frestelse')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Kåldolmar <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Kåldolmar med Gräddsås)</em></h4>
+                <p style="margin-bottom: 4px;">Tender cabbage rolls packed with spiced pork, beef, and rice, browned in dark syrup and butter, then braised with rich stock and cream.</p>
+                <small style="color: #93c5fd;">Cultural Note: Brought back by King Charles XII from the Ottoman Empire in the 1700s, adapted with Nordic white cabbage and lingonberries.</small>
+              </div>
+              <button onclick="jumpToRecipe('kaldolmar')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+        </div>
+
+        <!-- CULTURE / FIKA TAB -->
+        <div class="modal-section" id="mod-fika">
+          <div class="modal-card" style="background: rgba(180,83,9,0.15);">
+            <h4>Swedish Baking Culture & Fika Tradition</h4>
+            <p style="margin-bottom: 6px;">Fika is far more than a simple coffee break — it is an essential Swedish social institution and a state of mind. Twice a day, colleagues, friends, and families set aside work to sit down together over freshly brewed filter coffee and freshly baked pastries.</p>
+            <p style="font-style: italic; color: #fde68a;">"In Sweden, enjoying fika represents slowing down, cultivating genuine human presence, and savoring sweet craftsmanship. Historic etiquette honored "Sju sorters kakor" (Seven Types of Cookies) served from elegant porcelain tins."</p>
+          </div>
+          <h4 style="color:#fff; margin: 12px 0 8px;">Popular Regional Treats & Specialties</h4>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>Kanelbullar (Svenska Kanelbullar)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Scented with freshly ground cardamom, filled with cinnamon-sugar butter, and baked with crunchy pearl sugar. Celebrated every October 4th on National Cinnamon Bun Day.</p>
+                <button onclick="jumpToRecipe('kanelbullar')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+              <div class="modal-card">
+                <h4>Semlor (Klassiska Semlor)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">A cardamom wheat bun filled with almond paste and billowing whipped cream. Traditionally eaten on Fettisdagen (Fat Tuesday) and throughout winter.</p>
+                <button onclick="jumpToRecipe('semlor')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+              <div class="modal-card">
+                <h4>Kladdkaka (Svensk Kladdkaka)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Sweden’s signature gooey, fudgy sticky chocolate cake with a paper-thin crackly crust, served warm with unsweetened whipped cream and tart raspberries.</p>
+                <button onclick="jumpToRecipe('kladdkaka')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- INGREDIENTS TAB -->
+        <div class="modal-section" id="mod-ingredients">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Key Swedish Ingredients</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🥔 <strong style="color:#fff; font-size:11px;">Potatoes</strong> <em style="font-size:9px; color:#fbbf24;">(Potatis)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">The foundational carbohydrate of Nordic cuisine since the 18th century, prepared boiled with dill, whipped into velvety mos, or grated into raggmunk.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Mashed with meatballs, boiled with herring, or julienned into Janssons gratin.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🐟 <strong style="color:#fff; font-size:11px;">Salmon</strong> <em style="font-size:9px; color:#fbbf24;">(Lax)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Pristine cold-water fish prepared cured (gravlax), hot-smoked, cold-smoked, pan-seared, or baked into celebratory smörgåstårta.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Cured with dill and sea salt, or poached with hollandaise sauce.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌊 <strong style="color:#fff; font-size:11px;">Herring</strong> <em style="font-size:9px; color:#fbbf24;">(Sill & Strömming)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">The silver of the sea. Baltic herring (strömming) and Atlantic herring (sill) are preserved in sweet-tangy vinegar brines with onion, mustard, or fried crisp in rye flour.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Pickled with red onion and allspice, or pan-fried with potatoes.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🍒 <strong style="color:#fff; font-size:11px;">Lingonberries</strong> <em style="font-size:9px; color:#fbbf24;">(Lingon)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Tart, ruby-red wild berries foraged in autumn pine forests. Stirred raw with sugar (rårörda lingon) to provide sweet-sour balance to rich meat dishes.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Essential companion for meatballs, cabbage rolls, blood pudding, and potato pancakes.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌿 <strong style="color:#fff; font-size:11px;">Dill</strong> <em style="font-size:9px; color:#fbbf24;">(Dill)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">The quintessential green herb of Scandinavia, providing fresh aniseed aroma to seafood, sauces, potato salads, and crayfish broths.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Chopped over boiled potatoes, infused into gravlax cure, and tossed into Skagen mayonnaise.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌾 <strong style="color:#fff; font-size:11px;">Rye</strong> <em style="font-size:9px; color:#fbbf24;">(Råg)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Hearty whole-grain cereal used for centuries to bake sturdy sourdough loaves and crisp, dry knäckebröd flatbreads with extraordinary shelf life.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Knäckebröd crispbreads with butter and aged cheese, or dark limpa loaves.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">✨ <strong style="color:#fff; font-size:11px;">Cardamom</strong> <em style="font-size:9px; color:#fbbf24;">(Kardemumma)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Introduced by Viking trade routes with Constantinople, whole green cardamom pods are freshly crushed into virtually all Swedish bakery doughs.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Cardamom knots (kardemummabullar), cinnamon buns, semlor, and holiday cakes.</small>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- TRADITIONS TAB -->
+        <div class="modal-section" id="mod-traditions">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Swedish Food Traditions & Celebrations</h3>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Midsummer (Midsommar)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">Late June (Summer Solstice)</span>
+              </div>
+              <p style="margin-bottom: 6px;">The most magical Swedish holiday celebrating endless daylight. Families gather around maypoles for an open-air banquet of pickled herring, boiled fresh new potatoes with dill and sour cream, Västerbotten cheese tart, snaps songs, and fresh Swedish strawberries with cream.</p>
+              <small style="color: #fbbf24;">Staples: Inlagd Sill, New Potatoes with Dill, Västerbottensostpaj, Fresh Strawberries & Cream, Akvavit</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Christmas (Julbord)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">December</span>
+              </div>
+              <p style="margin-bottom: 6px;">A lavish multi-course holiday feast starting with glögg and gingerbread with blue cheese, followed by herring and salmon, then warm meatballs, prince sausages (prinskorv), Jansson’s Temptation, Christmas ham (julskinka), and saffron buns (lussekatter).</p>
+              <small style="color: #fbbf24;">Staples: Julskinka (Christmas Ham), Janssons Frestelse, Köttbullar, Lussekatter, Pepparkakor med Ädelost</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Easter (Påsk)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">Spring (March/April)</span>
+              </div>
+              <p style="margin-bottom: 6px;">A cheerful springtime smörgåsbord filled with decorated eggs, cured gravlax, lamb roast with herbs, gubbröra on crispbread, and vibrant candy-filled Easter eggs.</p>
+              <small style="color: #fbbf24;">Staples: Hard-boiled Eggs with Kalles Kaviar, Gravlax, Gubbröra, Roast Lamb</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Crayfish Party (Kräftskiva)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">August</span>
+              </div>
+              <p style="margin-bottom: 6px;">Boisterous outdoor gatherings under moon-shaped paper lanterns. Swedes slurp boiled freshwater crayfish cooked in beer and dill-seed broth, wearing funny paper hats and singing traditional snapsvisor.</p>
+              <small style="color: #fbbf24;">Staples: Dill-boiled Crayfish, Västerbottensostpaj, Crispbread & Butter, Chilled Aquavit</small>
+            </div>
+          
+        </div>
+
+        <!-- REGIONAL TAB -->
+        <div class="modal-section" id="mod-regional">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Regional Swedish Cuisine</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>🧭 Norrland & Lapland (The Great North)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Dominated by Arctic forests and indigenous Sámi traditions. Rich in wild game like moose (älg) and reindeer (ren), arctic char, wild cloudberries (hjortron), and thin soft flatbread (tunnbröd).</p>
+                <small style="color: #fbbf24;">Specialties: Suovas (Smoked Reindeer), Älgkalops (Moose Stew), Hjortronsylt (Cloudberry Jam), Västerbotten Cheese</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 Skåne & Southern Farmlands</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Sweden’s fertile breadbasket with rich European influences, producing grain, sugar beets, smoked pork, goose dinners on Saint Martin’s Eve (Mårten Gås), and towering spettekaka cakes.</p>
+                <small style="color: #fbbf24;">Specialties: Gåslever & Roast Goose, Svartsoppa, Spettekaka, Rökt Fläsk (Smoked Pork)</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 The West Coast (Bohuslän & Gothenburg)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">World-renowned for cold, nutrient-rich waters yielding sweet Norway lobsters (havskräftor), deep-sea prawns, oysters, and fresh Atlantic herring.</p>
+                <small style="color: #fbbf24;">Specialties: Toast Skagen, Kräftor (Boiled Crayfish), Fresh Oysters, Stekt Strömming</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 Dalarna & Central Lake District</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Deep folklore heritage, home to the iconic Falukorv sausage, traditional rye crispbread mills, and freshwater pike and perch from Lake Siljan.</p>
+                <small style="color: #fbbf24;">Specialties: Falukorv i Ugn, Leksands Knäckebröd, Lake Fish Terrines</small>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- FAQ TAB -->
+        <div class="modal-section" id="mod-faq">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Frequently Asked Questions</h3>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">What is the philosophy behind Swedish Husmanskost?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Husmanskost refers to honest, nourishing home cooking rooted in Swedish agrarian history. It prioritizes wholesome local ingredients, balanced portions (Lagom), and satisfying flavors made from scratch.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">Why is Fika so culturally important in Sweden?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Fika is a valued daily ritual that fosters social connection and mindfulness. It is a scheduled opportunity to step away from screens, enjoy high-quality coffee and freshly baked cardamom or cinnamon buns, and bond with peers.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">What is the difference between Swedish ansjovis and Mediterranean anchovies?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Swedish ansjovis are actually small sprats (skarpsill) cured in a sweet, aromatic brine with cinnamon, ginger, cloves, and sandalwood. Mediterranean anchovies are salty, fermented true anchovies in oil. They cannot be directly substituted in Janssons Frestelse.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">Why do Swedish cinnamon buns taste different from American cinnamon rolls?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Swedish Kanelbullar incorporate freshly crushed cardamom into the yeast dough, are folded into intricate knotted buns rather than thick spiral slabs, are crowned with crunchy pearl sugar, and do not use heavy powdered sugar glaze or cream cheese frosting.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">How does the Swedish right of public access (Allemansrätten) influence cooking?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Allemansrätten legally allows anyone to forage wild berries (lingonberries, bilberries, cloudberries) and wild mushrooms (chanterelles, porcini) freely in nature, keeping wild foraging at the heart of home cooking.</p>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const recipes = [{"id":"greek-moussaka","name":"Authentic Greek Moussaka","nativeName":"Παραδοσιακός Μουσακάς με Μπεσαμέλ","category":"Κυρίως Πιάτα (Mains)","prepTime":40,"cookTime":60,"yieldServings":8,"calories":580,"difficulty":"Advanced","rating":5,"reviewsCount":2350,"intro":"The undisputed monarch of Greek cuisine: layers of roasted eggplants and potatoes, a rich spiced minced beef sauce perfumed with cinnamon and allspice, topped with a thick, golden, fluffy Greek béchamel custard.","ingredients":["3 large eggplants (melitzanes), sliced lengthwise into 1cm planks","3 large potatoes (peeled and sliced into 1/2cm rounds)","Meat Sauce: 700 g ground beef or lamb, 1 onion (diced), 3 cloves garlic, 1 tin (400 g) crushed tomatoes, 1 tbsp tomato paste, 1 cinnamon stick, 1/2 tsp allspice, 1 pinch ground cloves, 100 ml red wine, olive oil","Greek Béchamel: 100 g butter, 100 g flour, 1 L warm whole milk, 2 egg yolks, 100 g grated Kefalotyri or Graviera cheese, 1/4 tsp ground nutmeg, salt and pepper"],"instructions":["Brush eggplant and potato slices with olive oil, season with salt, and roast at 200°C (400°F) for 20 minutes until golden and tender.","Sauté onion and garlic in olive oil; add ground meat and brown thoroughly. Pour in red wine to deglaze.","Add crushed tomatoes, tomato paste, cinnamon, allspice, cloves, and salt; simmer on low for 30 minutes until thick and sauce has no excess moisture.","For Béchamel: Melt butter, whisk in flour for 2 minutes, then slowly stream in warm milk while whisking until thick. Off heat, whisk in egg yolks, nutmeg, and half the grated cheese.","In a 25x35cm baking dish, layer roasted potatoes on bottom, followed by roasted eggplants.","Spread the spiced meat sauce evenly over vegetables.","Pour the thick béchamel over meat, smoothing top, and sprinkle with remaining grated cheese.","Bake at 180°C (350°F) for 50 minutes until top is deep golden-brown and bubbling.","Crucial: Let rest for 45 minutes before slicing into immaculate clean squares."],"tips":{"title":"The 45-Minute Rest","description":"Cutting moussaka straight from the oven causes layers to slide; resting sets the custard for clean, picture-perfect slices."},"variations":{"title":"Moussaka Hortofagiki","description":"Vegetarian version layered with lentils and mushrooms."},"faqs":[{"question":"Who created modern Moussaka?","answer":"Chef Nikolaos Tselementes in the 1920s introduced the French béchamel crown to the ancient Greek casserole."}],"imageQuery":"greek moussaka slice bechamel eggplant meat cinnamon","imageUrl":"https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Souvlaki & Tzatziki","imageQuery":"souvlaki greek gyros","imageUrl":"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80"},{"name":"Spanakopita Pie","imageQuery":"spanakopita spinach feta","imageUrl":"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80"},{"name":"Greek Horiatiki Salad","imageQuery":"greek salad feta olives","imageUrl":"https://images.unsplash.com/photo-1592417817098-8f3d69109853?auto=format&fit=crop&w=800&q=80"},{"name":"Greek Honey Baklava","imageQuery":"baklava honey walnuts","imageUrl":"https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=800&q=80"}]},{"id":"greek-souvlaki-gyros","name":"Pork & Chicken Souvlaki with Tzatziki","nativeName":"Σουβλάκι σε Πίτα με Τζατζίκι και Πατάτες","category":"Ορεκτικά & Street Food","prepTime":25,"cookTime":15,"yieldServings":4,"calories":520,"difficulty":"Easy","rating":5,"reviewsCount":2600,"intro":"Tender skewers of pork shoulder or chicken marinated in lemon juice, Greek oregano, garlic, and olive oil, charred over coals, wrapped in warm pita with creamy tzatziki, ripe tomatoes, onions, and crispy fries.","ingredients":["700 g pork shoulder or chicken thighs, cut into 3cm cubes","Marinade: 60 ml Greek extra-virgin olive oil, juice of 1 lemon, 4 cloves minced garlic, 2 tbsp wild Greek oregano (rigani), 1 tsp salt, 1/2 tsp black pepper","4 Greek pocketless flatbread pitas, brushed with oil and grilled","Accompaniments: 1 cup homemade thick Tzatziki, 2 sliced tomatoes, 1 sliced red onion, fresh parsley, and freshly fried potato chips/fries"],"instructions":["Whisk marinade ingredients together; coat meat cubes thoroughly and marinate for at least 2 hours (or overnight).","Thread meat onto wooden skewers (soaked in water 30 mins).","Grill skewers over high heat or cast iron grill pan for 8-10 minutes, turning until charred and juicy.","Warm pita flatbreads on the grill until soft and pliable.","Lay a dollop of tzatziki on warm pita, slide meat off skewer onto center, add tomato slices, red onion, a handful of hot crispy fries, and a sprinkle of oregano.","Wrap tightly in parchment paper and serve immediately."],"tips":{"title":"Fries in the Wrap","description":"True Greek street food gyros and souvlaki are always wrapped with a handful of hot french fries right inside the pita."},"variations":{"title":"Souvlaki Kalamaki","description":"Served simply as naked skewers on a platter with lemon halves and crusty bread."},"faqs":[{"question":"What is Wild Greek Rigani?","answer":"Oregano harvested from rocky Greek mountainsides with higher thymol essential oils than standard oregano."}],"imageQuery":"greek souvlaki skewers pita tzatziki fries tomato","imageUrl":"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"spanakopita-pie","name":"Crispy Spanakopita (Spinach & Feta Pie)","nativeName":"Παραδοσιακή Σπανακόπιτα με Φέτα","category":"Πίτες (Pies)","prepTime":30,"cookTime":50,"yieldServings":8,"calories":340,"difficulty":"Medium","rating":5,"reviewsCount":2100,"intro":"Layers of paper-thin phyllo pastry brushed with olive oil and butter, filled with fresh spinach, scallions, fragrant fresh dill, creamy tangy Greek feta, and ricotta, baked shatteringly crisp.","ingredients":["1 pack (500 g) high-quality phyllo pastry sheets (thawed)","700 g fresh baby spinach, washed, finely chopped, and squeezed dry of all moisture","300 g authentic Greek sheep’s milk Feta cheese, crumbled","150 g Greek Ricotta or Anthotyro cheese","1 bunch scallions (green onions, thinly sliced), 1/2 bunch fresh dill (finely chopped), 1/4 tsp ground nutmeg","3 large eggs, beaten, 150 g melted butter mixed with 50 ml Greek olive oil for brushing"],"instructions":["Toss chopped spinach with 1 tsp salt; let sit 10 mins, then squeeze with hands using a towel to remove every drop of liquid (essential!).","In a large bowl, combine dry spinach, scallions, fresh dill, crumbled feta, ricotta, beaten eggs, nutmeg, and black pepper.","Brush a 25x35cm baking pan generously with melted butter-olive oil mixture.","Layer 8 sheets of phyllo in the pan, brushing each individual sheet generously with melted butter/oil.","Spread the spinach-feta filling evenly across the pastry.","Top with another 8 sheets of phyllo, brushing each layer with butter.","Score the top phyllo layers into squares with a sharp knife (do not cut all the way through).","Sprinkle top with a few drops of water; bake at 180°C (350°F) for 50 minutes until puffed, golden, and shatteringly crispy.","Cool 15 minutes before serving warm."],"tips":{"title":"Squeeze the Spinach","description":"Removing excess moisture from raw spinach ensures the bottom phyllo stays crisp rather than soggy."},"variations":{"title":"Spanakopita Triangles (Trigona)","description":"Folded into individual handheld cocktail triangles."},"faqs":[{"question":"Why score the phyllo before baking?","answer":"Scoring allows steam to escape so pastry stays crisp and makes clean slicing effortless after baking."}],"imageQuery":"spanakopita greek spinach feta pie phyllo crispy","imageUrl":"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"greek-horiatiki-salad","name":"Traditional Greek Village Salad (Horiatiki)","nativeName":"Χωριάτικη Σαλάτα με Φέτα και Ελιές Καλαμών","category":"Σαλάτες (Salads)","prepTime":15,"cookTime":0,"yieldServings":4,"calories":260,"difficulty":"Easy","rating":5,"reviewsCount":1890,"intro":"Sun-warmed ripe vine tomatoes, crisp Persian cucumbers, sliced red onions, Kalamata olives, and a whole thick slab of authentic Greek sheep’s milk feta, showered in wild Greek oregano and extra-virgin olive oil.","ingredients":["4 large ripe sweet vine tomatoes, cut into rustic wedges","2 crisp cucumbers, partially peeled and sliced into thick half-moons","1 small red onion, sliced into thin rings","1 green bell pepper, deseeded and sliced into rings","100 g authentic Greek Kalamata olives (with pits for best flavor)","200 g single block Greek sheep’s milk Feta cheese","4 tbsp premium Greek extra-virgin olive oil, 1 tbsp red wine vinegar, 1 tbsp wild dried Greek oregano, flaky sea salt"],"instructions":["In a wide, shallow serving bowl, toss together tomato wedges, sliced cucumbers, green peppers, and red onion rings.","Add Kalamata olives and sprinkle with a pinch of flaky sea salt and red wine vinegar.","Drizzle with half of the extra-virgin olive oil and gently combine.","Place the whole intact block of feta cheese directly on top of the salad.","Drizzle remaining olive oil over the feta cheese block.","Shower the entire dish generously with fragrant dried Greek oregano.","Serve at room temperature with plenty of crusty rustic bread to dip in the seasoned juices (papara)."],"tips":{"title":"No Lettuce Ever","description":"Authentic Greek Horiatiki contains zero lettuce; it is pure vine vegetables, feta, olives, and olive oil."},"variations":{"title":"Dakos Cretan Salad","description":"Served over soaked barley rusks (paximadia) with grated tomato and mizithra cheese."},"faqs":[{"question":"What is Papara?","answer":"The sacred Greek ritual of dipping crusty bread into the olive oil and tomato juices at the bottom of the salad bowl."}],"imageQuery":"greek horiatiki salad block feta kalamata olives tomatoes","imageUrl":"https://images.unsplash.com/photo-1592417817098-8f3d69109853?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"greek-pastitsio","name":"Greek Pastitsio (Baked Pasta Pie)","nativeName":"Παστίτσιο με Κιμά και Αφράτη Μπεσαμέλ","category":"Κυρίως Πιάτα (Mains)","prepTime":35,"cookTime":50,"yieldServings":8,"calories":610,"difficulty":"Medium","rating":5,"reviewsCount":1750,"intro":"Greek comfort royalty: tubular bucatini pasta tossed with cheese and egg, topped with a deeply spiced cinnamon-tomato beef ragù, covered with a lofty layer of golden béchamel custard.","ingredients":["400 g Greek Pastitsio tubular pasta No. 2 (or long Bucatini/Ziti)","2 egg whites & 100 g grated Kefalotyri/Parmesan cheese (tossed with pasta)","Meat Ragù: 700 g ground beef, 1 onion, 2 cloves garlic, 400 g tomato passata, 1 cinnamon stick, 1/2 tsp ground clove, 1/2 tsp allspice, 80 ml white wine, olive oil","Fluffy Béchamel: 100 g butter, 100 g flour, 1 L whole milk, 2 egg yolks, 1/4 tsp nutmeg, 100 g grated cheese"],"instructions":["Boil pasta in salted water until al dente; drain and toss with beaten egg whites and grated cheese to bind.","Brown ground beef with onion and garlic; add wine, tomato passata, cinnamon stick, cloves, and allspice. Simmer 25 mins until thick.","Whisk butter, flour, and warm milk into a silky béchamel; remove from heat and whisk in egg yolks, nutmeg, and cheese.","Arrange half the pasta neatly aligned in bottom of a buttered 25x35cm pan.","Spread spiced beef ragù evenly over pasta.","Layer remaining pasta on top, then pour thick béchamel over the entire surface.","Sprinkle with extra grated cheese; bake at 180°C (350°F) for 45-50 minutes until golden brown on top.","Rest 30 minutes before cutting into neat structural blocks."],"tips":{"title":"Aligned Tubular Pasta","description":"Tossing pasta with egg white creates the iconic architectural cross-section when sliced."},"variations":{"title":"Pastitsio Hortofagiko","description":"Made with brown lentils and portobello mushrooms."},"faqs":[{"question":"What is Pastitsio Pasta No. 2?","answer":"Extra-long thick hollow macaroni designed specifically to hold meat sauce."}],"imageQuery":"pastitsio greek baked pasta bechamel ground beef ziti","imageUrl":"https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"kleftiko-lamb","name":"Slow-Roasted Lamb Kleftiko","nativeName":"Αρνί Κλέφτικο στη Λαδόκολλα","category":"Κυρίως Πιάτα (Mains)","prepTime":25,"cookTime":210,"yieldServings":6,"calories":640,"difficulty":"Medium","rating":5,"reviewsCount":1240,"intro":"Parchment-baked bandit’s lamb: succulent bone-in lamb shanks or shoulder slow-braised inside sealed parchment packets with baby potatoes, sweet peppers, garlic cloves, oregano, lemon, and chunks of Kefalotyri cheese.","ingredients":["1.5 kg bone-in lamb shanks or cubed lamb shoulder","600 g baby potatoes (halved), 1 red bell pepper & 1 green bell pepper (sliced)","1 whole head of garlic (cloves peeled), 150 g cubed Kefalotyri or Kasseri cheese","Marinade: 80 ml Greek olive oil, juice of 2 lemons, 2 tbsp wild Greek oregano, 1 tsp dried thyme, 1 tbsp sea salt, 1 tsp black pepper","Large sheets of parchment paper & kitchen twine"],"instructions":["Toss lamb, potatoes, peppers, whole garlic cloves, and cheese cubes in the lemon-oregano olive oil marinade.","Lay overlapping large sheets of parchment paper in a roasting pan.","Place marinated lamb, vegetables, and all flavorful juices in the center.","Fold parchment paper into a tight sealed pouch (or parcel); tie securely with kitchen twine to trap all steam.","Bake at 160°C (320°F) for 3 hours until lamb is meltingly tender and potatoes are infused with lamb juices.","Open parchment parcel at the top, increase heat to 200°C (400°F), and roast 15 minutes to brown the meat and crisp edges."],"tips":{"title":"Sealed Parchment","description":"Sealing the parchment packet traps all steam, allowing lamb collagen to baste the potatoes in pure aroma."},"variations":{"title":"Kleftiko Moschari","description":"Made with beef chuck or short ribs."},"faqs":[{"question":"Why is it called Kleftiko?","answer":"Named after the Klephts (Greek mountain bandits) who baked stolen livestock in hidden underground earth pits to prevent smoke from giving away their location."}],"imageQuery":"lamb kleftiko parchment paper baked potatoes oregano lemon greek","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"greek-lemon-potatoes","name":"Greek Lemon Potatoes (Patates Lemonates)","nativeName":"Πατάτες Φούρνου Λεμονάτες με Ρίγανη","category":"Ορεκτικά & Street Food","prepTime":15,"cookTime":60,"yieldServings":6,"calories":220,"difficulty":"Easy","rating":5,"reviewsCount":1850,"intro":"Potato wedges roasted in a rich bath of lemon juice, chicken broth, garlic, and Greek olive oil until tender and creamy inside with crisp golden roasted edges.","ingredients":["1.2 kg Russet or Yukon Gold potatoes, peeled and cut into thick wedges","120 ml Greek extra-virgin olive oil, 100 ml freshly squeezed lemon juice","300 ml chicken or vegetable broth, 5 cloves garlic (minced)","2 tbsp wild Greek oregano (rigani), 1 tsp semolina flour (for crispiness), 1 tsp sea salt, 1/2 tsp black pepper"],"instructions":["Toss potato wedges with semolina flour, salt, pepper, and oregano.","Arrange potatoes in a single layer in a large metal roasting pan.","Whisk together olive oil, fresh lemon juice, minced garlic, and warm broth; pour around the potatoes.","Roast at 200°C (400°F) for 45 minutes without turning.","Flip wedges gently and roast another 15-20 minutes until broth has evaporated into a concentrated glaze and potatoes are deeply caramelized and crispy on edges.","Sprinkle with extra wild oregano before serving."],"tips":{"title":"Semolina Dusting","description":"A light dusting of fine semolina flour gives the lemon potatoes extra crunchy roasted ridges."},"variations":{"title":"Lemon Potatoes with Lamb Drippings","description":"Roasted directly beneath a rack of roasting lamb."},"faqs":[{"question":"Why metal pan instead of glass?","answer":"Metal conducts intense heat faster, creating better browning on the potato edges."}],"imageQuery":"greek lemon potatoes roasted wedges oregano olive oil","imageUrl":"https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"saganaki-cheese","name":"Flaming Saganaki Cheese","nativeName":"Σαγανάκι Τυρί με Ούζο και Λεμόνι","category":"Ορεκτικά & Street Food","prepTime":5,"cookTime":5,"yieldServings":4,"calories":310,"difficulty":"Easy","rating":5,"reviewsCount":2400,"intro":"Thick block of salty, firm Greek sheep’s milk cheese dredged in flour and pan-seared in olive oil until crusty outside and molten inside, flambéed with Ouzo and extinguished with fresh lemon juice (Opa!).","ingredients":["250 g block of authentic Kefalograviera, Graviera, or Kasseri cheese (1.5cm thick)","Cold water (for dipping) & 4 tbsp all-purpose flour for dredging","3 tbsp Greek extra-virgin olive oil for shallow frying","30 ml Greek Ouzo or Metaxa brandy (optional for flambé)","1 fresh lemon, halved"],"instructions":["Dip the block of cheese briefly in cold water, then dredge thoroughly in flour, patting off excess.","Heat olive oil in a small heavy skillet (saganaki pan) over high heat until shimmering.","Add dredged cheese block; fry for 2 minutes per side until deep golden brown and bubbling with a crisp crust.","Pour Ouzo into pan and ignite safely with a long lighter (shout \"Opa!\").","Immediately squeeze fresh lemon juice over the flaming cheese to extinguish flame and create a sizzling lemon emulsion.","Serve piping hot directly in the pan with warm pita bread."],"tips":{"title":"Dip in Cold Water","description":"Dipping cheese in water first helps the flour adhere into a protective crust that keeps cheese molten without melting away in the pan."},"variations":{"title":"Saganaki with Sesame & Honey","description":"Feta wrapped in phyllo, fried, and drizzled with thyme honey and sesame seeds."},"faqs":[{"question":"What is a Saganaki?","answer":"Named after the \"sagani,\" a small traditional two-handled heavy frying pan."}],"imageQuery":"flaming saganaki cheese fried greek lemon ouzo","imageUrl":"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"greek-tzatziki","name":"Authentic Greek Tzatziki","nativeName":"Αυθεντικό Τζατζίκι με Στραγγιστό Γιαούρτι","category":"Ορεκτικά & Street Food","prepTime":15,"cookTime":0,"yieldServings":6,"calories":130,"difficulty":"Easy","rating":5,"reviewsCount":2900,"intro":"Thick, creamy strained Greek yogurt blended with grated cucumber squeezed bone-dry, pungent crushed garlic, Greek extra-virgin olive oil, red wine vinegar, and fresh dill.","ingredients":["500 g authentic full-fat (10%) strained Greek yogurt (Straggisto)","1 large English cucumber, coarsely grated with peel","3-4 cloves fresh garlic, finely grated or crushed into paste","3 tbsp Greek extra-virgin olive oil, 1 tbsp red wine vinegar","2 tbsp fresh dill (finely chopped), 1 tsp fine sea salt & 1 Kalamata olive for garnish"],"instructions":["Grate cucumber onto a clean kitchen towel; sprinkle with 1/2 tsp salt, let sit 5 mins, then twist towel tightly and squeeze until not a single drop of liquid remains.","In a mixing bowl, combine strained Greek yogurt, dry grated cucumber, crushed garlic paste, olive oil, red wine vinegar, and chopped fresh dill.","Season with salt and white pepper; mix thoroughly with a spoon.","Cover and refrigerate for at least 2 hours to allow garlic and dill to infuse into the yogurt.","Drizzle with olive oil, crown with a Kalamata olive, and serve with warm grilled pita."],"tips":{"title":"Dry Cucumber is Key","description":"Excess cucumber juice will water down yogurt and ruin the thick velvety consistency."},"variations":{"title":"Tzatziki with Mint","description":"Popular in Cyprus, made with finely chopped fresh spearmint."},"faqs":[{"question":"Why authentic Greek strained yogurt?","answer":"Traditional Greek yogurt is triple-strained to remove whey, giving it rich body and high protein naturally."}],"imageQuery":"greek tzatziki dip cucumber garlic olive oil pita","imageUrl":"https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"greek-baklava","name":"Honey & Walnut Greek Baklava","nativeName":"Παραδοσιακός Μπακλαβάς με Μέλι και Καρύδια","category":"Γλυκά (Desserts)","prepTime":40,"cookTime":50,"yieldServings":24,"calories":320,"difficulty":"Medium","rating":5,"reviewsCount":2250,"intro":"Crispy layers of buttered paper-thin phyllo pastry stuffed with spiced chopped walnuts and cinnamon, baked golden and drenched in cold thyme honey-lemon syrup with cloves.","ingredients":["1 pack (500 g) phyllo pastry sheets (thawed)","250 g clarified butter (ghee) or melted European butter","Nut Filling: 400 g raw walnuts (finely chopped), 1 tbsp ground Ceylon cinnamon, 1/2 tsp ground cloves, 2 tbsp sugar","Honey Syrup: 300 g sugar, 250 ml water, 150 g Greek thyme honey, 1 strip lemon peel, 1 cinnamon stick, 1 tsp lemon juice"],"instructions":["Simmer sugar, water, honey, cinnamon stick, and lemon peel for 10 minutes; stir in lemon juice and cool completely in fridge.","Mix chopped walnuts, cinnamon, cloves, and sugar.","Butter a 25x35cm baking pan; layer 10 sheets of phyllo, brushing each sheet with melted butter.","Scatter a layer of spiced walnut mixture over pastry.","Layer 4 buttered phyllo sheets, followed by another layer of walnuts; repeat until nuts are used.","Top with 10 final buttered phyllo sheets.","Using a razor-sharp knife, cut diagonal diamond patterns through top layers.","Bake at 160°C (320°F) for 50 minutes until deep golden-brown and crisp throughout.","Immediately pour chilled cold honey syrup over the sizzling hot baked baklava (hear it sizzle!).","Let sit uncovered for at least 6 hours to absorb all syrup before serving."],"tips":{"title":"Hot Pastry + Cold Syrup","description":"Pouring ice-cold syrup over piping-hot baked pastry guarantees that the phyllo stays shatteringly crisp."},"variations":{"title":"Pistachio Baklava","description":"Made with vibrant green Aegina pistachios."},"faqs":[{"question":"How long does Baklava keep?","answer":"Stored at room temperature, it stays fresh and crispy for over 2 weeks without refrigeration."}],"imageQuery":"greek baklava diamond pastry honey walnuts phyllo","imageUrl":"https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"galaktoboureko","name":"Greek Galaktoboureko","nativeName":"Γαλακτομπούρεκο με Τραγανό Φύλλο και Σιρόπι","category":"Γλυκά (Desserts)","prepTime":30,"cookTime":45,"yieldServings":12,"calories":360,"difficulty":"Medium","rating":5,"reviewsCount":1680,"intro":"Warm semolina custard scented with vanilla and orange zest, baked inside golden buttered phyllo pastry sheets and soaked in cold citrus-infused syrup.","ingredients":["1 pack (500 g) phyllo pastry sheets & 200 g melted butter","Semolina Custard: 1 L whole milk, 150 g fine semolina flour, 200 g sugar, 4 large eggs, 50 g butter, 1 tsp vanilla extract, zest of 1 orange","Citrus Syrup: 350 g sugar, 250 ml water, 1 tbsp lemon juice, 1 cinnamon stick, 1 strip orange peel"],"instructions":["Boil syrup ingredients 8 minutes; cool completely.","For Custard: Heat milk with half the sugar until steaming. In a bowl, whisk eggs with remaining sugar, then whisk in fine semolina.","Slowly temper hot milk into eggs, return to saucepan, and cook over medium heat stirring constantly until thick like pudding.","Off heat, stir in butter, vanilla, and orange zest.","Butter a baking dish; layer 6 sheets of buttered phyllo extending up the sides.","Pour warm semolina custard into pan; fold overhanging phyllo over custard.","Top with 6 more buttered phyllo sheets; tuck edges and score top into rectangles.","Bake at 175°C (350°F) for 45 minutes until golden and puffed.","Pour cold syrup over hot pastry; cool 30 minutes before serving warm."],"tips":{"title":"Fine Semolina","description":"Use fine semolina (not coarse) for a velvety custard without graininess."},"variations":{"title":"Galaktoboureko Rolls","description":"Rolled into individual cigar-shaped pastries."},"faqs":[{"question":"What does Galaktoboureko mean?","answer":"From Greek \"gala\" (milk) and Turkish \"börek\" (filled pastry)."}],"imageQuery":"galaktoboureko greek semolina custard pie phyllo syrup","imageUrl":"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"greek-dolmades","name":"Stuffed Grape Leaves (Dolmades)","nativeName":"Ντολμαδάκια Γιαλαντζί με Άνηθο και Λεμόνι","category":"Ορεκτικά & Street Food","prepTime":40,"cookTime":45,"yieldServings":30,"calories":45,"difficulty":"Medium","rating":4.9,"reviewsCount":1120,"intro":"Tender tender grape vine leaves rolled into delicate cylinders stuffed with short-grain rice, fresh mint, dill, parsley, and pine nuts, braised gently in olive oil and lemon broth.","ingredients":["1 jar (400 g) brined grape vine leaves (rinsed in warm water)","Filling: 250 g Greek Carolina or Arborio short-grain rice (rinsed), 2 onions (finely minced), 1/2 cup fresh dill (chopped), 1/2 cup fresh mint (chopped), 1/2 cup fresh parsley, 50 g pine nuts, 100 ml Greek olive oil","Cooking Broth: 400 ml vegetable broth, juice of 2 lemons, 80 ml olive oil, lemon slices"],"instructions":["Sauté minced onions in olive oil until soft; stir in rice, pine nuts, chopped herbs, salt, and pepper (uncooked rice).","Lay a grape leaf flat, vein-side up, stem removed.","Place 1 tbsp filling near the stem base; fold sides inward and roll tightly into a neat small cigar.","Line bottom of a heavy pot with torn grape leaves (to prevent sticking); pack rolled dolmades tightly in concentric circles.","Pour olive oil, lemon juice, and hot broth over dolmades.","Place an inverted heavy ceramic plate directly on top of dolmades to weigh them down while simmering.","Cover pot, simmer on low heat for 45 minutes until rice is tender and broth is absorbed.","Cool in pot and serve at room temperature with tzatziki."],"tips":{"title":"Inverted Plate","description":"Placing a plate on the dolmades prevents them from unraveling during simmering."},"variations":{"title":"Dolmades me Kima","description":"Stuffed with ground beef and topped with warm avgolemono egg-lemon sauce."},"faqs":[{"question":"What does \"Yialantzi\" mean?","answer":"From Turkish \"yalancı\" (fake/imposter), meaning vegetarian dolma with no meat."}],"imageQuery":"greek dolmades stuffed grape leaves lemon dill rice","imageUrl":"https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"greek-keftedes","name":"Crispy Greek Meatballs (Keftedes)","nativeName":"Κεφτεδάκια Τραγανά με Δυόσμο και Ρίγανη","category":"Ορεκτικά & Street Food","prepTime":20,"cookTime":15,"yieldServings":6,"calories":340,"difficulty":"Easy","rating":4.9,"reviewsCount":1560,"intro":"Crisp-crusted, juicy Greek meatballs packed with fresh spearmint, oregano, grated onion, garlic, and a splash of Ouzo, rolled in flour and pan-fried in olive oil.","ingredients":["600 g ground beef & pork mix","2 slices stale rustic bread (soaked in milk and squeezed dry)","1 large onion (grated, juices included), 2 cloves minced garlic","1/2 cup fresh spearmint (finely chopped), 1 tbsp wild Greek oregano, 1 egg, 2 tbsp Ouzo or red wine vinegar","Flour for dredging & Greek olive oil for shallow frying, lemon wedges"],"instructions":["In a bowl, knead ground meat with soaked bread, grated onion, garlic, chopped mint, oregano, egg, Ouzo, salt, and pepper for 3 minutes until fluffy.","Refrigerate mixture for 30 minutes to firm.","Shape into walnut-sized balls; dredge lightly in flour, shaking off excess.","Heat 1cm olive oil in skillet over medium-high heat.","Fry meatballs in batches for 6-8 minutes, turning frequently until deep golden-brown and crispy outside while juicy inside.","Drain on paper towels, squeeze fresh lemon juice over top, and serve with tzatziki."],"tips":{"title":"Fresh Spearmint & Ouzo","description":"Mint gives keftedes their signature aromatic freshness; Ouzo alcohol tenderizes meat fibers."},"variations":{"title":"Keftedes Smyrneika (Soutzoukakia)","description":"Oblong meatballs with cumin simmered in rich cinnamon tomato sauce."},"faqs":[{"question":"Why use soaked bread?","answer":"Bread locks in moisture during high-heat frying so meatballs stay fluffy instead of dense."}],"imageQuery":"greek keftedes meatballs crispy mint lemon tzatziki","imageUrl":"https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"greek-youvetsi","name":"Claypot Lamb Youvetsi with Orzo","nativeName":"Γιουβέτσι με Μοσχάρι ή Αρνί και Κριθαράκι","category":"Κυρίως Πιάτα (Mains)","prepTime":20,"cookTime":90,"yieldServings":6,"calories":560,"difficulty":"Medium","rating":5,"reviewsCount":1390,"intro":"Tender beef or lamb chunks braised in a spiced red wine and tomato sauce, baked in a traditional clay dish with toasted Greek orzo (kritharaki) until pasta absorbs every drop of savory broth, topped with grated Mizithra.","ingredients":["1 kg beef chuck roast or bone-in lamb pieces, cut into chunks","400 g Greek orzo pasta (kritharaki)","Sauce: 1 onion, 3 cloves garlic, 1 tin (400 g) crushed tomatoes, 1 tbsp tomato paste, 150 ml red wine, 1 cinnamon stick, 3 allspice berries, 1 L beef broth","100 g grated aged Mizithra or Kefalotyri cheese, olive oil, salt and pepper"],"instructions":["Brown meat chunks in olive oil in a Dutch oven; add onion, garlic, tomato paste, and wine to deglaze.","Add crushed tomatoes, cinnamon stick, allspice, and broth; simmer for 60 minutes until meat is tender.","Transfer meat and hot sauce to a large clay baking dish (gastra).","Stir in raw orzo pasta; make sure orzo is submerged in the simmering broth.","Bake uncovered at 180°C (350°F) for 25 minutes, stirring once halfway through, until orzo is al dente and broth is absorbed into a juicy sauce.","Scatter grated Mizithra cheese over top and rest 10 minutes before serving."],"tips":{"title":"Stir Halfway","description":"Stirring orzo halfway through baking prevents it from sticking to the bottom of the clay baker."},"variations":{"title":"Youvetsi Garides","description":"Seafood version baked with jumbo shrimp and feta."},"faqs":[{"question":"What is a Youvetsi/Gastran?","answer":"Traditional unglazed earthenware covered pot used for slow-roasting Greek Sunday stews."}],"imageQuery":"greek youvetsi braised lamb orzo pasta tomato cinnamon","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"greek-fasolada","name":"National Greek Bean Soup (Fasolada)","nativeName":"Παραδοσιακή Φασολάδα με Σέλινο και Καρότα","category":"Σούπες (Soups)","prepTime":15,"cookTime":75,"yieldServings":6,"calories":310,"difficulty":"Easy","rating":4.9,"reviewsCount":980,"intro":"Greece’s recognized national comfort dish: white navy beans slow-simmered with carrots, celery, sweet onions, and ripe tomatoes in a generous sea of Greek extra-virgin olive oil.","ingredients":["400 g dry white medium navy beans (fasolia), soaked overnight in water","2 large carrots (sliced), 3 stalks celery with leaves (chopped), 1 large onion (diced)","2 cloves garlic, 1 tin (400 g) crushed tomatoes, 1 tbsp tomato paste","150 ml Greek extra-virgin olive oil, 1 pinch red chili flakes (boukovo), 1 bay leaf, sea salt"],"instructions":["Drain soaked beans; place in soup pot covered with fresh cold water, bring to boil for 5 mins, drain and discard water.","Return beans to pot with 1.5 L fresh water, onion, carrots, celery, bay leaf, and garlic.","Simmer gently for 45 minutes until beans are soft.","Add crushed tomatoes, tomato paste, chili flakes, and half of the olive oil; simmer for 25 minutes until broth is thick and rich.","Season with salt; pour in remaining raw extra-virgin olive oil in the last 5 minutes to create a creamy emulsion.","Serve warm in deep bowls with Kalamata olives, feta cheese, and crusty sourdough bread."],"tips":{"title":"Olive Oil at the End","description":"Adding unheated extra-virgin olive oil in the final minutes creates a rich, cloudy, fragrant emulsion."},"variations":{"title":"Fasolada Aspri (White)","description":"Without tomatoes, finished with fresh lemon juice."},"faqs":[{"question":"Why is Fasolada the national dish?","answer":"Rooted in ancient Athenian festivals to Apollo (Pyanepsia), beans have nourished Greeks for millennia."}],"imageQuery":"greek fasolada white bean soup carrots celery olive oil","imageUrl":"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"greek-gemista","name":"Greek Gemista (Stuffed Vegetables)","nativeName":"Γεμιστά με Ρύζι και Μυρωδικά στο Φούρνο","category":"Κυρίως Πιάτα (Mains)","prepTime":30,"cookTime":60,"yieldServings":6,"calories":380,"difficulty":"Medium","rating":5,"reviewsCount":1420,"intro":"Sweet red bell peppers and large vine tomatoes stuffed with fragrant rice, zucchini, mint, dill, parsley, and pine nuts, baked in olive oil with golden potato wedges.","ingredients":["4 large firm beefsteak tomatoes & 4 large sweet bell peppers (tops sliced off and kept as lids)","Tomato pulp scooped from tomatoes (finely chopped)","Filling: 250 g Greek Carolina or Arborio rice, 1 grated zucchini, 1 grated onion, 2 cloves garlic, 1/2 cup fresh mint (chopped), 1/2 cup fresh parsley, 1/3 cup fresh dill, 50 g pine nuts","3 large potatoes cut into wedges (placed between vegetables in the pan)","150 ml Greek extra-virgin olive oil, 100 ml water, breadcrumbs for topping"],"instructions":["Hollow out tomatoes and peppers, reserving tomato pulp and tops (lids).","In a bowl, mix rice, chopped tomato pulp, grated zucchini, onion, garlic, herbs, pine nuts, salt, pepper, and 80ml olive oil.","Fill hollow vegetables 3/4 full with rice mixture (rice expands when cooking).","Cover each vegetable with its matching top lid.","Arrange stuffed vegetables in a roasting pan; pack potato wedges in empty spaces between vegetables.","Pour water and remaining olive oil into pan; dust vegetable lids and potatoes with breadcrumbs.","Bake at 180°C (350°F) for 60-70 minutes until vegetables are caramelized and rice is tender and fragrant."],"tips":{"title":"Leave Expansion Room","description":"Do not pack rice tightly into the vegetable shells; leaving 1/4 headspace allows grains to expand fluffily."},"variations":{"title":"Gemista me Kima","description":"Include seasoned ground beef or lamb in the rice filling."},"faqs":[{"question":"Are Gemista better the next day?","answer":"Yes! Eaten at room temperature the next day, the herbal rice flavors deepen remarkably."}],"imageQuery":"greek gemista stuffed tomatoes peppers rice potatoes","imageUrl":"https://images.unsplash.com/photo-1592417817098-8f3d69109853?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"garides-saganaki","name":"Shrimp Saganaki with Feta & Ouzo","nativeName":"Γαρίδες Σαγανάκι με Φέτα και Ούζο","category":"Mariscos & Pescados","prepTime":15,"cookTime":15,"yieldServings":4,"calories":280,"difficulty":"Easy","rating":5,"reviewsCount":1650,"intro":"Jumbo prawns pan-seared and flambéed with Ouzo, simmered in a spicy garlic and herb tomato sauce, topped with chunks of creamy feta that melt under a hot broiler.","ingredients":["500 g jumbo raw shrimp/prawns, peeled and deveined (tails left on)","150 g authentic Greek Feta cheese, roughly crumbled","Sauce: 400 g crushed ripe tomatoes, 1 onion (finely diced), 3 cloves garlic, 1 green pepper (sliced), 1 pinch chili flakes (boukovo), 1 tsp dried oregano","50 ml Greek Ouzo, 60 ml Greek olive oil, fresh flat-leaf parsley for garnish"],"instructions":["In a wide oven-safe skillet or saganaki pan, sear prawns in olive oil over high heat for 1 minute per side.","Pour in Ouzo and flambé; remove prawns to a plate.","In same pan, sauté diced onion, green pepper, and garlic until soft.","Add crushed tomatoes, oregano, chili flakes, salt, and pepper; simmer 8 minutes until thickened.","Nestle seared prawns back into the bubbling sauce.","Scatter generous chunks of crumbled feta cheese across the top.","Broil in oven at 220°C (425°F) for 5 minutes until feta begins to soften and lightly brown in spots.","Garnish with chopped parsley and serve bubbling with crusty bread."],"tips":{"title":"Flambé with Ouzo","description":"Ouzo imparts anise sweetness that pairs heavenly with sweet prawns and briny feta."},"variations":{"title":"Mydia Saganaki","description":"Prepared with fresh Mediterranean black mussels."},"faqs":[{"question":"Why broil the feta?","answer":"High heat softens the sheep’s milk cheese so it creates creamy pockets throughout the spicy tomato sauce."}],"imageQuery":"garides saganaki greek shrimp tomato feta ouzo bubbling","imageUrl":"https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"greek-loukoumades","name":"Greek Honey Donuts (Loukoumades)","nativeName":"Λουκουμάδες με Μέλι, Κανέλα και Καρύδια","category":"Γλυκά (Desserts)","prepTime":20,"cookTime":15,"yieldServings":6,"calories":290,"difficulty":"Easy","rating":5,"reviewsCount":1980,"intro":"Golden fried yeast dough puffs that are crispy outside and pillowy-hollow inside, drenched in warm Greek thyme honey, dusted with cinnamon, and sprinkled with crushed walnuts.","ingredients":["Dough: 250 g all-purpose flour, 1 tsp instant dry yeast, 1 tsp sugar, 1/2 tsp salt, 250 ml warm water, 50 ml warm milk","Oil for deep frying (sunflower or mild olive oil)","Topping: 150 g Greek thyme honey (warmed with 2 tbsp water), 1 tbsp ground Ceylon cinnamon, 50 g finely chopped walnuts"],"instructions":["Whisk flour, yeast, sugar, salt, warm water, and milk in a bowl into a sticky, elastic batter. Cover and rise in warm place for 45 minutes until bubbly.","Heat oil in deep pot to 180°C (350°F).","Squeeze dough in your fist so a small ball pops out between your thumb and forefinger; scoop off with an oiled spoon directly into hot oil.","Fry donut puffs in batches for 3-4 minutes, turning with a slotted spoon until golden brown and crisp all over.","Drain on paper towels for 1 minute.","Transfer to a serving platter, pour warm honey generously over all puffs, dust with cinnamon, and scatter with chopped walnuts. Serve hot!"],"tips":{"title":"The Fist Squeeze","description":"Squeezing the dough through your fist creates uniform, perfectly round puffs that expand instantly in hot oil."},"variations":{"title":"Loukoumades with Nutella","description":"Stuffed or drizzled with warm chocolate hazelnut cream."},"faqs":[{"question":"Are Loukoumades the oldest dessert?","answer":"Aristotle recorded honey puffs being served as \"honey tokens\" to Olympic champions in ancient Greece (776 BC)."}],"imageQuery":"loukoumades greek honey balls donuts cinnamon walnuts","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"melitzanosalata","name":"Smoky Greek Eggplant Dip","nativeName":"Μελιστανοσαλάτα Αγιορείτικη Καπνιστή","category":"Ορεκτικά & Street Food","prepTime":15,"cookTime":35,"yieldServings":4,"calories":160,"difficulty":"Easy","rating":4.9,"reviewsCount":1150,"intro":"Whole eggplants charred over open fire until smoky and collapsed, whipped with garlic, lemon juice, Greek extra-virgin olive oil, fresh parsley, and walnuts into a rustic dip.","ingredients":["3 large globe eggplants (melitzanes)","2 cloves garlic, finely grated","60 ml Greek extra-virgin olive oil, 2 tbsp freshly squeezed lemon juice or red wine vinegar","3 tbsp fresh flat-leaf parsley (finely chopped), 30 g finely chopped walnuts (optional)","Coarse sea salt & Kalamata olive for garnish"],"instructions":["Prick eggplants with a fork; char whole unpeeled eggplants over open gas flame or hot grill for 25 minutes, turning until skin is completely blackened and flesh is soft and collapsed.","Transfer eggplants to a colander and slice open; let drain excess bitter juices for 15 minutes.","Scoop smoky flesh out with a spoon, leaving behind burnt skin.","Coarsely chop flesh on a board with a knife (do not puree in a food processor; keep rustic texture).","Fold in grated garlic, lemon juice, salt, and parsley, gradually emulsifying with extra-virgin olive oil.","Chill for 1 hour; garnish with olive oil, walnuts, and serve with warm pita."],"tips":{"title":"Char Over Flame","description":"Charring directly on an open gas burner imparts the unforgettable woodsmoke aroma essential to authentic melitzanosalata."},"variations":{"title":"Melitzanosalata with Feta","description":"Fold in 100g of crumbled feta cheese."},"faqs":[{"question":"Why avoid a food processor?","answer":"Machine blades turn eggplant gray and gummy; hand-chopping keeps the dip creamy and pale with distinct smoky fibers."}],"imageQuery":"melitzanosalata greek eggplant dip smoky olive oil parsley","imageUrl":"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"greek-tiropita","name":"Authentic Greek Tiropita (Cheese Pie)","nativeName":"Τυρόπιτα με Τραγανό Φύλλο και Φέτα","category":"Πίτες (Pies)","prepTime":25,"cookTime":45,"yieldServings":8,"calories":360,"difficulty":"Medium","rating":5,"reviewsCount":1780,"intro":"Layers of crispy, buttery phyllo sheets filled with a creamy, tangy filling of authentic Greek Feta, Graviera, and ricotta cheese with a hint of nutmeg and eggs, baked until puffed and golden.","ingredients":["1 pack (500 g) phyllo pastry sheets (thawed)","Filling: 400 g Greek sheep’s milk Feta (crumbled), 150 g Greek Anthotyro or Ricotta, 100 g grated Graviera or Kefalotyri cheese","3 large eggs (beaten), 100 ml whole milk, 1/4 tsp ground nutmeg, ground white pepper","150 g melted butter mixed with 50 ml olive oil for brushing"],"instructions":["In a bowl, mix crumbled feta, ricotta, grated graviera, beaten eggs, milk, nutmeg, and pepper into a thick cheese cream.","Butter a 25x35cm baking dish; layer 8 sheets of phyllo, brushing each sheet with melted butter.","Pour cheese filling evenly over phyllo base.","Top with another 8 sheets of buttered phyllo, brushing each layer generously.","Score the top phyllo layers into squares with a sharp knife.","Bake at 180°C (350°F) for 45 minutes until top is deep golden, puffed, and crisp.","Rest 15 minutes before serving warm."],"tips":{"title":"Multi-Cheese Blend","description":"Blending sharp salty feta with sweet creamy ricotta and aged graviera creates the ultimate balanced cheese filling."},"variations":{"title":"Tiropita Kourou","description":"Individual crescent hand pies made with Greek yogurt shortcrust dough."},"faqs":[{"question":"What is Anthotyro?","answer":"A fresh, delicate whey cheese made from sheep and goat milk, similar to Italian ricotta."}],"imageQuery":"greek tiropita cheese pie phyllo crispy feta golden","imageUrl":"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"kolokithokeftedes","name":"Greek Zucchini Fritters (Kolokithokeftedes)","nativeName":"Κολοκυθοκεφτέδες Τραγανοί με Φέτα και Άνηθο","category":"Ορεκτικά & Street Food","prepTime":25,"cookTime":15,"yieldServings":4,"calories":220,"difficulty":"Easy","rating":4.9,"reviewsCount":1320,"intro":"Crispy-crusted, fluffy zucchini fritters packed with grated squash, crumbled feta, fresh dill, mint, and scallions, pan-fried in olive oil and served with cold tzatziki.","ingredients":["4 medium green zucchinis (coarsely grated)","150 g Greek Feta cheese, crumbled","3 scallions (finely sliced), 1/2 cup fresh dill (chopped), 1/3 cup fresh mint (chopped)","2 large eggs, 80 g all-purpose flour, 1 tsp baking powder, 1/2 tsp sea salt, black pepper","Greek olive oil for shallow frying & lemon wedges"],"instructions":["Toss grated zucchini with 1 tsp salt; let sit in colander 15 mins, then squeeze in a kitchen towel until dry.","In a bowl, mix dry zucchini, crumbled feta, scallions, dill, mint, eggs, flour, and baking powder into a thick batter.","Heat 1cm olive oil in skillet over medium-high heat.","Drop heaping tablespoons of batter into hot oil, flattening slightly with back of spoon.","Fry 3 minutes per side until deep golden brown and crispy.","Drain on paper towels and serve hot with fresh lemon and tzatziki."],"tips":{"title":"Extra Dry Zucchini","description":"Water is the enemy of crispy fritters; squeeze grated squash vigorously before mixing batter."},"variations":{"title":"Baked Kolokithokeftedes","description":"Scoop onto parchment paper and bake at 200°C (400°F) for 25 minutes."},"faqs":[{"question":"Where are these most famous?","answer":"In the Cycladic islands of Crete, Paros, and Santorini, celebrating abundant summer zucchini."}],"imageQuery":"kolokithokeftedes greek zucchini fritters feta mint dill","imageUrl":"https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"gigantes-plaki","name":"Greek Baked Giant Beans (Gigantes Plaki)","nativeName":"Γίγαντες Πλακί στο Φούρνο με Σάλτσα Ντομάτας","category":"Κυρίως Πιάτα (Mains)","prepTime":15,"cookTime":75,"yieldServings":6,"calories":320,"difficulty":"Easy","rating":5,"reviewsCount":1140,"intro":"Giant Greek butter beans baked in a rich herb-infused tomato sauce with sweet caramelized onions, garlic, celery, and generous extra-virgin olive oil until meltingly tender with crispy browned edges.","ingredients":["400 g dry Greek Gigantes beans (or large lima/butter beans), soaked overnight and boiled until just tender","Sauce: 2 large onions (sliced into rings), 4 cloves garlic, 1 tin (400 g) crushed tomatoes, 1 tbsp tomato paste, 2 carrots (sliced), 2 stalks celery (chopped), 1/2 cup fresh parsley (chopped), 1 tsp dried oregano, 1 pinch cinnamon","120 ml Greek extra-virgin olive oil, 150 ml vegetable broth, salt and pepper"],"instructions":["In a skillet, sauté sliced onions and garlic in olive oil for 10 minutes until golden and sweet.","Add tomato paste, crushed tomatoes, carrots, celery, oregano, cinnamon, broth, salt, and pepper; simmer 10 minutes.","In a large baking dish, combine boiled gigantes beans with the tomato-vegetable sauce and chopped parsley.","Drizzle extra olive oil generously over the top.","Bake uncovered at 180°C (350°F) for 50-60 minutes until beans are buttery, sauce is thick and caramelized, and top beans are slightly browned.","Serve warm or at room temperature with feta and crusty bread."],"tips":{"title":"Do Not Cover While Baking","description":"Baking uncovered allows the tomato sauce to caramelize and creates delicious crunchy edges on top beans."},"variations":{"title":"Gigantes me Loukaniko","description":"Baked with sliced Greek orange-leek country sausage."},"faqs":[{"question":"What are Gigantes Beans?","answer":"A giant white runner bean variety with Protected Geographical Indication grown in Prespes, Northern Greece."}],"imageQuery":"gigantes plaki greek baked giant beans tomato olive oil","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"greek-avgolemono-soup","name":"Classic Avgolemono Chicken Soup","nativeName":"Κοτόσουπα Αυγολέμονο Βελουτέ","category":"Σούπες (Soups)","prepTime":15,"cookTime":40,"yieldServings":6,"calories":280,"difficulty":"Medium","rating":5,"reviewsCount":1940,"intro":"Greece’s ultimate soothing penicillin: poached chicken and rice simmered in rich golden broth, thickened into a velvety, silky soup with the magic emulsified liaison of eggs and fresh lemon juice.","ingredients":["1.5 L rich homemade chicken stock","300 g cooked chicken breast or thigh, shredded","100 g short-grain rice (Carolina or Arborio)","Avgolemono Mixture: 3 large eggs (at room temperature), juice of 2 fresh lemons (approx. 80 ml)","Sea salt, cracked white pepper & fresh dill for garnish"],"instructions":["Bring chicken stock to a boil in a soup pot; add rice, reduce heat, cover, and simmer for 15-20 minutes until rice is tender.","Add shredded cooked chicken to heat through; remove pot from heat.","In a bowl, beat eggs with a whisk for 2 minutes until frothy; slowly whisk in fresh lemon juice.","Tempering (Crucial): Slowly ladle 2 cups of hot soup broth into the egg-lemon mixture in a thin stream while whisking continuously (this heats the eggs gently without curdling).","Pour the tempered egg-lemon mixture back into the soup pot, stirring constantly.","Return pot to very low heat for 1 minute, stirring until soup transforms into a thick, creamy, velvety texture (do NOT boil).","Ladle into bowls, season with freshly cracked black pepper, and garnish with fresh dill."],"tips":{"title":"Never Boil Avgolemono","description":"Boiling after adding the egg-lemon mixture will curdle the eggs. Keep heat gentle and stir constantly."},"variations":{"title":"Yuvarlakia Avgolemono","description":"Meatballs simmered in egg-lemon broth."},"faqs":[{"question":"What does Avgolemono mean?","answer":"A compound of \"avgo\" (egg) and \"lemono\" (lemon), the cornerstone emulsion of Greek cuisine."}],"imageQuery":"greek avgolemono soup chicken rice lemon egg creamy","imageUrl":"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"greek-beef-stifado","name":"Greek Beef & Pearl Onion Stifado","nativeName":"Μοσχαράκι Στιφάδο με Κοκκάρια","category":"Κυρίως Πιάτα (Mains)","prepTime":25,"cookTime":120,"yieldServings":6,"calories":540,"difficulty":"Medium","rating":5,"reviewsCount":1470,"intro":"Hearty Greek stew of tender beef chuck and sweet baby pearl onions braised in red wine, vinegar, ripe tomatoes, cinnamon stick, allspice berries, and cloves until rich and fragrant.","ingredients":["1 kg beef chuck roast, cut into large 4cm pieces","800 g whole small pearl onions (kokkaria), peeled","200 ml robust Greek red wine (Agiorgitiko) & 3 tbsp red wine vinegar","400 g crushed tomatoes, 2 tbsp tomato paste, 4 cloves garlic (minced)","1 cinnamon stick, 4 whole allspice berries, 3 whole cloves, 2 bay leaves, 80 ml Greek olive oil, salt and pepper"],"instructions":["Sear beef chunks in olive oil in Dutch oven until browned; remove and set aside.","In same pot, sauté whole peeled pearl onions gently for 8 minutes until lightly golden; remove.","Add tomato paste and garlic to pot; stir 1 min, then deglaze with red wine and red wine vinegar.","Return beef to pot with crushed tomatoes, cinnamon stick, allspice, cloves, bay leaves, salt, and pepper.","Cover and simmer on low heat for 75 minutes.","Add whole pearl onions to pot; simmer gently for another 40 minutes until beef is meltingly tender and onions are sweet and translucent.","Serve hot with crusty bread or mashed potatoes."],"tips":{"title":"Keep Onions Whole","description":"Cross-hatch the root of each pearl onion with a shallow knife cut so they cook evenly without falling apart."},"variations":{"title":"Kouneli Stifado","description":"The ancient island version prepared with farm rabbit."},"faqs":[{"question":"Where does the name come from?","answer":"Introduced by Venetians in the 13th century from Italian \"stufato\" (stewed in a pot)."}],"imageQuery":"greek beef stifado stew pearl onions cinnamon red wine","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"portokalopita","name":"Greek Orange Phyllo Cake (Portokalopita)","nativeName":"Πορτοκαλόπιτα Σιροπιαστή με Άρωμα Πορτοκαλιού","category":"Γλυκά (Desserts)","prepTime":20,"cookTime":40,"yieldServings":12,"calories":340,"difficulty":"Easy","rating":5,"reviewsCount":1820,"intro":"Sensational syrupy cake made from shredded dried phyllo pastry, Greek yogurt, orange zest, and vanilla, baked golden and soaked in a fragrant spiced orange syrup.","ingredients":["1 pack (500 g) phyllo pastry sheets (dried and shredded into small pieces)","Batter: 4 large eggs, 150 g sugar, 300 g Greek yogurt, 150 ml sunflower oil, zest of 2 organic oranges, 1 tsp vanilla, 1 tbsp baking powder","Orange Syrup: 350 g sugar, 250 ml fresh orange juice, 150 ml water, 1 cinnamon stick"],"instructions":["Boil syrup ingredients for 8 minutes; cool completely.","Dry phyllo sheets by tearing into small shreds and spreading on baking sheets at room temperature for 1 hour.","In a bowl, whisk eggs and sugar until frothy; beat in yogurt, oil, orange zest, vanilla, and baking powder.","Gradually fold dry shredded phyllo into batter in handfuls, making sure shreds do not clump together.","Pour batter into a buttered 25x35cm baking dish; smooth top.","Bake at 175°C (350°F) for 40 minutes until top is deep golden-brown and springy.","Immediately pour cold orange syrup over the sizzling hot cake.","Cool completely for 2 hours to absorb syrup before slicing into diamonds."],"tips":{"title":"Dry the Phyllo","description":"Drying and shredding phyllo creates airy pockets that absorb the yogurt custard and syrup like a sponge."},"variations":{"title":"Lemonopita","description":"Made with fresh lemon juice and zest."},"faqs":[{"question":"Is Portokalopita cake or pie?","answer":"It is a unique custard-soaked pastry cake with no flour other than phyllo dough."}],"imageQuery":"portokalopita greek orange cake phyllo syrup slice","imageUrl":"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"bougatsa","name":"Thessaloniki Sweet Bougatsa","nativeName":"Μπουγάτσα Θεσσαλονίκης με Κρέμα και Κανέλα","category":"Γλυκά (Desserts)","prepTime":25,"cookTime":35,"yieldServings":6,"calories":320,"difficulty":"Medium","rating":5,"reviewsCount":2100,"intro":"Northern Greece’s legendary breakfast: velvety semolina custard wrapped inside paper-thin crispy buttered phyllo envelopes, baked until golden, dusted with powdered sugar and cinnamon.","ingredients":["10 sheets phyllo pastry & 120 g melted butter","Custard: 500 ml whole milk, 80 g fine semolina flour, 100 g sugar, 2 eggs, 30 g butter, 1 tsp vanilla extract","Dusting: 3 tbsp powdered sugar & 1 tbsp ground Ceylon cinnamon"],"instructions":["Heat milk with sugar until steaming; whisk in fine semolina and cook stirring for 4 minutes until thick custard forms. Whisk in eggs, butter, and vanilla off heat.","Layer 5 buttered phyllo sheets in center of baking sheet.","Pour warm semolina custard into center; fold phyllo edges over custard like an envelope.","Wrap entire packet in 5 more buttered phyllo sheets, sealing seam underneath.","Bake at 190°C (375°F) for 30-35 minutes until puffed and crackling golden.","Cut into bite-sized squares and dust generously with powdered sugar and cinnamon while steaming hot."],"tips":{"title":"Eat While Hot","description":"Bougatsa is best enjoyed fresh from the oven when phyllo is crispy and custard is molten."},"variations":{"title":"Bougatsa me Kima","description":"Savory version stuffed with spiced minced meat."},"faqs":[{"question":"Where is Bougatsa famous?","answer":"Thessaloniki and Serres in Northern Greece are the historic capitals of artisan bougatsa makers."}],"imageQuery":"bougatsa greek phyllo custard powdered sugar cinnamon","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"taramasalata","name":"Authentic Greek Taramasalata","nativeName":"Ταραμοσαλάτα Αυθεντική με Λευκό Ταραμά","category":"Ορεκτικά & Street Food","prepTime":15,"cookTime":0,"yieldServings":6,"calories":190,"difficulty":"Easy","rating":4.9,"reviewsCount":890,"intro":"Silky, creamy Greek dip made from cured white carp or cod roe (tarama), soaked crustless bread, grated sweet onion, lemon juice, and Greek olive oil emulsified into pale perfection.","ingredients":["100 g authentic white cured fish roe (tarama lefkós)","150 g stale white crustless bread (soaked in water and squeezed dry)","1/2 small sweet onion (finely grated)","60 ml freshly squeezed lemon juice","150 ml mild Greek extra-virgin olive oil & 50 ml sparkling mineral water","Kalamata olive & flat-leaf parsley for garnish"],"instructions":["In a food processor, blend white tarama with grated onion and squeezed soaked bread until smooth.","With the motor running, alternate streaming in fresh lemon juice and olive oil in a steady thin stream until a pale, glossy, mayonnaise-like emulsion forms.","Pulse in a splash of sparkling water for extra lightness.","Cover and chill in refrigerator for 2 hours.","Garnish with olive oil, a Kalamata olive, and serve with warm crusty bread and olives."],"tips":{"title":"White Tarama vs Pink","description":"Authentic white tarama is uncolored and natural; bright pink tarama contains artificial food dye."},"variations":{"title":"Taramasalata with Potatoes","description":"Made with fluffy boiled potato instead of soaked bread."},"faqs":[{"question":"When is it eaten?","answer":"Essential dish on Clean Monday (Kathara Deftera) marking the start of Lent across Greece."}],"imageQuery":"taramasalata greek fish roe dip olive oil lemon bread","imageUrl":"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"revithada-sifnos","name":"Sifnos Claypot Chickpea Stew (Revithada)","nativeName":"Ρεβιθάδα Σιφνέικη στο Πήλινο","category":"Κυρίως Πιάτα (Mains)","prepTime":15,"cookTime":240,"yieldServings":6,"calories":340,"difficulty":"Easy","rating":5,"reviewsCount":850,"intro":"Cycladic island tradition: dried chickpeas slow-baked overnight in a sealed earthenware pot (skepastaria) with sweet onions, bay leaves, rainwater, and abundant extra-virgin olive oil until meltingly tender.","ingredients":["500 g dried chickpeas (revithia), soaked overnight with 1 tsp baking soda, then rinsed thoroughly","3 large sweet onions (finely sliced)","150 ml Greek extra-virgin olive oil, 3 bay leaves, 1 sprig fresh rosemary","1 L water or vegetable broth, juice of 1 lemon, sea salt and cracked black pepper"],"instructions":["Place rinsed soaked chickpeas into an earthenware clay pot (or heavy Dutch oven).","Add sliced onions, bay leaves, rosemary sprig, salt, and pepper.","Pour in olive oil and enough water to cover chickpeas by 2cm.","Cover pot with lid; seal seam with a simple flour-water paste ribbon to lock in all steam.","Bake in low oven at 140°C (285°F) for 4 hours (or overnight) until chickpeas melt like butter and onions melt into a golden velvet gravy.","Remove lid, stir in fresh lemon juice, and serve with crusty sourdough bread."],"tips":{"title":"Baking Soda Soak","description":"A pinch of baking soda in the overnight soak softens chickpea skins for unmatched creaminess."},"variations":{"title":"Revithada with Tomatoes","description":"Add sun-dried tomatoes and oregano."},"faqs":[{"question":"Why Sifnos?","answer":"The Aegean island of Sifnos is world-renowned for its clay pottery masters and slow wood-fired oven cooking."}],"imageQuery":"revithada sifnos greek chickpea stew claypot olive oil","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"lavraki-plaki","name":"Baked Sea Bass Plaki with Tomatoes & Herbs","nativeName":"Λαυράκι Πλακί στο Φούρνο με Ντομάτα και Σκόρδο","category":"Mariscos & Pescados","prepTime":20,"cookTime":30,"yieldServings":4,"calories":320,"difficulty":"Easy","rating":4.9,"reviewsCount":780,"intro":"Fresh Mediterranean sea bass baked over a bed of slow-cooked sliced tomatoes, sweet onions, garlic, white wine, and fresh flat-leaf parsley bathed in Greek olive oil.","ingredients":["2 whole Mediterranean sea bass (lavraki, cleaned and scaled) or 4 fillets","Bed: 3 ripe tomatoes (sliced into rounds), 2 onions (sliced into rings), 4 cloves garlic (minced)","1/2 cup fresh flat-leaf parsley (chopped), 100 ml dry white wine, 80 ml Greek olive oil","1 tsp dried Greek oregano, lemon slices, sea salt and pepper"],"instructions":["In a skillet, sauté sliced onions and garlic in olive oil for 8 minutes until soft; add white wine and simmer 3 mins.","Spread sautéed onions and fresh tomato slices across the bottom of a baking dish; season with salt, pepper, and parsley.","Score sea bass skin with shallow cuts; season inside and out with salt, pepper, and oregano.","Place fish on top of the tomato-onion bed; top with fresh lemon slices and drizzle with remaining olive oil.","Bake at 190°C (375°F) for 25-30 minutes until fish flakes easily with a fork and tomato bed is bubbling.","Serve hot with the aromatic roasted tomato pan juices spooned over the fish."],"tips":{"title":"What is Plaki?","description":"Plaki refers to traditional Greek oven-baking on a flat baking dish layered with aromatic olive oil vegetables."},"variations":{"title":"Tsipoura Plaki","description":"Made with whole Mediterranean Sea Bream (Tsipoura)."},"faqs":[{"question":"Can fillets be used?","answer":"Yes, reduce baking time to 18-20 minutes for delicate fish fillets."}],"imageQuery":"lavraki plaki baked sea bass tomato parsley greek","imageUrl":"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80","alsoLike":[]}];
+    let activeRecipeId = 'greek-moussaka';
+    let activeCategory = 'All';
+
+    function getCategories() {
+      const cats = { 'All': recipes.length };
+      recipes.forEach(r => {
+        cats[r.category] = (cats[r.category] || 0) + 1;
+      });
+      return cats;
+    }
+
+    function renderCategories() {
+      const container = document.getElementById('categoriesBar');
+      if (!container) return;
+      const cats = getCategories();
+      container.innerHTML = Object.keys(cats).map(cat => {
+        const isActive = cat === activeCategory;
+        return `<button class="cat-chip ${isActive ? 'active' : ''}" onclick="filterCategory('${cat}')">${cat} (${cats[cat]})</button>`;
+      }).join('');
+    }
+
+    function filterCategory(cat) {
+      activeCategory = cat;
+      renderCategories();
+      renderGrid(document.getElementById('recipeSearchInput')?.value || '');
+    }
+
+    function renderGrid(filter = '') {
+      const grid = document.getElementById('recipeGrid');
+      const filtered = recipes.filter(r => {
+        const matchSearch = r.name.toLowerCase().includes(filter.toLowerCase()) || 
+                            r.nativeName.toLowerCase().includes(filter.toLowerCase()) ||
+                            r.category.toLowerCase().includes(filter.toLowerCase());
+        const matchCat = activeCategory === 'All' || r.category === activeCategory;
+        return matchSearch && matchCat;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; padding: 24px; text-align: center; color: #6b7280; background: #fff; border-radius: 4px; border: 1px dashed #d1d5db;">No recipes found matching your query. <a href="javascript:void(0)" onclick="viewAllRecipes()" style="color:#d97706; font-weight:bold;">View all ' + recipes.length + ' recipes</a></div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map((r) => {
+        const isActive = r.id === activeRecipeId;
+        return `
+          <article class="recipe-card ${isActive ? 'active-card' : ''}" onclick="selectRecipe('${r.id}')" title="Click to view details for ${r.name}">
+            <div class="card-photo" style="background-image:url('${r.imageUrl}')">
+              <span class="card-badge">${r.category}</span>
+            </div>
+            <div class="recipe-card-content">
+              <h3>${r.name}</h3>
+              <p><span>◷ ${r.prepTime + r.cookTime}m</span> <span>♨ ${r.difficulty}</span></p>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function selectRecipe(id) {
+      const recipe = recipes.find(r => r.id === id);
+      if (!recipe) return;
+      activeRecipeId = id;
+
+      document.getElementById('detailImage').style.backgroundImage = 
+        "linear-gradient(90deg, rgba(5,15,16,.95) 0%, rgba(5,15,16,.55) 42%, transparent 70%), url('" + recipe.imageUrl + "')";
+      
+      document.getElementById('detailBreadcrumbs').innerText = 'Home　›　Recipes　›　' + recipe.category;
+      document.getElementById('detailTitle').innerHTML = recipe.name + '<br>(' + recipe.nativeName + ')';
+      document.getElementById('detailRating').innerHTML = '★★★★★ <small>' + recipe.rating + ' (' + recipe.reviewsCount + ' reviews)</small>';
+      document.getElementById('detailIntro').innerText = recipe.intro;
+
+      document.getElementById('detailFacts').innerHTML = 
+        '<span>◉ Prep ' + recipe.prepTime + ' min</span>' +
+        '<span>◉ Cook ' + recipe.cookTime + ' min</span>' +
+        '<span>◉ Yield ' + recipe.yieldServings + ' serv</span>' +
+        '<span>◉ ' + recipe.calories + ' kcal</span>';
+
+      document.getElementById('detailIngredients').innerHTML = 
+        recipe.ingredients.map(ing => '<li>' + ing + '</li>').join('');
+
+      document.getElementById('detailInstructions').innerHTML = 
+        recipe.instructions.map(ins => '<li>' + ins + '</li>').join('');
+
+      document.getElementById('detailTips').innerHTML = 
+        '<strong>' + recipe.tips.title + '</strong><p>' + recipe.tips.description + '</p>';
+
+      document.getElementById('detailVariations').innerHTML = 
+        '<strong>' + recipe.variations.title + '</strong><p>' + recipe.variations.description + '</p>';
+
+      document.getElementById('faqContainer').innerHTML = 
+        recipe.faqs.map(faq => 
+          '<div class="faq-item" onclick="this.classList.toggle(\'open\')">' +
+          '<div><span>' + faq.question + '</span><b>⌄</b></div>' +
+          '<small>' + faq.answer + '</small>' +
+          '</div>'
+        ).join('');
+
+      const recs = (recipe.alsoLike && recipe.alsoLike.length > 0) 
+        ? recipe.alsoLike 
+        : recipes.filter(r => r.id !== recipe.id).slice(0, 4);
+
+      document.getElementById('alsoContainer').innerHTML = 
+        recs.map((also) => 
+          '<article class="also-card" onclick="selectRecipeByName(\'' + also.name.replace(/'/g, "\\'") + '\')">' +
+          '<div class="mini" style="background-image:url(\'' + also.imageUrl + '\')"></div>' +
+          '<span>' + also.name + '</span>' +
+          '</article>'
+        ).join('');
+
+      renderGrid(document.getElementById('recipeSearchInput')?.value || '');
+
+      if (window.innerWidth <= 950) {
+        document.getElementById('detailPanel').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function selectRecipeByName(name) {
+      const found = recipes.find(r => r.name.toLowerCase().includes(name.toLowerCase()) || r.nativeName.toLowerCase().includes(name.toLowerCase()));
+      if (found) {
+        selectRecipe(found.id);
+      }
+    }
+
+    function viewAllRecipes() {
+      activeCategory = 'All';
+      renderCategories();
+      const input = document.getElementById('recipeSearchInput');
+      if (input) input.value = '';
+      renderGrid('');
+      document.getElementById('recipeGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function focusCategories() {
+      document.getElementById('recipeGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* Modal Handlers */
+    function openAboutModal() {
+      document.getElementById('aboutModal').classList.add('open');
+    }
+    function closeAboutModal(e) {
+      if (!e || e.target === document.getElementById('aboutModal') || e.target.classList.contains('modal-close')) {
+        document.getElementById('aboutModal').classList.remove('open');
+      }
+    }
+    function switchModalTab(tabId) {
+      document.querySelectorAll('.modal-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.modal-section').forEach(s => s.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(tabId)?.classList.add('active');
+    }
+    function jumpToRecipe(id) {
+      closeAboutModal();
+      selectRecipe(id);
+      document.getElementById('detailPanel').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCategories();
+      renderGrid();
+
+      const searchInput = document.getElementById('recipeSearchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          renderGrid(e.target.value);
+        });
+      }
+
+      const searchBtn = document.getElementById('recipeSearchBtn');
+      if (searchBtn) {
+        searchBtn.addEventListener('click', () => {
+          renderGrid(searchInput.value);
+        });
+      }
+    });
+
+    renderCategories();
+    renderGrid();
+  </script>
+</body>
+</html>

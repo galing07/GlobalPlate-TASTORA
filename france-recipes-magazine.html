@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>France Recipes - FRENCH HAUTE CUISINE</title>
+  <meta name="description" content="Master the Flavors of French Elegance - Authentic France culinary traditions, recipes, and culture." />
+  <style>
+    /* Reset & Base Setup */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100%;
+      background: #140d12;
+      color: #faeef2;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    /* Magazine App Shell */
+    .app-shell {
+      width: 100%;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(650px, 62%) minmax(400px, 38%);
+      gap: 7px;
+      padding: 6px 14px;
+    }
+
+    .main-column, .detail-panel {
+      border: 1px solid #8c5e6d;
+      border-radius: 9px;
+      overflow: hidden;
+      background: #1a1017;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Topbar */
+    .topbar {
+      height: 48px;
+      background: #0d070c;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: Georgia, serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .brand-mark {
+      font-size: 20px;
+      color: #dfa267;
+    }
+    .topbar nav {
+      display: flex;
+      gap: 16px;
+    }
+    .topbar nav a {
+      color: #d1d5db;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 11px;
+      transition: color 0.15s ease;
+      cursor: pointer;
+    }
+    .topbar nav a:hover, .topbar nav a.active {
+      color: #dfa267;
+    }
+    .search {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 28px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid #4b5563;
+      border-radius: 4px;
+      overflow: hidden;
+      width: 170px;
+    }
+    .search input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 10px;
+      padding: 0 8px;
+      width: 135px;
+    }
+    .search input::placeholder { color: #9ca3af; }
+    .search b {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 28px;
+      background: #dfa267;
+      color: #2b1508;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 290px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #111;
+    }
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      padding: 24px 28px;
+      max-width: 440px;
+    }
+    .hero-copy em {
+      display: block;
+      font-family: Georgia, serif;
+      font-style: italic;
+      color: #dfa267;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+    .hero-copy h1 {
+      font-family: Georgia, serif;
+      font-size: 32px;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 7px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    }
+    .hero-copy p {
+      font-size: 12px;
+      color: #e5e7eb;
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+    .hero-actions button {
+      background: #dfa267;
+      color: #2b1508;
+      border: 1px solid #dfa267;
+      font-weight: bold;
+      font-size: 11px;
+      padding: 7px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .hero-actions button:hover { opacity: 0.9; transform: translateY(-1px); }
+    .hero-actions button.dark-button {
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      border: 1px solid #6b7280;
+      backdrop-filter: blur(4px);
+    }
+    .hero-actions button.dark-button:hover {
+      background: rgba(0,0,0,0.8);
+      border-color: #dfa267;
+    }
+
+    /* Popular Section */
+    .popular {
+      background: #f0e2d9;
+      color: #29141f;
+      padding: 14px 16px;
+      flex: 1;
+    }
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .section-heading h2 {
+      font-family: Georgia, serif;
+      font-size: 17px;
+      font-weight: bold;
+      color: #29141f;
+    }
+    .section-heading button {
+      background: #fff;
+      border: 1px solid #d9c2b4;
+      color: #29141f;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .section-heading button:hover { background: #f3f4f6; }
+
+    /* Category Filter Chips */
+    .categories-bar {
+      display: flex;
+      gap: 5px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+    }
+    .cat-chip {
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 9px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #374151;
+      transition: all 0.15s ease;
+    }
+    .cat-chip:hover { background: #f9fafb; }
+    .cat-chip.active {
+      background: #b45309;
+      color: #fff;
+      border-color: #92400e;
+    }
+
+    /* Grid */
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+      gap: 7px;
+    }
+    .recipe-card {
+      background: #faf4ef;
+      border: 1px solid #d9c2b4;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+    .recipe-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    }
+    .recipe-card.active-card {
+      border: 2px solid #dfa267;
+      box-shadow: 0 0 0 1px #dfa267;
+    }
+    .card-photo {
+      height: 75px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      background-color: #374151;
+    }
+    .card-badge {
+      position: absolute;
+      bottom: 4px;
+      left: 4px;
+      background: rgba(0,0,0,0.75);
+      color: #fff;
+      font-size: 7px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+    .recipe-card-content {
+      padding: 6px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .recipe-card h3 {
+      font-size: 10px;
+      font-weight: bold;
+      color: #111827;
+      line-height: 1.25;
+      margin-bottom: 2px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .recipe-card p {
+      font-size: 8px;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 3px;
+      margin-top: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Detail Panel */
+    .detail-panel {
+      background: #f7efe9;
+      color: #29141f;
+    }
+    .detail-image {
+      min-height: 175px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .detail-content {
+      padding: 10px 14px;
+    }
+    .breadcrumbs {
+      font-size: 9px;
+      color: #6b7280;
+      margin-bottom: 3px;
+    }
+    .detail-content h2 {
+      font-family: Georgia, serif;
+      font-size: 19px;
+      color: #29141f;
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+    .rating {
+      color: #d97706;
+      font-size: 11px;
+      margin-bottom: 6px;
+    }
+    .rating small { color: #6b7280; font-size: 9px; }
+    .intro {
+      font-size: 10px;
+      color: #374151;
+      line-height: 1.45;
+      margin-bottom: 8px;
+    }
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      background: rgba(0,0,0,0.04);
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,0,0,0.06);
+      font-size: 9px;
+      color: #1f2937;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* 2 Column Ingredients & Instructions */
+    .ingredients-instructions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 10px 14px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.4);
+    }
+    .ingredients-instructions h3 {
+      font-family: Georgia, serif;
+      font-size: 12px;
+      font-weight: bold;
+      color: #111827;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+    }
+    .ingredients-instructions ul, .ingredients-instructions ol {
+      padding-left: 14px;
+      font-size: 9.5px;
+      color: #374151;
+      line-height: 1.5;
+    }
+    .ingredients-instructions li { margin-bottom: 3px; }
+
+    /* Tips & Variations */
+    .tips {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      padding: 6px 14px 10px;
+    }
+    .tip-card {
+      background: #15313d;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 1.35;
+    }
+    .tip-card strong {
+      display: block;
+      color: #dfa267;
+      font-size: 10px;
+      margin-bottom: 2px;
+      font-family: Georgia, serif;
+    }
+    .variation-card {
+      background: #164332;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 1.35;
+    }
+    .variation-card strong {
+      display: block;
+      color: #a7f3d0;
+      font-size: 10px;
+      margin-bottom: 2px;
+      font-family: Georgia, serif;
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 6px 14px;
+    }
+    .faq h3 {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #111827;
+    }
+    .faq-item {
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 3px;
+      margin-bottom: 4px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .faq-item div {
+      padding: 5px 8px;
+      font-weight: bold;
+      font-size: 9.5px;
+      color: #1f2937;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-item small {
+      display: none;
+      padding: 5px 8px 7px;
+      font-size: 9px;
+      color: #4b5563;
+      border-top: 1px solid #f3f4f6;
+      line-height: 1.4;
+      background: #f9fafb;
+    }
+    .faq-item.open small { display: block; }
+
+    /* You Might Also Like */
+    .also {
+      background: #341525;
+      color: #fff;
+      padding: 10px 14px;
+      margin-top: auto;
+    }
+    .also h3 {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .also-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+    .also-card {
+      cursor: pointer;
+      text-align: center;
+    }
+    .also-card .mini {
+      height: 48px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 3px;
+      transition: border-color 0.15s;
+    }
+    .also-card:hover .mini { border-color: #dfa267; }
+    .also-card span {
+      font-size: 8.5px;
+      font-weight: bold;
+      color: #e5e7eb;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Modal for About Swedish Cuisine */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(6px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-container {
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      background: #0e161c;
+      border: 1px solid rgba(217, 119, 6, 0.4);
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      color: #e2e8f0;
+    }
+    .modal-header {
+      padding: 16px 20px;
+      background: linear-gradient(90deg, #0d222b, #122c37);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-header h2 {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      color: #fff;
+    }
+    .modal-close {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-nav {
+      display: flex;
+      gap: 6px;
+      padding: 8px 16px;
+      background: #091116;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      overflow-x: auto;
+    }
+    .modal-tab-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .modal-tab-btn.active {
+      background: #d97706;
+      color: #0f172a;
+      font-weight: bold;
+    }
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .modal-section { display: none; }
+    .modal-section.active { display: block; }
+    .modal-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .modal-card h4 {
+      font-size: 12px;
+      color: #fbbf24;
+      margin-bottom: 4px;
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 950px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+        padding: 4px 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-shell" id="topAnchor">
+    <!-- LEFT MAIN COLUMN -->
+    <main class="main-column">
+      <header class="topbar">
+        <div class="brand" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+          <span class="brand-mark">⚜</span>
+          <span>FRENCH<br>HAUTE CUISINE</span>
+        </div>
+        <nav>
+          <a href="javascript:void(0)" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="active">Home</a>
+          <a href="javascript:void(0)" onclick="viewAllRecipes()">Recipes</a>
+          <a href="javascript:void(0)" onclick="focusCategories()">Categories</a>
+          <a href="javascript:void(0)" onclick="openAboutModal()">About</a>
+        </nav>
+        <div class="search">
+          <input type="text" id="recipeSearchInput" placeholder="Search 30 recipes..." aria-label="Search recipes" />
+          <b id="recipeSearchBtn">⌕</b>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-photo" style="background-image: linear-gradient(90deg, #140d12F2 0%, #140d12B8 41%, #140d120D 80%), url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85');"></div>
+        <div class="hero-copy">
+          <em>Master the Flavors of French Elegance</em>
+          <h1>Authentic French<br>Recipes</h1>
+          <p>Velvety wine reductions, flaky golden pastries, and timeless<br>bistro classics from the gastronomic heart of France.</p>
+          <div class="hero-actions">
+            <button onclick="document.getElementById('recipeGridSection').scrollIntoView({behavior:'smooth'})">Explore French Recipes</button>
+            <button class="dark-button" onclick="openAboutModal()">About French Gastronomy</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="popular" id="recipeGridSection">
+        <div class="section-heading">
+          <h2>❧ Masterpieces of French Cuisine ❧</h2>
+          <button id="viewAllBtn" onclick="viewAllRecipes()">View All (30) →</button>
+        </div>
+
+        <div class="categories-bar" id="categoriesBar"></div>
+
+        <div class="recipe-grid" id="recipeGrid"></div>
+      </section>
+    </main>
+
+    <!-- RIGHT DETAIL PANEL -->
+    <aside class="detail-panel" id="detailPanel">
+      <div class="detail-image" id="detailImage" style="background-image: linear-gradient(90deg, rgba(5,15,16,.95) 0%, rgba(5,15,16,.55) 42%, transparent 70%), url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80');"></div>
+      <div class="detail-content" id="detailContent">
+        <div class="breadcrumbs" id="detailBreadcrumbs">Home　›　Recipes　›　Plats Principaux</div>
+        <h2 id="detailTitle">Boeuf Bourguignon<br>(Bœuf Bourguignon Traditionnel)</h2>
+        <div class="rating" id="detailRating">★★★★★ <small>5 (1150 reviews)</small></div>
+        <p class="intro" id="detailIntro">Burgundy’s legendary braised beef stew: chuck roast simmered tender in full-bodied Pinot Noir wine, smoked bacon lardons, baby carrots, pearl onions, and butter-sautéed mushrooms.</p>
+        <div class="facts" id="detailFacts">
+          <span>◉ Prep 30 min</span>
+          <span>◉ Cook 180 min</span>
+          <span>◉ Yield 6 serv</span>
+          <span>◉ 590 kcal</span>
+        </div>
+      </div>
+
+      <div class="ingredients-instructions" id="ingredientsInstructions">
+        <section>
+          <h3>Ingredients</h3>
+          <ul id="detailIngredients">
+            <li>1.2 kg beef chuck or brisket, cut into 5 cm cubes</li><li>200 g thick smoked bacon (lardons), sliced</li><li>1 bottle (750 ml) dry French Pinot Noir or Burgundy red wine</li><li>500 ml rich beef bone stock</li><li>2 tbsp tomato paste & 3 cloves crushed garlic</li><li>Bouquet garni (fresh thyme, bay leaf, parsley sprigs)</li><li>250 g fresh pearl onions & 300 g cremini mushrooms</li><li>Butter and olive oil for searing</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Instructions</h3>
+          <ol id="detailInstructions">
+            <li>Cook lardons in heavy Dutch oven until crisp; remove and set aside in fat.</li><li>Dry beef cubes thoroughly and sear in batches in hot bacon fat until deeply browned on all sides (8 mins).</li><li>Sauté carrots and onions in pot, stir in tomato paste and flour for 1 minute.</li><li>Pour in red wine and beef broth, scraping browned bits from pot bottom. Add beef, lardons, garlic, and bouquet garni.</li><li>Cover and braise in oven at 160°C (325°F) for 2.5 to 3 hours until beef is melt-in-the-mouth tender.</li><li>Sauté pearl onions and mushrooms in butter; fold into stew 15 minutes before serving with crusty baguette.</li>
+          </ol>
+        </section>
+      </div>
+
+      <div class="tips" id="tipsBlock">
+        <div class="tip-card" id="detailTips">
+          <strong>Wine Quality</strong>
+          <p>Cook with a dry, good-quality red wine you would happily drink at the table.</p>
+        </div>
+        <div class="variation-card" id="detailVariations">
+          <strong>Julia Child Classic</strong>
+          <p>Glaze pearl onions in a little broth and butter separately before adding.</p>
+        </div>
+      </div>
+
+      <section class="faq" id="faqSection">
+        <h3>Frequently Asked Questions</h3>
+        <div id="faqContainer">
+          
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+              <div><span>Can I make it a day ahead?</span><b>⌄</b></div>
+              <small>Yes! Reheating on day two deepens the wine and beef flavors dramatically.</small>
+            </div>
+          
+        </div>
+      </section>
+
+      <section class="also" id="alsoSection">
+        <h3>You Might Also Like</h3>
+        <div class="also-grid" id="alsoContainer">
+          
+            <article class="also-card" onclick="selectRecipeByName('French Onion Soup')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>French Onion Soup</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Ratatouille Niçoise')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Ratatouille Niçoise</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Quiche Lorraine')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Quiche Lorraine</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Classic Crème Brûlée')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Classic Crème Brûlée</span>
+            </article>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- ABOUT EDITORIAL MODAL -->
+  <div class="modal-overlay" id="aboutModal" onclick="closeAboutModal(event)">
+    <div class="modal-container" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div>
+          <span style="font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #fbbf24; font-weight: bold;">Editorial Compendium</span>
+          <h2>About French Haute Cuisine & Gastronomy</h2>
+        </div>
+        <button class="modal-close" onclick="closeAboutModal()">✕</button>
+      </div>
+
+      <div class="modal-nav">
+        <button class="modal-tab-btn active" onclick="switchModalTab('mod-intro')">Introduction & Pillars</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-dishes')">Popular Dishes</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-fika')">Pâtisserie & Café</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-ingredients')">Ingredients</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-traditions')">Traditions</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-regional')">Regional</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-faq')">FAQ</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- INTRO TAB -->
+        <div class="modal-section active" id="mod-intro">
+          <div class="modal-card" style="background: linear-gradient(135deg, rgba(217,119,6,0.15), rgba(15,23,42,0.6)); border-color: rgba(217,119,6,0.3);">
+            <em style="color: #fbbf24; font-family: Georgia, serif; font-size: 13px; display: block; margin-bottom: 4px;">The birthplace of modern restaurant culture: precision sauces, buttery pastry, and culinary terroir.</em>
+            <h3 style="font-family: Georgia, serif; font-size: 15px; color: #fff; margin-bottom: 8px;">Introduction to French Gastronomy</h3>
+            <p style="margin-bottom: 6px;">Inscribed by UNESCO in 2010 as a Cultural Heritage of Humanity, the "Gastronomic Meal of the French" is a celebratory ritual celebrating togetherness, the pleasure of taste, and the union of food and wine.</p><p style="margin-bottom: 6px;">From humble countryside bistros serving duck confit to Michelin-starred Paris salons mastering Escoffier’s mother sauces, French cuisine is the foundational bedrock of global gastronomy.</p>
+          </div>
+
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin: 14px 0 8px;">The Pillars of French Cooking</h3>
+          <p style="margin-bottom: 10px;">Mastery of foundational techniques: classical knife cuts, the five mother sauces, precise temperature control, and high-fat dairy enrichment.</p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>01. The Five Mother Sauces</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Béchamel, Velouté, Espagnole, Sauce Tomate, and Hollandaise codified by Auguste Escoffier.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>02. Le Beurre (Cultured Butter)</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">High-fat French cultured butter creates flaky pastry layers, velvet glazes, and rich sauces.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>03. Terroir & Appellation (AOC)</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">The mystical marriage of soil, rainfall, and artisan traditions defining French wines and cheeses.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>04. The Art of Wine Pairing</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Every course is paired with regional wines designed to enhance acidity, tannins, and mouthfeel.</p>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- DISHES TAB -->
+        <div class="modal-section" id="mod-dishes">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 6px;">Iconic Masterpieces of French Cuisine</h3>
+          <p style="margin-bottom: 12px; color: #94a3b8;">Timeless dishes that define the French bistrot and culinary canon.</p>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Boeuf Bourguignon <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Bœuf Bourguignon de Bourgogne)</em></h4>
+                <p style="margin-bottom: 4px;">Beef chuck braised in dry Burgundy red wine, smoked bacon lardons, baby carrots, pearl onions, and butter-sautéed mushrooms.</p>
+                <small style="color: #93c5fd;">Cultural Note: Burgundy’s quintessential slow-cooked masterpiece celebrated worldwide.</small>
+              </div>
+              <button onclick="jumpToRecipe('boeuf-bourguignon')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Soupe à l’Oignon Gratinée <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Soupe à l’Oignon Parisienne)</em></h4>
+                <p style="margin-bottom: 4px;">Sweet caramelized onions simmered in rich beef broth and white wine, topped with toasted baguette and bubbling aged Gruyère.</p>
+                <small style="color: #93c5fd;">Cultural Note: The historic late-night restorative soup of Les Halles market workers in Paris.</small>
+              </div>
+              <button onclick="jumpToRecipe('french-onion-soup')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Layered Ratatouille Niçoise <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Ratatouille Niçoise au Four)</em></h4>
+                <p style="margin-bottom: 4px;">Spiraled ribbons of eggplant, zucchini, squash, and tomatoes baked over rich roasted bell pepper piperade.</p>
+                <small style="color: #93c5fd;">Cultural Note: The sunny, fragrant Mediterranean soul of Provence.</small>
+              </div>
+              <button onclick="jumpToRecipe('ratatouille-nicoise')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Classic Quiche Lorraine <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Quiche Lorraine Pur Beurre)</em></h4>
+                <p style="margin-bottom: 4px;">Buttery shortcrust pastry filled with crème fraîche custard, smoked slab bacon lardons, and fresh nutmeg.</p>
+                <small style="color: #93c5fd;">Cultural Note: Lorraine’s timeless bistro tart enjoyed warm or at room temperature.</small>
+              </div>
+              <button onclick="jumpToRecipe('quiche-lorraine')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Crispy Confit de Canard <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Confit de Canard du Sud-Ouest)</em></h4>
+                <p style="margin-bottom: 4px;">Duck legs cured with thyme and sea salt, slow-poached in pure duck fat, then roasted to shattering crispness.</p>
+                <small style="color: #93c5fd;">Cultural Note: Gascony’s historic preservation technique creating the world’s most succulent poultry.</small>
+              </div>
+              <button onclick="jumpToRecipe('duck-confit')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+        </div>
+
+        <!-- CULTURE / FIKA TAB -->
+        <div class="modal-section" id="mod-fika">
+          <div class="modal-card" style="background: rgba(180,83,9,0.15);">
+            <h4>French Pâtisserie & Viennoiserie Culture</h4>
+            <p style="margin-bottom: 6px;">The morning walk to the local boulangerie for warm croissants and the afternoon salon de thé ritual enjoying delicate multi-layered pastries.</p>
+            <p style="font-style: italic; color: #fde68a;">"The sacred 4:00 PM "Goûter" snack where children and adults pause for warm brioche, madeleines, or dark chocolate baguettes."</p>
+          </div>
+          <h4 style="color:#fff; margin: 12px 0 8px;">Popular Regional Treats & Specialties</h4>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>Bourbon Vanilla Crème Brûlée (Crème Brûlée à la Vanille)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Silky rich egg yolk custard crowned with a glass-crisp burnt sugar crust cracked tableside with a spoon.</p>
+                <button onclick="jumpToRecipe('creme-brulee')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+              <div class="modal-card">
+                <h4>Caramelized Tarte Tatin (Tarte Tatin Renversée)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Accidentally invented by the Tatin sisters in Lamotte-Beuvron: apples caramelized upside-down under buttery puff pastry.</p>
+                <button onclick="jumpToRecipe('tarte-tatin')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+              <div class="modal-card">
+                <h4>Dark Chocolate Éclairs (Éclairs au Chocolat)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Crisp choux fingers filled with rich dark chocolate crème pâtissière and dipped in a mirror ganache glaze.</p>
+                <button onclick="jumpToRecipe('eclairs-chocolat')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- INGREDIENTS TAB -->
+        <div class="modal-section" id="mod-ingredients">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Essential French Pantry Ingredients</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🧈 <strong style="color:#fff; font-size:11px;">Beurre d’Isigny (Cultured Butter)</strong> <em style="font-size:9px; color:#fbbf24;">(Beurre de Baratte AOP)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Normandy cultured butter with 82%+ butterfat and hazelnut richness.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Laminating croissants, finishing pan sauces, and basting meats.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🧀 <strong style="color:#fff; font-size:11px;">Aged Comté & Gruyère Cheese</strong> <em style="font-size:9px; color:#fbbf24;">(Comté AOP 24 Mois)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Unpasteurized mountain cow’s milk cheese with roasted nut and brown butter notes.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Melting over onion soup, fondue, gougères, and cheese boards.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🫙 <strong style="color:#fff; font-size:11px;">Dijon Mustard</strong> <em style="font-size:9px; color:#fbbf24;">(Moutarde de Dijon)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Sharp, pungent mustard made from brown mustard seeds and white wine must.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Vinaigrettes, pan deglazes, and accompanying roast meats.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌿 <strong style="color:#fff; font-size:11px;">Herbes de Provence</strong> <em style="font-size:9px; color:#fbbf24;">(Herbes de Provence Séchées)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Aromatic Mediterranean blend of wild thyme, rosemary, savory, marjoram, and lavender.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Rubbed on roasted chicken, grilled fish, and vegetable tians.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🥛 <strong style="color:#fff; font-size:11px;">Crème Fraîche d’Isigny</strong> <em style="font-size:9px; color:#fbbf24;">(Crème Fraîche Épaisse AOP)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Thick, cultured heavy cream with a silky texture and refreshing gentle tang.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Saucing quiches, enriching soups, and dolloping on warm tarts.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🧂 <strong style="color:#fff; font-size:11px;">Fleur de Sel de Guérande</strong> <em style="font-size:9px; color:#fbbf24;">(Fleur de Sel de Guérande)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Hand-harvested sea salt crystals from Brittany marshes with delicate crunch and mineral sweetness.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Final finishing pinch over seared steaks and chocolate desserts.</small>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- TRADITIONS TAB -->
+        <div class="modal-section" id="mod-traditions">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">French Culinary Traditions & Celebrations</h3>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">La Galette des Rois (Epiphany Feast)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">January 6 (Winter)</span>
+              </div>
+              <p style="margin-bottom: 6px;">Golden puff pastry cake filled with almond frangipane, hiding a tiny porcelain charm (fève) to crown the king for the day.</p>
+              <small style="color: #fbbf24;">Staples: Galette des Rois, Frangipane, Cider</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">La Fête de la Chandeleur (Crêpe Day)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">February 2 (Winter)</span>
+              </div>
+              <p style="margin-bottom: 6px;">Flipping golden crêpes while holding a gold coin in hand to ensure prosperity throughout the coming year.</p>
+              <small style="color: #fbbf24;">Staples: Crêpes Suzette, Galettes de Sarrasin, Salted Caramel Crêpes</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Le Réveillon de Noël (Christmas Eve Feast)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">December 24 (Winter)</span>
+              </div>
+              <p style="margin-bottom: 6px;">An extravagant midnight banquet of fresh oysters, foie gras, roasted capon with chestnuts, and the Bûche de Noël Yule log.</p>
+              <small style="color: #fbbf24;">Staples: Huîtres de Cancale, Foie Gras, Chapon Farci, Bûche de Noël</small>
+            </div>
+          
+        </div>
+
+        <!-- REGIONAL TAB -->
+        <div class="modal-section" id="mod-regional">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Regional French Gastronomy</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>🧭 Burgundy & Lyon (Gastronomic Capital)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Pinot Noir wine stews, Charolais beef, Dijon mustard, and historic Bouchon taverns.</p>
+                <small style="color: #fbbf24;">Specialties: Boeuf Bourguignon, Coq au Vin, Gougères, Quenelles de Brochet</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 Provence & Côte d’Azur (Mediterranean)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Olive oil, garlic, fresh seafood, sun-ripened vegetables, saffron, and rosé wine.</p>
+                <small style="color: #fbbf24;">Specialties: Bouillabaisse, Ratatouille Niçoise, Salade Niçoise, Pissaladière</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 Normandy & Brittany (North-West)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Apples, Calvados brandy, Camembert cheese, sea mussels, buckwheat galettes, and salted butter.</p>
+                <small style="color: #fbbf24;">Specialties: Moules Marinières, Tarte Normande, Galettes de Sarrasin, Kouign-Amann</small>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- FAQ TAB -->
+        <div class="modal-section" id="mod-faq">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Frequently Asked Questions</h3>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">Why does French cuisine rely so heavily on butter and cream?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">In classical French cooking, dairy fats carry aromatic flavor compounds and create silky emulsions that bind sauces.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">What is the secret to a great Boeuf Bourguignon?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Searing dry beef cubes at high heat for maximum Maillard browning, followed by gentle low braising in quality Pinot Noir wine.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">Why are French cheeses protected by AOP laws?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Appellation d’Origine Protégée guarantees the cheese is made exclusively in its historical terroir using traditional methods.</p>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const recipes = [{"id":"boeuf-bourguignon","name":"Boeuf Bourguignon","nativeName":"Bœuf Bourguignon Traditionnel","category":"Plats Principaux","prepTime":30,"cookTime":180,"yieldServings":6,"calories":590,"difficulty":"Advanced","rating":5,"reviewsCount":1150,"intro":"Burgundy’s legendary braised beef stew: chuck roast simmered tender in full-bodied Pinot Noir wine, smoked bacon lardons, baby carrots, pearl onions, and butter-sautéed mushrooms.","ingredients":["1.2 kg beef chuck or brisket, cut into 5 cm cubes","200 g thick smoked bacon (lardons), sliced","1 bottle (750 ml) dry French Pinot Noir or Burgundy red wine","500 ml rich beef bone stock","2 tbsp tomato paste & 3 cloves crushed garlic","Bouquet garni (fresh thyme, bay leaf, parsley sprigs)","250 g fresh pearl onions & 300 g cremini mushrooms","Butter and olive oil for searing"],"instructions":["Cook lardons in heavy Dutch oven until crisp; remove and set aside in fat.","Dry beef cubes thoroughly and sear in batches in hot bacon fat until deeply browned on all sides (8 mins).","Sauté carrots and onions in pot, stir in tomato paste and flour for 1 minute.","Pour in red wine and beef broth, scraping browned bits from pot bottom. Add beef, lardons, garlic, and bouquet garni.","Cover and braise in oven at 160°C (325°F) for 2.5 to 3 hours until beef is melt-in-the-mouth tender.","Sauté pearl onions and mushrooms in butter; fold into stew 15 minutes before serving with crusty baguette."],"tips":{"title":"Wine Quality","description":"Cook with a dry, good-quality red wine you would happily drink at the table."},"variations":{"title":"Julia Child Classic","description":"Glaze pearl onions in a little broth and butter separately before adding."},"faqs":[{"question":"Can I make it a day ahead?","answer":"Yes! Reheating on day two deepens the wine and beef flavors dramatically."}],"imageQuery":"boeuf bourguignon beef stew wine","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"French Onion Soup","imageQuery":"french onion soup","imageUrl":"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80"},{"name":"Ratatouille Niçoise","imageQuery":"ratatouille","imageUrl":"https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80"},{"name":"Quiche Lorraine","imageQuery":"quiche lorraine","imageUrl":"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80"},{"name":"Classic Crème Brûlée","imageQuery":"creme brulee","imageUrl":"https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=800&q=80"}]},{"id":"french-onion-soup","name":"Classic French Onion Soup","nativeName":"Soupe à l'Oignon Gratinée","category":"Bistrot & Entrées","prepTime":20,"cookTime":60,"yieldServings":4,"calories":380,"difficulty":"Easy","rating":4.9,"reviewsCount":890,"intro":"Sweet caramelized yellow onions simmered in rich beef broth and white wine, topped with toasted baguette rounds and bubbling, melted aged Gruyère cheese.","ingredients":["1 kg yellow onions, thinly sliced","4 tbsp butter & 1 tbsp olive oil","1 tbsp sugar & 2 tbsp flour","150 ml dry white wine & 1.2 L rich beef broth","Fresh thyme sprigs & 1 bay leaf","1 French baguette, sliced and toasted","200 g aged Gruyère cheese, freshly grated"],"instructions":["Melt butter and oil in a heavy pot. Add sliced onions and cook on low heat for 45 minutes, stirring frequently until deeply caramelized and jammy.","Sprinkle flour over caramelized onions and cook for 2 minutes.","Deglaze with white wine, then add beef broth, thyme, and bay leaf; simmer for 20 minutes.","Ladle soup into oven-safe bowls, float toasted baguette slices on top, and cover generously with grated Gruyère.","Broil on high for 3-4 minutes until cheese is bubbling, blistered, and golden brown."],"tips":{"title":"Slow Caramelization","description":"Never rush the onions; 45 minutes of slow cooking unlocks deep natural sweetness."},"variations":{"title":"Cognac Splash","description":"Add 2 tbsp of French Cognac right after deglazing for warmth."},"faqs":[{"question":"Cheese substitute?","answer":"Comté or Emmental melt beautifully as authentic French alternatives."}],"imageQuery":"french onion soup gruyere baguette","imageUrl":"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"coq-au-vin","name":"Burgundian Coq au Vin","nativeName":"Coq au Vin de Bourgogne","category":"Plats Principaux","prepTime":25,"cookTime":60,"yieldServings":4,"calories":520,"difficulty":"Medium","rating":4.9,"reviewsCount":760,"intro":"Classic French rooster braise: bone-in chicken thighs braised in Burgundy red wine with smoked bacon lardons, baby button mushrooms, garlic, and fresh thyme.","ingredients":["1.2 kg bone-in chicken thighs and drumsticks","150 g thick smoked bacon lardons, diced","1 bottle (750 ml) red Burgundy wine (Pinot Noir)","300 ml chicken stock, 2 tbsp tomato paste, 2 cloves garlic","200 g pearl onions & 250 g button mushrooms sautéed in butter","Beurre manié (2 tbsp butter + 2 tbsp flour for thickening)"],"instructions":["Crisp bacon lardons in Dutch oven; remove lardons and brown chicken pieces in bacon fat (10 mins).","Add garlic and tomato paste; pour in red wine and chicken stock with thyme and bay leaf.","Simmer gently covered for 45 minutes until chicken is fork-tender.","Whisk in beurre manié to thicken wine sauce into a glossy glaze.","Fold in browned pearl onions, butter-sautéed mushrooms, and crisp lardons; simmer 5 mins and serve."],"tips":{"title":"Beurre Manié","description":"Kneading equal parts raw butter and flour prevents lumps and gives a glossy restaurant shine."},"variations":{"title":"Coq au Riesling","description":"Alsatian version using dry white Riesling wine and heavy cream."},"faqs":[{"question":"What is traditionally used?","answer":"Historically made with a mature rooster (coq) requiring long braising."}],"imageQuery":"coq au vin chicken red wine stew mushrooms","imageUrl":"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"ratatouille-nicoise","name":"Provençal Layered Ratatouille","nativeName":"Ratatouille Niçoise au Four","category":"Bistrot & Entrées","prepTime":30,"cookTime":45,"yieldServings":6,"calories":220,"difficulty":"Easy","rating":4.9,"reviewsCount":840,"intro":"Sunny Côte d’Azur on a plate: concentric spiraled ribbons of eggplant, zucchini, yellow squash, and Roma tomatoes baked over rich roasted bell pepper piperade sauce.","ingredients":["2 Japanese eggplants, 2 zucchini, 2 yellow squash, 4 Roma tomatoes (sliced into 3mm rounds)","Piperade Base: 2 red bell peppers, 1 yellow bell pepper, 1 onion, 2 garlic cloves, 400 g crushed San Marzano tomatoes","Herb Seasoning: Fresh thyme, minced rosemary, olive oil, sea salt, black pepper"],"instructions":["Sauté bell peppers, onions, and garlic until soft; blend with tomatoes and spread over base of baking dish.","Arrange vegetable rounds in alternating, tight concentric spiral patterns across the dish.","Drizzle with herb-infused extra virgin olive oil and season with salt and pepper.","Cover with parchment paper and bake at 180°C (350°F) for 40 minutes.","Uncover and bake 10 minutes until edges caramelize lightly."],"tips":{"title":"Mandoline Slicer","description":"A mandoline ensures razor-even vegetable rounds that cook at the exact same rate."},"variations":{"title":"Rustic Stewed Ratatouille","description":"Chunkier version stewed in a Dutch oven on the stove."},"faqs":[{"question":"Can it be served cold?","answer":"Yes! Provençal ratatouille is equally delicious cold with crusty baguette."}],"imageQuery":"ratatouille nicoise baked vegetables spiral","imageUrl":"https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"quiche-lorraine","name":"Classic Quiche Lorraine","nativeName":"Quiche Lorraine Traditionnelle","category":"Pâtisserie & Tartes","prepTime":25,"cookTime":40,"yieldServings":6,"calories":420,"difficulty":"Medium","rating":4.9,"reviewsCount":680,"intro":"Buttery, flaky pâte brisée crust filled with velvety rich crème fraîche, whole eggs, smoked slab bacon lardons, and freshly grated nutmeg.","ingredients":["1 blind-baked 23cm shortcrust pastry shell (Pâte Brisée)","200 g thick smoked bacon (lardons), diced and crisped","4 large fresh eggs + 1 egg yolk","250 ml heavy cream & 100 ml whole milk","Pinch of freshly grated nutmeg, salt, and white pepper","100 g grated Gruyère or Emmental cheese (optional but popular)"],"instructions":["Blind-bake the pastry crust with pie weights at 190°C (375°F) for 15 minutes until pale golden.","Cook diced bacon lardons in skillet until crisp; drain fat.","Scatter cooked lardons and grated Gruyère evenly across bottom of warm crust.","Whisk eggs, cream, milk, nutmeg, salt, and pepper until silky and combined.","Pour custard gently into crust and bake at 175°C (350°F) for 35-40 minutes until center is just set with a slight wobble."],"tips":{"title":"Gentle Wobble","description":"Take the quiche out when center still has a slight jiggle; residual heat finishes the custard."},"variations":{"title":"Quiche Florentine","description":"Add sautéed baby spinach and shallots."},"faqs":[{"question":"Is cheese in original Lorraine quiche?","answer":"Purists in Lorraine omit cheese, but grated Gruyère is universally beloved worldwide."}],"imageQuery":"quiche lorraine bacon cheese tart","imageUrl":"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"creme-brulee","name":"Vanilla Bean Crème Brûlée","nativeName":"Crème Brûlée à la Vanille Bourbon","category":"Pâtisserie & Tartes","prepTime":20,"cookTime":40,"yieldServings":6,"calories":360,"difficulty":"Medium","rating":5,"reviewsCount":1210,"intro":"The world’s most iconic dessert: silky, rich vanilla bean custard topped with a shatteringly crisp, caramelized glass layer of torched turbinado sugar.","ingredients":["500 ml heavy cream (35% fat)","1 Madagascar Bourbon vanilla bean (split and scraped)","5 large egg yolks","70 g fine granulated sugar","6 tbsp turbinado or demerara sugar for caramel crust"],"instructions":["Heat cream with scraped vanilla seeds and pod until steaming; steep for 15 minutes.","Whisk egg yolks and sugar gently (do not froth).","Slowly temper warm cream into egg yolks while whisking.","Strain through fine sieve into 6 shallow ceramic ramekins.","Place ramekins in a deep baking dish filled halfway with boiling water (bain-marie).","Bake at 150°C (300°F) for 35-40 minutes until edges set and centers wobble. Chill 4+ hours.","Sprinkle 1 tbsp turbinado sugar evenly over each custard and torch with kitchen blowtorch until caramelized and hard."],"tips":{"title":"Shallow Ramekins","description":"Shallow wide ramekins maximize the ratio of crunchy burnt sugar to silky cold custard."},"variations":{"title":"Earl Grey or Lavender","description":"Infuse cream with French culinary lavender or Earl Grey tea leaves."},"faqs":[{"question":"How to crack the crust?","answer":"Tap with the back of a spoon to hear the satisfying glass crack!"}],"imageQuery":"creme brulee caramelized sugar spoon vanilla","imageUrl":"https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"duck-confit","name":"Crispy Confit de Canard","nativeName":"Confit de Canard du Sud-Ouest","category":"Plats Principaux","prepTime":20,"cookTime":180,"yieldServings":4,"calories":640,"difficulty":"Advanced","rating":5,"reviewsCount":540,"intro":"Southwest France treasure: duck legs cured with sea salt, garlic, and thyme, slow-cooked in pure duck fat until meltingly tender, then roasted until skin is shatteringly crisp.","ingredients":["4 whole duck legs (mulard or pekin)","2 tbsp coarse sea salt, 4 crushed garlic cloves, 6 thyme sprigs, 2 bay leaves","800 g pure rendered duck fat (graisse de canard)","Pommes Sarladaises: 500 g sliced potatoes fried in duck fat with garlic and parsley"],"instructions":["Rub duck legs with sea salt, herbs, and garlic; cure in refrigerator for 24 hours. Rinse and pat dry.","Melt duck fat in a Dutch oven, submerge duck legs completely.","Bake covered at 120°C (250°F) for 2.5 to 3 hours until meat pulls away from bone.","Remove duck legs and sear skin-side down in a hot oven (220°C/430°F) for 15 minutes until skin is ultra-crisp and golden.","Fry sliced potatoes in remaining duck fat with garlic and parsley (Pommes Sarladaises) to serve alongside."],"tips":{"title":"Save the Duck Fat","description":"Duck fat is the liquid gold of French gastronomy; strain and reuse it for incredible roast potatoes."},"variations":{"title":"Cassoulet Companion","description":"Fold shredded duck confit into white bean stew."},"faqs":[{"question":"How was confit historically used?","answer":"Submerged in fat, confit duck was stored in cool cellars for months before refrigeration."}],"imageQuery":"confit de canard crispy duck leg potatoes","imageUrl":"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"cassoulet-toulousain","name":"Toulouse Cassoulet with Duck & Sausage","nativeName":"Cassoulet Traditionnel de Toulouse","category":"Plats Principaux","prepTime":40,"cookTime":180,"yieldServings":8,"calories":720,"difficulty":"Advanced","rating":4.9,"reviewsCount":490,"intro":"Monumental Languedoc slow-baked stew: Tarbais white beans, garlic pork sausages, duck confit legs, and pork belly baked until a rich golden breadcrumb crust forms.","ingredients":["500 g dried Tarbais or Lingot white beans, soaked overnight","4 duck confit legs","4 authentic Toulouse pork sausages or garlic sausages","300 g salted pork belly or pork rind (couenne)","1 onion studded with 4 cloves, 1 carrot, 6 garlic cloves, tomato paste, bouquet garni"],"instructions":["Simmer soaked beans with pork belly, onion, carrot, and bouquet garni for 1 hour until tender.","Brown sausages in a skillet.","In a traditional earthenware cassole dish, layer beans, pork belly, browned sausages, and duck confit legs.","Pour bean broth over the top and bake at 150°C (300°F) for 2.5 hours.","Break the bubbling crust with a spoon 7 times as it forms to deepen flavors before serving."],"tips":{"title":"Break the Crust","description":"Breaking the crust 7 times during baking is the legendary secret to rich, unctuous bean stew."},"variations":{"title":"Castelnaudary Cassoulet","description":"Features goose confit and pork knuckle."},"faqs":[{"question":"What are Tarbais beans?","answer":"Large, thin-skinned French heirloom beans with a buttery, melt-in-your-mouth texture."}],"imageQuery":"cassoulet toulouse white bean duck stew","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"bouillabaisse-marseillaise","name":"Marseille Seafood Bouillabaisse","nativeName":"Bouillabaisse Traditionnelle de Marseille","category":"Plats Principaux","prepTime":35,"cookTime":40,"yieldServings":6,"calories":460,"difficulty":"Advanced","rating":5,"reviewsCount":610,"intro":"Mediterranean crown jewel: rockfish, sea bass, red mullet, and mussels boiled rapidly in an aromatic broth infused with saffron, fennel, orange peel, and pastis, served with garlic Rouille sauce.","ingredients":["1.5 kg mixed Mediterranean fish (sea bass, red mullet, monkfish, rascasse) & mussels","Broth Base: 1 kg rockfish bones, 2 onions, 1 leek, 1 fennel bulb, 4 tomatoes, 4 garlic cloves","Aromatics: Large pinch saffron threads, orange peel strip, 2 tbsp Pastis anise liqueur, olive oil","Rouille: Egg yolk, garlic, breadcrumbs soaked in fish broth, saffron, olive oil (whisked like aioli)","Toasted baguette croutons"],"instructions":["Simmer fish bones, vegetables, tomatoes, saffron, and orange peel for 30 minutes; pass through a food mill to create rich fish soup.","Bring fish soup to a rapid rolling boil (bouillir + abaisser).","Add firm fish first (monkfish), then delicate fish and mussels; cook rapidly for 8-10 minutes.","Whisk rouille sauce with garlic, saffron, and olive oil.","Serve fish and shellfish on a platter, soup in bowls, and toasted croutons slathered with spicy garlic rouille."],"tips":{"title":"Rolling Boil Emulsion","description":"Rapid boiling emulsifies the olive oil and saffron fish gelatin into a creamy amber broth."},"variations":{"title":"Bourride Provençale","description":"White fish soup bound with garlicky aioli."},"faqs":[{"question":"What is Rouille?","answer":"A fiery Provençal garlic-saffron mayonnaise spread on croutons floated in the soup."}],"imageQuery":"bouillabaisse marseille seafood soup rouille saffron","imageUrl":"https://images.unsplash.com/photo-1548946526-f69e2424cf45?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"croque-monsieur","name":"Parisian Croque Monsieur & Madame","nativeName":"Croque Monsieur au Comté et Béchamel","category":"Bistrot & Entrées","prepTime":15,"cookTime":12,"yieldServings":2,"calories":540,"difficulty":"Easy","rating":4.9,"reviewsCount":790,"intro":"The king of Parisian café sandwiches: toasted sourdough filled with Jambon de Paris ham and Dijon mustard, crowned with thick nutmeg béchamel and bubbling broiled Comté cheese.","ingredients":["4 thick slices country brioche or sourdough pain de mie","150 g sliced French Jambon de Paris ham","150 g aged Comté or Gruyère cheese, freshly grated","Béchamel Sauce: 25 g butter, 25 g flour, 250 ml milk, pinch nutmeg, 1 tsp Dijon mustard","Butter for pan-toasting & 2 fresh eggs (for Croque Madame)"],"instructions":["Whisk butter, flour, milk, nutmeg, and Dijon into a thick, creamy béchamel sauce.","Butter bread slices and toast lightly in skillet.","Layer toasted bread with béchamel, ham slices, and half the grated Comté; cap with top bread slice.","Ladle remaining thick béchamel over the top sandwich slice and cover generously with grated Comté.","Broil on high for 4-5 minutes until cheese is blistered, bubbling, and golden brown.","(Optional: Crown with a fried sunny-side-up egg to transform into a Croque Madame)."],"tips":{"title":"Béchamel on Top","description":"Spreading béchamel on the outer top slice keeps the bread moist while broiling."},"variations":{"title":"Croque Madame","description":"Top with a sunny-side-up fried egg representing a lady’s hat."},"faqs":[{"question":"Origin of name?","answer":"First served in 1910 on the Boulevard des Capucines in Paris."}],"imageQuery":"croque monsieur melted cheese ham sandwich","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"salade-nicoise","name":"Authentic Salade Niçoise","nativeName":"Salade Niçoise Traditionnelle","category":"Bistrot & Entrées","prepTime":20,"cookTime":10,"yieldServings":4,"calories":340,"difficulty":"Easy","rating":4.8,"reviewsCount":520,"intro":"Crisp, colorful Côte d’Azur salad: tender seared yellowfin tuna or oil-packed tuna, soft-boiled eggs, sweet tomatoes, Niçoise black olives, anchovy fillets, and tender green beans in Dijon vinaigrette.","ingredients":["300 g fresh Yellowfin tuna steak (seared rare) or high-grade tuna in olive oil","4 soft-boiled eggs (quartered)","200 g tender haricots verts (slender French green beans, blanched)","4 ripe tomatoes (wedged), 1 small red onion (sliced), 50 g small Niçoise olives, 6 anchovy fillets","Vinaigrette: 3 tbsp olive oil, 1 tbsp red wine vinegar, 1 tsp Dijon mustard, minced shallot, salt & pepper"],"instructions":["Blanch green beans in salted water for 3 minutes, shock in ice water to lock in bright green color.","Sear tuna steak in a smoking skillet for 1 minute per side (rare center); slice into thick medallions.","Arrange haricots verts, tomato wedges, sliced red onion, and Niçoise olives artfully on a large platter.","Top with tuna slices, quartered soft-boiled eggs, and anchovy fillets.","Drizzle lavishly with classic Dijon vinaigrette."],"tips":{"title":"Haricots Verts","description":"Slender French green beans provide delicate crunch without fibrousness."},"variations":{"title":"Niçois Pan Bagnat","description":"The entire salad packed into a crusty round bread loaf soaked with vinaigrette."},"faqs":[{"question":"Are potatoes authentic?","answer":"Traditional purists in Nice insist on raw seasonal vegetables without boiled potatoes."}],"imageQuery":"salade nicoise tuna egg green beans olives","imageUrl":"https://images.unsplash.com/photo-1592417817098-8f3d69109853?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"tartiflette-savoyarde","name":"Alpine Tartiflette with Reblochon Cheese","nativeName":"Tartiflette Savoyarde au Reblochon","category":"Plats Principaux","prepTime":20,"cookTime":35,"yieldServings":4,"calories":620,"difficulty":"Easy","rating":4.9,"reviewsCount":710,"intro":"French Alps ski comfort: sliced Yukon gold potatoes layered with crispy smoked bacon lardons and white-wine caramelized onions, covered with a whole sliced wheel of creamy Reblochon cheese and baked until molten.","ingredients":["1 kg Yukon gold potatoes, boiled and sliced into rounds","1 whole wheel (450 g) authentic Reblochon de Savoie cheese","200 g smoked bacon lardons","2 yellow onions, thinly sliced","100 ml dry Savoie white wine (Apremont or Jacquère)","100 ml crème fraîche & freshly ground black pepper"],"instructions":["Boil potatoes in skins for 15 mins; peel and slice into 5mm rounds.","Sauté bacon lardons until crisp; add onions and cook until caramelized (10 mins).","Deglaze with white wine; stir in crème fraîche and black pepper.","Layer half the potatoes in a baking dish, top with half the onion-bacon mixture, and repeat.","Slice whole Reblochon wheel horizontally in half; place both halves rind-side up on top of potatoes.","Bake at 200°C (400°F) for 25-30 minutes until cheese is molten, bubbling, and golden."],"tips":{"title":"Rind Side Up","description":"Placing the cheese rind-side up allows the crust to crisp while the creamy interior melts into the potatoes."},"variations":{"title":"Croziflette","description":"Made with Savoyard buckwheat square pasta (crozets) instead of potatoes."},"faqs":[{"question":"What wine pairs best?","answer":"A crisp, mineral Alpine white wine from Savoie cuts through the rich melted cheese."}],"imageQuery":"tartiflette reblochon cheese potato bacon","imageUrl":"https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"moules-mariniere","name":"Breton Steamed Mussels (Moules Marinières)","nativeName":"Moules Marinières au Vin Blanc","category":"Plats Principaux","prepTime":15,"cookTime":10,"yieldServings":4,"calories":310,"difficulty":"Easy","rating":4.9,"reviewsCount":820,"intro":"Coastal Brittany perfection: fresh black Bouchot mussels steamed in dry white wine, French butter, shallots, garlic, and fresh parsley, served with golden frites.","ingredients":["2 kg fresh blue or Bouchot mussels, cleaned and debearded","4 shallots & 3 garlic cloves, finely minced","50 g butter & 1 tbsp olive oil","250 ml dry white wine (Muscadet or Sauvignon Blanc)","1 bunch flat-leaf Italian parsley, finely chopped","100 ml heavy cream (for Moules à la Crème variation)"],"instructions":["Melt butter and olive oil in a wide heavy stockpot. Sauté shallots and garlic for 2 minutes.","Pour in white wine and bring to a rolling boil.","Add cleaned mussels, cover tightly with lid, and cook on high heat for 4-5 minutes, shaking the pot occasionally until all shells open wide.","Remove from heat, discard any unopened mussels, and stir in chopped fresh parsley.","Ladle mussels and aromatic white wine broth into large bowls and serve with crusty bread and hot fries."],"tips":{"title":"Clean Mussels","description":"Discard any cracked mussels or open shells that do not close when tapped before cooking."},"variations":{"title":"Moules à la Crème","description":"Stir 100ml heavy cream into the wine broth before serving."},"faqs":[{"question":"How to eat traditionally?","answer":"Use an empty mussel shell like a pincer to pluck meat from the other shells!"}],"imageQuery":"moules marinieres mussels white wine broth","imageUrl":"https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"tarte-tatin","name":"Caramelized Apple Tarte Tatin","nativeName":"Tarte Tatin Renversée aux Pommes","category":"Pâtisserie & Tartes","prepTime":30,"cookTime":45,"yieldServings":8,"calories":340,"difficulty":"Medium","rating":5,"reviewsCount":960,"intro":"The glorious upside-down hotel dessert: tart apples slow-caramelized in French butter and sugar until amber and jammy, baked under puff pastry and flipped hot onto a platter.","ingredients":["2 kg firm baking apples (Braeburn or Honeycrisp), peeled, cored, and halved","100 g unsalted French butter","150 g granulated sugar & 1 tsp vanilla bean paste","1 sheet all-butter puff pastry (Pâte Feuilletée), rolled to 24cm circle","Crème fraîche for serving"],"instructions":["Melt butter and sugar in a 24cm oven-proof cast iron skillet until a golden caramel forms.","Pack apple halves tightly into the skillet vertically on their sides in concentric circles (they will shrink).","Cook on medium-low heat for 20 minutes, basting with hot caramel until apples soften.","Drape puff pastry circle over hot apples, tucking pastry edges down into the sides of the pan.","Bake at 190°C (375°F) for 25 minutes until pastry is puffed and deep golden.","Let cool 10 minutes, place serving platter over pan, and invert swiftly in one confident motion."],"tips":{"title":"Pack Apples Tightly","description":"Pack apples as tightly as possible; they shrink significantly as moisture evaporates into the caramel."},"variations":{"title":"Pear Tarte Tatin","description":"Made with firm Bosc pears and a hint of cardamom."},"faqs":[{"question":"Where did it originate?","answer":"Accidentally created in the 1880s by the Tatin sisters at their hotel in Lamotte-Beuvron."}],"imageQuery":"tarte tatin upside down apple tart caramel","imageUrl":"https://images.unsplash.com/photo-1568571780765-9276ac8b75a2?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"souffle-chocolat","name":"Classic Dark Chocolate Soufflé","nativeName":"Soufflé Chaud au Chocolat Noir","category":"Pâtisserie & Tartes","prepTime":20,"cookTime":14,"yieldServings":4,"calories":280,"difficulty":"Advanced","rating":4.9,"reviewsCount":580,"intro":"Dramatic French culinary theatre: towering warm chocolate soufflés with molten centers and crisp edges, rising majestically above the ramekin rim.","ingredients":["150 g high-grade 70% dark French chocolate, chopped","40 g butter & 120 ml whole milk + 15 g flour for chocolate base","4 large egg whites + 2 egg yolks","50 g sugar & pinch salt","Soft butter and granulated sugar for coating ramekins","Powdered sugar for dusting"],"instructions":["Brush 4 ramekins with softened butter using upward vertical strokes; coat evenly with sugar.","Melt dark chocolate with warm milk, flour roux, and egg yolks until glossy; cool slightly.","Whip egg whites with a pinch of salt and sugar to glossy medium peaks.","Fold one-third meringue into chocolate base, then gently fold remaining meringue.","Fill ramekins to the top, level with a palette knife, and run thumb around inner rim to create a top hat groove.","Bake at 190°C (375°F) for 12-14 minutes without opening oven door until puffed high. Dust with powdered sugar and serve immediately."],"tips":{"title":"Vertical Butter Brush","description":"Brushing butter upwards helps the batter climb straight without catching on sides."},"variations":{"title":"Grand Marnier Soufflé","description":"Flavored with orange liqueur and vanilla."},"faqs":[{"question":"How quickly does it deflate?","answer":"Soufflés begin deflating 2-3 minutes after leaving the oven; serve straight away!"}],"imageQuery":"chocolate souffle dessert powdered sugar ramekin","imageUrl":"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"blanquette-de-veau","name":"Traditional Veal Blanquette","nativeName":"Blanquette de Veau à l’Ancienne","category":"Plats Principaux","prepTime":25,"cookTime":90,"yieldServings":6,"calories":490,"difficulty":"Medium","rating":4.8,"reviewsCount":450,"intro":"Tender veal shoulder simmered in aromatic white stock, folded into a velvety egg-yolk and cream velouté sauce with pearl onions and button mushrooms.","ingredients":["1 kg veal shoulder or breast, cut into cubes","Aromatics: 1 onion studded with 2 cloves, 2 carrots, 1 leek, celery, bouquet garni","White Sauce: 50 g butter, 50 g flour, 800 ml veal cooking stock, 150 ml crème fraîche, 2 egg yolks, lemon juice","200 g pearl onions glazed in butter & 250 g button mushrooms","Steamed white buttered rice for serving"],"instructions":["Cover veal in cold water in a Dutch oven; bring to a boil and skim surface carefully.","Add onion, carrots, leek, and bouquet garni; simmer gently for 1.5 hours until veal is tender.","Strain and reserve 800 ml of clear veal broth.","Make a blonde roux with butter and flour; whisk in hot veal broth to create a smooth velouté.","Whisk crème fraîche and egg yolks with lemon juice; temper into warm velouté off the flame.","Combine tender veal, glazed pearl onions, and sautéed mushrooms in velvety white sauce; serve over steamed rice."],"tips":{"title":"Do Not Brown Meat","description":"Veal must never be browned; poaching keeps the meat and sauce pristine ivory white."},"variations":{"title":"Chicken Blanquette","description":"Accessible version made with tender chicken breasts."},"faqs":[{"question":"Why is it called Blanquette?","answer":"From the French \"blanc\" (white), honoring the sauce’s pure ivory color."}],"imageQuery":"blanquette de veau veal white cream sauce","imageUrl":"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"gratin-dauphinois","name":"Classic Gratin Dauphinois","nativeName":"Gratin Dauphinois Traditionnel","category":"Bistrot & Entrées","prepTime":20,"cookTime":60,"yieldServings":6,"calories":390,"difficulty":"Easy","rating":5,"reviewsCount":810,"intro":"Dauphiné comfort royalty: razor-thin sliced potatoes slow-baked in heavy cream, whole milk, garlic, and fresh nutmeg until golden, creamy, and unctuous.","ingredients":["1.2 kg starchy potatoes (Russet or Charlotte), peeled and sliced 3mm thin","300 ml heavy cream & 300 ml whole milk","2 cloves fresh garlic (1 crushed for rubbing dish, 1 minced)","30 g butter & 1/2 tsp freshly grated nutmeg","Sea salt & freshly cracked black pepper"],"instructions":["Rub the inside of a gratin baking dish with the cut side of a garlic clove, then butter generously.","Slice potatoes thinly on mandoline (do not rinse in water to preserve starch).","Simmer milk, cream, minced garlic, nutmeg, salt, and pepper in a saucepan; add sliced potatoes and cook 5 mins.","Transfer potatoes and cream into prepared gratin dish, leveling the top surface.","Dot top with small pats of butter and bake at 160°C (325°F) for 60 minutes until top is deep golden and potatoes are knife-tender."],"tips":{"title":"Do Not Rinse Potatoes","description":"Potato starch is the natural binding agent that thickens the cream into a custard."},"variations":{"title":"Gratin Savoyard","description":"Baked with beef broth and grated Gruyère cheese."},"faqs":[{"question":"Is cheese used in authentic Dauphinois?","answer":"Authentic French Dauphinois uses no cheese; the crust comes purely from baked cream and potato starch."}],"imageQuery":"gratin dauphinois potato baked cream","imageUrl":"https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"pissaladiere-provencale","name":"Provençal Onion & Anchovy Tart (Pissaladière)","nativeName":"Pissaladière Niçoise Traditionnelle","category":"Pâtisserie & Tartes","prepTime":30,"cookTime":35,"yieldServings":6,"calories":320,"difficulty":"Medium","rating":4.8,"reviewsCount":390,"intro":"Nice’s savory bread tart: olive oil bread dough piled high with slow-caramelized sweet yellow onions, diamond latticed with salty anchovy fillets and black Niçoise olives.","ingredients":["Dough: 300 g flour, 180 ml water, 5 g yeast, 3 tbsp olive oil, 1 tsp salt","1.5 kg yellow onions, thinly sliced","4 tbsp extra virgin olive oil & fresh thyme sprigs","16 salted anchovy fillets in oil","100 g small black Niçoise olives"],"instructions":["Knead dough, rest 1 hour, and roll out onto an oiled baking sheet.","Cook sliced onions in olive oil with thyme over low heat for 45 minutes until sweet, golden, and jammy (do not brown).","Spread caramelized onions thickly over the dough base.","Arrange anchovy fillets in a criss-cross diamond lattice pattern over onions.","Place a black Niçoise olive in the center of each diamond.","Bake at 200°C (400°F) for 25 minutes until crust is crisp and golden."],"tips":{"title":"Slow Onion Stewing","description":"Onions should melt into a sweet compote without any harsh browning."},"variations":{"title":"Puff Pastry Pissaladière","description":"Made with puff pastry for a quick flaky appetizer."},"faqs":[{"question":"Is there cheese or tomato?","answer":"Traditional Pissaladière uses neither cheese nor tomato—only onions, anchovies, and olives."}],"imageQuery":"pissaladiere provencal onion anchovy tart","imageUrl":"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"eclairs-chocolat","name":"Artisan Dark Chocolate Éclairs","nativeName":"Éclairs au Chocolat et Crème Pâtissière","category":"Pâtisserie & Tartes","prepTime":40,"cookTime":25,"yieldServings":8,"calories":260,"difficulty":"Advanced","rating":5,"reviewsCount":740,"intro":"Classic French pastry boutique icon: crisp choux pastry fingers filled with rich dark chocolate crème pâtissière and dipped in a mirror-shiny chocolate fondant glaze.","ingredients":["Pâte à Choux: 125 ml water, 125 ml milk, 100 g butter, 150 g flour, 4 eggs, pinch salt & sugar","Filling: 500 ml milk, 4 egg yolks, 80 g sugar, 40 g cornstarch, 100 g 70% dark chocolate","Glaze: 100 g dark chocolate, 60 ml heavy cream, 20 g butter, 1 tbsp corn syrup"],"instructions":["Cook choux dough on stovetop, beat in eggs one at a time until glossy and piping-consistency.","Pipe 12cm fingers onto parchment-lined baking sheets.","Bake at 190°C (375°F) for 25 mins without opening oven until crisp, hollow, and golden.","Cook chocolate pastry cream, cool completely, and pipe into hollow éclair shells through three bottom holes.","Melt chocolate glaze ingredients into a shiny ganache; dip tops of éclairs for a pristine mirror finish."],"tips":{"title":"Dry the Shells","description":"Poke a tiny hole in the base 5 mins before finishing bake to let internal steam escape."},"variations":{"title":"Coffee Éclairs (Café)","description":"Filled with espresso crème pâtissière and coffee glaze."},"faqs":[{"question":"Why is it called \"éclair\"?","answer":"\"Éclair\" means flash of lightning, because it is eaten in a flash!"}],"imageQuery":"chocolate eclairs french pastry choux","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"madeleines-beurre","name":"Lorraine Butter Madeleines","nativeName":"Madeleines Pur Beurre de Commercy","category":"Pâtisserie & Tartes","prepTime":15,"cookTime":10,"yieldServings":12,"calories":110,"difficulty":"Easy","rating":4.9,"reviewsCount":650,"intro":"Proust’s sensory sponge cakes: delicate scallop-shaped butter cakes scented with lemon zest and pure vanilla, crowned with the iconic puffed hump.","ingredients":["100 g European unsalted butter, melted and browned (beurre noisette)","2 large eggs & 80 g granulated sugar","100 g cake flour & 1/2 tsp baking powder","Zest of 1 organic lemon & 1 tsp pure vanilla extract","Pinch of fine sea salt"],"instructions":["Whisk eggs and sugar for 5 minutes until thick, pale, and ribbon-like.","Fold in sifted flour, baking powder, lemon zest, and salt.","Gently fold in warm browned butter; cover and chill batter in fridge for at least 2 hours.","Butter and flour traditional scalloped madeleine molds.","Spoon chilled batter into molds; bake at 200°C (400°F) for 10 minutes until edges are golden and signature humps rise high."],"tips":{"title":"Thermal Shock","description":"Chilling the batter causes thermal shock in a hot oven, forcing the signature center hump to pop up."},"variations":{"title":"Honey Madeleines","description":"Substitute 2 tbsp sugar with lavender honey."},"faqs":[{"question":"What is the Proust Madeleine effect?","answer":"Marcel Proust wrote about madeleines triggering intense involuntary childhood memories in his novel."}],"imageQuery":"french madeleines shell sponge cakes lemon","imageUrl":"https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"crepes-suzette","name":"Flambéed Crêpes Suzette","nativeName":"Crêpes Suzette Flambées au Grand Marnier","category":"Pâtisserie & Tartes","prepTime":20,"cookTime":15,"yieldServings":4,"calories":320,"difficulty":"Medium","rating":4.9,"reviewsCount":510,"intro":"Boutique tableside flambé: whisper-thin French crepes bathed in a caramelized orange juice, zest, and butter sauce, dramatically flambéed with Grand Marnier liqueur.","ingredients":["8 delicate French Crêpes (flour, milk, eggs, butter, pinch sugar)","Suzette Butter: 100 g unsalted butter, 80 g sugar, zest and juice of 3 oranges, 1 lemon","Alcohol: 60 ml Grand Marnier or Cointreau liqueur & 2 tbsp Cognac"],"instructions":["Cook thin crêpes in a non-stick pan until golden on both sides.","Melt butter and sugar in a wide flambé skillet until caramelized.","Add orange juice, lemon juice, and citrus zests; simmer 3 minutes until syrupy.","Fold each crêpe into quarters (triangles) and place in simmering citrus sauce to coat.","Pour Grand Marnier and Cognac over crêpes, ignite carefully with long lighter, and baste with flaming sauce until fire subsides."],"tips":{"title":"Warm the Liqueur","description":"Warming liqueur slightly before pouring ensures it ignites immediately."},"variations":{"title":"Normandy Crêpes","description":"Flambéed with Calvados apple brandy and caramelized apple slices."},"faqs":[{"question":"Who was Suzette?","answer":"Legend claims it was created in 1895 in Monte Carlo for the Prince of Wales and his companion Suzette."}],"imageQuery":"crepes suzette orange sauce flambe grand marnier","imageUrl":"https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"steak-frites-bearnaise","name":"Parisian Bistro Steak Frites with Béarnaise","nativeName":"Steak Frites Sauce Béarnaise","category":"Plats Principaux","prepTime":20,"cookTime":15,"yieldServings":2,"calories":680,"difficulty":"Medium","rating":5,"reviewsCount":880,"intro":"The soul of Paris brasseries: pan-seared dry-aged ribeye or hanger steak with a caramelized crust, accompanied by double-fried frites and freshly whisked tarragon Béarnaise.","ingredients":["2 prime beef Ribeye steaks or Onglet (hanger steak), 250 g each","Frites: 500 g russet potatoes cut into batons, double fried in peanut oil","Béarnaise Sauce: 2 egg yolks, 120 g clarified warm butter, 2 tbsp white wine vinegar reduction with shallots, crushed peppercorns, fresh tarragon and chervil"],"instructions":["Sear seasoned steaks in smoking hot cast iron with butter and thyme for 3 mins per side (medium-rare); rest 5 mins.","Simmer vinegar, shallots, and tarragon stems until reduced to 1 tbsp; strain.","Whisk egg yolks and reduction over double boiler until thick and frothy.","Slowly drizzle in warm clarified butter while whisking vigorously until thick and silky; fold in chopped tarragon.","Serve sliced steak alongside a mound of crispy golden fries and a bowl of warm Béarnaise sauce."],"tips":{"title":"Resting the Steak","description":"Resting allows meat juices to redistribute so the steak stays juicy throughout."},"variations":{"title":"Steak au Poivre","description":"Crusted in cracked black peppercorns and finished with Cognac cream pan sauce."},"faqs":[{"question":"What cut is Onglet?","answer":"Hanger steak, the prized butcher’s cut celebrated in French bistros for deep beef flavor."}],"imageQuery":"steak frites french bistro bearnaise sauce","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"pot-au-feu","name":"Traditional French Pot-au-Feu","nativeName":"Pot-au-Feu Traditionnel au Paleron","category":"Plats Principaux","prepTime":30,"cookTime":180,"yieldServings":6,"calories":520,"difficulty":"Medium","rating":4.8,"reviewsCount":460,"intro":"The ancestral soul of French home cooking: beef chuck, marrow bones, leeks, carrots, turnips, and cabbage simmered gently for 3 hours, served with Dijon mustard and coarse grey sea salt.","ingredients":["1.2 kg mixed beef cuts (chuck, shank, brisket) + 4 beef marrow bones","Vegetables: 4 carrots, 4 leeks (tied in bundle), 4 turnips, 1/2 green cabbage, 4 potatoes","Aromatics: 1 onion studded with 4 cloves, 1 bouquet garni, 1 tbsp black peppercorns, coarse sea salt (Gros sel de Guérande)","Condiments: French Dijon mustard & cornichons pickles"],"instructions":["Place beef cuts in a large stockpot with cold water; bring to a simmer, skimming foam thoroughly.","Add clove-studded onion and bouquet garni; simmer covered on low heat for 2 hours.","Add carrots, turnips, cabbage, and leek bundles; simmer for 40 minutes.","Add marrow bones and potatoes for the final 20 minutes.","Serve in two courses: first the steaming clarified broth in bowls, then the tender meats and vegetables on a platter with marrow toast and Dijon mustard."],"tips":{"title":"Tie Leeks in Bundle","description":"Tying leeks with kitchen twine prevents them from disintegrating into the broth."},"variations":{"title":"Poule au Pot","description":"The famous version made with whole stuffed chicken."},"faqs":[{"question":"How is it traditionally served?","answer":"Served in two courses: first the clear broth, then the meat and root vegetables."}],"imageQuery":"pot au feu french beef vegetable stew broth","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"gougeres-fromage","name":"Burgundian Cheese Gougères","nativeName":"Gougères Bourguignonnes au Comté","category":"Bistrot & Entrées","prepTime":20,"cookTime":22,"yieldServings":12,"calories":140,"difficulty":"Medium","rating":4.9,"reviewsCount":560,"intro":"Airy, golden choux pastry puffs folded with aged Comté or Gruyère cheese and freshly grated nutmeg, baked until crisp outside and hollow inside.","ingredients":["125 ml water & 125 ml whole milk","100 g unsalted butter, diced & 1/2 tsp sea salt + pinch cayenne pepper","150 g all-purpose flour","4 large eggs","150 g aged Comté cheese, finely grated (plus 2 tbsp for topping)","Freshly grated nutmeg"],"instructions":["Boil water, milk, butter, salt, and cayenne in a saucepan; add flour all at once and stir vigorously until dough forms a ball.","Cook dough over medium heat for 2 minutes to dry out moisture.","Beat eggs in one at a time until glossy, then fold in grated Comté and nutmeg.","Pipe 3cm mounds onto baking sheets lined with parchment.","Sprinkle extra Comté over tops and bake at 190°C (375°F) for 20-22 minutes until puffed, golden, and hollow."],"tips":{"title":"Do Not Open Oven","description":"Keep oven closed during the first 15 mins to prevent the delicate cheese puffs from collapsing."},"variations":{"title":"Stuffed Gougères","description":"Fill cooled gougères with mushroom duxelles or savory goat cheese cream."},"faqs":[{"question":"When are they served?","answer":"The quintessential wine-tasting appetizer in Burgundy cellars paired with Pinot Noir."}],"imageQuery":"gougeres cheese puffs french choux pastry","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"pate-de-campagne","name":"French Country Terrine (Pâté de Campagne)","nativeName":"Pâté de Campagne Traditionnel","category":"Bistrot & Entrées","prepTime":35,"cookTime":90,"yieldServings":10,"calories":340,"difficulty":"Medium","rating":4.8,"reviewsCount":420,"intro":"Rustic charcuterie centerpiece: coarsely ground pork shoulder, pork belly, and chicken liver seasoned with Cognac, thyme, and green peppercorns, wrapped in bacon and baked in a water bath.","ingredients":["500 g pork shoulder, 300 g pork belly, 200 g chicken livers (coarsely ground)","2 eggs & 50 ml French Cognac or Armagnac","2 shallots & 2 cloves garlic, finely minced in butter","Spices: 1 tbsp green peppercorns in brine, fresh thyme, 1/4 tsp allspice, sea salt","12 thin strips bacon for lining terrine mold & cornichons for serving"],"instructions":["Mix ground meats, sautéed shallots, garlic, eggs, Cognac, green peppercorns, and spices in a large bowl.","Line a ceramic terrine mold with overlapping strips of bacon, leaving overhang.","Pack meat mixture firmly into mold, folding bacon strips over top.","Cover with foil and bake in water bath at 160°C (325°F) for 90 minutes until internal temp reaches 72°C (160°F).","Place weights on top of terrine and chill in refrigerator for 24-48 hours before slicing."],"tips":{"title":"Weight and Chill","description":"Weighing down the terrine while cooling compresses the fat and gelatin for perfect slicing."},"variations":{"title":"Pâté with Pistachios","description":"Fold 50g toasted pistachios into the meat mixture."},"faqs":[{"question":"How long does it keep?","answer":"Keeps refrigerated for up to 10 days; flavor improves with maturity."}],"imageQuery":"pate de campagne french terrine charcuterie cornichons","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"profiteroles-chocolat","name":"Vanilla Ice Cream Profiteroles with Warm Chocolate","nativeName":"Profiteroles au Chocolat Chaud","category":"Pâtisserie & Tartes","prepTime":25,"cookTime":20,"yieldServings":4,"calories":410,"difficulty":"Medium","rating":5,"reviewsCount":780,"intro":"Parisian bistro finale: crisp baked choux puffs split and stuffed with artisanal vanilla bean ice cream, drenched tableside in rich warm dark chocolate ganache and toasted almond flakes.","ingredients":["12 baked Pâte à Choux puffs","1 pint artisanal Bourbon vanilla bean ice cream","Chocolate Sauce: 150 g 70% dark chocolate, 150 ml heavy cream, 20 g butter","50 g sliced almonds, toasted golden"],"instructions":["Slice choux puffs horizontally in half with a serrated knife.","Place a round scoop of cold vanilla ice cream inside each puff bottom; cap with top.","Arrange 3 filled profiteroles on each chilled serving plate.","Heat chocolate and heavy cream in saucepan until glossy and velvety.","Pour warm chocolate sauce lavishly over ice cream puffs at the table and scatter toasted almonds."],"tips":{"title":"Temperature Contrast","description":"The magic of profiteroles is the interplay of piping-hot chocolate sauce and icy cold vanilla ice cream."},"variations":{"title":"Pistachio Profiteroles","description":"Stuffed with pistachio gelato and drizzled with white chocolate sauce."},"faqs":[{"question":"Can choux puffs be made ahead?","answer":"Yes! Bake puffs and freeze in bags; crisp in oven at 180°C for 3 mins before filling."}],"imageQuery":"profiteroles vanilla ice cream warm chocolate sauce","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"vichyssoise-soup","name":"Chilled Leek & Potato Vichyssoise","nativeName":"Vichyssoise Glacée aux Poireaux","category":"Bistrot & Entrées","prepTime":15,"cookTime":30,"yieldServings":4,"calories":260,"difficulty":"Easy","rating":4.8,"reviewsCount":390,"intro":"Velvety chilled summer soup: sweet leeks, Yukon gold potatoes, and rich chicken stock blended silky smooth, finished with crème fraîche and fresh garden chives.","ingredients":["3 large leeks (white and pale green parts only, washed and sliced)","500 g Yukon gold potatoes, peeled and cubed","50 g butter & 1 L light chicken broth","150 ml heavy cream or crème fraîche","Fresh chives, finely snipped & white pepper"],"instructions":["Melt butter in pot, sauté sliced leeks on low heat for 10 mins without browning.","Add cubed potatoes and chicken broth; bring to a boil.","Simmer on medium-low for 20 minutes until potatoes are completely tender.","Puree soup in high-speed blender until silky and frictionless; strain through fine sieve.","Stir in heavy cream and chill thoroughly in refrigerator for at least 4 hours.","Ladle into cold bowls and garnish with snipped chives and a drizzle of cream."],"tips":{"title":"Chill Thoroughly","description":"Vichyssoise is strictly meant to be served icy cold on hot summer days."},"variations":{"title":"Potage Parmentier","description":"The exact same soup served piping hot with crusty croutons."},"faqs":[{"question":"Where was it created?","answer":"Created in 1917 by French chef Louis Diat at the Ritz-Carlton in New York, inspired by his childhood in Vichy."}],"imageQuery":"vichyssoise chilled leek potato soup chives","imageUrl":"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"escargots-bourguignonne","name":"Burgundy Snails in Garlic Herb Butter","nativeName":"Escargots à la Bourguignonne","category":"Bistrot & Entrées","prepTime":20,"cookTime":10,"yieldServings":4,"calories":290,"difficulty":"Easy","rating":4.8,"reviewsCount":510,"intro":"Burgundian delicacy: plump Helix pomatia snails nestled in shells and smothered in an aromatic compound butter of garlic, shallots, fresh parsley, and Cognac, baked bubbling hot.","ingredients":["24 prepared Burgundy snails (Escargots de Bourgogne) & 24 clean snail shells","Beurre d’Escargot: 150 g high-fat French butter (softened), 4 garlic cloves (minced), 2 shallots (minced), 1 bunch flat-leaf parsley (finely chopped), 1 tbsp Cognac, salt & white pepper","Crusty French baguette for dipping juices"],"instructions":["Blend softened butter with minced garlic, shallots, parsley, Cognac, salt, and pepper into vibrant green compound butter.","Place a dab of herb butter inside each snail shell, insert one snail, and seal opening generously with more herb butter.","Arrange shells upright in an escargot baking dish.","Bake at 200°C (400°F) for 10 minutes until butter is foaming, sizzling, and fragrant.","Serve bubbling hot with snail forks and lots of crusty baguette to mop up the garlic butter."],"tips":{"title":"Lots of Baguette","description":"The bubbling garlic-parsley butter left in the dish is the best part of the dish."},"variations":{"title":"Escargot Pastry Cups","description":"Baked in puff pastry vol-au-vent cups instead of shells."},"faqs":[{"question":"What species of snail?","answer":"Wild Helix pomatia (Gros Blanc de Bourgogne) is the premier gastronomic standard."}],"imageQuery":"escargots bourguignonne snails garlic butter parsley","imageUrl":"https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"clafoutis-cerises","name":"Limousin Black Cherry Clafoutis","nativeName":"Clafoutis Limousin aux Cerises Noires","category":"Pâtisserie & Tartes","prepTime":15,"cookTime":35,"yieldServings":6,"calories":240,"difficulty":"Easy","rating":4.9,"reviewsCount":620,"intro":"Limousin rustic baked flan: sweet black cherries baked in a delicate vanilla and almond-scented egg custard batter until puffed and golden.","ingredients":["500 g sweet black cherries (unpitted or pitted)","3 large eggs & 80 g sugar","60 g flour & 200 ml whole milk + 100 ml heavy cream","1 tsp pure vanilla extract & 1 tbsp Kirsch cherry liqueur (optional)","Butter for baking dish & powdered sugar for dusting"],"instructions":["Butter a ceramic baking dish and arrange black cherries evenly across bottom.","Whisk eggs, sugar, milk, cream, flour, vanilla, and Kirsch into a smooth, thin pancake-like batter.","Pour batter gently over cherries.","Bake at 180°C (350°F) for 35 minutes until custard is set, puffed at edges, and golden.","Dust generously with powdered sugar and serve warm with crème fraîche."],"tips":{"title":"Keep Pits in (Traditional)","description":"Traditional bakers keep cherry pits intact because they release a subtle natural almond aroma during baking."},"variations":{"title":"Flaugnarde","description":"The same batter baked with apples, pears, or plums."},"faqs":[{"question":"What is the texture like?","answer":"A tender hybrid between a custard flan, Dutch baby pancake, and warm pudding."}],"imageQuery":"cherry clafoutis french baked custard dessert","imageUrl":"https://images.unsplash.com/photo-1568571780765-9276ac8b75a2?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"brioche-pur-beurre","name":"Parisian Golden Butter Brioche","nativeName":"Brioche à Tête Pur Beurre","category":"Pâtisserie & Tartes","prepTime":40,"cookTime":25,"yieldServings":8,"calories":290,"difficulty":"Advanced","rating":5,"reviewsCount":810,"intro":"Rich French Viennoiserie: cloud-soft, golden-crusted brioche enriched with 50% European butter and fresh eggs, baked into iconic fluted Brioche à Tête shapes.","ingredients":["500 g high-grade bread flour (T45)","250 g European unsalted butter (softened at room temp)","5 large eggs & 50 g sugar","10 g active dry yeast dissolved in 40 ml warm milk & 10 g sea salt","1 egg beaten with 1 tbsp milk for egg wash"],"instructions":["Knead flour, yeast milk, sugar, salt, and eggs in stand mixer for 10 minutes until elastic.","Add softened butter 1 tablespoon at a time, kneading for 15 mins until dough is glossy and passes the windowpane test.","Cold ferment dough in refrigerator overnight (12 hours) to firm butter.","Shape into fluted brioche molds with a small top ball (brioche à tête), proof 2 hours.","Brush with egg wash and bake at 180°C (350°F) for 22-25 minutes until deep mahogany golden."],"tips":{"title":"Cold Dough Shaping","description":"High butter content makes warm dough sticky; chilling overnight makes shaping effortless."},"variations":{"title":"Brioche Nanterre","description":"Baked as a loaf of 8 interlocking golden rolls in a bread tin."},"faqs":[{"question":"Why so much butter?","answer":"High butter content creates the signature cottony, pull-apart featherweight crumb."}],"imageQuery":"french brioche bread butter golden bakery","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[]}];
+    let activeRecipeId = 'boeuf-bourguignon';
+    let activeCategory = 'All';
+
+    function getCategories() {
+      const cats = { 'All': recipes.length };
+      recipes.forEach(r => {
+        cats[r.category] = (cats[r.category] || 0) + 1;
+      });
+      return cats;
+    }
+
+    function renderCategories() {
+      const container = document.getElementById('categoriesBar');
+      if (!container) return;
+      const cats = getCategories();
+      container.innerHTML = Object.keys(cats).map(cat => {
+        const isActive = cat === activeCategory;
+        return `<button class="cat-chip ${isActive ? 'active' : ''}" onclick="filterCategory('${cat}')">${cat} (${cats[cat]})</button>`;
+      }).join('');
+    }
+
+    function filterCategory(cat) {
+      activeCategory = cat;
+      renderCategories();
+      renderGrid(document.getElementById('recipeSearchInput')?.value || '');
+    }
+
+    function renderGrid(filter = '') {
+      const grid = document.getElementById('recipeGrid');
+      const filtered = recipes.filter(r => {
+        const matchSearch = r.name.toLowerCase().includes(filter.toLowerCase()) || 
+                            r.nativeName.toLowerCase().includes(filter.toLowerCase()) ||
+                            r.category.toLowerCase().includes(filter.toLowerCase());
+        const matchCat = activeCategory === 'All' || r.category === activeCategory;
+        return matchSearch && matchCat;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; padding: 24px; text-align: center; color: #6b7280; background: #fff; border-radius: 4px; border: 1px dashed #d1d5db;">No recipes found matching your query. <a href="javascript:void(0)" onclick="viewAllRecipes()" style="color:#d97706; font-weight:bold;">View all ' + recipes.length + ' recipes</a></div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map((r) => {
+        const isActive = r.id === activeRecipeId;
+        return `
+          <article class="recipe-card ${isActive ? 'active-card' : ''}" onclick="selectRecipe('${r.id}')" title="Click to view details for ${r.name}">
+            <div class="card-photo" style="background-image:url('${r.imageUrl}')">
+              <span class="card-badge">${r.category}</span>
+            </div>
+            <div class="recipe-card-content">
+              <h3>${r.name}</h3>
+              <p><span>◷ ${r.prepTime + r.cookTime}m</span> <span>♨ ${r.difficulty}</span></p>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function selectRecipe(id) {
+      const recipe = recipes.find(r => r.id === id);
+      if (!recipe) return;
+      activeRecipeId = id;
+
+      document.getElementById('detailImage').style.backgroundImage = 
+        "linear-gradient(90deg, rgba(5,15,16,.95) 0%, rgba(5,15,16,.55) 42%, transparent 70%), url('" + recipe.imageUrl + "')";
+      
+      document.getElementById('detailBreadcrumbs').innerText = 'Home　›　Recipes　›　' + recipe.category;
+      document.getElementById('detailTitle').innerHTML = recipe.name + '<br>(' + recipe.nativeName + ')';
+      document.getElementById('detailRating').innerHTML = '★★★★★ <small>' + recipe.rating + ' (' + recipe.reviewsCount + ' reviews)</small>';
+      document.getElementById('detailIntro').innerText = recipe.intro;
+
+      document.getElementById('detailFacts').innerHTML = 
+        '<span>◉ Prep ' + recipe.prepTime + ' min</span>' +
+        '<span>◉ Cook ' + recipe.cookTime + ' min</span>' +
+        '<span>◉ Yield ' + recipe.yieldServings + ' serv</span>' +
+        '<span>◉ ' + recipe.calories + ' kcal</span>';
+
+      document.getElementById('detailIngredients').innerHTML = 
+        recipe.ingredients.map(ing => '<li>' + ing + '</li>').join('');
+
+      document.getElementById('detailInstructions').innerHTML = 
+        recipe.instructions.map(ins => '<li>' + ins + '</li>').join('');
+
+      document.getElementById('detailTips').innerHTML = 
+        '<strong>' + recipe.tips.title + '</strong><p>' + recipe.tips.description + '</p>';
+
+      document.getElementById('detailVariations').innerHTML = 
+        '<strong>' + recipe.variations.title + '</strong><p>' + recipe.variations.description + '</p>';
+
+      document.getElementById('faqContainer').innerHTML = 
+        recipe.faqs.map(faq => 
+          '<div class="faq-item" onclick="this.classList.toggle(\'open\')">' +
+          '<div><span>' + faq.question + '</span><b>⌄</b></div>' +
+          '<small>' + faq.answer + '</small>' +
+          '</div>'
+        ).join('');
+
+      const recs = (recipe.alsoLike && recipe.alsoLike.length > 0) 
+        ? recipe.alsoLike 
+        : recipes.filter(r => r.id !== recipe.id).slice(0, 4);
+
+      document.getElementById('alsoContainer').innerHTML = 
+        recs.map((also) => 
+          '<article class="also-card" onclick="selectRecipeByName(\'' + also.name.replace(/'/g, "\\'") + '\')">' +
+          '<div class="mini" style="background-image:url(\'' + also.imageUrl + '\')"></div>' +
+          '<span>' + also.name + '</span>' +
+          '</article>'
+        ).join('');
+
+      renderGrid(document.getElementById('recipeSearchInput')?.value || '');
+
+      if (window.innerWidth <= 950) {
+        document.getElementById('detailPanel').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function selectRecipeByName(name) {
+      const found = recipes.find(r => r.name.toLowerCase().includes(name.toLowerCase()) || r.nativeName.toLowerCase().includes(name.toLowerCase()));
+      if (found) {
+        selectRecipe(found.id);
+      }
+    }
+
+    function viewAllRecipes() {
+      activeCategory = 'All';
+      renderCategories();
+      const input = document.getElementById('recipeSearchInput');
+      if (input) input.value = '';
+      renderGrid('');
+      document.getElementById('recipeGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function focusCategories() {
+      document.getElementById('recipeGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* Modal Handlers */
+    function openAboutModal() {
+      document.getElementById('aboutModal').classList.add('open');
+    }
+    function closeAboutModal(e) {
+      if (!e || e.target === document.getElementById('aboutModal') || e.target.classList.contains('modal-close')) {
+        document.getElementById('aboutModal').classList.remove('open');
+      }
+    }
+    function switchModalTab(tabId) {
+      document.querySelectorAll('.modal-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.modal-section').forEach(s => s.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(tabId)?.classList.add('active');
+    }
+    function jumpToRecipe(id) {
+      closeAboutModal();
+      selectRecipe(id);
+      document.getElementById('detailPanel').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCategories();
+      renderGrid();
+
+      const searchInput = document.getElementById('recipeSearchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          renderGrid(e.target.value);
+        });
+      }
+
+      const searchBtn = document.getElementById('recipeSearchBtn');
+      if (searchBtn) {
+        searchBtn.addEventListener('click', () => {
+          renderGrid(searchInput.value);
+        });
+      }
+    });
+
+    renderCategories();
+    renderGrid();
+  </script>
+</body>
+</html>

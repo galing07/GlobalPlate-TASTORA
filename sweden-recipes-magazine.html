@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sweden Recipes - SWEDISH RECIPES</title>
+  <meta name="description" content="Discover the Taste of Sweden - Authentic Sweden culinary traditions, recipes, and culture." />
+  <style>
+    /* Reset & Base Setup */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100%;
+      background: #101518;
+      color: #f5eee4;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    /* Magazine App Shell */
+    .app-shell {
+      width: 100%;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(650px, 62%) minmax(400px, 38%);
+      gap: 7px;
+      padding: 6px 14px;
+    }
+
+    .main-column, .detail-panel {
+      border: 1px solid #8b806f;
+      border-radius: 9px;
+      overflow: hidden;
+      background: #151b1d;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Topbar */
+    .topbar {
+      height: 48px;
+      background: #071017;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: Georgia, serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .brand-mark {
+      font-size: 20px;
+      color: #e8b85c;
+    }
+    .topbar nav {
+      display: flex;
+      gap: 16px;
+    }
+    .topbar nav a {
+      color: #d1d5db;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 11px;
+      transition: color 0.15s ease;
+      cursor: pointer;
+    }
+    .topbar nav a:hover, .topbar nav a.active {
+      color: #e8b85c;
+    }
+    .search {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 28px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid #4b5563;
+      border-radius: 4px;
+      overflow: hidden;
+      width: 170px;
+    }
+    .search input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 10px;
+      padding: 0 8px;
+      width: 135px;
+    }
+    .search input::placeholder { color: #9ca3af; }
+    .search b {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 28px;
+      background: #e8b85c;
+      color: #2e2111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 290px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #111;
+    }
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      padding: 24px 28px;
+      max-width: 440px;
+    }
+    .hero-copy em {
+      display: block;
+      font-family: Georgia, serif;
+      font-style: italic;
+      color: #e8b85c;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+    .hero-copy h1 {
+      font-family: Georgia, serif;
+      font-size: 32px;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 7px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    }
+    .hero-copy p {
+      font-size: 12px;
+      color: #e5e7eb;
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+    .hero-actions button {
+      background: #eeb654;
+      color: #2e2111;
+      border: 1px solid #e8b85c;
+      font-weight: bold;
+      font-size: 11px;
+      padding: 7px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .hero-actions button:hover { opacity: 0.9; transform: translateY(-1px); }
+    .hero-actions button.dark-button {
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      border: 1px solid #6b7280;
+      backdrop-filter: blur(4px);
+    }
+    .hero-actions button.dark-button:hover {
+      background: rgba(0,0,0,0.8);
+      border-color: #e8b85c;
+    }
+
+    /* Popular Section */
+    .popular {
+      background: #eee4d7;
+      color: #1e1a17;
+      padding: 14px 16px;
+      flex: 1;
+    }
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .section-heading h2 {
+      font-family: Georgia, serif;
+      font-size: 17px;
+      font-weight: bold;
+      color: #1e1a17;
+    }
+    .section-heading button {
+      background: #fff;
+      border: 1px solid #d0c4b7;
+      color: #1e1a17;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .section-heading button:hover { background: #f3f4f6; }
+
+    /* Category Filter Chips */
+    .categories-bar {
+      display: flex;
+      gap: 5px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+    }
+    .cat-chip {
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 9px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #374151;
+      transition: all 0.15s ease;
+    }
+    .cat-chip:hover { background: #f9fafb; }
+    .cat-chip.active {
+      background: #b45309;
+      color: #fff;
+      border-color: #92400e;
+    }
+
+    /* Grid */
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+      gap: 7px;
+    }
+    .recipe-card {
+      background: #f9f4ec;
+      border: 1px solid #d0c4b7;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+    .recipe-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    }
+    .recipe-card.active-card {
+      border: 2px solid #e8b85c;
+      box-shadow: 0 0 0 1px #e8b85c;
+    }
+    .card-photo {
+      height: 75px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      background-color: #374151;
+    }
+    .card-badge {
+      position: absolute;
+      bottom: 4px;
+      left: 4px;
+      background: rgba(0,0,0,0.75);
+      color: #fff;
+      font-size: 7px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+    .recipe-card-content {
+      padding: 6px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .recipe-card h3 {
+      font-size: 10px;
+      font-weight: bold;
+      color: #111827;
+      line-height: 1.25;
+      margin-bottom: 2px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .recipe-card p {
+      font-size: 8px;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 3px;
+      margin-top: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Detail Panel */
+    .detail-panel {
+      background: #f1e7d9;
+      color: #1e1a17;
+    }
+    .detail-image {
+      min-height: 175px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .detail-content {
+      padding: 10px 14px;
+    }
+    .breadcrumbs {
+      font-size: 9px;
+      color: #6b7280;
+      margin-bottom: 3px;
+    }
+    .detail-content h2 {
+      font-family: Georgia, serif;
+      font-size: 19px;
+      color: #1e1a17;
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+    .rating {
+      color: #d97706;
+      font-size: 11px;
+      margin-bottom: 6px;
+    }
+    .rating small { color: #6b7280; font-size: 9px; }
+    .intro {
+      font-size: 10px;
+      color: #374151;
+      line-height: 1.45;
+      margin-bottom: 8px;
+    }
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      background: rgba(0,0,0,0.04);
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,0,0,0.06);
+      font-size: 9px;
+      color: #1f2937;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* 2 Column Ingredients & Instructions */
+    .ingredients-instructions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 10px 14px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.4);
+    }
+    .ingredients-instructions h3 {
+      font-family: Georgia, serif;
+      font-size: 12px;
+      font-weight: bold;
+      color: #111827;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+    }
+    .ingredients-instructions ul, .ingredients-instructions ol {
+      padding-left: 14px;
+      font-size: 9.5px;
+      color: #374151;
+      line-height: 1.5;
+    }
+    .ingredients-instructions li { margin-bottom: 3px; }
+
+    /* Tips & Variations */
+    .tips {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      padding: 6px 14px 10px;
+    }
+    .tip-card {
+      background: #15313d;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 1.35;
+    }
+    .tip-card strong {
+      display: block;
+      color: #e8b85c;
+      font-size: 10px;
+      margin-bottom: 2px;
+      font-family: Georgia, serif;
+    }
+    .variation-card {
+      background: #164332;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 1.35;
+    }
+    .variation-card strong {
+      display: block;
+      color: #a7f3d0;
+      font-size: 10px;
+      margin-bottom: 2px;
+      font-family: Georgia, serif;
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 6px 14px;
+    }
+    .faq h3 {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #111827;
+    }
+    .faq-item {
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 3px;
+      margin-bottom: 4px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .faq-item div {
+      padding: 5px 8px;
+      font-weight: bold;
+      font-size: 9.5px;
+      color: #1f2937;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-item small {
+      display: none;
+      padding: 5px 8px 7px;
+      font-size: 9px;
+      color: #4b5563;
+      border-top: 1px solid #f3f4f6;
+      line-height: 1.4;
+      background: #f9fafb;
+    }
+    .faq-item.open small { display: block; }
+
+    /* You Might Also Like */
+    .also {
+      background: #1c493b;
+      color: #fff;
+      padding: 10px 14px;
+      margin-top: auto;
+    }
+    .also h3 {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .also-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+    .also-card {
+      cursor: pointer;
+      text-align: center;
+    }
+    .also-card .mini {
+      height: 48px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 3px;
+      transition: border-color 0.15s;
+    }
+    .also-card:hover .mini { border-color: #e8b85c; }
+    .also-card span {
+      font-size: 8.5px;
+      font-weight: bold;
+      color: #e5e7eb;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Modal for About Swedish Cuisine */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(6px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-container {
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      background: #0e161c;
+      border: 1px solid rgba(217, 119, 6, 0.4);
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      color: #e2e8f0;
+    }
+    .modal-header {
+      padding: 16px 20px;
+      background: linear-gradient(90deg, #0d222b, #122c37);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-header h2 {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      color: #fff;
+    }
+    .modal-close {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-nav {
+      display: flex;
+      gap: 6px;
+      padding: 8px 16px;
+      background: #091116;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      overflow-x: auto;
+    }
+    .modal-tab-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .modal-tab-btn.active {
+      background: #d97706;
+      color: #0f172a;
+      font-weight: bold;
+    }
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .modal-section { display: none; }
+    .modal-section.active { display: block; }
+    .modal-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .modal-card h4 {
+      font-size: 12px;
+      color: #fbbf24;
+      margin-bottom: 4px;
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 950px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+        padding: 4px 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-shell" id="topAnchor">
+    <!-- LEFT MAIN COLUMN -->
+    <main class="main-column">
+      <header class="topbar">
+        <div class="brand" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+          <span class="brand-mark">♛</span>
+          <span>SWEDISH<br>RECIPES</span>
+        </div>
+        <nav>
+          <a href="javascript:void(0)" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="active">Home</a>
+          <a href="javascript:void(0)" onclick="viewAllRecipes()">Recipes</a>
+          <a href="javascript:void(0)" onclick="focusCategories()">Categories</a>
+          <a href="javascript:void(0)" onclick="openAboutModal()">About</a>
+        </nav>
+        <div class="search">
+          <input type="text" id="recipeSearchInput" placeholder="Search 30 recipes..." aria-label="Search recipes" />
+          <b id="recipeSearchBtn">⌕</b>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-photo" style="background-image: linear-gradient(90deg, #101518F2 0%, #101518B8 41%, #1015180D 80%), url('https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=1200&q=85');"></div>
+        <div class="hero-copy">
+          <em>Discover the Taste of Sweden</em>
+          <h1>Authentic Swedish<br>Recipes</h1>
+          <p>Traditional dishes, cozy fika treats, and timeless<br>flavors from the heart of Sweden.</p>
+          <div class="hero-actions">
+            <button onclick="document.getElementById('recipeGridSection').scrollIntoView({behavior:'smooth'})">Browse Recipes</button>
+            <button class="dark-button" onclick="openAboutModal()">About Swedish Cuisine</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="popular" id="recipeGridSection">
+        <div class="section-heading">
+          <h2>❧ Popular Recipes ❧</h2>
+          <button id="viewAllBtn" onclick="viewAllRecipes()">View All (30) →</button>
+        </div>
+
+        <div class="categories-bar" id="categoriesBar"></div>
+
+        <div class="recipe-grid" id="recipeGrid"></div>
+      </section>
+    </main>
+
+    <!-- RIGHT DETAIL PANEL -->
+    <aside class="detail-panel" id="detailPanel">
+      <div class="detail-image" id="detailImage" style="background-image: linear-gradient(90deg, rgba(5,15,16,.95) 0%, rgba(5,15,16,.55) 42%, transparent 70%), url('https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80');"></div>
+      <div class="detail-content" id="detailContent">
+        <div class="breadcrumbs" id="detailBreadcrumbs">Home　›　Recipes　›　Main Course</div>
+        <h2 id="detailTitle">Swedish Meatballs<br>(Köttbullar med Gräddsås)</h2>
+        <div class="rating" id="detailRating">★★★★★ <small>4.9 (842 reviews)</small></div>
+        <p class="intro" id="detailIntro">Tender Swedish meatballs simmered in a velvety cream gravy, served alongside buttery mashed potatoes, pressed cucumbers, and wild lingonberries.</p>
+        <div class="facts" id="detailFacts">
+          <span>◉ Prep 20 min</span>
+          <span>◉ Cook 25 min</span>
+          <span>◉ Yield 4 serv</span>
+          <span>◉ 420 kcal</span>
+        </div>
+      </div>
+
+      <div class="ingredients-instructions" id="ingredientsInstructions">
+        <section>
+          <h3>Ingredients</h3>
+          <ul id="detailIngredients">
+            <li>500 g ground beef chuck</li><li>250 g ground pork</li><li>1 small yellow onion, grated finely</li><li>1 large egg</li><li>100 ml heavy cream</li><li>60 ml dried breadcrumbs</li><li>1 tsp sea salt & ½ tsp black pepper</li><li>¼ tsp ground allspice & pinch of nutmeg</li><li>2 tbsp butter for frying</li><li>500 ml rich beef stock</li><li>150 ml heavy cream for gravy</li><li>2 tbsp flour for roux</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Instructions</h3>
+          <ol id="detailInstructions">
+            <li>Soak breadcrumbs in cream and milk for 10 minutes until soft and hydrated.</li><li>Gently mix ground meats, grated onion, egg, soaked crumbs, salt, allspice, and nutmeg until just combined.</li><li>Shape into 24-28 even round meatballs and chill for 15 minutes to firm up.</li><li>Melt butter in a large skillet over medium-high heat. Brown meatballs evenly until crisp outside (8-10 mins). Set aside.</li><li>Whisk flour into pan drippings, then slowly pour in hot beef stock and cream, simmering until thick and glossy.</li><li>Return meatballs to gravy, simmer on low heat for 10 minutes, and serve with mashed potatoes and lingonberry jam.</li>
+          </ol>
+        </section>
+      </div>
+
+      <div class="tips" id="tipsBlock">
+        <div class="tip-card" id="detailTips">
+          <strong>Chef Tip</strong>
+          <p>Do not overmix the ground meat mixture; chilling before rolling prevents sticking.</p>
+        </div>
+        <div class="variation-card" id="detailVariations">
+          <strong>Wild Game Meatballs</strong>
+          <p>Substitute half the beef with wild venison or moose meat for rustic Norrland style.</p>
+        </div>
+      </div>
+
+      <section class="faq" id="faqSection">
+        <h3>Frequently Asked Questions</h3>
+        <div id="faqContainer">
+          
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+              <div><span>Can I bake them?</span><b>⌄</b></div>
+              <small>Yes, bake at 200°C (400°F) for 15-18 minutes on parchment paper.</small>
+            </div>
+          
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+              <div><span>Can they be frozen?</span><b>⌄</b></div>
+              <small>Freeze cooked meatballs for up to 3 months; thaw directly in warm gravy.</small>
+            </div>
+          
+        </div>
+      </section>
+
+      <section class="also" id="alsoSection">
+        <h3>You Might Also Like</h3>
+        <div class="also-grid" id="alsoContainer">
+          
+            <article class="also-card" onclick="selectRecipeByName('Gravlax')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Gravlax</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Janssons Frestelse')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Janssons Frestelse</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Raggmunk')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Raggmunk</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Kåldolmar')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Kåldolmar</span>
+            </article>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- ABOUT EDITORIAL MODAL -->
+  <div class="modal-overlay" id="aboutModal" onclick="closeAboutModal(event)">
+    <div class="modal-container" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div>
+          <span style="font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #fbbf24; font-weight: bold;">Editorial Compendium</span>
+          <h2>About Swedish Cuisine</h2>
+        </div>
+        <button class="modal-close" onclick="closeAboutModal()">✕</button>
+      </div>
+
+      <div class="modal-nav">
+        <button class="modal-tab-btn active" onclick="switchModalTab('mod-intro')">Introduction & Pillars</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-dishes')">Popular Dishes</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-fika')">Fika & Baking</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-ingredients')">Ingredients</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-traditions')">Traditions</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-regional')">Regional</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-faq')">FAQ</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- INTRO TAB -->
+        <div class="modal-section active" id="mod-intro">
+          <div class="modal-card" style="background: linear-gradient(135deg, rgba(217,119,6,0.15), rgba(15,23,42,0.6)); border-color: rgba(217,119,6,0.3);">
+            <em style="color: #fbbf24; font-family: Georgia, serif; font-size: 13px; display: block; margin-bottom: 4px;">From Viking hearths to Michelin tables: a deep journey into Nordic culinary heritage.</em>
+            <h3 style="font-family: Georgia, serif; font-size: 15px; color: #fff; margin-bottom: 8px;">Introduction to Swedish Food</h3>
+            <p style="margin-bottom: 6px;">Swedish gastronomy is defined by an intimate connection with nature, shaped by dramatic northern seasons, vast archipelagos, dense boreal forests, and long Arctic winters.</p><p style="margin-bottom: 6px;">Historically, surviving sub-zero Nordic winters required master craftsmanship in preservation: curing with sea salt, pickling with vinegar and mustard, smoking over juniper wood, drying, and fermenting.</p><p style="margin-bottom: 6px;">Today, Swedish food combines these ancestral preservation arts with pure simplicity, seasonal foraging, and a reverence for pristine ingredients — creating one of the most vibrant and sustainable food cultures in the modern world.</p>
+          </div>
+
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin: 14px 0 8px;">What Is Swedish Cuisine?</h3>
+          <p style="margin-bottom: 10px;">At its essence, Swedish food is grounded in the concept of "Husmanskost" — traditional, unpretentious home-cooked meals originally prepared by agrarian families. It emphasizes warmth, honest nourishment, and the golden principle of "Lagom" (not too little, not too much, but just right).</p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>01. Husmanskost (Heritage Comfort)</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Satisfying, wholesome dishes made with root vegetables, pork, wild game, dairy butter, and pantry staples designed to sustain hard-working bodies.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>02. The Smörgåsbord Concept</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">A grand buffet of cold and hot courses, eaten in strict traditional sequence starting with pickled herring, progressing to cold meats and salmon, then warm casseroles, and ending with cheese.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>03. Allemansrätten (Right to Roam)</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Constitutional freedom allowing every citizen to forage wild lingonberries, cloudberries, blueberries, and golden chanterelle mushrooms in forests across Sweden.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>04. Purity & Seasonality</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Minimalist preparation where the natural flavors of cold-water seafood, fresh dill, butter, and pristine root vegetables take center stage.</p>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- DISHES TAB -->
+        <div class="modal-section" id="mod-dishes">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 6px;">Traditional Swedish Foods & Popular Dishes</h3>
+          <p style="margin-bottom: 12px; color: #94a3b8;">While modern Sweden embraces global flavors, these iconic cornerstone dishes represent the heart and soul of authentic Swedish dining.</p>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Swedish Meatballs <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Köttbullar med Gräddsås)</em></h4>
+                <p style="margin-bottom: 4px;">Tender meatballs made from a blend of pork and beef, soaked breadcrumbs, onion, and a hint of allspice. Simmered in velvety cream sauce with buttery mashed potatoes and tart lingonberries.</p>
+                <small style="color: #93c5fd;">Cultural Note: The undisputed national dish, immortalized worldwide and cherished at every Swedish family table.</small>
+              </div>
+              <button onclick="jumpToRecipe('meatballs')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Gravlax <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Gravad Lax med Hovmästarsås)</em></h4>
+                <p style="margin-bottom: 4px;">Fresh Nordic salmon cured for 48 hours in coarse sea salt, sugar, cracked white pepper, and mountains of fresh dill. Sliced paper-thin and paired with sweet dill mustard sauce.</p>
+                <small style="color: #93c5fd;">Cultural Note: Dating back to medieval times when fishermen buried salted salmon in the earth ("grava") to cure.</small>
+              </div>
+              <button onclick="jumpToRecipe('gravlax')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Raggmunk <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Raggmunk med Stekt Fläsk)</em></h4>
+                <p style="margin-bottom: 4px;">Crisp, lacy potato pancakes prepared with freshly grated starchy potatoes in a light flour-milk batter, fried in rich butter until shatteringly crisp at the perimeter.</p>
+                <small style="color: #93c5fd;">Cultural Note: Served with thick salted crispy pork belly and tart lingonberries, the benchmark of Swedish weekday comfort.</small>
+              </div>
+              <button onclick="jumpToRecipe('raggmunk')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Janssons Frestelse <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Janssons Frestelse)</em></h4>
+                <p style="margin-bottom: 4px;">A decadent gratin of julienned potatoes, caramelized onions, and spiced sprats (ansjovis) baked in heavy cream and breadcrumbs until bubbling golden.</p>
+                <small style="color: #93c5fd;">Cultural Note: The essential midnight centerpiece of every Christmas Julbord, Easter, and Midsummer celebration.</small>
+              </div>
+              <button onclick="jumpToRecipe('janssons-frestelse')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Kåldolmar <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Kåldolmar med Gräddsås)</em></h4>
+                <p style="margin-bottom: 4px;">Tender cabbage rolls packed with spiced pork, beef, and rice, browned in dark syrup and butter, then braised with rich stock and cream.</p>
+                <small style="color: #93c5fd;">Cultural Note: Brought back by King Charles XII from the Ottoman Empire in the 1700s, adapted with Nordic white cabbage and lingonberries.</small>
+              </div>
+              <button onclick="jumpToRecipe('kaldolmar')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+        </div>
+
+        <!-- CULTURE / FIKA TAB -->
+        <div class="modal-section" id="mod-fika">
+          <div class="modal-card" style="background: rgba(180,83,9,0.15);">
+            <h4>Swedish Baking Culture & Fika Tradition</h4>
+            <p style="margin-bottom: 6px;">Fika is far more than a simple coffee break — it is an essential Swedish social institution and a state of mind. Twice a day, colleagues, friends, and families set aside work to sit down together over freshly brewed filter coffee and freshly baked pastries.</p>
+            <p style="font-style: italic; color: #fde68a;">"In Sweden, enjoying fika represents slowing down, cultivating genuine human presence, and savoring sweet craftsmanship. Historic etiquette honored "Sju sorters kakor" (Seven Types of Cookies) served from elegant porcelain tins."</p>
+          </div>
+          <h4 style="color:#fff; margin: 12px 0 8px;">Popular Regional Treats & Specialties</h4>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>Kanelbullar (Svenska Kanelbullar)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Scented with freshly ground cardamom, filled with cinnamon-sugar butter, and baked with crunchy pearl sugar. Celebrated every October 4th on National Cinnamon Bun Day.</p>
+                <button onclick="jumpToRecipe('kanelbullar')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+              <div class="modal-card">
+                <h4>Semlor (Klassiska Semlor)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">A cardamom wheat bun filled with almond paste and billowing whipped cream. Traditionally eaten on Fettisdagen (Fat Tuesday) and throughout winter.</p>
+                <button onclick="jumpToRecipe('semlor')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+              <div class="modal-card">
+                <h4>Kladdkaka (Svensk Kladdkaka)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Sweden’s signature gooey, fudgy sticky chocolate cake with a paper-thin crackly crust, served warm with unsweetened whipped cream and tart raspberries.</p>
+                <button onclick="jumpToRecipe('kladdkaka')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- INGREDIENTS TAB -->
+        <div class="modal-section" id="mod-ingredients">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Key Swedish Ingredients</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🥔 <strong style="color:#fff; font-size:11px;">Potatoes</strong> <em style="font-size:9px; color:#fbbf24;">(Potatis)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">The foundational carbohydrate of Nordic cuisine since the 18th century, prepared boiled with dill, whipped into velvety mos, or grated into raggmunk.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Mashed with meatballs, boiled with herring, or julienned into Janssons gratin.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🐟 <strong style="color:#fff; font-size:11px;">Salmon</strong> <em style="font-size:9px; color:#fbbf24;">(Lax)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Pristine cold-water fish prepared cured (gravlax), hot-smoked, cold-smoked, pan-seared, or baked into celebratory smörgåstårta.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Cured with dill and sea salt, or poached with hollandaise sauce.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌊 <strong style="color:#fff; font-size:11px;">Herring</strong> <em style="font-size:9px; color:#fbbf24;">(Sill & Strömming)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">The silver of the sea. Baltic herring (strömming) and Atlantic herring (sill) are preserved in sweet-tangy vinegar brines with onion, mustard, or fried crisp in rye flour.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Pickled with red onion and allspice, or pan-fried with potatoes.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🍒 <strong style="color:#fff; font-size:11px;">Lingonberries</strong> <em style="font-size:9px; color:#fbbf24;">(Lingon)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Tart, ruby-red wild berries foraged in autumn pine forests. Stirred raw with sugar (rårörda lingon) to provide sweet-sour balance to rich meat dishes.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Essential companion for meatballs, cabbage rolls, blood pudding, and potato pancakes.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌿 <strong style="color:#fff; font-size:11px;">Dill</strong> <em style="font-size:9px; color:#fbbf24;">(Dill)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">The quintessential green herb of Scandinavia, providing fresh aniseed aroma to seafood, sauces, potato salads, and crayfish broths.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Chopped over boiled potatoes, infused into gravlax cure, and tossed into Skagen mayonnaise.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌾 <strong style="color:#fff; font-size:11px;">Rye</strong> <em style="font-size:9px; color:#fbbf24;">(Råg)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Hearty whole-grain cereal used for centuries to bake sturdy sourdough loaves and crisp, dry knäckebröd flatbreads with extraordinary shelf life.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Knäckebröd crispbreads with butter and aged cheese, or dark limpa loaves.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">✨ <strong style="color:#fff; font-size:11px;">Cardamom</strong> <em style="font-size:9px; color:#fbbf24;">(Kardemumma)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Introduced by Viking trade routes with Constantinople, whole green cardamom pods are freshly crushed into virtually all Swedish bakery doughs.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Cardamom knots (kardemummabullar), cinnamon buns, semlor, and holiday cakes.</small>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- TRADITIONS TAB -->
+        <div class="modal-section" id="mod-traditions">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Swedish Food Traditions & Celebrations</h3>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Midsummer (Midsommar)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">Late June (Summer Solstice)</span>
+              </div>
+              <p style="margin-bottom: 6px;">The most magical Swedish holiday celebrating endless daylight. Families gather around maypoles for an open-air banquet of pickled herring, boiled fresh new potatoes with dill and sour cream, Västerbotten cheese tart, snaps songs, and fresh Swedish strawberries with cream.</p>
+              <small style="color: #fbbf24;">Staples: Inlagd Sill, New Potatoes with Dill, Västerbottensostpaj, Fresh Strawberries & Cream, Akvavit</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Christmas (Julbord)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">December</span>
+              </div>
+              <p style="margin-bottom: 6px;">A lavish multi-course holiday feast starting with glögg and gingerbread with blue cheese, followed by herring and salmon, then warm meatballs, prince sausages (prinskorv), Jansson’s Temptation, Christmas ham (julskinka), and saffron buns (lussekatter).</p>
+              <small style="color: #fbbf24;">Staples: Julskinka (Christmas Ham), Janssons Frestelse, Köttbullar, Lussekatter, Pepparkakor med Ädelost</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Easter (Påsk)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">Spring (March/April)</span>
+              </div>
+              <p style="margin-bottom: 6px;">A cheerful springtime smörgåsbord filled with decorated eggs, cured gravlax, lamb roast with herbs, gubbröra on crispbread, and vibrant candy-filled Easter eggs.</p>
+              <small style="color: #fbbf24;">Staples: Hard-boiled Eggs with Kalles Kaviar, Gravlax, Gubbröra, Roast Lamb</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Crayfish Party (Kräftskiva)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">August</span>
+              </div>
+              <p style="margin-bottom: 6px;">Boisterous outdoor gatherings under moon-shaped paper lanterns. Swedes slurp boiled freshwater crayfish cooked in beer and dill-seed broth, wearing funny paper hats and singing traditional snapsvisor.</p>
+              <small style="color: #fbbf24;">Staples: Dill-boiled Crayfish, Västerbottensostpaj, Crispbread & Butter, Chilled Aquavit</small>
+            </div>
+          
+        </div>
+
+        <!-- REGIONAL TAB -->
+        <div class="modal-section" id="mod-regional">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Regional Swedish Cuisine</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>🧭 Norrland & Lapland (The Great North)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Dominated by Arctic forests and indigenous Sámi traditions. Rich in wild game like moose (älg) and reindeer (ren), arctic char, wild cloudberries (hjortron), and thin soft flatbread (tunnbröd).</p>
+                <small style="color: #fbbf24;">Specialties: Suovas (Smoked Reindeer), Älgkalops (Moose Stew), Hjortronsylt (Cloudberry Jam), Västerbotten Cheese</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 Skåne & Southern Farmlands</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Sweden’s fertile breadbasket with rich European influences, producing grain, sugar beets, smoked pork, goose dinners on Saint Martin’s Eve (Mårten Gås), and towering spettekaka cakes.</p>
+                <small style="color: #fbbf24;">Specialties: Gåslever & Roast Goose, Svartsoppa, Spettekaka, Rökt Fläsk (Smoked Pork)</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 The West Coast (Bohuslän & Gothenburg)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">World-renowned for cold, nutrient-rich waters yielding sweet Norway lobsters (havskräftor), deep-sea prawns, oysters, and fresh Atlantic herring.</p>
+                <small style="color: #fbbf24;">Specialties: Toast Skagen, Kräftor (Boiled Crayfish), Fresh Oysters, Stekt Strömming</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 Dalarna & Central Lake District</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Deep folklore heritage, home to the iconic Falukorv sausage, traditional rye crispbread mills, and freshwater pike and perch from Lake Siljan.</p>
+                <small style="color: #fbbf24;">Specialties: Falukorv i Ugn, Leksands Knäckebröd, Lake Fish Terrines</small>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- FAQ TAB -->
+        <div class="modal-section" id="mod-faq">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Frequently Asked Questions</h3>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">What is the philosophy behind Swedish Husmanskost?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Husmanskost refers to honest, nourishing home cooking rooted in Swedish agrarian history. It prioritizes wholesome local ingredients, balanced portions (Lagom), and satisfying flavors made from scratch.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">Why is Fika so culturally important in Sweden?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Fika is a valued daily ritual that fosters social connection and mindfulness. It is a scheduled opportunity to step away from screens, enjoy high-quality coffee and freshly baked cardamom or cinnamon buns, and bond with peers.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">What is the difference between Swedish ansjovis and Mediterranean anchovies?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Swedish ansjovis are actually small sprats (skarpsill) cured in a sweet, aromatic brine with cinnamon, ginger, cloves, and sandalwood. Mediterranean anchovies are salty, fermented true anchovies in oil. They cannot be directly substituted in Janssons Frestelse.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">Why do Swedish cinnamon buns taste different from American cinnamon rolls?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Swedish Kanelbullar incorporate freshly crushed cardamom into the yeast dough, are folded into intricate knotted buns rather than thick spiral slabs, are crowned with crunchy pearl sugar, and do not use heavy powdered sugar glaze or cream cheese frosting.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">How does the Swedish right of public access (Allemansrätten) influence cooking?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Allemansrätten legally allows anyone to forage wild berries (lingonberries, bilberries, cloudberries) and wild mushrooms (chanterelles, porcini) freely in nature, keeping wild foraging at the heart of home cooking.</p>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const recipes = [{"id":"meatballs","name":"Swedish Meatballs","nativeName":"Köttbullar med Gräddsås","category":"Main Course","prepTime":20,"cookTime":25,"yieldServings":4,"calories":420,"difficulty":"Easy","rating":4.9,"reviewsCount":842,"intro":"Tender Swedish meatballs simmered in a velvety cream gravy, served alongside buttery mashed potatoes, pressed cucumbers, and wild lingonberries.","ingredients":["500 g ground beef chuck","250 g ground pork","1 small yellow onion, grated finely","1 large egg","100 ml heavy cream","60 ml dried breadcrumbs","1 tsp sea salt & ½ tsp black pepper","¼ tsp ground allspice & pinch of nutmeg","2 tbsp butter for frying","500 ml rich beef stock","150 ml heavy cream for gravy","2 tbsp flour for roux"],"instructions":["Soak breadcrumbs in cream and milk for 10 minutes until soft and hydrated.","Gently mix ground meats, grated onion, egg, soaked crumbs, salt, allspice, and nutmeg until just combined.","Shape into 24-28 even round meatballs and chill for 15 minutes to firm up.","Melt butter in a large skillet over medium-high heat. Brown meatballs evenly until crisp outside (8-10 mins). Set aside.","Whisk flour into pan drippings, then slowly pour in hot beef stock and cream, simmering until thick and glossy.","Return meatballs to gravy, simmer on low heat for 10 minutes, and serve with mashed potatoes and lingonberry jam."],"tips":{"title":"Chef Tip","description":"Do not overmix the ground meat mixture; chilling before rolling prevents sticking."},"variations":{"title":"Wild Game Meatballs","description":"Substitute half the beef with wild venison or moose meat for rustic Norrland style."},"faqs":[{"question":"Can I bake them?","answer":"Yes, bake at 200°C (400°F) for 15-18 minutes on parchment paper."},{"question":"Can they be frozen?","answer":"Freeze cooked meatballs for up to 3 months; thaw directly in warm gravy."}],"imageQuery":"swedish meatballs köttbullar","imageUrl":"https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Gravlax","imageQuery":"gravlax salmon","imageUrl":"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"},{"name":"Janssons Frestelse","imageQuery":"potato casserole","imageUrl":"https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=800&q=80"},{"name":"Raggmunk","imageQuery":"potato pancake","imageUrl":"https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80"},{"name":"Kåldolmar","imageQuery":"cabbage rolls","imageUrl":"https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=800&q=80"}]},{"id":"gravlax","name":"Gravlax with Mustard-Dill Sauce","nativeName":"Gravad Lax med Hovmästarsås","category":"Midsummer & Seafood","prepTime":20,"cookTime":0,"yieldServings":8,"calories":220,"difficulty":"Easy","rating":4.9,"reviewsCount":615,"intro":"Silky Nordic cured salmon infused with fresh dill, crushed white peppercorns, coarse sea salt, and sugar, served with sweet-tangy mustard sauce.","ingredients":["800 g fresh salmon fillet, skin-on & pin-boned","3 tbsp coarse sea salt","3 tbsp granulated sugar","1 tbsp crushed white peppercorns","2 large bunches fresh dill, coarsely chopped","3 tbsp Swedish sweet mustard (hovmästarsenap)","1 tsp Dijon mustard & 1 tbsp white vinegar","2 tbsp sugar & 100 ml neutral canola oil","2 tbsp fresh dill, finely minced for sauce"],"instructions":["Pat salmon dry. Combine coarse salt, sugar, and crushed white peppercorns in a bowl.","Rub curing mixture evenly on salmon flesh. Pack both sides generously with fresh chopped dill.","Place in a dish, cover tightly with plastic wrap, and weigh down with a heavy board or plate.","Refrigerate for 48 hours, flipping the fillet every 12 hours to distribute cure brine.","For sauce: Whisk mustards, vinegar, and sugar; slowly drizzle oil while whisking until emulsified. Stir in dill.","Scrape excess dill off salmon and slice paper-thin at a 45-degree angle off the skin. Serve on rye crispbread with sauce."],"tips":{"title":"Slicing Secret","description":"Freeze the cured salmon for 20 minutes right before slicing to achieve translucent, paper-thin ribbons."},"variations":{"title":"Beetroot Infused Gravlax","description":"Add 1 grated raw red beet to the cure mixture for a stunning crimson ombre edge."},"faqs":[{"question":"How long does gravlax keep?","answer":"Store in refrigerator tightly wrapped for up to 5 days, or freeze for 2 months."},{"question":"Is the salmon raw?","answer":"It is salt-and-sugar cured (denatured), preserving the meat without applying heat."}],"imageQuery":"gravlax cured salmon dill","imageUrl":"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Toast Skagen","imageQuery":"shrimp toast","imageUrl":"https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80"},{"name":"Inlagd Sill","imageQuery":"pickled herring","imageUrl":"https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"},{"name":"Västerbottenostpaj","imageQuery":"cheese pie","imageUrl":"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80"},{"name":"Swedish Meatballs","imageQuery":"meatballs","imageUrl":"https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80"}]},{"id":"raggmunk","name":"Swedish Potato Pancakes","nativeName":"Raggmunk med Stekt Fläsk","category":"Traditional Classics","prepTime":20,"cookTime":20,"yieldServings":4,"calories":490,"difficulty":"Medium","rating":4.8,"reviewsCount":472,"intro":"Crisp, lacy potato pancakes fried golden in butter, served hot with crispy salted pork belly slices and tart lingonberry preserves.","ingredients":["800 g starchy potatoes (like King Edward or Russet)","150 g all-purpose flour","300 ml whole milk","1 large egg","1 tsp fine sea salt","400 g Swedish cured pork belly (rimmat fläsk) or thick-cut bacon","4 tbsp butter for frying","Lingonberry jam for serving"],"instructions":["In a large bowl, whisk flour, salt, and milk into a smooth, lump-free batter. Whisk in the egg.","Fry pork belly slices in a dry skillet over medium heat until crispy and deep golden. Keep warm in low oven.","Peel and grate potatoes coarsely on a box grater. Immediately squeeze out excess liquid with clean towel.","Fold grated potatoes directly into the batter so they do not discolour.","Melt butter in skillet. Spoon mounds of batter into pan, spreading thin into 15 cm discs.","Fry over medium heat for 3-4 minutes per side until deeply golden and crispy at the edges. Serve immediately with pork and lingonberries."],"tips":{"title":"Crispy Edges","description":"Work quickly once potatoes are grated to avoid starch oxidation, and never crowd the frying skillet."},"variations":{"title":"Rårakor","description":"Skip the batter entirely and fry pure seasoned grated potatoes in butter for ultra-thin lacy rosti."},"faqs":[{"question":"What potatoes work best?","answer":"Starchy potatoes with high dry matter provide the crispiest texture."}],"imageQuery":"raggmunk potato pancake","imageUrl":"https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Janssons Frestelse","imageQuery":"potato casserole","imageUrl":"https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=800&q=80"},{"name":"Pyttipanna","imageQuery":"swedish hash","imageUrl":"https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80"},{"name":"Swedish Meatballs","imageQuery":"meatballs","imageUrl":"https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80"},{"name":"Ärtsoppa","imageQuery":"pea soup","imageUrl":"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80"}]},{"id":"janssons-frestelse","name":"Jansson’s Temptation","nativeName":"Janssons Frestelse","category":"Traditional Classics","prepTime":20,"cookTime":45,"yieldServings":6,"calories":380,"difficulty":"Easy","rating":4.9,"reviewsCount":531,"intro":"A legendary Swedish holiday gratin of matchstick potatoes, caramelized onions, and spiced sprats baked in decadent heavy cream until bubbling golden.","ingredients":["1 kg firm starchy potatoes, julienned into thin matchsticks","2 large yellow onions, thinly sliced","125 g Swedish spiced sprats in brine (Ansjovis, e.g. Grebbestads)","3 tbsp sprat brine from the can","400 ml heavy whipping cream","3 tbsp butter + extra for greasing dish","2 tbsp fine breadcrumbs (ströbröd)","Freshly cracked black pepper"],"instructions":["Melt 2 tbsp butter in a pan and gently sauté sliced onions until soft, sweet, and translucent without browning.","Butter a 2-liter ceramic baking dish. Layer ⅓ of julienned potatoes in the base.","Scatter half the sautéed onions and half the spiced sprats over the potatoes.","Add another ⅓ potatoes, remaining onions and sprats, then top with the final layer of potatoes.","Pour sprat brine and half the cream evenly over the gratin. Dust top with breadcrumbs and dot with butter.","Bake at 200°C (400°F) for 25 minutes. Pour over remaining cream and bake another 20 minutes until potatoes are fork-tender and crust is golden."],"tips":{"title":"Real Ansjovis","description":"Swedish ansjovis are spiced sprats cured in cinnamon, ginger, and sandalwood brine — not Mediterranean salty anchovies."},"variations":{"title":"Karlssons Frestelse","description":"Replace sprats with ground minced beef for a meat-lovers version."},"faqs":[{"question":"Why does it smell so good?","answer":"The secret spice blend in Swedish sprat brine perfumes the cream with holiday warmth."}],"imageQuery":"janssons frestelse potato gratin","imageUrl":"https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Swedish Meatballs","imageQuery":"meatballs","imageUrl":"https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80"},{"name":"Västerbottenostpaj","imageQuery":"cheese pie","imageUrl":"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80"},{"name":"Gravlax","imageQuery":"salmon","imageUrl":"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"},{"name":"Inlagd Sill","imageQuery":"herring","imageUrl":"https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"}]},{"id":"kaldolmar","name":"Swedish Cabbage Rolls","nativeName":"Kåldolmar med Gräddsås & Lingon","category":"Traditional Classics","prepTime":35,"cookTime":50,"yieldServings":4,"calories":430,"difficulty":"Medium","rating":4.8,"reviewsCount":388,"intro":"Savory parcels of spiced pork, beef, and short-grain rice wrapped in tender white cabbage leaves, browned in syrup butter, and braised in savory pan broth.","ingredients":["1 large head white winter cabbage","300 g ground pork & 200 g ground beef","100 g cooked cold short-grain rice (grötis)","150 ml whole milk & 1 egg","1 tsp fine sea salt & ½ tsp ground white pepper","2 tbsp dark Swedish syrup (mörk sirap) or molasses","3 tbsp butter","300 ml rich beef broth for roasting pan","150 ml heavy cream for gravy"],"instructions":["Core the cabbage and submerge the whole head in boiling salted water. Peel off 12-16 pliable outer leaves as they soften.","Shave down the thick central vein of each leaf so it rolls easily without tearing.","Mix ground meats, cooked rice, egg, milk, salt, and white pepper into a smooth filling.","Place 2 tbsp filling onto each cabbage leaf, fold in the sides, and roll snugly into parcels.","Arrange rolls seam-side down in a buttered baking dish. Brush tops generously with melted butter and dark syrup.","Bake at 200°C (400°F) for 25 minutes until browned. Pour broth into pan and bake 25 minutes more. Thicken pan juices with cream for gravy."],"tips":{"title":"Historical Heritage","description":"Introduced by King Charles XII upon returning from the Ottoman Empire, adapted with local cabbage and syrup."},"variations":{"title":"Kålpudding","description":"Layer chopped caramelized cabbage and meat filling in a casserole dish for an easy shortcut."},"faqs":[{"question":"What to serve with kåldolmar?","answer":"Boiled potatoes, lingonberry preserves, and the pan-cream gravy."}],"imageQuery":"kaldolmar swedish cabbage rolls","imageUrl":"https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Swedish Meatballs","imageQuery":"meatballs","imageUrl":"https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80"},{"name":"Kalops","imageQuery":"beef stew","imageUrl":"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80"},{"name":"Raggmunk","imageQuery":"potato pancake","imageUrl":"https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80"},{"name":"Ärtsoppa","imageQuery":"pea soup","imageUrl":"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80"}]},{"id":"kanelbullar","name":"Swedish Cinnamon Buns","nativeName":"Kanelbullar","category":"Fika & Bakery","prepTime":30,"cookTime":10,"yieldServings":16,"calories":280,"difficulty":"Medium","rating":4.9,"reviewsCount":920,"intro":"The crowning jewel of Swedish Fika: fragrant cardamom dough ribboned with sweet cinnamon butter, twisted into elegant knots and crowned with pearl sugar.","ingredients":["500 g wheat flour","250 ml warm whole milk (37°C)","75 g sugar & 75 g softened butter","25 g fresh yeast (or 7g dry yeast)","1 tbsp whole green cardamom pods, freshly crushed","100 g soft butter for filling","60 g light brown sugar & 2 tbsp ground cinnamon","1 beaten egg + Swedish pearl sugar (pärlsocker) for topping"],"instructions":["Dissolve yeast in lukewarm milk. Add crushed cardamom, sugar, salt, butter, and most of the flour.","Knead in a stand mixer for 10-12 minutes until smooth, glossy, and elastic. Cover and rise for 45 minutes.","Whisk soft butter, brown sugar, and cinnamon together into a spreadable paste.","Roll dough out into a large 30x50 cm rectangle. Spread cinnamon filling evenly over the surface.","Fold the dough in thirds like a business letter, slice into 16 long strips, twist each strip, and tie into knots.","Place on baking sheets lined with parchment, let rise 30 minutes, brush with egg wash, sprinkle pearl sugar, and bake at 225°C (435°F) for 8-10 minutes."],"tips":{"title":"Cardamom Secret","description":"Always grind whole green cardamom seeds fresh with a mortar and pestle for explosive aroma."},"variations":{"title":"Kardemummabullar","description":"Replace cinnamon filling with cardamom sugar paste for Stockholm bakery style."},"faqs":[{"question":"Why pearl sugar?","answer":"Swedish pearl sugar withstands high oven heat without melting, creating satisfying crunch."}],"imageQuery":"swedish cinnamon buns kanelbullar","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Kardemummabullar","imageQuery":"cardamom knots","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80"},{"name":"Semlor","imageQuery":"semla bun","imageUrl":"https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=800&q=80"},{"name":"Kladdkaka","imageQuery":"chocolate cake","imageUrl":"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80"},{"name":"Prinsesstårta","imageQuery":"princess cake","imageUrl":"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80"}]},{"id":"semlor","name":"Swedish Semlor Cardamom Buns","nativeName":"Klassiska Semlor med Mandelmassa","category":"Fika & Bakery","prepTime":40,"cookTime":12,"yieldServings":8,"calories":390,"difficulty":"Medium","rating":4.9,"reviewsCount":710,"intro":"Airy cardamom-scented wheat buns filled with rich almond paste, topped with billows of vanilla whipped cream, and dusted with powdered sugar.","ingredients":["350 g strong wheat flour","150 ml warm milk & 20 g fresh yeast","50 g sugar & 50 g softened butter","1 tsp freshly ground cardamom & pinch of salt","150 g quality almond paste (mandelmassa 50% almonds)","50 ml milk to loosen almond paste","300 ml heavy whipping cream & 1 tsp vanilla bean paste","Powdered sugar for dusting"],"instructions":["Knead milk, yeast, cardamom, sugar, butter, and flour into a silky smooth dough. Rest for 40 minutes.","Divide dough into 8 equal smooth round balls (about 65g each). Place on parchment paper and rise for 40 minutes until doubled.","Bake at 225°C (435°F) for 10-12 minutes until golden brown. Cool completely on a wire rack.","Cut a triangular lid off the top of each bun. Scoop out a small spoonful of crumb from the center.","Mix the scooped crumb with grated almond paste and a splash of milk until creamy. Spoon back into bun hollows.","Pipe high swirls of whipped vanilla cream on top, replace the lid, and dust generously with powdered sugar."],"tips":{"title":"Hetvägg Tradition","description":"Serve semla in a deep bowl bathed in warm spiced milk for the historic 18th-century \"hetvägg\" style."},"variations":{"title":"Pistachio Semla","description":"Replace almond filling with Sicilian pistachio cream."},"faqs":[{"question":"When is Semla eaten?","answer":"Traditionally on Fettisdagen (Fat Tuesday / Shrove Tuesday) leading up to Lent, and throughout winter."}],"imageQuery":"semlor swedish cream cardamom bun","imageUrl":"https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Kanelbullar","imageQuery":"cinnamon buns","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80"},{"name":"Kladdkaka","imageQuery":"chocolate cake","imageUrl":"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80"},{"name":"Prinsesstårta","imageQuery":"princess cake","imageUrl":"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80"},{"name":"Lussekatter","imageQuery":"saffron buns","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80"}]},{"id":"kladdkaka","name":"Swedish Sticky Chocolate Cake","nativeName":"Kladdkaka med Vispgrädde & Hallon","category":"Desserts & Sweets","prepTime":10,"cookTime":15,"yieldServings":8,"calories":340,"difficulty":"Easy","rating":4.9,"reviewsCount":980,"intro":"Sweden’s beloved one-bowl sticky chocolate cake: crispy paper-thin crust on the outside with an intensely gooey, fudgy center served with whipped cream.","ingredients":["100 g unsalted butter, melted","2 large eggs","200 g granulated sugar","60 g all-purpose flour","40 g Dutch-processed high quality cocoa powder","1 tsp vanilla sugar or extract","½ tsp sea salt flakes","Whipped cream and fresh raspberries for serving"],"instructions":["Preheat oven to 175°C (350°F). Grease a 20 cm springform pan and dust with cocoa powder or breadcrumbs.","Melt butter and let cool slightly. In a bowl, gently whisk eggs and sugar until combined (do not whip fluffy).","Stir melted butter and vanilla into the egg mixture.","Sift flour, cocoa powder, and sea salt into the bowl. Fold gently with a spatula just until dry streaks disappear.","Pour batter into prepared pan and smooth the top evenly.","Bake for exactly 14-17 minutes. The edges should be set while the center wobbles gently. Chill slightly before slicing with whipped cream."],"tips":{"title":"Do Not Overbake","description":"The hallmark of authentic Kladdkaka is a wet gooey core; it continues setting as it cools."},"variations":{"title":"Salted Caramel Kladdkaka","description":"Swirl 3 tablespoons of salted caramel into batter before baking."},"faqs":[{"question":"Why no baking powder?","answer":"Baking powder creates rise; authentic kladdkaka stays dense and fudgy without leavening."}],"imageQuery":"kladdkaka sticky chocolate cake","imageUrl":"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Kanelbullar","imageQuery":"cinnamon buns","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80"},{"name":"Chokladbollar","imageQuery":"chocolate balls","imageUrl":"https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=800&q=80"},{"name":"Prinsesstårta","imageQuery":"princess cake","imageUrl":"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80"},{"name":"Gammaldags Äppelkaka","imageQuery":"apple cake","imageUrl":"https://images.unsplash.com/photo-1568571780765-9276ac8b75a2?auto=format&fit=crop&w=800&q=80"}]},{"id":"toast-skagen","name":"Toast Skagen (Shrimp on Brioche)","nativeName":"Toast Skagen med Löjrom","category":"Midsummer & Seafood","prepTime":15,"cookTime":5,"yieldServings":4,"calories":320,"difficulty":"Easy","rating":4.9,"reviewsCount":512,"intro":"Invented by legendary chef Tore Wretman: sweet cold-water shrimp tossed in fresh dill mayonnaise, piled high on golden butter-fried toast, crowned with Kalix bleak roe.","ingredients":["400 g fresh hand-peeled cold-water shrimp (handskalade räkor)","3 tbsp high-quality mayonnaise","2 tbsp crème fraîche or sour cream","1 tbsp fresh grated horseradish","3 tbsp fresh dill, finely minced","1 tbsp fresh lemon juice & zest","Salt & freshly cracked white pepper","4 thick slices white brioche or levain bread","3 tbsp butter for toasting","4 tbsp Kalix Löjrom (bleak roe) or trout roe for garnish","Lemon wedges and dill sprigs"],"instructions":["Pat peeled shrimp thoroughly dry on paper towels to prevent watering down the dressing.","In a bowl, mix mayonnaise, crème fraîche, grated horseradish, minced dill, lemon juice, salt, and pepper.","Gently fold the dry shrimp into the dressing until evenly coated. Chill for 15 minutes.","Melt generous butter in a skillet over medium heat and toast bread slices on both sides until deep golden and crisp.","Mound a generous portion of shrimp mixture onto each hot slice of toast.","Top each portion with a quenelle of orange Kalix bleak roe, a sprig of dill, and a slice of fresh lemon."],"tips":{"title":"Cold-Water Shrimp","description":"Always use wild cold-water Atlantic/Arctic shrimp (Pandalus borealis) for sweet snappy texture."},"variations":{"title":"Skagen Salad","description":"Serve the shrimp mixture wrapped in crisp butter lettuce cups for low-carb elegance."},"faqs":[{"question":"What is Löjrom?","answer":"Kalix Löjrom is Sweden’s PDO-certified golden caviar harvested from wild vendace in the Gulf of Bothnia."}],"imageQuery":"toast skagen shrimp dill lojrom","imageUrl":"https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Gravlax","imageQuery":"salmon","imageUrl":"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"},{"name":"Västerbottenostpaj","imageQuery":"cheese pie","imageUrl":"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80"},{"name":"Smörgåstårta","imageQuery":"sandwich cake","imageUrl":"https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=800&q=80"},{"name":"Inlagd Sill","imageQuery":"herring","imageUrl":"https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"}]},{"id":"prinsesstarta","name":"Swedish Princess Cake","nativeName":"Klassisk Prinsesstårta","category":"Desserts & Sweets","prepTime":60,"cookTime":25,"yieldServings":10,"calories":450,"difficulty":"Advanced","rating":4.9,"reviewsCount":420,"intro":"The royal crown of Nordic pastry: airy sponge cake layered with tart raspberry jam, silky vanilla diplomat cream, whipped cream dome, and pastel green marzipan.","ingredients":["4 large eggs & 150 g sugar","75 g all-purpose flour & 75 g potato starch","1 tsp baking powder & 1 tsp vanilla","300 ml whole milk & 3 egg yolks for vanilla custard","3 tbsp sugar & 2 tbsp cornstarch","450 ml heavy whipping cream","120 g tart raspberry jam","300 g green rolled marzipan sheet","Powdered sugar & pink marzipan rose for decoration"],"instructions":["Whisk eggs and sugar for 8 minutes until pale and tripled in volume. Fold in sifted flours and baking powder.","Bake in a greased 22 cm pan at 175°C (350°F) for 25 minutes. Cool and slice horizontally into 3 even layers.","Cook milk, yolks, sugar, and cornstarch until thick vanilla custard forms; chill completely.","Spread bottom sponge layer with raspberry jam and a thin layer of custard. Top with second sponge.","Spread remaining custard on second sponge, then build a smooth rounded dome of whipped cream over the top and third sponge.","Drape rolled green marzipan smoothly over the dome, trim edges, dust with powdered sugar, and place pink rose on top."],"tips":{"title":"Smooth Marzipan","description":"Dust your work surface with cornstarch (not flour or powdered sugar) to keep marzipan smooth and flexible."},"variations":{"title":"Prinstårta","description":"Cover with yellow marzipan for Prince cake or pink for Opera cake."},"faqs":[{"question":"Why was it named Princess Cake?","answer":"Created in the 1930s by Jenny Åkerström for the three royal Swedish princesses Margaretha, Märtha, and Astrid."}],"imageQuery":"princess cake prinsesstarta marzipan","imageUrl":"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Kladdkaka","imageQuery":"chocolate cake","imageUrl":"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80"},{"name":"Gammaldags Äppelkaka","imageQuery":"apple cake","imageUrl":"https://images.unsplash.com/photo-1568571780765-9276ac8b75a2?auto=format&fit=crop&w=800&q=80"},{"name":"Semlor","imageQuery":"cream bun","imageUrl":"https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=800&q=80"},{"name":"Ostkaka","imageQuery":"cheesecake","imageUrl":"https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=800&q=80"}]},{"id":"artsoppa","name":"Yellow Pea Soup with Smoked Pork","nativeName":"Ärtsoppa med Rimmat Fläsk & Senap","category":"Traditional Classics","prepTime":15,"cookTime":90,"yieldServings":6,"calories":390,"difficulty":"Easy","rating":4.8,"reviewsCount":395,"intro":"Sweden’s legendary Thursday national meal: slow-simmered yellow field peas with tender salted pork belly, fragrant marjoram, thyme, and spicy Swedish mustard.","ingredients":["500 g dried Swedish yellow field peas (gula ärter)","1.8 liters water or light pork broth","400 g cured pork belly or smoked ham hock (rimmat fläsk)","1 large yellow onion, finely chopped","1 tsp dried marjoram & 1 tsp dried thyme","1 tsp fine sea salt & freshly cracked pepper","Strong coarse Swedish whole grain mustard for serving"],"instructions":["Soak yellow peas in cold water overnight (approx 10-12 hours). Drain and rinse.","In a heavy soup pot, bring peas, fresh water, and whole pork belly to a boil.","Skim off any foam and loose pea skins that float to the surface during the first 15 minutes.","Add chopped onion, marjoram, and thyme. Reduce heat to low, cover, and simmer for 60-75 minutes until peas are soft and creamy.","Remove pork belly, cut into neat bite-sized cubes, and return meat to the soup pot.","Season with salt and pepper. Serve piping hot with strong mustard and follow with Swedish thin pancakes."],"tips":{"title":"Thursday Tradition","description":"Historically eaten on Thursdays in medieval Sweden to prepare for Friday fasting."},"variations":{"title":"Vegetarian Ärtsoppa","description":"Simmer with root vegetables (carrots, celeriac) and smoked sea salt instead of pork."},"faqs":[{"question":"What is served for dessert?","answer":"Tradition dictates serving thin Swedish pancakes (pannkakor) with strawberry jam right after pea soup."}],"imageQuery":"artsoppa swedish yellow pea soup","imageUrl":"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Kalops","imageQuery":"beef stew","imageUrl":"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80"},{"name":"Raggmunk","imageQuery":"potato pancake","imageUrl":"https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80"},{"name":"Dillkött","imageQuery":"veal stew","imageUrl":"https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"},{"name":"Pyttipanna","imageQuery":"hash","imageUrl":"https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80"}]},{"id":"vasterbottenostpaj","name":"Västerbotten Cheese Tart","nativeName":"Västerbottensostpaj","category":"Midsummer & Seafood","prepTime":25,"cookTime":35,"yieldServings":8,"calories":360,"difficulty":"Medium","rating":4.9,"reviewsCount":460,"intro":"Savory golden pie filled with nutty, sharp aged Västerbotten cheese in a rich egg custard, the mandatory centerpiece of Swedish crayfish parties.","ingredients":["150 g all-purpose flour & 100 g cold butter, cubed","2 tbsp ice cold water & pinch of salt","300 g aged Västerbottensost cheese, freshly grated","3 large eggs","200 ml heavy cream & 100 ml whole milk","¼ tsp ground white pepper & pinch of nutmeg","Crème fraîche, chopped red onions, and bleak roe for serving"],"instructions":["Pulse flour, salt, and cold butter into pea-sized crumbs. Add ice water and press into a smooth dough disc. Chill 30 mins.","Roll out dough and press into a 24 cm tart pan. Prick base with fork and blind-bake at 200°C (400°F) for 10 minutes.","Whisk eggs, cream, milk, white pepper, and nutmeg together in a bowl.","Scatter grated Västerbotten cheese evenly across the pre-baked tart crust.","Pour egg custard gently over cheese, ensuring even distribution.","Bake at 175°C (350°F) for 25-30 minutes until custard is set and top is lightly golden. Serve warm or room temperature."],"tips":{"title":"Aged Cheese","description":"Västerbotten cheese is aged for 14 months in Burträsk, giving it unique parmesan-cheddar sharpness."},"variations":{"title":"Chanterelle Cheese Tart","description":"Sauté 150g wild golden chanterelles in butter and layer them beneath the cheese."},"faqs":[{"question":"When is this tart served?","answer":"Essential for Midsummer smörgåsbord and August crayfish parties (kräftskiva)."}],"imageQuery":"vasterbottenostpaj cheese tart quiche","imageUrl":"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Toast Skagen","imageQuery":"shrimp toast","imageUrl":"https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80"},{"name":"Gravlax","imageQuery":"salmon","imageUrl":"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"},{"name":"Inlagd Sill","imageQuery":"herring","imageUrl":"https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"},{"name":"Janssons Frestelse","imageQuery":"potato gratin","imageUrl":"https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=800&q=80"}]},{"id":"appelkaka","name":"Old-Fashioned Apple Cake","nativeName":"Gammaldags Äppelkaka med Vaniljsås","category":"Desserts & Sweets","prepTime":25,"cookTime":35,"yieldServings":6,"calories":310,"difficulty":"Easy","rating":4.8,"reviewsCount":345,"intro":"Rustic Nordic dessert of caramelized spiced cinnamon apples layered with crisp toasted cardamom breadcrumbs, bathed in warm homemade vanilla sauce.","ingredients":["600 g tart apples (such as Aroma or Granny Smith), peeled & sliced","2 tbsp butter & 2 tbsp sugar for apples","1 tbsp ground cinnamon & ½ tsp ground cardamom","150 g dried breadcrumbs (ströbröd) or crushed digestive biscuits","75 g melted butter & 50 g sugar for crumbs","Homemade vanilla custard sauce (vaniljsås) for serving"],"instructions":["In a skillet, melt 2 tbsp butter. Sauté sliced apples with sugar, cinnamon, and cardamom until soft and caramelized (8 mins).","In another pan, toast breadcrumbs in melted butter and sugar over medium heat until fragrant and golden brown.","Butter an oven-safe dish. Layer ⅓ of the spiced crumbs in the base.","Spread half the softened apples over the crumb layer.","Repeat with crumbs, remaining apples, and finish with a top layer of crunchy crumbs.","Bake at 200°C (400°F) for 20-25 minutes until bubbling. Serve warm with copious cold vanilla sauce."],"tips":{"title":"Crumbs vs Batter","description":"The traditional Gammaldags style uses spiced toasted crumbs rather than sponge batter for rustic crunch."},"variations":{"title":"Sponge Apple Cake","description":"Pour a light vanilla sponge batter over spiced apples before baking."},"faqs":[{"question":"What apples are best in Sweden?","answer":"Swedish autumn varieties like Aroma, Gravensteiner, and Ingrid Marie provide supreme fragrance."}],"imageQuery":"gammaldags appelkaka apple cake vanilla","imageUrl":"https://images.unsplash.com/photo-1568571780765-9276ac8b75a2?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Kladdkaka","imageQuery":"chocolate cake","imageUrl":"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80"},{"name":"Kanelbullar","imageQuery":"cinnamon buns","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80"},{"name":"Ostkaka","imageQuery":"cheesecake","imageUrl":"https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=800&q=80"},{"name":"Prinsesstårta","imageQuery":"princess cake","imageUrl":"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80"}]},{"id":"kardemummabullar","name":"Swedish Cardamom Knots","nativeName":"Stockholms Kardemummabullar","category":"Fika & Bakery","prepTime":35,"cookTime":10,"yieldServings":16,"calories":275,"difficulty":"Medium","rating":5,"reviewsCount":680,"intro":"Stockholm’s modern bakery obsession: intricately braided cardamom dough ribbons filled with dark brown cardamom butter, brushed with glossy sugar syrup.","ingredients":["500 g strong flour & 250 ml whole milk","25 g fresh yeast & 75 g sugar","80 g butter & 1 tbsp freshly ground cardamom pods","120 g softened butter for filling","80 g raw cane sugar & 2 tbsp freshly ground cardamom","50 ml sugar + 50 ml water boiled into syrup glaze","Coarse crushed cardamom and raw sugar for topping"],"instructions":["Knead milk, yeast, cardamom, sugar, butter, and flour for 12 minutes into a smooth, elastic dough. Rest 40 minutes.","Whisk soft butter, raw cane sugar, and freshly crushed cardamom seeds into a fluffy spiced paste.","Roll dough into a 35x50 cm rectangle. Spread cardamom paste over entire surface.","Fold dough in thirds (envelope fold). Slice into 16 strips (2 cm wide). Cut a slit down the center of each strip (legs).","Twist both legs tightly in opposite directions and wrap into a snug circular knot on baking sheet.","Rise 35 minutes. Bake at 225°C (435°F) for 8-10 minutes. Brush immediately with sugar syrup and sprinkle cardamom sugar."],"tips":{"title":"Glossy Syrup","description":"Brushing boiling sugar syrup onto buns the second they leave the oven locks in moisture and creates bakery shine."},"variations":{"title":"Vanilla Cardamom Knots","description":"Add vanilla bean caviar into the cardamom filling."},"faqs":[{"question":"Kanelbullar vs Kardemummabullar?","answer":"Cardamom buns celebrate intense floral spice without cinnamon, favored in artisan Stockholm bakeries."}],"imageQuery":"kardemummabullar cardamom buns knots","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Kanelbullar","imageQuery":"cinnamon buns","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80"},{"name":"Semlor","imageQuery":"semlor","imageUrl":"https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=800&q=80"},{"name":"Lussekatter","imageQuery":"saffron buns","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80"},{"name":"Chokladbollar","imageQuery":"chocolate balls","imageUrl":"https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=800&q=80"}]},{"id":"biff-rydberg","name":"Biff Rydberg (Tenderloin & Potatoes)","nativeName":"Klassisk Biff Rydberg med Rå Äggula","category":"Modern Husmanskost","prepTime":20,"cookTime":15,"yieldServings":2,"calories":520,"difficulty":"Medium","rating":4.9,"reviewsCount":310,"intro":"Stockholm’s iconic gentlemen’s tavern classic: precision-diced beef tenderloin, crispy golden potatoes, and sweet caramelized onions arranged in neat rows with a raw egg yolk and mustard cream.","ingredients":["400 g beef tenderloin (filé mignon), cut into neat 1.5 cm cubes","400 g firm waxy potatoes, peeled and cut into neat 1.5 cm cubes","2 medium yellow onions, cut into 1.5 cm dice","4 tbsp butter for frying","2 pasteurized fresh egg yolks in their half-shells","2 tbsp Swedish mustard & 2 tbsp whipped cream (senapsgrädde)","Fresh chopped parsley, salt, and black pepper"],"instructions":["Parboil diced potatoes in salted water for 4 minutes; drain thoroughly and pat completely dry.","In a skillet, melt 2 tbsp butter. Fry potatoes over medium-high heat until deeply golden and crispy on all sides. Season with salt and keep warm.","In another pan, sauté diced onions in 1 tbsp butter over medium heat until soft, golden brown, and sweet.","Season diced tenderloin with salt and pepper. Sear in smoking-hot skillet with remaining butter for 2 minutes (medium rare).","On warm plates, arrange cubes in distinct, elegant parallel rows: crispy potatoes, seared beef, and caramelized onions.","Place raw egg yolk in the center. Garnish with parsley and serve alongside mustard cream."],"tips":{"title":"Precision Dicing","description":"Cut all three ingredients into uniform identical cubes so they cook evenly and look striking on the plate."},"variations":{"title":"Deer Rydberg","description":"Use wild venison loin or moose tenderloin instead of beef."},"faqs":[{"question":"Origin of Biff Rydberg?","answer":"Created in the late 19th century at the prestigious Hotel Rydberg on Gustav Adolfs Torg in Stockholm."}],"imageQuery":"biff rydberg beef potato egg yolk","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Swedish Meatballs","imageQuery":"meatballs","imageUrl":"https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80"},{"name":"Wallenbergare","imageQuery":"veal cutlet","imageUrl":"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80"},{"name":"Pyttipanna","imageQuery":"hash","imageUrl":"https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80"},{"name":"Kalops","imageQuery":"stew","imageUrl":"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80"}]},{"id":"flygande-jakob","name":"Flygande Jakob (Flying Jacob)","nativeName":"Flygande Jakob med Bacon & Jordnötter","category":"Modern Husmanskost","prepTime":15,"cookTime":25,"yieldServings":4,"calories":560,"difficulty":"Easy","rating":4.8,"reviewsCount":410,"intro":"A delightfully quirky 1970s Swedish comfort classic: shredded roast chicken, sliced bananas, crisp smoky bacon, and roasted peanuts baked in chili-spiced cream.","ingredients":["1 whole grilled rotisserie chicken, shredded (approx 600g meat)","140 g smoky bacon, sliced into lardons and fried crisp","2 ripe bananas, sliced lengthwise and halved","300 ml heavy cream, whipped to soft peaks","100 ml Heinz chili sauce (or sweet tomato chili sauce)","100 g salted roasted peanuts","Freshly cooked jasmine rice for serving"],"instructions":["Arrange shredded roast chicken evenly in the bottom of a buttered baking casserole dish.","Layer sliced bananas over the chicken meat.","In a bowl, fold Heinz chili sauce into soft-whipped cream until smooth and pink.","Pour chili cream evenly over chicken and bananas.","Scatter crispy bacon lardons and roasted peanuts over the top.","Bake at 225°C (435°F) for 20-25 minutes until bubbly and golden. Serve over steamed white rice with green salad."],"tips":{"title":"Banana Magic","description":"Do not skip the bananas! As they bake, their natural sugars melt into the chili cream creating savory-sweet harmony."},"variations":{"title":"Spicy Jacob","description":"Add a dash of Sriracha or cayenne pepper to the chili cream."},"faqs":[{"question":"Who invented Flying Jacob?","answer":"Ove Jacobsson, who worked in air freight (hence \"Flying\"), published it in Allt om Mat magazine in 1976."}],"imageQuery":"flygande jakob chicken casserole bacon","imageUrl":"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Swedish Meatballs","imageQuery":"meatballs","imageUrl":"https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80"},{"name":"Kåldolmar","imageQuery":"cabbage rolls","imageUrl":"https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=800&q=80"},{"name":"Pyttipanna","imageQuery":"hash","imageUrl":"https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80"},{"name":"Dillkött","imageQuery":"veal","imageUrl":"https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"}]},{"id":"inlagd-sill","name":"Classic Pickled Herring","nativeName":"Klassisk Inlagd Sill med Rödlök","category":"Midsummer & Seafood","prepTime":20,"cookTime":5,"yieldServings":8,"calories":190,"difficulty":"Easy","rating":4.8,"reviewsCount":390,"intro":"The soul of Swedish holiday smörgåsbord: tender cured Baltic herring pickled in the iconic \"1-2-3\" vinegar-sugar-water brine with red onion, allspice, and carrots.","ingredients":["400 g salted herring fillets (urvattnade sillfiléer)","100 ml Swedish 12% pickling vinegar (ättiksprit 12%)","200 g granulated sugar","300 ml water","1 large red onion, thinly sliced into rings","1 medium carrot, peeled and sliced into thin coins","1 tbsp whole allspice berries (kryddpeppar)","1 tsp whole yellow mustard seeds & 2 bay leaves"],"instructions":["In a saucepan, bring vinegar, sugar, and water to a boil, stirring until sugar dissolves completely. Cool brine completely to room temperature.","Rinse salted herring in cold water, pat dry, and cut diagonally into 2 cm bite-sized pieces.","In a clean 1-liter glass jar, layer herring pieces alternately with red onion rings, carrot slices, allspice berries, mustard seeds, and bay leaves.","Pour cooled vinegar brine over the herring, ensuring everything is fully submerged.","Seal jar tightly and refrigerate for at least 24 hours (best after 48 hours) before serving.","Serve with boiled new potatoes with fresh dill, sour cream, and knäckebröd crispbread."],"tips":{"title":"1-2-3 Ratio","description":"The golden Swedish pickling formula: 1 part ättika (12%), 2 parts sugar, 3 parts water."},"variations":{"title":"Senapssill (Mustard Herring)","description":"Toss pickled herring in a dressing of Swedish sweet mustard, sour cream, and dill."},"faqs":[{"question":"How long does pickled herring keep?","answer":"Stored in the refrigerator in its brine, it keeps fresh for up to 3 weeks."}],"imageQuery":"inlagd sill pickled herring red onion","imageUrl":"https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Gravlax","imageQuery":"salmon","imageUrl":"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"},{"name":"Gubbröra","imageQuery":"egg herring","imageUrl":"https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80"},{"name":"Toast Skagen","imageQuery":"shrimp toast","imageUrl":"https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80"},{"name":"Stekt Strömming","imageQuery":"fried herring","imageUrl":"https://images.unsplash.com/photo-1534080564583-6be75777b70a?auto=format&fit=crop&w=800&q=80"}]},{"id":"wallenbergare","name":"Wallenbergare (Delicate Veal Cutlets)","nativeName":"Wallenbergare med Ärtor & Skirat Smör","category":"Modern Husmanskost","prepTime":20,"cookTime":12,"yieldServings":4,"calories":480,"difficulty":"Medium","rating":4.9,"reviewsCount":350,"intro":"Luxuriously tender, airy veal patties made with egg yolks and ice-cold cream, breaded in white breadcrumbs and served with sweet peas, lingonberries, and melted clarified butter.","ingredients":["500 g finely ground high-grade veal meat (kalvfärs), ice cold","4 large egg yolks, chilled","250 ml heavy whipping cream, ice cold","1 tsp fine sea salt & ½ tsp ground white pepper","100 g fresh white breadcrumbs (ströbröd utan kanter)","4 tbsp clarified butter (skirat smör) for frying and serving","Buttery mashed potatoes, sweet green peas, and lingonberry jam"],"instructions":["Ensure all ingredients and mixing bowl are ice cold to prevent emulsification breaking.","In a food processor or bowl, quickly pulse ground veal with salt until sticky.","Add egg yolks one at a time while mixing. Slowly drizzle in cold cream in a steady stream until a fluffy, pale farce forms.","Shape farce into 4 large thick oval cutlets. Dredge both sides gently in fresh white breadcrumbs.","Melt clarified butter in skillet over medium heat. Gently fry cutlets for 4-5 minutes per side until golden and cooked through without burning.","Serve immediately accompanied by smooth mashed potatoes, warm sweet green peas, lingonberries, and generous melted butter."],"tips":{"title":"Temperature is Critical","description":"If the meat or cream warms up, the fat separates. Keep everything refrigerated until the moment of mixing."},"variations":{"title":"Salmon Wallenbergare","description":"Substitute ground fresh salmon and cod for delicate Laxwallenbergare."},"faqs":[{"question":"Who were the Wallenbergs?","answer":"Named after the prominent Swedish industrialist banking family Wallenberg."}],"imageQuery":"wallenbergare veal cutlet peas lingonberry","imageUrl":"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Swedish Meatballs","imageQuery":"meatballs","imageUrl":"https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80"},{"name":"Biff Rydberg","imageQuery":"beef","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"},{"name":"Dillkött","imageQuery":"veal","imageUrl":"https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"},{"name":"Raggmunk","imageQuery":"potato pancake","imageUrl":"https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80"}]},{"id":"lussekatter","name":"St. Lucia Saffron Buns (Lussekatter)","nativeName":"Klassiska Lussekatter med Saffran","category":"Fika & Bakery","prepTime":35,"cookTime":10,"yieldServings":18,"calories":230,"difficulty":"Medium","rating":4.9,"reviewsCount":580,"intro":"Vibrant golden S-shaped saffron buns baked for Saint Lucia Day (December 13) and Swedish Christmas, scented with aromatic Persian saffron and dark raisins.","ingredients":["1 g high quality saffron threads (2 envelopes)","1 tbsp sugar + 2 tbsp dark rum or warm water to steep saffron","500 g wheat flour & 250 ml warm whole milk","25 g fresh yeast & 80 g granulated sugar","100 g soft butter & ½ tsp fine sea salt","1 egg for dough + 1 egg for egg wash","Dark seedless raisins for decoration"],"instructions":["Grind saffron threads with 1 tbsp sugar in a mortar. Steep in warm rum or milk for 20 minutes to extract intense color and flavor.","Dissolve yeast in warm milk (37°C) with steeped saffron mixture.","Add flour, sugar, salt, egg, and soft butter. Knead for 10 minutes until dough is silky, vibrant golden, and supple. Rise 45 mins.","Divide dough into 18 pieces. Roll each piece into a 25 cm rope, then curl both ends inward in opposite directions to form an \"S\" shape.","Place on parchment-lined baking sheets and press a dark raisin into the center of each swirl. Rise 30 minutes.","Brush gently with beaten egg wash and bake at 225°C (435°F) for 8-10 minutes until golden. Brush with melted butter for shine."],"tips":{"title":"Alcohol Steeping","description":"Steeping ground saffron in a splash of alcohol unlocks saffron’s alcohol-soluble aroma compounds far better than milk alone."},"variations":{"title":"Saffron & Almond Buns","description":"Roll dough with almond paste and cardamom filling into knots."},"faqs":[{"question":"Why S-shaped?","answer":"The \"S\" scroll resembles a sleeping cat’s tail, traditionally called julkatter or lussekatter."}],"imageQuery":"lussekatter saffron buns swedish christmas","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Pepparkakor","imageQuery":"gingerbread","imageUrl":"https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80"},{"name":"Kanelbullar","imageQuery":"cinnamon buns","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80"},{"name":"Kardemummabullar","imageQuery":"cardamom knots","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80"},{"name":"Semlor","imageQuery":"semla","imageUrl":"https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=800&q=80"}]},{"id":"chokladbollar","name":"Swedish Oat & Cocoa Truffles","nativeName":"Svenska Chokladbollar med Kokos","category":"Fika & Bakery","prepTime":15,"cookTime":0,"yieldServings":20,"calories":140,"difficulty":"Easy","rating":4.9,"reviewsCount":890,"intro":"Sweden’s ultimate no-bake fika treat: rolled oats, creamy butter, Dutch cocoa powder, coffee, and sugar rolled into luscious spheres coated in shredded coconut or pearl sugar.","ingredients":["100 g softened unsalted butter","100 g granulated sugar (or half brown sugar)","150 g rolled oats (havregryn)","3 tbsp high quality cocoa powder","1 tsp pure vanilla sugar or vanilla extract","3 tbsp strong cold espresso or brewed coffee","Pinch of fine sea salt","50 g unsweetened shredded coconut or Swedish pearl sugar for rolling"],"instructions":["In a bowl, cream softened butter and sugar together until light and fluffy.","Add cocoa powder, vanilla sugar, salt, and cold brewed coffee, mixing until smooth.","Stir in the rolled oats. Use your hands or a spoon to work the mixture until fully combined and moldable.","Chill the mixture in the refrigerator for 15 minutes so it is easy to roll.","Scoop tablespoons of mixture and roll between palms into smooth 3 cm round balls.","Roll each ball immediately in a bowl of shredded coconut or pearl sugar until thoroughly coated. Chill 1 hour before serving."],"tips":{"title":"Coffee Nuance","description":"Freshly brewed strong coffee enhances the cocoa richness and gives chokladbollar their authentic café flavor."},"variations":{"title":"Nutella Chokladbollar","description":"Substitute 2 tbsp butter with hazelnut spread."},"faqs":[{"question":"How long do they keep?","answer":"Store in an airtight container in the fridge for up to 2 weeks or freeze for 3 months."}],"imageQuery":"chokladbollar swedish chocolate balls coconut","imageUrl":"https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Kladdkaka","imageQuery":"chocolate cake","imageUrl":"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80"},{"name":"Havrekakor","imageQuery":"oat cookies","imageUrl":"https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=800&q=80"},{"name":"Kanelbullar","imageQuery":"cinnamon buns","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80"},{"name":"Kardemummabullar","imageQuery":"cardamom knots","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80"}]},{"id":"pyttipanna","name":"Pyttipanna (Swedish Hash with Egg)","nativeName":"Klassisk Pytt i Panna med Stekt Ägg & Rödbetor","category":"Traditional Classics","prepTime":20,"cookTime":20,"yieldServings":4,"calories":490,"difficulty":"Easy","rating":4.8,"reviewsCount":520,"intro":"The king of Swedish skillet dishes: crispy diced potatoes, sweet onions, and roast meats fried in butter, served with a sunny-side-up fried egg and pickled beets.","ingredients":["600 g firm potatoes, peeled & cut into small 1 cm cubes","300 g cooked beef roast, ham, or Swedish sausage (Falukorv), diced 1 cm","2 medium yellow onions, finely diced","4 tbsp butter for frying","1 tsp fine sea salt & freshly ground black pepper","4 fresh large eggs for frying sunny-side up","Pickled sliced beetroots (inlagda rödbetor) and HP sauce / mustard"],"instructions":["Parboil diced potatoes in boiling salted water for 3 minutes; drain thoroughly and pat dry with paper towels.","Melt 2 tbsp butter in a large heavy cast-iron skillet over medium-high heat.","Fry diced potatoes undisturbed for 4-5 minutes, then stir and fry until crisp and golden brown (approx 10 mins). Transfer to a plate.","Melt 1 tbsp butter in the skillet, add diced onions, and cook until golden and caramelized.","Add diced meats to skillet with onions and fry until browned and heated through. Return crispy potatoes to skillet and toss together.","In a separate pan, fry eggs sunny-side up in remaining butter. Serve hash in warm bowls topped with fried egg and pickled beets."],"tips":{"title":"Cast Iron Crisp","description":"Using a heavy cast iron skillet guarantees the potatoes get shatteringly crispy edges without turning mushy."},"variations":{"title":"Biff i Panna","description":"Made with raw sirloin steak cubes seared hot for a luxury dinner."},"faqs":[{"question":"What does Pyttipanna mean?","answer":"Literally \"small pieces in a pan\", originally created to repurpose roast dinner leftovers deliciously."}],"imageQuery":"pyttipanna swedish hash fried egg beetroot","imageUrl":"https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Biff Rydberg","imageQuery":"beef","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"},{"name":"Raggmunk","imageQuery":"potato pancake","imageUrl":"https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80"},{"name":"Swedish Meatballs","imageQuery":"meatballs","imageUrl":"https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80"},{"name":"Kalops","imageQuery":"stew","imageUrl":"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80"}]},{"id":"kalops","name":"Kalops (Swedish Beef Stew)","nativeName":"Gammaldags Kalops med Kryddpeppar","category":"Traditional Classics","prepTime":20,"cookTime":120,"yieldServings":6,"calories":460,"difficulty":"Easy","rating":4.9,"reviewsCount":410,"intro":"Comforting, slow-braised Swedish beef stew infused with whole allspice berries, bay leaves, sweet carrots, and rich beef broth until meltingly tender.","ingredients":["1 kg beef chuck roast (högrev), cut into 3 cm cubes","3 tbsp all-purpose flour for dusting meat","3 tbsp butter for browning","2 large yellow onions, cut into thick wedges","3 large carrots, peeled and sliced into thick rounds","10-12 whole allspice berries (kryddpeppar)","3 dried bay leaves","700 ml rich beef stock","1 tbsp dark soy sauce & 1 tsp sea salt","Boiled potatoes and pickled beetroots for serving"],"instructions":["Pat beef cubes dry and toss with flour, salt, and black pepper.","Melt butter in a heavy Dutch oven over medium-high heat. Brown beef in batches until deeply caramelized on all sides. Remove meat.","In the same pot, sauté onion wedges until slightly softened.","Return beef to pot. Add whole allspice berries, bay leaves, dark soy sauce, and hot beef stock to cover the meat.","Bring to a gentle boil, then reduce heat to low, cover with tight lid, and simmer gently for 90 minutes.","Add sliced carrots and simmer for another 30 minutes until beef is fork-tender and sauce is rich. Serve with boiled potatoes and beets."],"tips":{"title":"The Allspice Magic","description":"Whole allspice berries (kryddpeppar) are the signature aromatic signature distinguishing Kalops from French stew."},"variations":{"title":"Moose Kalops","description":"Use wild moose (älgkalops) or venison shoulder for Nordic woodland depth."},"faqs":[{"question":"Can I make it in advance?","answer":"Kalops tastes even better the next day as the spices permeate the braising gravy."}],"imageQuery":"kalops swedish beef stew allspice carrot","imageUrl":"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Ärtsoppa","imageQuery":"pea soup","imageUrl":"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80"},{"name":"Kåldolmar","imageQuery":"cabbage rolls","imageUrl":"https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=800&q=80"},{"name":"Dillkött","imageQuery":"veal stew","imageUrl":"https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"},{"name":"Swedish Meatballs","imageQuery":"meatballs","imageUrl":"https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80"}]},{"id":"gubbrora","name":"Gubbröra (Egg & Anchovy Salad)","nativeName":"Gubbröra på Knäckebröd","category":"Midsummer & Seafood","prepTime":15,"cookTime":10,"yieldServings":4,"calories":210,"difficulty":"Easy","rating":4.7,"reviewsCount":280,"intro":"A classic Swedish midnight snack and smörgåsbord staple: chopped hard-boiled eggs, spiced ansjovis sprats, red onion, fresh dill, and chives on crispy rye.","ingredients":["4 large hard-boiled eggs, peeled & finely chopped","1 can (125 g) Swedish spiced sprats (ansjovisfiléer), finely diced","1 tbsp sprat brine from the can","½ small red onion, finely minced","3 tbsp fresh dill, finely chopped","3 tbsp fresh chives, finely snipped","2 tbsp crème fraîche or mayonnaise","Freshly cracked black pepper","Swedish rye crispbread (knäckebröd) or butter-toasted dark bread"],"instructions":["Hard boil eggs for 9 minutes, plunge into ice water, peel, and chop into small uniform dice.","Drain ansjovis fillets (reserving 1 tbsp brine) and chop finely.","In a mixing bowl, combine chopped eggs, diced ansjovis, minced red onion, dill, and chives.","Fold in crème fraîche, reserved sprat brine, and freshly cracked black pepper gently to keep egg pieces distinct.","Taste and adjust seasoning (usually no extra salt needed due to sprats). Chill for 20 minutes.","Spoon generous mounds onto crisp rye knäckebröd or warm buttered dark rye toast. Garnish with dill."],"tips":{"title":"Old Man’s Mix","description":"Gubbröra translates literally to \"old man’s mix\", historically whipped up after sauna sessions with cold pilsner and aquavit."},"variations":{"title":"Warm Gubbröra","description":"Scramble eggs gently in butter with sprats, chives, and dill over low heat."},"faqs":[{"question":"What beverage pairs with Gubbröra?","answer":"A crisp lager and a chilled glass of caraway-infused Swedish Akvavit."}],"imageQuery":"gubbrora egg anchovy salad dill rye","imageUrl":"https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Inlagd Sill","imageQuery":"herring","imageUrl":"https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"},{"name":"Toast Skagen","imageQuery":"shrimp toast","imageUrl":"https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80"},{"name":"Gravlax","imageQuery":"salmon","imageUrl":"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"},{"name":"Smörgåstårta","imageQuery":"sandwich cake","imageUrl":"https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=800&q=80"}]},{"id":"smorgastarta","name":"Smörgåstårta (Sandwich Celebration Cake)","nativeName":"Klassisk Smörgåstårta med Räkor & Lax","category":"Modern Husmanskost","prepTime":45,"cookTime":0,"yieldServings":8,"calories":480,"difficulty":"Medium","rating":4.9,"reviewsCount":490,"intro":"The show-stopping Swedish party centerpiece: layered savory cake of soft bread, smoked salmon mousse, creamy egg salad, and liver pâté, frosted with herb cream and lavishly decorated with shrimp and cucumbers.","ingredients":["12-16 slices soft crustless white and rye bread","200 g cream cheese & 150 ml crème fraîche for frosting","200 g cold-water peeled shrimp & 150 g smoked salmon slices","3 hard-boiled eggs, chopped & mixed with 2 tbsp mayonnaise (Layer 1)","150 g liver pâté mixed with 3 tbsp cream & diced pickled gherkins (Layer 2)","150 g hot-smoked salmon flaked with dill and sour cream (Layer 3)","Thinly sliced English cucumbers, lemon twists, dill, and cherry tomatoes for decoration"],"instructions":["Arrange 4 bread slices together on a serving platter to form a large square base.","Spread Layer 1 (creamy egg salad) over the bread. Cover with second layer of bread.","Spread Layer 2 (liver pâté and gherkins). Cover with third layer of bread.","Spread Layer 3 (flaked salmon and dill). Cover with final top layer of bread.","Whisk cream cheese and crème fraîche into a smooth savory frosting. Coat the top and all 4 sides of the cake smoothly.","Decorate sides with overlapping cucumber ribbons. Crown top with mounds of peeled shrimp, rolled smoked salmon roses, sliced eggs, lemon twists, and fresh dill. Chill 2 hours before slicing."],"tips":{"title":"Overnight Resting","description":"Assemble the layered cake the day before and frost it 2 hours before serving so bread absorbs moisture perfectly."},"variations":{"title":"Vegetarian Smörgåstårta","description":"Layer with avocado crema, grated cheese, roasted beets, and marinated artichokes."},"faqs":[{"question":"When is Smörgåstårta served?","answer":"Graduations, birthdays, christenings, and major family milestones in Sweden."}],"imageQuery":"smorgastarta swedish sandwich cake salmon shrimp","imageUrl":"https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Toast Skagen","imageQuery":"shrimp toast","imageUrl":"https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80"},{"name":"Gravlax","imageQuery":"salmon","imageUrl":"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"},{"name":"Västerbottenostpaj","imageQuery":"cheese tart","imageUrl":"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80"},{"name":"Gubbröra","imageQuery":"egg salad","imageUrl":"https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80"}]},{"id":"dillkott","name":"Dillkött (Veal in Dill Sauce)","nativeName":"Klassiskt Dillkött på Kalv","category":"Traditional Classics","prepTime":20,"cookTime":75,"yieldServings":4,"calories":410,"difficulty":"Medium","rating":4.8,"reviewsCount":295,"intro":"Tender braised veal simmered with aromatic vegetables in a velvety sweet-and-sour dill cream sauce made with vinegar, sugar, and abundant fresh dill.","ingredients":["800 g veal shoulder or lamb shoulder, cut into 3 cm cubes","1 yellow onion, quartered & 1 carrot, sliced","1 leek (white part only) & 5 white peppercorns","1 bunch fresh dill stems (save fronds for sauce)","1 liter water & 1 tsp fine sea salt","30 g butter & 2 tbsp all-purpose flour for roux","2 tbsp white wine vinegar & 2 tbsp sugar (sweet-sour balance)","100 ml heavy cream & 1 egg yolk","1 cup fresh dill fronds, finely chopped","Boiled new potatoes and buttered sugar snaps"],"instructions":["Place veal cubes in a pot with cold water and bring to a boil. Skim off foam, then add onion, carrot, leek, peppercorns, and dill stems.","Cover and simmer gently for 60-70 minutes until veal is meltingly tender. Strain broth, reserving 500 ml.","In a clean saucepan, melt butter and whisk in flour to make a blond roux (1 min).","Gradually whisk in hot reserved veal broth, simmering until smooth and thickened.","Season sauce with vinegar, sugar, salt, and white pepper to create the signature sweet-and-sour balance.","Whisk cream and egg yolk together; stir into sauce off the heat. Fold in cooked veal cubes and fresh dill. Serve with boiled potatoes."],"tips":{"title":"Sweet & Sour Balance","description":"Swedish dillkött relies on the harmony between vinegar acidity and sugar sweetness balanced by fresh dill."},"variations":{"title":"Dillkyckling","description":"Prepare with tender chicken breast and thigh meat."},"faqs":[{"question":"Veal or lamb?","answer":"Historically made with spring lamb (dill-lamm) or tender milk-fed veal."}],"imageQuery":"dillkott swedish veal dill sauce","imageUrl":"https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Kalops","imageQuery":"stew","imageUrl":"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80"},{"name":"Kåldolmar","imageQuery":"cabbage rolls","imageUrl":"https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=800&q=80"},{"name":"Swedish Meatballs","imageQuery":"meatballs","imageUrl":"https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80"},{"name":"Wallenbergare","imageQuery":"veal","imageUrl":"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80"}]},{"id":"stekt-stromming","name":"Fried Baltic Herring with Mash","nativeName":"Stekt Strömming med Potatismos & Lingon","category":"Midsummer & Seafood","prepTime":20,"cookTime":10,"yieldServings":4,"calories":430,"difficulty":"Easy","rating":4.8,"reviewsCount":380,"intro":"Fresh Baltic herring fillets sandwiched with fresh dill and Dijon mustard, coated in coarse rye flour, and pan-fried crisp in butter with creamy mash and lingonberries.","ingredients":["600 g fresh Baltic herring fillets (strömmingsflundror)","2 tbsp Swedish mustard or Dijon","1 large bunch fresh dill, chopped","100 g coarse rye flour (grovt rågmjöl)","1 tsp fine sea salt & ½ tsp white pepper","4 tbsp butter for frying","Buttery mashed potatoes, lingonberry jam, and pressed pickled cucumber (pressgurka)"],"instructions":["Lay half the herring fillets skin-down on a work surface. Spread with mustard and sprinkle generously with dill.","Cover with remaining herring fillets skin-up to create double-fillet \"sandwiches\".","In a shallow bowl, mix coarse rye flour, salt, and white pepper.","Dredge the herring sandwiches in the seasoned rye flour on both sides.","Melt butter in a large skillet over medium-high heat. Fry herring for 3 minutes per side until crispy and deep brown.","Serve hot immediately with creamy mashed potatoes, melted butter, lingonberry jam, and crisp cucumbers."],"tips":{"title":"Rye Flour Crust","description":"Coarse rye flour gives the herring its classic rustic nutty crunch that white flour cannot replicate."},"variations":{"title":"Inlagd Stekt Strömming","description":"Submerge leftover fried herring in cold 1-2-3 vinegar brine for pickled fried herring."},"faqs":[{"question":"Sill vs Strömming?","answer":"Herring caught north of the Kalmar Strait in the brackish Baltic Sea is called strömming; south in the Atlantic it is sill."}],"imageQuery":"stekt stromming fried baltic herring mashed potato","imageUrl":"https://images.unsplash.com/photo-1534080564583-6be75777b70a?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Inlagd Sill","imageQuery":"herring","imageUrl":"https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"},{"name":"Gravlax","imageQuery":"salmon","imageUrl":"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"},{"name":"Raggmunk","imageQuery":"potato pancake","imageUrl":"https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80"},{"name":"Toast Skagen","imageQuery":"shrimp toast","imageUrl":"https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80"}]},{"id":"blabarssoppa","name":"Warm Wild Bilberry Soup","nativeName":"Varm Svensk Blåbärssoppa","category":"Desserts & Sweets","prepTime":5,"cookTime":10,"yieldServings":4,"calories":160,"difficulty":"Easy","rating":4.8,"reviewsCount":310,"intro":"Vibrant sweet-tart soup made from wild Nordic bilberries, lightly thickened with potato starch, served warm with almond macaroons or a dollop of whipped cream.","ingredients":["400 g wild Nordic bilberries or blueberries (fresh or frozen)","600 ml water","75 g sugar (adjust to berry tartness)","1 strip lemon peel & 1 small cinnamon stick","2 tbsp potato starch (potatismjöl) mixed with 3 tbsp cold water (slurry)","Swedish almond biscuits (mandelbiskvier) or whipped cream for serving"],"instructions":["In a saucepan, bring bilberries, water, sugar, lemon peel, and cinnamon stick to a boil.","Simmer gently for 6-8 minutes until berries release deep violet juices.","Remove lemon peel and cinnamon stick. Blend lightly with an immersion blender for smooth texture if desired.","Remove pot from heat. Slowly pour in potato starch slurry while whisking continuously.","Return to heat just until first bubble appears (do not boil vigorously once potato starch is added).","Serve warm in mugs or soup bowls topped with crunchy almond biscuits and whipped cream."],"tips":{"title":"Vasaloppet Drink","description":"Blåbärssoppa is famously served hot to tens of thousands of cross-country skiers during the 90km Vasaloppet marathon race."},"variations":{"title":"Nyponsoppa (Rosehip Soup)","description":"Made with ground wild rosehip powder and served with vanilla ice cream."},"faqs":[{"question":"Bilberry vs Blueberry?","answer":"Wild Nordic bilberries (Vaccinium myrtillus) are dark blue through their entire flesh, packing 4x more antioxidants."}],"imageQuery":"blabarssoppa swedish blueberry soup bilberry","imageUrl":"https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Ostkaka","imageQuery":"cheesecake","imageUrl":"https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=800&q=80"},{"name":"Havrekakor","imageQuery":"oat cookies","imageUrl":"https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=800&q=80"},{"name":"Gammaldags Äppelkaka","imageQuery":"apple cake","imageUrl":"https://images.unsplash.com/photo-1568571780765-9276ac8b75a2?auto=format&fit=crop&w=800&q=80"},{"name":"Kladdkaka","imageQuery":"chocolate cake","imageUrl":"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80"}]},{"id":"ostkaka","name":"Ostkaka (Småland Curd Cheesecake)","nativeName":"Småländsk Ostkaka med Hjortronsylt","category":"Desserts & Sweets","prepTime":25,"cookTime":45,"yieldServings":8,"calories":290,"difficulty":"Medium","rating":4.9,"reviewsCount":360,"intro":"Traditional baked milk curd cheesecake from Småland, textured with chopped bitter almonds and eggs, served warm with tart wild cloudberry jam and whipped cream.","ingredients":["500 g fresh cottage cheese or homemade curd (drained dry)","4 large eggs","75 g granulated sugar","50 g finely ground almonds & 30 g all-purpose flour","3 bitter almonds, finely grated (or ½ tsp pure almond extract)","250 ml heavy cream & 100 ml whole milk","Warm cloudberry jam (hjortronsylt) or raspberry jam & whipped cream for serving"],"instructions":["Drain cottage cheese or curd thoroughly in a fine cheesecloth for 30 minutes to remove excess whey.","In a large bowl, whisk eggs and sugar until pale and fluffy.","Fold in drained curd, ground almonds, flour, and grated bitter almond extract.","Stir in heavy cream and milk until a smooth, custardy batter forms.","Pour into a buttered 22 cm ceramic baking dish.","Bake at 175°C (350°F) for 40-45 minutes until golden on top and set in the center. Serve lukewarm with cloudberry jam and soft whipped cream."],"tips":{"title":"The Heart of the Dish","description":"According to Småland folklore, guests must start eating Ostkaka from the center to taste the richest curd."},"variations":{"title":"Hälsingeostkaka","description":"The Northern Hälsingland style is cooked on the stovetop without almonds."},"faqs":[{"question":"What is Cloudberry?","answer":"Hjortron (Arctic gold) is a rare wild amber berry hand-foraged in northern peat bogs."}],"imageQuery":"ostkaka swedish smaland cheesecake cloudberry","imageUrl":"https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Prinsesstårta","imageQuery":"princess cake","imageUrl":"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80"},{"name":"Blåbärssoppa","imageQuery":"blueberry soup","imageUrl":"https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80"},{"name":"Kladdkaka","imageQuery":"chocolate cake","imageUrl":"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80"},{"name":"Gammaldags Äppelkaka","imageQuery":"apple cake","imageUrl":"https://images.unsplash.com/photo-1568571780765-9276ac8b75a2?auto=format&fit=crop&w=800&q=80"}]},{"id":"havrekakor","name":"Swedish Oat Lace Cookies","nativeName":"Klassiska Havrekakor & Havregrynskex","category":"Fika & Bakery","prepTime":15,"cookTime":10,"yieldServings":24,"calories":95,"difficulty":"Easy","rating":4.8,"reviewsCount":410,"intro":"Delicate, buttery, golden crisp oat lace cookies with caramelized edges and rich nutty aroma, a staple in Swedish fika biscuit tins.","ingredients":["150 g rolled oats (havregryn)","125 g unsalted butter, melted","120 g granulated sugar","1 tbsp dark syrup (sirap) or honey","1 large egg","1 tbsp flour & 1 tsp baking powder","1 tsp ground cardamom or vanilla & pinch of sea salt"],"instructions":["Pour melted butter over rolled oats in a bowl. Let sit for 10 minutes to soften.","In another bowl, whisk egg, sugar, and syrup until pale and creamy.","Combine flour, baking powder, cardamom, and salt; fold into egg mixture.","Stir in the butter-soaked oats until a sticky cookie dough forms.","Drop small teaspoons of dough onto parchment-lined baking sheets, leaving 5 cm between cookies as they spread thin.","Bake at 175°C (350°F) for 8-10 minutes until edges are deeply caramelized. Cool completely on tray to turn crispy."],"tips":{"title":"Spacing is Key","description":"These lace cookies spread dramatically into paper-thin discs; bake 6-8 per sheet."},"variations":{"title":"Chocolate Dipped Havrekakor","description":"Sandwich two cookies with dark chocolate ganache or dip half in melted chocolate."},"faqs":[{"question":"Sju Sorters Kakor?","answer":"Swedish tradition dictates serving exactly \"Seven Kinds of Cookies\" to guests at formal fika."}],"imageQuery":"havrekakor swedish oat lace cookies","imageUrl":"https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Pepparkakor","imageQuery":"gingerbread","imageUrl":"https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80"},{"name":"Chokladbollar","imageQuery":"chocolate balls","imageUrl":"https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=800&q=80"},{"name":"Kanelbullar","imageQuery":"cinnamon buns","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80"},{"name":"Kardemummabullar","imageQuery":"cardamom knots","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80"}]},{"id":"pepparkakor","name":"Swedish Ginger Thins (Pepparkakor)","nativeName":"Traditionella Pepparkakor med Ädelost","category":"Fika & Bakery","prepTime":30,"cookTime":7,"yieldServings":50,"calories":45,"difficulty":"Easy","rating":4.9,"reviewsCount":760,"intro":"Paper-thin, ultra-crisp spiced gingerbread cookies infused with cloves, ginger, cinnamon, and cardamom, traditionally paired with Swedish blue cheese and hot glögg.","ingredients":["150 g butter & 150 g sugar","100 ml dark Swedish syrup (mörk sirap) or molasses","100 ml water & 1 tbsp ground cinnamon","1 tbsp ground ginger & 1 tbsp ground cloves","1 tsp ground cardamom & 1 tsp baking soda","450 g all-purpose flour","Swedish Kvibille blue cheese (ädelost) for serving"],"instructions":["In a saucepan, melt butter, sugar, syrup, water, cinnamon, ginger, cloves, and cardamom. Bring just to a simmer, then cool to room temperature.","Dissolve baking soda in 1 tbsp water and stir into spiced butter mixture.","Add flour gradually, stirring until a smooth, glossy dough forms. Wrap tightly in plastic wrap and chill overnight in refrigerator.","Roll out dough paper-thin (1-2 mm) on a lightly floured surface. Cut into traditional hearts, stars, and pig shapes.","Transfer to parchment-lined baking sheets.","Bake at 200°C (400°F) for 5-7 minutes until deep golden. Cool completely on wire rack until brittle and crisp. Serve with blue cheese and glögg."],"tips":{"title":"Rolling Thin","description":"The thinner you roll the dough, the more delicate and shatteringly crisp the pepparkakor will be."},"variations":{"title":"Pepparkakshus","description":"Use thicker cut dough to construct decorative Christmas gingerbread houses."},"faqs":[{"question":"Why eat them with blue cheese?","answer":"The savory pungency of Swedish blue cheese cuts through the sweet spice of pepparkakor in legendary holiday harmony."}],"imageQuery":"pepparkakor swedish ginger thins cloves","imageUrl":"https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Lussekatter","imageQuery":"saffron buns","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80"},{"name":"Havrekakor","imageQuery":"oat cookies","imageUrl":"https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=800&q=80"},{"name":"Kanelbullar","imageQuery":"cinnamon buns","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80"},{"name":"Kladdkaka","imageQuery":"chocolate cake","imageUrl":"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80"}]}];
+    let activeRecipeId = 'meatballs';
+    let activeCategory = 'All';
+
+    function getCategories() {
+      const cats = { 'All': recipes.length };
+      recipes.forEach(r => {
+        cats[r.category] = (cats[r.category] || 0) + 1;
+      });
+      return cats;
+    }
+
+    function renderCategories() {
+      const container = document.getElementById('categoriesBar');
+      if (!container) return;
+      const cats = getCategories();
+      container.innerHTML = Object.keys(cats).map(cat => {
+        const isActive = cat === activeCategory;
+        return `<button class="cat-chip ${isActive ? 'active' : ''}" onclick="filterCategory('${cat}')">${cat} (${cats[cat]})</button>`;
+      }).join('');
+    }
+
+    function filterCategory(cat) {
+      activeCategory = cat;
+      renderCategories();
+      renderGrid(document.getElementById('recipeSearchInput')?.value || '');
+    }
+
+    function renderGrid(filter = '') {
+      const grid = document.getElementById('recipeGrid');
+      const filtered = recipes.filter(r => {
+        const matchSearch = r.name.toLowerCase().includes(filter.toLowerCase()) || 
+                            r.nativeName.toLowerCase().includes(filter.toLowerCase()) ||
+                            r.category.toLowerCase().includes(filter.toLowerCase());
+        const matchCat = activeCategory === 'All' || r.category === activeCategory;
+        return matchSearch && matchCat;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; padding: 24px; text-align: center; color: #6b7280; background: #fff; border-radius: 4px; border: 1px dashed #d1d5db;">No recipes found matching your query. <a href="javascript:void(0)" onclick="viewAllRecipes()" style="color:#d97706; font-weight:bold;">View all ' + recipes.length + ' recipes</a></div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map((r) => {
+        const isActive = r.id === activeRecipeId;
+        return `
+          <article class="recipe-card ${isActive ? 'active-card' : ''}" onclick="selectRecipe('${r.id}')" title="Click to view details for ${r.name}">
+            <div class="card-photo" style="background-image:url('${r.imageUrl}')">
+              <span class="card-badge">${r.category}</span>
+            </div>
+            <div class="recipe-card-content">
+              <h3>${r.name}</h3>
+              <p><span>◷ ${r.prepTime + r.cookTime}m</span> <span>♨ ${r.difficulty}</span></p>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function selectRecipe(id) {
+      const recipe = recipes.find(r => r.id === id);
+      if (!recipe) return;
+      activeRecipeId = id;
+
+      document.getElementById('detailImage').style.backgroundImage = 
+        "linear-gradient(90deg, rgba(5,15,16,.95) 0%, rgba(5,15,16,.55) 42%, transparent 70%), url('" + recipe.imageUrl + "')";
+      
+      document.getElementById('detailBreadcrumbs').innerText = 'Home　›　Recipes　›　' + recipe.category;
+      document.getElementById('detailTitle').innerHTML = recipe.name + '<br>(' + recipe.nativeName + ')';
+      document.getElementById('detailRating').innerHTML = '★★★★★ <small>' + recipe.rating + ' (' + recipe.reviewsCount + ' reviews)</small>';
+      document.getElementById('detailIntro').innerText = recipe.intro;
+
+      document.getElementById('detailFacts').innerHTML = 
+        '<span>◉ Prep ' + recipe.prepTime + ' min</span>' +
+        '<span>◉ Cook ' + recipe.cookTime + ' min</span>' +
+        '<span>◉ Yield ' + recipe.yieldServings + ' serv</span>' +
+        '<span>◉ ' + recipe.calories + ' kcal</span>';
+
+      document.getElementById('detailIngredients').innerHTML = 
+        recipe.ingredients.map(ing => '<li>' + ing + '</li>').join('');
+
+      document.getElementById('detailInstructions').innerHTML = 
+        recipe.instructions.map(ins => '<li>' + ins + '</li>').join('');
+
+      document.getElementById('detailTips').innerHTML = 
+        '<strong>' + recipe.tips.title + '</strong><p>' + recipe.tips.description + '</p>';
+
+      document.getElementById('detailVariations').innerHTML = 
+        '<strong>' + recipe.variations.title + '</strong><p>' + recipe.variations.description + '</p>';
+
+      document.getElementById('faqContainer').innerHTML = 
+        recipe.faqs.map(faq => 
+          '<div class="faq-item" onclick="this.classList.toggle(\'open\')">' +
+          '<div><span>' + faq.question + '</span><b>⌄</b></div>' +
+          '<small>' + faq.answer + '</small>' +
+          '</div>'
+        ).join('');
+
+      const recs = (recipe.alsoLike && recipe.alsoLike.length > 0) 
+        ? recipe.alsoLike 
+        : recipes.filter(r => r.id !== recipe.id).slice(0, 4);
+
+      document.getElementById('alsoContainer').innerHTML = 
+        recs.map((also) => 
+          '<article class="also-card" onclick="selectRecipeByName(\'' + also.name.replace(/'/g, "\\'") + '\')">' +
+          '<div class="mini" style="background-image:url(\'' + also.imageUrl + '\')"></div>' +
+          '<span>' + also.name + '</span>' +
+          '</article>'
+        ).join('');
+
+      renderGrid(document.getElementById('recipeSearchInput')?.value || '');
+
+      if (window.innerWidth <= 950) {
+        document.getElementById('detailPanel').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function selectRecipeByName(name) {
+      const found = recipes.find(r => r.name.toLowerCase().includes(name.toLowerCase()) || r.nativeName.toLowerCase().includes(name.toLowerCase()));
+      if (found) {
+        selectRecipe(found.id);
+      }
+    }
+
+    function viewAllRecipes() {
+      activeCategory = 'All';
+      renderCategories();
+      const input = document.getElementById('recipeSearchInput');
+      if (input) input.value = '';
+      renderGrid('');
+      document.getElementById('recipeGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function focusCategories() {
+      document.getElementById('recipeGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* Modal Handlers */
+    function openAboutModal() {
+      document.getElementById('aboutModal').classList.add('open');
+    }
+    function closeAboutModal(e) {
+      if (!e || e.target === document.getElementById('aboutModal') || e.target.classList.contains('modal-close')) {
+        document.getElementById('aboutModal').classList.remove('open');
+      }
+    }
+    function switchModalTab(tabId) {
+      document.querySelectorAll('.modal-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.modal-section').forEach(s => s.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(tabId)?.classList.add('active');
+    }
+    function jumpToRecipe(id) {
+      closeAboutModal();
+      selectRecipe(id);
+      document.getElementById('detailPanel').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCategories();
+      renderGrid();
+
+      const searchInput = document.getElementById('recipeSearchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          renderGrid(e.target.value);
+        });
+      }
+
+      const searchBtn = document.getElementById('recipeSearchBtn');
+      if (searchBtn) {
+        searchBtn.addEventListener('click', () => {
+          renderGrid(searchInput.value);
+        });
+      }
+    });
+
+    renderCategories();
+    renderGrid();
+  </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Disallow admin & internal paths
+Disallow: /admin/
+Disallow: /login/
+Disallow: /search/
+
+# Crawl delay (agar tidak terlalu agresif)
+Crawl-delay: 2
+
+# Sitemap
+Sitemap: https://yourdomain.com/sitemap.xml

@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spain Recipes - SPANISH TAPAS & COCINA</title>
+  <meta name="description" content="Sun-Drenched Flavors of Iberia - Authentic Spain culinary traditions, recipes, and culture." />
+  <style>
+    /* Reset & Base Setup */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100%;
+      background: #140f0c;
+      color: #f9f3ec;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    /* Magazine App Shell */
+    .app-shell {
+      width: 100%;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(650px, 62%) minmax(400px, 38%);
+      gap: 7px;
+      padding: 6px 14px;
+    }
+
+    .main-column, .detail-panel {
+      border: 1px solid #966d51;
+      border-radius: 9px;
+      overflow: hidden;
+      background: #1a1310;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Topbar */
+    .topbar {
+      height: 48px;
+      background: #0d0a08;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: Georgia, serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .brand-mark {
+      font-size: 20px;
+      color: #e07a38;
+    }
+    .topbar nav {
+      display: flex;
+      gap: 16px;
+    }
+    .topbar nav a {
+      color: #d1d5db;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 11px;
+      transition: color 0.15s ease;
+      cursor: pointer;
+    }
+    .topbar nav a:hover, .topbar nav a.active {
+      color: #e07a38;
+    }
+    .search {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 28px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid #4b5563;
+      border-radius: 4px;
+      overflow: hidden;
+      width: 170px;
+    }
+    .search input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 10px;
+      padding: 0 8px;
+      width: 135px;
+    }
+    .search input::placeholder { color: #9ca3af; }
+    .search b {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 28px;
+      background: #e07a38;
+      color: #211208;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 290px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #111;
+    }
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      padding: 24px 28px;
+      max-width: 440px;
+    }
+    .hero-copy em {
+      display: block;
+      font-family: Georgia, serif;
+      font-style: italic;
+      color: #e07a38;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+    .hero-copy h1 {
+      font-family: Georgia, serif;
+      font-size: 32px;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 7px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    }
+    .hero-copy p {
+      font-size: 12px;
+      color: #e5e7eb;
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+    .hero-actions button {
+      background: #e27d3c;
+      color: #211208;
+      border: 1px solid #e07a38;
+      font-weight: bold;
+      font-size: 11px;
+      padding: 7px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .hero-actions button:hover { opacity: 0.9; transform: translateY(-1px); }
+    .hero-actions button.dark-button {
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      border: 1px solid #6b7280;
+      backdrop-filter: blur(4px);
+    }
+    .hero-actions button.dark-button:hover {
+      background: rgba(0,0,0,0.8);
+      border-color: #e07a38;
+    }
+
+    /* Popular Section */
+    .popular {
+      background: #ede0d1;
+      color: #241711;
+      padding: 14px 16px;
+      flex: 1;
+    }
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .section-heading h2 {
+      font-family: Georgia, serif;
+      font-size: 17px;
+      font-weight: bold;
+      color: #241711;
+    }
+    .section-heading button {
+      background: #fff;
+      border: 1px solid #d6c5b2;
+      color: #241711;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .section-heading button:hover { background: #f3f4f6; }
+
+    /* Category Filter Chips */
+    .categories-bar {
+      display: flex;
+      gap: 5px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+    }
+    .cat-chip {
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 9px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #374151;
+      transition: all 0.15s ease;
+    }
+    .cat-chip:hover { background: #f9fafb; }
+    .cat-chip.active {
+      background: #b45309;
+      color: #fff;
+      border-color: #92400e;
+    }
+
+    /* Grid */
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+      gap: 7px;
+    }
+    .recipe-card {
+      background: #faf5ee;
+      border: 1px solid #d6c5b2;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+    .recipe-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    }
+    .recipe-card.active-card {
+      border: 2px solid #e07a38;
+      box-shadow: 0 0 0 1px #e07a38;
+    }
+    .card-photo {
+      height: 75px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      background-color: #374151;
+    }
+    .card-badge {
+      position: absolute;
+      bottom: 4px;
+      left: 4px;
+      background: rgba(0,0,0,0.75);
+      color: #fff;
+      font-size: 7px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+    .recipe-card-content {
+      padding: 6px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .recipe-card h3 {
+      font-size: 10px;
+      font-weight: bold;
+      color: #111827;
+      line-height: 1.25;
+      margin-bottom: 2px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .recipe-card p {
+      font-size: 8px;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 3px;
+      margin-top: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Detail Panel */
+    .detail-panel {
+      background: #f5ede3;
+      color: #241711;
+    }
+    .detail-image {
+      min-height: 175px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .detail-content {
+      padding: 10px 14px;
+    }
+    .breadcrumbs {
+      font-size: 9px;
+      color: #6b7280;
+      margin-bottom: 3px;
+    }
+    .detail-content h2 {
+      font-family: Georgia, serif;
+      font-size: 19px;
+      color: #241711;
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+    .rating {
+      color: #d97706;
+      font-size: 11px;
+      margin-bottom: 6px;
+    }
+    .rating small { color: #6b7280; font-size: 9px; }
+    .intro {
+      font-size: 10px;
+      color: #374151;
+      line-height: 1.45;
+      margin-bottom: 8px;
+    }
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      background: rgba(0,0,0,0.04);
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,0,0,0.06);
+      font-size: 9px;
+      color: #1f2937;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* 2 Column Ingredients & Instructions */
+    .ingredients-instructions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 10px 14px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.4);
+    }
+    .ingredients-instructions h3 {
+      font-family: Georgia, serif;
+      font-size: 12px;
+      font-weight: bold;
+      color: #111827;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+    }
+    .ingredients-instructions ul, .ingredients-instructions ol {
+      padding-left: 14px;
+      font-size: 9.5px;
+      color: #374151;
+      line-height: 1.5;
+    }
+    .ingredients-instructions li { margin-bottom: 3px; }
+
+    /* Tips & Variations */
+    .tips {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      padding: 6px 14px 10px;
+    }
+    .tip-card {
+      background: #15313d;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 1.35;
+    }
+    .tip-card strong {
+      display: block;
+      color: #e07a38;
+      font-size: 10px;
+      margin-bottom: 2px;
+      font-family: Georgia, serif;
+    }
+    .variation-card {
+      background: #164332;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 1.35;
+    }
+    .variation-card strong {
+      display: block;
+      color: #a7f3d0;
+      font-size: 10px;
+      margin-bottom: 2px;
+      font-family: Georgia, serif;
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 6px 14px;
+    }
+    .faq h3 {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #111827;
+    }
+    .faq-item {
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 3px;
+      margin-bottom: 4px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .faq-item div {
+      padding: 5px 8px;
+      font-weight: bold;
+      font-size: 9.5px;
+      color: #1f2937;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-item small {
+      display: none;
+      padding: 5px 8px 7px;
+      font-size: 9px;
+      color: #4b5563;
+      border-top: 1px solid #f3f4f6;
+      line-height: 1.4;
+      background: #f9fafb;
+    }
+    .faq-item.open small { display: block; }
+
+    /* You Might Also Like */
+    .also {
+      background: #213a29;
+      color: #fff;
+      padding: 10px 14px;
+      margin-top: auto;
+    }
+    .also h3 {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .also-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+    .also-card {
+      cursor: pointer;
+      text-align: center;
+    }
+    .also-card .mini {
+      height: 48px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 3px;
+      transition: border-color 0.15s;
+    }
+    .also-card:hover .mini { border-color: #e07a38; }
+    .also-card span {
+      font-size: 8.5px;
+      font-weight: bold;
+      color: #e5e7eb;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Modal for About Swedish Cuisine */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(6px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-container {
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      background: #0e161c;
+      border: 1px solid rgba(217, 119, 6, 0.4);
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      color: #e2e8f0;
+    }
+    .modal-header {
+      padding: 16px 20px;
+      background: linear-gradient(90deg, #0d222b, #122c37);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-header h2 {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      color: #fff;
+    }
+    .modal-close {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-nav {
+      display: flex;
+      gap: 6px;
+      padding: 8px 16px;
+      background: #091116;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      overflow-x: auto;
+    }
+    .modal-tab-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .modal-tab-btn.active {
+      background: #d97706;
+      color: #0f172a;
+      font-weight: bold;
+    }
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .modal-section { display: none; }
+    .modal-section.active { display: block; }
+    .modal-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .modal-card h4 {
+      font-size: 12px;
+      color: #fbbf24;
+      margin-bottom: 4px;
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 950px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+        padding: 4px 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-shell" id="topAnchor">
+    <!-- LEFT MAIN COLUMN -->
+    <main class="main-column">
+      <header class="topbar">
+        <div class="brand" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+          <span class="brand-mark">⚔</span>
+          <span>SPANISH<br>TAPAS & COCINA</span>
+        </div>
+        <nav>
+          <a href="javascript:void(0)" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="active">Home</a>
+          <a href="javascript:void(0)" onclick="viewAllRecipes()">Recipes</a>
+          <a href="javascript:void(0)" onclick="focusCategories()">Categories</a>
+          <a href="javascript:void(0)" onclick="openAboutModal()">About</a>
+        </nav>
+        <div class="search">
+          <input type="text" id="recipeSearchInput" placeholder="Search 30 recipes..." aria-label="Search recipes" />
+          <b id="recipeSearchBtn">⌕</b>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-photo" style="background-image: linear-gradient(90deg, #140f0cF2 0%, #140f0cB8 41%, #140f0c0D 80%), url('https://images.unsplash.com/photo-1534080564583-6be75777b70a?auto=format&fit=crop&w=1200&q=85');"></div>
+        <div class="hero-copy">
+          <em>Sun-Drenched Flavors of Iberia</em>
+          <h1>Authentic Spanish<br>Recipes</h1>
+          <p>Saffron-infused paellas with crispy socarrat, sizzling garlic prawns,<br>and traditional tapas from the Iberian peninsula.</p>
+          <div class="hero-actions">
+            <button onclick="document.getElementById('recipeGridSection').scrollIntoView({behavior:'smooth'})">Explore Spanish Recipes</button>
+            <button class="dark-button" onclick="openAboutModal()">About Spanish Gastronomy</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="popular" id="recipeGridSection">
+        <div class="section-heading">
+          <h2>❧ Tesoros de la Cocina Española ❧</h2>
+          <button id="viewAllBtn" onclick="viewAllRecipes()">View All (30) →</button>
+        </div>
+
+        <div class="categories-bar" id="categoriesBar"></div>
+
+        <div class="recipe-grid" id="recipeGrid"></div>
+      </section>
+    </main>
+
+    <!-- RIGHT DETAIL PANEL -->
+    <aside class="detail-panel" id="detailPanel">
+      <div class="detail-image" id="detailImage" style="background-image: linear-gradient(90deg, rgba(5,15,16,.95) 0%, rgba(5,15,16,.55) 42%, transparent 70%), url('https://images.unsplash.com/photo-1534080564583-6be75777b70a?auto=format&fit=crop&w=800&q=80');"></div>
+      <div class="detail-content" id="detailContent">
+        <div class="breadcrumbs" id="detailBreadcrumbs">Home　›　Recipes　›　Arroces & Paellas</div>
+        <h2 id="detailTitle">Authentic Paella Valenciana<br>(Paella Valenciana Tradicional con Socarrat)</h2>
+        <div class="rating" id="detailRating">★★★★★ <small>5 (1950 reviews)</small></div>
+        <p class="intro" id="detailIntro">The holy grail of Spanish gastronomy: Bomba rice simmered in rich saffron broth with chicken, rabbit, flat green beans (bajoqueta), butter beans (garrofó), and rosemary, forming the prized crispy bottom crust (socarrat).</p>
+        <div class="facts" id="detailFacts">
+          <span>◉ Prep 25 min</span>
+          <span>◉ Cook 45 min</span>
+          <span>◉ Yield 6 serv</span>
+          <span>◉ 540 kcal</span>
+        </div>
+      </div>
+
+      <div class="ingredients-instructions" id="ingredientsInstructions">
+        <section>
+          <h3>Ingredients</h3>
+          <ul id="detailIngredients">
+            <li>400 g Spanish Bomba rice (or Calasparra rice)</li><li>500 g chicken (cut into bite-sized pieces) & 400 g rabbit (or extra chicken thighs)</li><li>150 g fresh flat green beans (ferraura/bajoqueta) & 100 g giant white lima beans (garrofó)</li><li>1 large grated ripe tomato, 3 cloves garlic, 1 generous pinch Spanish saffron threads (toasted)</li><li>1.2 L rich poultry broth or water with 1 sprig fresh rosemary, 1 tsp sweet pimentón de la Vera, extra virgin olive oil</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Instructions</h3>
+          <ol id="detailInstructions">
+            <li>Heat olive oil in a wide 40cm paella pan; sear chicken and rabbit until deeply golden brown and crisp on all sides.</li><li>Push meat to the edges; sauté green beans and garrofó in center until lightly browned.</li><li>Add grated tomato and garlic; cook 3 minutes, then stir in pimentón and saffron threads.</li><li>Pour in broth and water; bring to a vigorous boil and simmer 15 minutes to create an aromatic broth base.</li><li>Distribute Bomba rice evenly across the pan in a cross pattern; do NOT stir once rice is submerged.</li><li>Cook over high heat for 8 minutes, then reduce to gentle simmer for 10 minutes.</li><li>Place fresh rosemary sprig on top during the last 5 minutes.</li><li>Turn heat to high for the final 2 minutes to toast the bottom layer into a crackling, golden-brown socarrat. Rest 5 minutes off heat.</li>
+          </ol>
+        </section>
+      </div>
+
+      <div class="tips" id="tipsBlock">
+        <div class="tip-card" id="detailTips">
+          <strong>Mastering the Socarrat</strong>
+          <p>Listen closely in the final 2 minutes: when the bubbling turns into a gentle crackle and you smell toasted rice, the crispy socarrat is born.</p>
+        </div>
+        <div class="variation-card" id="detailVariations">
+          <strong>Paella Mixta</strong>
+          <p>Combines chicken, chorizo, prawns, and mussels.</p>
+        </div>
+      </div>
+
+      <section class="faq" id="faqSection">
+        <h3>Frequently Asked Questions</h3>
+        <div id="faqContainer">
+          
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+              <div><span>Why is Bomba rice essential?</span><b>⌄</b></div>
+              <small>Bomba absorbs three times its volume in flavorful broth without bursting or turning mushy.</small>
+            </div>
+          
+        </div>
+      </section>
+
+      <section class="also" id="alsoSection">
+        <h3>You Might Also Like</h3>
+        <div class="also-grid" id="alsoContainer">
+          
+            <article class="also-card" onclick="selectRecipeByName('Tortilla de Patatas')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Tortilla de Patatas</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Gambas al Ajillo')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Gambas al Ajillo</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Pulpo a la Gallega')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Pulpo a la Gallega</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Crema Catalana')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Crema Catalana</span>
+            </article>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- ABOUT EDITORIAL MODAL -->
+  <div class="modal-overlay" id="aboutModal" onclick="closeAboutModal(event)">
+    <div class="modal-container" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div>
+          <span style="font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #fbbf24; font-weight: bold;">Editorial Compendium</span>
+          <h2>About Swedish Cuisine</h2>
+        </div>
+        <button class="modal-close" onclick="closeAboutModal()">✕</button>
+      </div>
+
+      <div class="modal-nav">
+        <button class="modal-tab-btn active" onclick="switchModalTab('mod-intro')">Introduction & Pillars</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-dishes')">Popular Dishes</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-fika')">Fika & Baking</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-ingredients')">Ingredients</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-traditions')">Traditions</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-regional')">Regional</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-faq')">FAQ</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- INTRO TAB -->
+        <div class="modal-section active" id="mod-intro">
+          <div class="modal-card" style="background: linear-gradient(135deg, rgba(217,119,6,0.15), rgba(15,23,42,0.6)); border-color: rgba(217,119,6,0.3);">
+            <em style="color: #fbbf24; font-family: Georgia, serif; font-size: 13px; display: block; margin-bottom: 4px;">From Viking hearths to Michelin tables: a deep journey into Nordic culinary heritage.</em>
+            <h3 style="font-family: Georgia, serif; font-size: 15px; color: #fff; margin-bottom: 8px;">Introduction to Swedish Food</h3>
+            <p style="margin-bottom: 6px;">Swedish gastronomy is defined by an intimate connection with nature, shaped by dramatic northern seasons, vast archipelagos, dense boreal forests, and long Arctic winters.</p><p style="margin-bottom: 6px;">Historically, surviving sub-zero Nordic winters required master craftsmanship in preservation: curing with sea salt, pickling with vinegar and mustard, smoking over juniper wood, drying, and fermenting.</p><p style="margin-bottom: 6px;">Today, Swedish food combines these ancestral preservation arts with pure simplicity, seasonal foraging, and a reverence for pristine ingredients — creating one of the most vibrant and sustainable food cultures in the modern world.</p>
+          </div>
+
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin: 14px 0 8px;">What Is Swedish Cuisine?</h3>
+          <p style="margin-bottom: 10px;">At its essence, Swedish food is grounded in the concept of "Husmanskost" — traditional, unpretentious home-cooked meals originally prepared by agrarian families. It emphasizes warmth, honest nourishment, and the golden principle of "Lagom" (not too little, not too much, but just right).</p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>01. Husmanskost (Heritage Comfort)</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Satisfying, wholesome dishes made with root vegetables, pork, wild game, dairy butter, and pantry staples designed to sustain hard-working bodies.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>02. The Smörgåsbord Concept</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">A grand buffet of cold and hot courses, eaten in strict traditional sequence starting with pickled herring, progressing to cold meats and salmon, then warm casseroles, and ending with cheese.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>03. Allemansrätten (Right to Roam)</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Constitutional freedom allowing every citizen to forage wild lingonberries, cloudberries, blueberries, and golden chanterelle mushrooms in forests across Sweden.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>04. Purity & Seasonality</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Minimalist preparation where the natural flavors of cold-water seafood, fresh dill, butter, and pristine root vegetables take center stage.</p>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- DISHES TAB -->
+        <div class="modal-section" id="mod-dishes">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 6px;">Traditional Swedish Foods & Popular Dishes</h3>
+          <p style="margin-bottom: 12px; color: #94a3b8;">While modern Sweden embraces global flavors, these iconic cornerstone dishes represent the heart and soul of authentic Swedish dining.</p>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Swedish Meatballs <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Köttbullar med Gräddsås)</em></h4>
+                <p style="margin-bottom: 4px;">Tender meatballs made from a blend of pork and beef, soaked breadcrumbs, onion, and a hint of allspice. Simmered in velvety cream sauce with buttery mashed potatoes and tart lingonberries.</p>
+                <small style="color: #93c5fd;">Cultural Note: The undisputed national dish, immortalized worldwide and cherished at every Swedish family table.</small>
+              </div>
+              <button onclick="jumpToRecipe('meatballs')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Gravlax <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Gravad Lax med Hovmästarsås)</em></h4>
+                <p style="margin-bottom: 4px;">Fresh Nordic salmon cured for 48 hours in coarse sea salt, sugar, cracked white pepper, and mountains of fresh dill. Sliced paper-thin and paired with sweet dill mustard sauce.</p>
+                <small style="color: #93c5fd;">Cultural Note: Dating back to medieval times when fishermen buried salted salmon in the earth ("grava") to cure.</small>
+              </div>
+              <button onclick="jumpToRecipe('gravlax')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Raggmunk <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Raggmunk med Stekt Fläsk)</em></h4>
+                <p style="margin-bottom: 4px;">Crisp, lacy potato pancakes prepared with freshly grated starchy potatoes in a light flour-milk batter, fried in rich butter until shatteringly crisp at the perimeter.</p>
+                <small style="color: #93c5fd;">Cultural Note: Served with thick salted crispy pork belly and tart lingonberries, the benchmark of Swedish weekday comfort.</small>
+              </div>
+              <button onclick="jumpToRecipe('raggmunk')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Janssons Frestelse <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Janssons Frestelse)</em></h4>
+                <p style="margin-bottom: 4px;">A decadent gratin of julienned potatoes, caramelized onions, and spiced sprats (ansjovis) baked in heavy cream and breadcrumbs until bubbling golden.</p>
+                <small style="color: #93c5fd;">Cultural Note: The essential midnight centerpiece of every Christmas Julbord, Easter, and Midsummer celebration.</small>
+              </div>
+              <button onclick="jumpToRecipe('janssons-frestelse')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Kåldolmar <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Kåldolmar med Gräddsås)</em></h4>
+                <p style="margin-bottom: 4px;">Tender cabbage rolls packed with spiced pork, beef, and rice, browned in dark syrup and butter, then braised with rich stock and cream.</p>
+                <small style="color: #93c5fd;">Cultural Note: Brought back by King Charles XII from the Ottoman Empire in the 1700s, adapted with Nordic white cabbage and lingonberries.</small>
+              </div>
+              <button onclick="jumpToRecipe('kaldolmar')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+        </div>
+
+        <!-- CULTURE / FIKA TAB -->
+        <div class="modal-section" id="mod-fika">
+          <div class="modal-card" style="background: rgba(180,83,9,0.15);">
+            <h4>Swedish Baking Culture & Fika Tradition</h4>
+            <p style="margin-bottom: 6px;">Fika is far more than a simple coffee break — it is an essential Swedish social institution and a state of mind. Twice a day, colleagues, friends, and families set aside work to sit down together over freshly brewed filter coffee and freshly baked pastries.</p>
+            <p style="font-style: italic; color: #fde68a;">"In Sweden, enjoying fika represents slowing down, cultivating genuine human presence, and savoring sweet craftsmanship. Historic etiquette honored "Sju sorters kakor" (Seven Types of Cookies) served from elegant porcelain tins."</p>
+          </div>
+          <h4 style="color:#fff; margin: 12px 0 8px;">Popular Regional Treats & Specialties</h4>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>Kanelbullar (Svenska Kanelbullar)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Scented with freshly ground cardamom, filled with cinnamon-sugar butter, and baked with crunchy pearl sugar. Celebrated every October 4th on National Cinnamon Bun Day.</p>
+                <button onclick="jumpToRecipe('kanelbullar')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+              <div class="modal-card">
+                <h4>Semlor (Klassiska Semlor)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">A cardamom wheat bun filled with almond paste and billowing whipped cream. Traditionally eaten on Fettisdagen (Fat Tuesday) and throughout winter.</p>
+                <button onclick="jumpToRecipe('semlor')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+              <div class="modal-card">
+                <h4>Kladdkaka (Svensk Kladdkaka)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Sweden’s signature gooey, fudgy sticky chocolate cake with a paper-thin crackly crust, served warm with unsweetened whipped cream and tart raspberries.</p>
+                <button onclick="jumpToRecipe('kladdkaka')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- INGREDIENTS TAB -->
+        <div class="modal-section" id="mod-ingredients">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Key Swedish Ingredients</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🥔 <strong style="color:#fff; font-size:11px;">Potatoes</strong> <em style="font-size:9px; color:#fbbf24;">(Potatis)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">The foundational carbohydrate of Nordic cuisine since the 18th century, prepared boiled with dill, whipped into velvety mos, or grated into raggmunk.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Mashed with meatballs, boiled with herring, or julienned into Janssons gratin.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🐟 <strong style="color:#fff; font-size:11px;">Salmon</strong> <em style="font-size:9px; color:#fbbf24;">(Lax)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Pristine cold-water fish prepared cured (gravlax), hot-smoked, cold-smoked, pan-seared, or baked into celebratory smörgåstårta.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Cured with dill and sea salt, or poached with hollandaise sauce.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌊 <strong style="color:#fff; font-size:11px;">Herring</strong> <em style="font-size:9px; color:#fbbf24;">(Sill & Strömming)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">The silver of the sea. Baltic herring (strömming) and Atlantic herring (sill) are preserved in sweet-tangy vinegar brines with onion, mustard, or fried crisp in rye flour.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Pickled with red onion and allspice, or pan-fried with potatoes.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🍒 <strong style="color:#fff; font-size:11px;">Lingonberries</strong> <em style="font-size:9px; color:#fbbf24;">(Lingon)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Tart, ruby-red wild berries foraged in autumn pine forests. Stirred raw with sugar (rårörda lingon) to provide sweet-sour balance to rich meat dishes.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Essential companion for meatballs, cabbage rolls, blood pudding, and potato pancakes.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌿 <strong style="color:#fff; font-size:11px;">Dill</strong> <em style="font-size:9px; color:#fbbf24;">(Dill)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">The quintessential green herb of Scandinavia, providing fresh aniseed aroma to seafood, sauces, potato salads, and crayfish broths.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Chopped over boiled potatoes, infused into gravlax cure, and tossed into Skagen mayonnaise.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌾 <strong style="color:#fff; font-size:11px;">Rye</strong> <em style="font-size:9px; color:#fbbf24;">(Råg)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Hearty whole-grain cereal used for centuries to bake sturdy sourdough loaves and crisp, dry knäckebröd flatbreads with extraordinary shelf life.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Knäckebröd crispbreads with butter and aged cheese, or dark limpa loaves.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">✨ <strong style="color:#fff; font-size:11px;">Cardamom</strong> <em style="font-size:9px; color:#fbbf24;">(Kardemumma)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Introduced by Viking trade routes with Constantinople, whole green cardamom pods are freshly crushed into virtually all Swedish bakery doughs.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Cardamom knots (kardemummabullar), cinnamon buns, semlor, and holiday cakes.</small>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- TRADITIONS TAB -->
+        <div class="modal-section" id="mod-traditions">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Swedish Food Traditions & Celebrations</h3>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Midsummer (Midsommar)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">Late June (Summer Solstice)</span>
+              </div>
+              <p style="margin-bottom: 6px;">The most magical Swedish holiday celebrating endless daylight. Families gather around maypoles for an open-air banquet of pickled herring, boiled fresh new potatoes with dill and sour cream, Västerbotten cheese tart, snaps songs, and fresh Swedish strawberries with cream.</p>
+              <small style="color: #fbbf24;">Staples: Inlagd Sill, New Potatoes with Dill, Västerbottensostpaj, Fresh Strawberries & Cream, Akvavit</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Christmas (Julbord)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">December</span>
+              </div>
+              <p style="margin-bottom: 6px;">A lavish multi-course holiday feast starting with glögg and gingerbread with blue cheese, followed by herring and salmon, then warm meatballs, prince sausages (prinskorv), Jansson’s Temptation, Christmas ham (julskinka), and saffron buns (lussekatter).</p>
+              <small style="color: #fbbf24;">Staples: Julskinka (Christmas Ham), Janssons Frestelse, Köttbullar, Lussekatter, Pepparkakor med Ädelost</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Easter (Påsk)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">Spring (March/April)</span>
+              </div>
+              <p style="margin-bottom: 6px;">A cheerful springtime smörgåsbord filled with decorated eggs, cured gravlax, lamb roast with herbs, gubbröra on crispbread, and vibrant candy-filled Easter eggs.</p>
+              <small style="color: #fbbf24;">Staples: Hard-boiled Eggs with Kalles Kaviar, Gravlax, Gubbröra, Roast Lamb</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Crayfish Party (Kräftskiva)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">August</span>
+              </div>
+              <p style="margin-bottom: 6px;">Boisterous outdoor gatherings under moon-shaped paper lanterns. Swedes slurp boiled freshwater crayfish cooked in beer and dill-seed broth, wearing funny paper hats and singing traditional snapsvisor.</p>
+              <small style="color: #fbbf24;">Staples: Dill-boiled Crayfish, Västerbottensostpaj, Crispbread & Butter, Chilled Aquavit</small>
+            </div>
+          
+        </div>
+
+        <!-- REGIONAL TAB -->
+        <div class="modal-section" id="mod-regional">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Regional Swedish Cuisine</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>🧭 Norrland & Lapland (The Great North)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Dominated by Arctic forests and indigenous Sámi traditions. Rich in wild game like moose (älg) and reindeer (ren), arctic char, wild cloudberries (hjortron), and thin soft flatbread (tunnbröd).</p>
+                <small style="color: #fbbf24;">Specialties: Suovas (Smoked Reindeer), Älgkalops (Moose Stew), Hjortronsylt (Cloudberry Jam), Västerbotten Cheese</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 Skåne & Southern Farmlands</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Sweden’s fertile breadbasket with rich European influences, producing grain, sugar beets, smoked pork, goose dinners on Saint Martin’s Eve (Mårten Gås), and towering spettekaka cakes.</p>
+                <small style="color: #fbbf24;">Specialties: Gåslever & Roast Goose, Svartsoppa, Spettekaka, Rökt Fläsk (Smoked Pork)</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 The West Coast (Bohuslän & Gothenburg)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">World-renowned for cold, nutrient-rich waters yielding sweet Norway lobsters (havskräftor), deep-sea prawns, oysters, and fresh Atlantic herring.</p>
+                <small style="color: #fbbf24;">Specialties: Toast Skagen, Kräftor (Boiled Crayfish), Fresh Oysters, Stekt Strömming</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 Dalarna & Central Lake District</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Deep folklore heritage, home to the iconic Falukorv sausage, traditional rye crispbread mills, and freshwater pike and perch from Lake Siljan.</p>
+                <small style="color: #fbbf24;">Specialties: Falukorv i Ugn, Leksands Knäckebröd, Lake Fish Terrines</small>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- FAQ TAB -->
+        <div class="modal-section" id="mod-faq">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Frequently Asked Questions</h3>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">What is the philosophy behind Swedish Husmanskost?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Husmanskost refers to honest, nourishing home cooking rooted in Swedish agrarian history. It prioritizes wholesome local ingredients, balanced portions (Lagom), and satisfying flavors made from scratch.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">Why is Fika so culturally important in Sweden?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Fika is a valued daily ritual that fosters social connection and mindfulness. It is a scheduled opportunity to step away from screens, enjoy high-quality coffee and freshly baked cardamom or cinnamon buns, and bond with peers.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">What is the difference between Swedish ansjovis and Mediterranean anchovies?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Swedish ansjovis are actually small sprats (skarpsill) cured in a sweet, aromatic brine with cinnamon, ginger, cloves, and sandalwood. Mediterranean anchovies are salty, fermented true anchovies in oil. They cannot be directly substituted in Janssons Frestelse.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">Why do Swedish cinnamon buns taste different from American cinnamon rolls?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Swedish Kanelbullar incorporate freshly crushed cardamom into the yeast dough, are folded into intricate knotted buns rather than thick spiral slabs, are crowned with crunchy pearl sugar, and do not use heavy powdered sugar glaze or cream cheese frosting.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">How does the Swedish right of public access (Allemansrätten) influence cooking?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Allemansrätten legally allows anyone to forage wild berries (lingonberries, bilberries, cloudberries) and wild mushrooms (chanterelles, porcini) freely in nature, keeping wild foraging at the heart of home cooking.</p>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const recipes = [{"id":"paella-valenciana","name":"Authentic Paella Valenciana","nativeName":"Paella Valenciana Tradicional con Socarrat","category":"Arroces & Paellas","prepTime":25,"cookTime":45,"yieldServings":6,"calories":540,"difficulty":"Advanced","rating":5,"reviewsCount":1950,"intro":"The holy grail of Spanish gastronomy: Bomba rice simmered in rich saffron broth with chicken, rabbit, flat green beans (bajoqueta), butter beans (garrofó), and rosemary, forming the prized crispy bottom crust (socarrat).","ingredients":["400 g Spanish Bomba rice (or Calasparra rice)","500 g chicken (cut into bite-sized pieces) & 400 g rabbit (or extra chicken thighs)","150 g fresh flat green beans (ferraura/bajoqueta) & 100 g giant white lima beans (garrofó)","1 large grated ripe tomato, 3 cloves garlic, 1 generous pinch Spanish saffron threads (toasted)","1.2 L rich poultry broth or water with 1 sprig fresh rosemary, 1 tsp sweet pimentón de la Vera, extra virgin olive oil"],"instructions":["Heat olive oil in a wide 40cm paella pan; sear chicken and rabbit until deeply golden brown and crisp on all sides.","Push meat to the edges; sauté green beans and garrofó in center until lightly browned.","Add grated tomato and garlic; cook 3 minutes, then stir in pimentón and saffron threads.","Pour in broth and water; bring to a vigorous boil and simmer 15 minutes to create an aromatic broth base.","Distribute Bomba rice evenly across the pan in a cross pattern; do NOT stir once rice is submerged.","Cook over high heat for 8 minutes, then reduce to gentle simmer for 10 minutes.","Place fresh rosemary sprig on top during the last 5 minutes.","Turn heat to high for the final 2 minutes to toast the bottom layer into a crackling, golden-brown socarrat. Rest 5 minutes off heat."],"tips":{"title":"Mastering the Socarrat","description":"Listen closely in the final 2 minutes: when the bubbling turns into a gentle crackle and you smell toasted rice, the crispy socarrat is born."},"variations":{"title":"Paella Mixta","description":"Combines chicken, chorizo, prawns, and mussels."},"faqs":[{"question":"Why is Bomba rice essential?","answer":"Bomba absorbs three times its volume in flavorful broth without bursting or turning mushy."}],"imageQuery":"authentic paella valenciana saffron socarrat chicken rosemary","imageUrl":"https://images.unsplash.com/photo-1534080564583-6be75777b70a?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Tortilla de Patatas","imageQuery":"tortilla espanola","imageUrl":"https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80"},{"name":"Gambas al Ajillo","imageQuery":"gambas al ajillo","imageUrl":"https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80"},{"name":"Pulpo a la Gallega","imageQuery":"pulpo a la gallega","imageUrl":"https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80"},{"name":"Crema Catalana","imageQuery":"crema catalana","imageUrl":"https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80"}]},{"id":"tortilla-de-patatas","name":"Spanish Tortilla de Patatas","nativeName":"Tortilla Española Clásica Jugosa","category":"Tapas & Entrantes","prepTime":20,"cookTime":25,"yieldServings":6,"calories":340,"difficulty":"Medium","rating":5,"reviewsCount":2200,"intro":"Spain’s beloved comfort pillar: thinly sliced potatoes and sweet onions gently poached in virgin olive oil until creamy, folded into fresh farm eggs, and cooked to a golden disc with a luscious, custardy center.","ingredients":["800 g starchy potatoes (Kennebec or Yukon Gold), peeled and thinly sliced into 3mm half-moons","1 large sweet Spanish onion, thinly sliced (con cebolla)","6 large farm-fresh eggs","300 ml Spanish extra-virgin olive oil for poaching","1 tbsp fine sea salt"],"instructions":["Heat olive oil in non-stick skillet over medium-low heat; add sliced potatoes, onions, and salt.","Poach (confit) gently for 20 minutes until potatoes are completely tender and melting, without browning.","Drain potatoes and onions through a colander, reserving 2 tbsp of the fragrant olive oil.","Beat eggs in a large bowl with salt; fold in warm poached potatoes and onions. Let sit for 10 minutes so eggs absorb potato starch.","Heat 1 tbsp reserved oil in a 24cm non-stick skillet over medium heat; pour in egg-potato mixture.","Cook for 3 minutes, gently shaking pan and rounding the edges with a spatula.","Place a flat plate over the skillet, flip the tortilla quickly in one swift motion, and slide back into pan.","Cook reverse side for 2 minutes for a creamy, runny center (melosa) or 4 minutes for fully set."],"tips":{"title":"The 10-Minute Rest","description":"Soaking warm potatoes in beaten eggs before frying allows starches to gelatinize for an unmatched velvety texture."},"variations":{"title":"Tortilla de Chorizo","description":"Add diced Spanish cured chorizo for a smoky paprika punch."},"faqs":[{"question":"Con cebolla or Sin cebolla?","answer":"The eternal Spanish debate: traditionalists in Madrid love onion for natural sweetness, while purists prefer potato and egg alone."}],"imageQuery":"tortilla de patatas spanish omelette slice golden","imageUrl":"https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"gambas-al-ajillo","name":"Sizzling Gambas al Ajillo","nativeName":"Gambas al Ajillo en Cazuela de Barro","category":"Tapas & Entrantes","prepTime":10,"cookTime":5,"yieldServings":4,"calories":260,"difficulty":"Easy","rating":5,"reviewsCount":1680,"intro":"Plump wild prawns sizzling in smoking-hot Spanish olive oil infused with thinly sliced garlic, dried guindilla chiles, and a splash of dry sherry, served bubbling with crusty bread.","ingredients":["500 g raw jumbo prawns or shrimp, peeled and deveined","8 cloves fresh garlic, sliced paper-thin","2 dried Spanish Guindilla or cayenne peppers (sliced into rings)","120 ml Spanish extra-virgin olive oil","30 ml dry Fino sherry or dry white wine, 2 tbsp finely chopped flat-leaf parsley, sea salt flakes & rustic baguette"],"instructions":["In an authentic terracotta cazuela (or heavy skillet), heat olive oil over medium-low heat.","Add sliced garlic and dried chili rings; sauté gently for 2 minutes until garlic turns pale golden (do not burn).","Turn heat to high; add prawns in a single layer and season with sea salt flakes.","Cook for 90 seconds until prawns curl and turn pink.","Splash in dry sherry and scatter chopped parsley; shake pan vigorously to emulsify oil and juices.","Remove from heat immediately while still sizzling and serve at once with crusty baguette for dipping."],"tips":{"title":"Do Not Overcook Garlic","description":"Garlic cooks in seconds in hot oil. Take it off heat while golden to avoid bitterness."},"variations":{"title":"Gambas al Whisky","description":"Popular in Seville, finished with aged Spanish brandy or whisky and lemon."},"faqs":[{"question":"What is a Cazuela de Barro?","answer":"A glazed earthenware dish that retains intense heat, keeping tapas bubbling hot at the table."}],"imageQuery":"gambas al ajillo garlic prawns sizzling olive oil","imageUrl":"https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"pulpo-a-la-gallega","name":"Galician Octopus (Polbo á Feira)","nativeName":"Pulpo a la Gallega con Pimentón y Cachelos","category":"Mariscos & Pescados","prepTime":15,"cookTime":45,"yieldServings":4,"calories":290,"difficulty":"Medium","rating":5,"reviewsCount":1420,"intro":"Tender Galician octopus boiled to perfection, sliced with scissors over warm boiled potatoes (cachelos), drizzled generously with premium Spanish olive oil, and dusted with smoky Pimentón de la Vera.","ingredients":["1 whole cleaned octopus (approx. 1.5 kg, previously frozen for tenderness)","4 medium Galician potatoes (cachelos), peeled and thickly sliced","1 tbsp sweet Pimentón de la Vera & 1 tsp spicy (picante) Pimentón","100 ml Spanish extra-virgin olive oil & coarse sea salt crystals (sal gorda)"],"instructions":["Bring a large pot of unsalted water with 1 whole onion to a rolling boil.","Hold octopus by the head and \"scare\" it (asustar el pulpo) by dipping tentacles into boiling water for 3 seconds and lifting out, repeating 3 times until tentacles curl tightly.","Submerge octopus completely; cover and simmer gently for 40-45 minutes until tender when pierced with a wooden skewer.","Turn off heat and let octopus rest in cooking broth for 15 minutes.","In the same purple octopus broth, boil potato slices for 15 minutes until fork-tender.","Arrange warm potato slices on a traditional wooden round platter.","Snip octopus tentacles into 1cm rounds with kitchen scissors over the potatoes.","Season generously with coarse sea salt crystals, dust with both sweet and hot pimentón, and bathe in rich olive oil."],"tips":{"title":"Scaring the Octopus","description":"Dipping the octopus 3 times before boiling locks the skin to the meat so it never peels off."},"variations":{"title":"Pulpo a la Brasa","description":"Boil octopus first, then char the whole tentacles over hot charcoal grill."},"faqs":[{"question":"Why use a wooden platter?","answer":"Wood absorbs excess moisture while keeping the olive oil and paprika emulsified on the octopus."}],"imageQuery":"pulpo a la gallega octopus paprika olive oil potatoes wooden plate","imageUrl":"https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"jamon-iberico-pan-tomate","name":"Jamón Ibérico & Pan con Tomate","nativeName":"Jamón 100% Ibérico de Bellota con Pa amb Tomàquet","category":"Tapas & Entrantes","prepTime":10,"cookTime":5,"yieldServings":4,"calories":320,"difficulty":"Easy","rating":5,"reviewsCount":1890,"intro":"Acorn-fed 100% Ibérico cured ham glistening at room temperature, served with toasted rustic crusty bread rubbed with raw garlic, sweet ripe hanging tomatoes (tomàquet de penjar), and rich olive oil.","ingredients":["150 g 100% Jamón Ibérico de Bellota (sliced paper-thin)","1 loaf rustic Spanish bread (Pan de Cristal or Pagès), sliced into thick planks","2 very ripe soft tomatoes (Tomàquet de Ramallet/Penjar)","1 plump clove fresh garlic, halved","Spanish extra-virgin olive oil & flaky sea salt (Flor de Sal)"],"instructions":["Allow Jamón Ibérico to rest at warm room temperature for 30 minutes until the glossy acorn fat melts to translucency.","Toast rustic bread slices under a broiler or over a grill until crust is crisp and golden.","Rub the cut side of the raw garlic clove lightly across the hot crusty surface of the bread.","Cut the ripe tomato in half; press and vigorously grate the pulpy flesh directly into the bread until soaked with tomato seeds and juice.","Drizzle generously with top-tier extra-virgin olive oil and sprinkle with flaky sea salt.","Drape translucent slices of Jamón Ibérico casually over the bread and serve immediately."],"tips":{"title":"Temperature is Everything","description":"Never eat Jamón straight from the fridge; the oleic acid fats must liquefy at room temperature (24°C) to release nutty aromas."},"variations":{"title":"Pan con Tomate con Anchoas","description":"Top with Cantabrian salted anchovies."},"faqs":[{"question":"What is Bellota?","answer":"Pigs graze freely in oak forests (dehesas) gorging on sweet fallen acorns (bellotas)."}],"imageQuery":"jamon iberico pan con tomate spanish tapas tomato bread","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"gazpacho-andaluz","name":"Traditional Gazpacho Andaluz","nativeName":"Gazpacho Andaluz Tradicional Frío","category":"Sopas & Cremas","prepTime":15,"cookTime":0,"yieldServings":6,"calories":140,"difficulty":"Easy","rating":4.9,"reviewsCount":1350,"intro":"Refreshing chilled summer elixir of sun-ripened tomatoes, crisp cucumber, green Italian pepper, garlic, and stale crusty bread, emulsified with Sherry vinegar and olive oil into silky nectar.","ingredients":["1 kg ultra-ripe sweet vine tomatoes (Roma or Pear), cored and chopped","1 small cucumber, peeled and chopped","1 Italian green bell pepper (pimiento verde), deseeded","1 clove fresh garlic (germ removed)","50 g stale white rustic bread (soaked in water and squeezed)","100 ml Spanish extra virgin olive oil, 30 ml Vinagre de Jerez (Sherry vinegar), 1 tsp sea salt","Garnish: Diced cucumber, green pepper, and crunchy homemade croutons"],"instructions":["Place chopped tomatoes, cucumber, green pepper, garlic, and squeezed soaked bread into a high-speed blender.","Blend on high speed for 3 minutes until completely pulverized and smooth.","With blender running on low, slowly stream in Sherry vinegar and extra-virgin olive oil to emulsify into a silky, pale-orange soup.","Season with sea salt; pass through a fine-mesh sieve (chinois) for an ultra-velvety texture.","Chill in the refrigerator for at least 4 hours until ice-cold.","Serve in chilled glasses or bowls topped with finely diced garnishes and a swirl of olive oil."],"tips":{"title":"Emulsion Technique","description":"Streaming olive oil into running blender creates a creamy, mayonnaise-like micro-emulsion without dairy."},"variations":{"title":"Gazpacho de Sandía","description":"Blend with sweet seedless watermelon for fruitiness."},"faqs":[{"question":"Why Sherry Vinegar?","answer":"Vinagre de Jerez aged in oak solera barrels provides complex woody acidity that defines Andalusian gazpacho."}],"imageQuery":"gazpacho andaluz chilled tomato soup olive oil cucumber","imageUrl":"https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"salmorejo-cordobes","name":"Salmorejo Cordobés","nativeName":"Salmorejo Cordobés con Jamón y Huevo","category":"Sopas & Cremas","prepTime":15,"cookTime":0,"yieldServings":4,"calories":280,"difficulty":"Easy","rating":5,"reviewsCount":1100,"intro":"Cordoba’s thick, spoonable cold tomato emulsion made with dense bread, garlic, and generous olive oil, crowned with diced cured Jamón Serrano and hard-boiled eggs.","ingredients":["1 kg ripe red plum tomatoes (peeled)","200 g day-old dense white bread (Pan de Telera or baguette, crust removed)","100 ml Spanish extra-virgin olive oil","1 small clove garlic & 1 tsp salt, 1 tbsp Sherry vinegar","Toppings: 50 g diced Jamón Ibérico & 2 hard-boiled eggs (chopped)"],"instructions":["Blend tomatoes with garlic and salt in blender until liquid.","Tear bread into chunks and submerge in tomato puree; let soak for 10 minutes.","Blend on high power until thick and homogenous.","Gradually stream in olive oil until the mixture becomes a glossy, thick cream that holds its shape on a spoon.","Chill thoroughly for at least 3 hours in refrigerator.","Ladle into shallow bowls and decorate with chopped hard-boiled egg and diced cured jamón."],"tips":{"title":"Dense Bread","description":"Unlike gazpacho, salmorejo uses double the bread and olive oil to achieve a mayonnaise-thick dipping consistency."},"variations":{"title":"Mazamorra Cordobesa","description":"Ancient Roman ancestor made with ground almonds instead of tomatoes."},"faqs":[{"question":"How is Salmorejo eaten?","answer":"As a refreshing first course, or as a rich spread on toasted crusty bread."}],"imageQuery":"salmorejo cordobes cold tomato cream jamon egg","imageUrl":"https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"croquetas-de-jamon","name":"Crispy Jamón Ibérico Croquetas","nativeName":"Croquetas Cremosas de Jamón Ibérico","category":"Tapas & Entrantes","prepTime":30,"cookTime":20,"yieldServings":16,"calories":120,"difficulty":"Advanced","rating":5,"reviewsCount":1980,"intro":"The crowning glory of Spanish tapas bars: shatteringly crisp golden breadcrumb crust encasing a molten, liquid-velvet béchamel infused with rich cured Ibérico ham fat.","ingredients":["150 g Jamón Ibérico (finely diced)","80 g butter & 2 tbsp Spanish olive oil","100 g all-purpose flour","800 ml whole milk (infused with a jamón bone if available)","1 pinch freshly grated nutmeg & ground white pepper","Coating: 2 beaten eggs, 150 g fine breadcrumbs (pan rallado), oil for deep frying"],"instructions":["Melt butter and oil in a saucepan; sauté diced jamón for 1 minute to release aromatic fat.","Add flour and cook, stirring constantly for 3 minutes to toast the roux (eliminating raw flour taste).","Slowly whisk in warm milk in batches, stirring vigorously to avoid lumps.","Cook béchamel over medium-low heat for 12-15 minutes, stirring continuously until thick and pulling away from sides.","Season with nutmeg and white pepper. Pour into a shallow dish, cover with plastic wrap touching the surface, and chill in fridge for at least 4 hours (or overnight).","Shape chilled dough into cylinders; roll in flour, dip in beaten egg, and coat in fine breadcrumbs.","Deep-fry in 180°C (350°F) hot oil for 2 minutes until deep golden and crisp; drain on paper towels and serve warm."],"tips":{"title":"Cook the Béchamel Long","description":"A long 15-minute simmer eliminates starchiness and yields a croqueta that bursts into liquid silk."},"variations":{"title":"Croquetas de Boletus","description":"Made with wild Porcini mushrooms and truffle oil."},"faqs":[{"question":"Are croquetas made with potatoes?","answer":"In Spain, authentic croquetas are always 100% rich dairy béchamel, never potato."}],"imageQuery":"croquetas de jamon crispy spanish tapas creamy bechamel","imageUrl":"https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"fabada-asturiana","name":"Asturian Fabada Bean Stew","nativeName":"Fabada Asturiana Tradicional con Compango","category":"Guisados & Moles","prepTime":20,"cookTime":150,"yieldServings":6,"calories":620,"difficulty":"Medium","rating":4.9,"reviewsCount":980,"intro":"Northern Spain’s mythical mountain stew: giant buttery Asturian white beans (fabes) slow-simmered with smoked chorizo, morcilla blood sausage, pancetta, and saffron into a velvety, smoky broth.","ingredients":["500 g dried Asturian Faba beans (Fabes de la Granja), soaked overnight in cold water","El Compango: 2 Asturian smoked chorizos, 2 Asturian smoked morcillas (blood sausages), 200 g cured pork belly (panceta curada), 1 ham hock","1 large pinch Spanish saffron threads (toasted and crushed)","1 tsp sweet Pimentón de la Vera, 1 small onion & 2 cloves garlic"],"instructions":["Drain soaked faba beans; place in large wide clay cazuela or pot with chorizo, morcilla, panceta, onion, and garlic.","Cover with cold water 3cm above beans; bring to a rolling boil over high heat, skimming off all surface foam.","Add sweet pimentón and crushed saffron.","Reduce heat to low simmer; \"scare the beans\" (asustar les fabes) by adding a splash of cold water every hour to slow cooking and prevent skins from bursting.","Simmer gently uncovered for 2 to 2.5 hours until beans are as buttery as clotted cream.","Remove compango meats, slice into thick pieces, and arrange over deep bowls of simmering white beans."],"tips":{"title":"Never Stir with a Spoon","description":"Swirl the pot gently by the handles; stirring with a spoon breaks delicate tender faba beans."},"variations":{"title":"Fabes con Almejas","description":"Asturian white beans simmered with fresh clams and white wine."},"faqs":[{"question":"What is Compango?","answer":"The sacred trio of Asturian smoked pork charcuterie: chorizo, morcilla, and cured panceta."}],"imageQuery":"fabada asturiana bean stew chorizo morcilla spanish","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"pisto-manchego","name":"Pisto Manchego with Fried Egg","nativeName":"Pisto Manchego con Huevo Frito de Puntilla","category":"Verduras & Huerto","prepTime":20,"cookTime":40,"yieldServings":4,"calories":240,"difficulty":"Easy","rating":4.8,"reviewsCount":760,"intro":"La Mancha’s luscious vegetable medley of sweet bell peppers, zucchini, onions, and slow-stewed tomatoes in rich olive oil, crowned with a crispy-edged fried egg with runny yolk.","ingredients":["2 zucchini (calabacín), diced into 1cm cubes","1 red bell pepper & 1 green bell pepper, diced","1 large yellow onion, finely diced, 2 cloves garlic (minced)","600 g peeled crushed ripe tomatoes","80 ml Spanish extra-virgin olive oil, 1 tsp sugar (to balance acidity), salt","4 farm eggs fried in hot olive oil with crispy edges (puntilla)"],"instructions":["Heat olive oil in a wide skillet; sauté onions and garlic over medium-low heat for 10 minutes until caramelized and sweet.","Add diced red and green bell peppers; sauté for 10 minutes.","Add zucchini; cook for 8 minutes until tender-crisp.","Pour in crushed tomatoes, sugar, and salt; reduce heat to low and simmer gently for 20 minutes until vegetables are meltingly soft and sauce is thick and glistening with oil.","Fry eggs in hot olive oil until the white forms crispy lacy brown edges (puntilla) while yolk remains runny.","Serve warm pisto in terracotta dishes topped with the fried egg and crusty bread."],"tips":{"title":"Sequential Cooking","description":"Cooking vegetables in stages rather than all at once ensures each maintains its texture and sweet caramelized notes."},"variations":{"title":"Pisto con Lomo","description":"Simmer with tender seared pork tenderloin chunks."},"faqs":[{"question":"What is Huevo con Puntilla?","answer":"The Spanish technique of frying eggs in smoking-hot olive oil to create lacy, crisp-fried edges."}],"imageQuery":"pisto manchego ratatouille fried egg spanish vegetables","imageUrl":"https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"rabo-de-toro","name":"Cordoba Braised Oxtail Stew","nativeName":"Rabo de Toro Estofado al Vino Tinto","category":"Guisados & Moles","prepTime":25,"cookTime":210,"yieldServings":6,"calories":580,"difficulty":"Advanced","rating":5,"reviewsCount":1250,"intro":"Centuries-old Andalusian bullring tradition: rich oxtail chunks browned and slow-braised for hours in deep red wine, brandy, leeks, carrots, and aromatics until gelatinous and falling off the bone.","ingredients":["1.5 kg beef oxtail (cut into segments along natural joints)","750 ml full-bodied Spanish red wine (Rioja or Ribera del Duero) & 60 ml Spanish brandy","2 large carrots (diced), 2 leeks (sliced), 1 large onion (chopped), 4 garlic cloves","2 bay leaves, 4 whole cloves, 1 sprig fresh thyme, 1 sprig rosemary","3 tbsp olive oil, flour for dusting, 500 ml rich beef bone broth"],"instructions":["Season oxtail segments with salt and pepper; dust lightly in flour.","Heat olive oil in a Dutch oven; sear oxtail over high heat until deeply browned and caramelized on all sides; remove and set aside.","In same pot, sauté onions, leeks, carrots, and garlic for 10 minutes.","Pour in Spanish brandy and flambe or reduce; add red wine and scrape up browned bits from bottom of pot.","Return oxtail to the pot, add beef broth, bay leaves, cloves, thyme, and rosemary.","Bring to a boil, cover tightly, and simmer on low heat for 3.5 hours (or bake in oven at 150°C/300°F) until meat slips effortlessly from bone.","Skim fat from surface; strain vegetables and puree sauce until glossy and thick. Pour back over tender meat.","Serve piping hot with crispy French fries or creamy potato puree."],"tips":{"title":"Gelatinous Richness","description":"Oxtail’s high collagen content breaks down into pure gelatin, giving the sauce an unmatched velvety shine."},"variations":{"title":"Rabo de Toro en Hojaldre","description":"Shred braised meat and bake inside buttery puff pastry parcels."},"faqs":[{"question":"Where did Rabo de Toro start?","answer":"In 19th-century Córdoba taverns following celebratory bullfights."}],"imageQuery":"rabo de toro braised oxtail red wine spanish stew","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"bacalao-al-pil-pil","name":"Basque Bacalao al Pil-Pil","nativeName":"Bacalao al Pil-Pil Tradicional Vasco","category":"Mariscos & Pescados","prepTime":20,"cookTime":25,"yieldServings":4,"calories":360,"difficulty":"Advanced","rating":5,"reviewsCount":1180,"intro":"Basque Country’s culinary masterpiece: salted cod fillets cooked in olive oil with garlic and dried chiles, emulsified purely by the natural gelatin of the cod into a thick, glossy green-gold sauce.","ingredients":["4 thick fillets salted cod (bacalao desalado), desalted in water for 48 hours and dried","200 ml premium Spanish extra-virgin olive oil","6 cloves garlic, thinly sliced","2 dried Guindilla peppers (sliced into rings)"],"instructions":["In a wide terracotta cazuela, heat olive oil over low heat; fry garlic slices and guindilla rings until golden; remove and set aside.","Lower heat; place desalted cod fillets skin-side down in the warm oil.","Confit cod at very low heat (below simmer, approx. 65°C) for 10 minutes as cod releases white gelatin (albumin). Flip and cook 5 mins.","Remove cod fillets to a warm platter, leaving the oil and cod juices in the cazuela.","Let oil cool slightly; rotate and swirl the cazuela in continuous circular motions (or use a fine wire strainer) over gentle heat to emulsify cod gelatin and oil into a thick, creamy sauce (pil-pil).","Return cod to the sauce, spoon warm golden emulsion over fillets, and crown with crispy garlic and chili."],"tips":{"title":"The Circular Motion","description":"Swirling the pan off-heat binds the cod albumin gelatin with olive oil into a silky natural emulsion without cream."},"variations":{"title":"Bacalao a la Vizcaína","description":"Cod simmered in rich choricero pepper and onion sauce."},"faqs":[{"question":"What does Pil-Pil mean?","answer":"Onomatopoeia mimicking the gentle bubbling sound of cod skin releasing juices in warm olive oil."}],"imageQuery":"bacalao al pil pil basque salted cod garlic emulsion","imageUrl":"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"patatas-bravas","name":"Crispy Patatas Bravas con Alioli","nativeName":"Patatas Bravas Crujientes con Salsa Brava Casera","category":"Tapas & Entrantes","prepTime":15,"cookTime":25,"yieldServings":4,"calories":320,"difficulty":"Easy","rating":5,"reviewsCount":2450,"intro":"Madrid’s quintessential tavern bite: crispy, double-fried golden potato cubes smothered in smoky, spicy salsa brava and creamy garlic alioli.","ingredients":["800 g starchy potatoes, peeled and cut into irregular 2.5cm rough chunks","Olive oil for double-frying & coarse sea salt","Salsa Brava: 3 tbsp olive oil, 1 tbsp flour, 1 tbsp sweet Pimentón de la Vera, 1 tsp spicy Pimentón, 250 ml chicken broth, 1 tsp vinegar","Garlic Alioli: 100 g mayonnaise, 2 cloves crushed garlic, 1 tbsp olive oil, 1 tsp lemon juice"],"instructions":["For Salsa Brava: Heat oil in a pan, stir in flour and pimentón for 1 min. Whisk in warm broth and vinegar; simmer 5 mins until thick.","First Fry: Par-cook potato chunks in 140°C (280°F) oil for 8 minutes until tender but pale. Remove and drain.","Second Fry: Increase oil temperature to 190°C (375°F); fry potatoes for 4 minutes until golden brown, blistering, and shatteringly crispy.","Toss hot potatoes with coarse sea salt.","Pile crispy potatoes on a serving dish, drizzle generously with warm salsa brava and creamy garlic alioli."],"tips":{"title":"Double Frying","description":"Low heat cooks the potato inside into fluffy mash; high heat creates a glassy, crackling crust."},"variations":{"title":"Bravas con Chorizo","description":"Tossed with crispy pan-fried Spanish chorizo bits."},"faqs":[{"question":"Does Salsa Brava have tomato?","answer":"Traditional Madrid salsa brava is made with olive oil, pimentón roux, and broth—no tomatoes!"}],"imageQuery":"patatas bravas crispy fried potatoes spicy sauce alioli","imageUrl":"https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"churros-madrid","name":"Madrid Churros con Chocolate a la Taza","nativeName":"Churros Madrileños con Chocolate Caliente Espeso","category":"Postres & Dulces","prepTime":15,"cookTime":15,"yieldServings":4,"calories":380,"difficulty":"Easy","rating":5,"reviewsCount":2800,"intro":"Madrid’s legendary breakfast: hot, ridged crispy churros piped and fried to golden perfection, dipped into a cup of ultra-thick, velvety, dark Spanish hot chocolate.","ingredients":["Churro Dough: 250 ml water, 150 g all-purpose flour, 1 tbsp olive oil, 1/2 tsp fine sea salt","Oil for deep frying (mild olive oil or sunflower oil)","Chocolate a la Taza: 200 g dark Spanish chocolate (70% cocoa), 500 ml whole milk, 1 tbsp cornstarch, 2 tbsp sugar"],"instructions":["Bring water, olive oil, and salt to a rolling boil in saucepan; remove from heat, dump in flour all at once, and beat vigorously with a wooden spoon until a smooth, shiny dough ball pulls away from sides.","Let dough cool 5 minutes, then load into a sturdy churrera or pastry bag with a closed star tip.","Heat oil in a deep skillet to 190°C (375°F).","Pipe 12cm strips of dough directly into hot oil, cutting ends with kitchen shears.","Fry 3-4 minutes until golden brown and crispy; drain on paper towels.","For Chocolate: Whisk cornstarch into cold milk; heat with chopped dark chocolate and sugar until bubbling and thick like pudding.","Serve warm churros immediately with cups of steaming dipping chocolate."],"tips":{"title":"No Eggs in Classic Churros","description":"Traditional Spanish churros use only water, flour, salt, and oil for a light, crispy interior."},"variations":{"title":"Porras Madrileñas","description":"Thicker, airy fried dough sticks made with baking soda."},"faqs":[{"question":"What is Chocolate a la Taza?","answer":"Thickened drinking chocolate made specifically for dipping churros without running."}],"imageQuery":"churros con chocolate a la taza spanish hot chocolate","imageUrl":"https://images.unsplash.com/photo-1624300629298-e9de39c13be5?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"crema-catalana","name":"Authentic Crema Catalana","nativeName":"Crema Catalana Quemada con Canela y Limón","category":"Postres & Dulces","prepTime":15,"cookTime":15,"yieldServings":6,"calories":290,"difficulty":"Medium","rating":5,"reviewsCount":1620,"intro":"Catalonia’s historical dessert (dating back to the 14th century): silky milk and cream custard perfumed with cinnamon and lemon peel, finished with a glass-like caramelized burnt sugar crust.","ingredients":["500 ml whole milk & 200 ml heavy cream","6 large egg yolks","120 g granulated sugar (plus extra for torching the crust)","25 g cornstarch (maicena)","1 stick Spanish cinnamon & peel of 1 organic lemon and 1 orange (no white pith)"],"instructions":["In a saucepan, heat milk, cream, cinnamon stick, and citrus peels until steaming; remove from heat, cover, and steep 20 minutes.","In a bowl, whisk egg yolks, sugar, and cornstarch until pale and creamy.","Discard cinnamon and peel; slowly strain warm milk into egg mixture while whisking constantly.","Pour mixture back into saucepan; cook over medium-low heat, stirring constantly with a wooden spoon or whisk until thickened into smooth custard (do not boil).","Pour hot custard into traditional shallow clay ramekins (cazuelitas); cool to room temperature, then chill in fridge 4 hours.","Just before serving, sprinkle an even layer of sugar over top; caramelize with a kitchen blowtorch or hot branding iron until crunchy and deep amber."],"tips":{"title":"Infuse Slowly","description":"Steeping the citrus peel and cinnamon stick off the heat extracts essential oils without bitterness."},"variations":{"title":"Crema Catalana Helada","description":"Frozen into artisanal ice cream with brittle caramel ribbons."},"faqs":[{"question":"How does it differ from Crème Brûlée?","answer":"Crema Catalana is milk-based and stove-cooked with citrus and cinnamon; Crème Brûlée is cream-based and oven-baked with vanilla."}],"imageQuery":"crema catalana burnt sugar crust custard cinnamon lemon","imageUrl":"https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"tarta-de-santiago","name":"Galician Tarta de Santiago","nativeName":"Tarta de Santiago Tradicional de Almendra","category":"Postres & Dulces","prepTime":20,"cookTime":35,"yieldServings":8,"calories":340,"difficulty":"Easy","rating":5,"reviewsCount":1320,"intro":"Galicia’s legendary medieval pilgrimage cake: naturally gluten-free almond cake scented with lemon zest and cinnamon, decorated with the iconic powdered sugar Cross of Saint James.","ingredients":["250 g raw finely ground almond flour (harina de almendra)","250 g granulated sugar","4 large eggs (room temperature)","Zest of 1 fresh organic lemon & 1/2 tsp ground Ceylon cinnamon","1 tbsp sweet Spanish dessert wine or orujo liqueur (optional)","Powdered sugar for dusting & paper Cross of Saint James stencil"],"instructions":["In a large bowl, whisk eggs and sugar together for 3 minutes until pale and frothy.","Fold in finely ground almond flour, lemon zest, ground cinnamon, and liqueur until a smooth, thick batter forms.","Grease a 22cm round cake tin with butter and dust with flour or ground almonds.","Pour batter into pan and smooth the top.","Bake at 175°C (350°F) for 30-35 minutes until golden brown on top and a toothpick comes out clean.","Cool completely in pan, then transfer to serving plate.","Place paper stencil of the Cross of Saint James (Cruz de Santiago) in the center.","Dust generously with powdered sugar, carefully remove stencil, leaving the sharp silhouette."],"tips":{"title":"Pure Almond Flour","description":"Using fresh, finely milled blanched almonds gives the cake its signature moist, marzipan-like crumb."},"variations":{"title":"Tarta con Base de Masa","description":"Baked inside a thin, flaky shortcrust pastry shell."},"faqs":[{"question":"Why is it named Santiago?","answer":"Named after Saint James, the patron saint of Spain whose shrine marks the end of the Camino de Santiago."}],"imageQuery":"tarta de santiago almond cake cross powder sugar galician","imageUrl":"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"arroz-negro","name":"Black Seafood Rice with Alioli","nativeName":"Arroz Negro con Calamares y Alioli Suave","category":"Arroces & Paellas","prepTime":20,"cookTime":30,"yieldServings":4,"calories":460,"difficulty":"Medium","rating":4.9,"reviewsCount":1080,"intro":"Stunning Mediterranean black rice cooked in paella pan with cuttlefish, tender squid, and natural squid ink, served with generous dollops of homemade garlic alioli.","ingredients":["350 g Spanish Bomba rice","400 g fresh cuttlefish (sepia) or squid (calamar), cleaned and cut into small bite-sized pieces","8 g natural squid ink (tinta de calamar/sepia)","1 L rich fish and seafood stock (fumet de pescado)","1 onion (finely diced), 2 cloves garlic, 1 grated tomato, 1 green pepper","Olive oil, salt, lemon wedges & fresh garlic alioli"],"instructions":["Dissolve squid ink in 100ml warm fish stock; set aside.","In paella pan, heat olive oil; sauté cuttlefish chunks over high heat until browned and tender (5 mins).","Add diced onion, green pepper, and garlic; cook until soft, then stir in grated tomato.","Add Bomba rice and toast for 2 minutes with the sofrito.","Pour in hot fish stock and dissolved squid ink; distribute rice evenly.","Simmer on medium-high for 8 minutes, then reduce to low heat for 10 minutes.","Let rest off heat for 5 minutes.","Serve in the pan with lemon wedges and large spoonfuls of creamy garlic alioli."],"tips":{"title":"Squid Ink Depth","description":"Natural cuttlefish ink provides deep sea salinity and umami that elevates simple rice into high cuisine."},"variations":{"title":"Fideuà Negra","description":"Made with short toasted noodles (fideos) instead of rice."},"faqs":[{"question":"What is Alioli?","answer":"Traditional emulsion of garlic (all) and olive oil (oli), the quintessential match for black rice."}],"imageQuery":"arroz negro black rice squid ink alioli paella","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"carrillada-iberica","name":"Braised Ibérico Pork Cheeks","nativeName":"Carrillada de Cerdo Ibérico al Pedro Ximénez","category":"Guisados & Moles","prepTime":20,"cookTime":120,"yieldServings":4,"calories":520,"difficulty":"Medium","rating":5,"reviewsCount":1140,"intro":"Melt-in-your-mouth Ibérico pork cheeks braised in sweet Andalusian Pedro Ximénez sherry wine, beef broth, carrots, and sweet onions until spoon-tender.","ingredients":["8 Ibérico pork cheeks (carrilleras de cerdo ibérico), trimmed","250 ml sweet Pedro Ximénez (PX) sherry wine & 150 ml dry white wine","500 ml beef bone stock, 1 large onion (diced), 2 carrots (sliced), 1 leek","3 cloves garlic, 1 cinnamon stick, 2 bay leaves, 1 sprig fresh thyme","Flour for dusting, olive oil, salt and cracked black pepper"],"instructions":["Season pork cheeks with salt and pepper; dust lightly in flour.","Sear pork cheeks in hot olive oil in Dutch oven until dark golden; remove and set aside.","Sauté onion, carrots, leek, and garlic in same pot for 10 minutes.","Pour in Pedro Ximénez wine and white wine; boil for 5 minutes to reduce alcohol.","Return pork cheeks to pot; add beef stock, cinnamon stick, bay leaves, and thyme.","Cover tightly and simmer on low for 2 hours (or 40 mins in pressure cooker) until meat is fork-tender.","Remove pork cheeks; blend and strain the braising liquid into a glossy, velvety mahogany glaze.","Return meat to glaze and serve with truffled mashed potatoes."],"tips":{"title":"Pedro Ximénez Wine","description":"Made from sun-dried white grapes, PX sherry imparts raisins, fig, and molasses sweetness."},"variations":{"title":"Carrillada de Ternera","description":"Made with larger beef cheeks braised in red Rioja wine."},"faqs":[{"question":"Why are cheeks so tender?","answer":"High connective tissue breaks down during slow braising into melting gelatin."}],"imageQuery":"carrillada iberica braised pork cheeks sherry sauce","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"empanada-gallega","name":"Galician Tuna & Pepper Empanada","nativeName":"Empanada Gallega de Atún y Pimientos","category":"Pies & Pastries","prepTime":35,"cookTime":40,"yieldServings":8,"calories":360,"difficulty":"Medium","rating":4.9,"reviewsCount":890,"intro":"Galicia’s golden savory pie with olive oil yeast crust, stuffed with a slow-cooked sofrito of sweet onions, roasted bell peppers, Spanish bonito tuna, and sweet paprika.","ingredients":["Dough: 400 g flour, 150 ml warm water, 7 g dry yeast, 80 ml oil from the sofrito, 1 tsp salt, 1 egg for wash","Zaragallada Filling: 3 large onions (finely sliced), 2 red bell peppers (sliced), 2 cloves garlic, 1 tsp sweet Pimentón","300 g Spanish canned white tuna in olive oil (Bonito del Norte), drained","2 hard-boiled eggs (chopped), 3 tbsp tomato passata"],"instructions":["Sauté onions and peppers in generous olive oil for 25 minutes until soft and caramelized; stir in garlic, pimentón, and tomato.","Strain sofrito, reserving the fragrant orange olive oil for the dough. Stir tuna and chopped eggs into sofrito.","Knead flour, yeast, warm water, salt, and 80ml reserved sofrito oil into smooth pliable dough; rest 45 mins.","Divide dough into two pieces (60/40); roll larger piece thin and line a 30x40cm baking tray.","Spread tuna-pepper filling evenly over base.","Roll top crust, place over filling, trim and crimp edges tightly with fingers.","Cut a hole in the center for steam; decorate with dough scraps and brush with beaten egg.","Bake at 190°C (375°F) for 35-40 minutes until deep golden-brown and crisp."],"tips":{"title":"Use Sofrito Oil in Dough","description":"Kneading the paprika-scented sofrito oil directly into the dough yields an authentic golden, aromatic crust."},"variations":{"title":"Empanada de Bacalao con Pasas","description":"Stuffed with cod and sweet golden raisins."},"faqs":[{"question":"Can it be eaten cold?","answer":"Yes! Empanada Gallega is famously delicious warm or at room temperature the next day."}],"imageQuery":"empanada gallega spanish tuna pie golden pastry","imageUrl":"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"boquerones-en-vinagre","name":"Marinated White Anchovies","nativeName":"Boquerones en Vinagre con Ajo y Perejil","category":"Tapas & Entrantes","prepTime":25,"cookTime":0,"yieldServings":6,"calories":160,"difficulty":"Medium","rating":4.9,"reviewsCount":780,"intro":"Fresh white anchovy fillets cured in white wine vinegar until snow-white, seasoned with minced raw garlic, fresh flat-leaf parsley, and virgin olive oil.","ingredients":["500 g fresh Mediterranean anchovies (boquerones), heads, guts, and spines removed","200 ml white wine vinegar & 50 ml cold water","4 cloves fresh garlic, finely minced","3 tbsp fresh flat-leaf parsley, finely chopped","150 ml Spanish extra-virgin olive oil & coarse sea salt"],"instructions":["Clean fresh anchovies, gently opening them like a butterfly and pulling out backbone.","Rinse thoroughly in ice water to remove all blood for pristine white fillets.","Arrange fillets skin-side down in a glass dish; cover with vinegar and water mixture and 1 tbsp salt.","Refrigerate for 6-8 hours until fillets turn bright opaque white.","Drain vinegar completely.","Layer marinated fillets with minced garlic and chopped parsley; submerge completely in extra-virgin olive oil.","Serve chilled with potato crisps and cold vermouth or beer."],"tips":{"title":"Ice Water Bath","description":"Soaking cleaned fish in ice water before vinegar removes all traces of blood, ensuring pure white color."},"variations":{"title":"Matrimonio Tapas","description":"Skewered together with one cured brown anchovy and one white pickled boquerón."},"faqs":[{"question":"Is freezing required?","answer":"Yes, commercial standards freeze fresh fish at -20°C for 24 hours to ensure safety before curing."}],"imageQuery":"boquerones en vinagre marinated white anchovies garlic parsley","imageUrl":"https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"torrijas-caramelizadas","name":"Caramelized Spanish Torrijas","nativeName":"Torrijas de Leche y Canela Caramelizadas","category":"Postres & Dulces","prepTime":15,"cookTime":15,"yieldServings":6,"calories":320,"difficulty":"Easy","rating":5,"reviewsCount":1410,"intro":"Spain’s Holy Week (Semana Santa) treasure: thick slices of brioche soaked in warm cinnamon-citrus milk until custardy, dipped in egg, fried golden, and brûléed with caramelized sugar.","ingredients":["1 loaf thick brioche bread or Pan de Torrijas, sliced into 3cm thick planks","750 ml whole milk, 1 cinnamon stick, peel of 1 lemon, 80 g sugar","2 large eggs, beaten","Mild olive oil or butter for frying","Caramelized Crust: Granulated sugar & ground cinnamon for torching"],"instructions":["Simmer milk with cinnamon stick, lemon peel, and sugar for 5 minutes; let cool to warm room temperature.","Place bread slices in a shallow dish; pour warm infused milk over top and soak for 5-8 minutes until bread is completely saturated with milk like custard.","Carefully lift soaked bread with a spatula, dip on both sides in beaten egg.","Fry in hot oil/butter over medium heat for 2 minutes per side until golden brown.","Transfer to a plate; sprinkle generously with sugar and cinnamon.","Caramelize top with a kitchen torch until a brittle amber sugar crust forms."],"tips":{"title":"Full Saturation","description":"The bread must soak until it is almost too delicate to lift; this produces a pudding-like center."},"variations":{"title":"Torrijas de Vino Tinto","description":"Soaked in spiced red wine and honey instead of milk."},"faqs":[{"question":"When are Torrijas eaten?","answer":"Traditionally prepared during Lent and Semana Santa across every pastry shop in Spain."}],"imageQuery":"torrijas spanish french toast caramelized sugar cinnamon","imageUrl":"https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"pollo-al-ajillo","name":"Spanish Garlic Chicken","nativeName":"Pollo al Ajillo con Vino Blanco y Romero","category":"Guisados & Moles","prepTime":15,"cookTime":30,"yieldServings":4,"calories":420,"difficulty":"Easy","rating":4.8,"reviewsCount":920,"intro":"Crispy bone-in chicken thighs pan-fried in olive oil with an entire head of sweet crushed garlic cloves, fresh rosemary, and a splash of dry white wine.","ingredients":["1 kg bone-in chicken pieces (thighs, drumsticks), cut into small portions","1 whole head of garlic, cloves separated and lightly crushed in their skins","150 ml dry white wine or dry sherry","80 ml Spanish extra-virgin olive oil, 1 sprig fresh rosemary, 2 bay leaves","Sea salt, freshly cracked black pepper & chopped parsley"],"instructions":["Season chicken pieces generously with salt and black pepper.","Heat olive oil in a heavy skillet; add unpeeled crushed garlic cloves and cook gently until golden and sweet (5 mins); remove garlic.","Turn heat to high; add chicken in a single layer and fry for 15 minutes, turning until skin is deep golden and crisp.","Return garlic cloves to pan with rosemary and bay leaves.","Pour in white wine, scraping up browned pan drippings; simmer for 10 minutes until sauce reduces to a rich, glossy garlic glaze.","Scatter with fresh parsley and serve with fries."],"tips":{"title":"Garlic in Skins","description":"Leaving skins on garlic cloves protects them from burning and steams them into sweet roasted puree."},"variations":{"title":"Conejo al Ajillo","description":"Traditional country recipe made with farm-raised rabbit."},"faqs":[{"question":"Why bone-in meat?","answer":"Bone-in cuts release collagen into the white wine sauce, creating a thicker glaze."}],"imageQuery":"pollo al ajillo garlic chicken rosemary spanish","imageUrl":"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"escalivada-catalana","name":"Catalan Roasted Escalivada","nativeName":"Escalivada Catalana con Aceite de Oliva","category":"Verduras & Huerto","prepTime":15,"cookTime":45,"yieldServings":4,"calories":150,"difficulty":"Easy","rating":4.9,"reviewsCount":650,"intro":"Charred whole eggplants, sweet red bell peppers, and onions roasted over hot embers until blackened and sweet, peeled into silky ribbons and dressed with extra-virgin olive oil.","ingredients":["2 large eggplants (berenjenas)","2 large red bell peppers (pimientos rojos)","2 sweet yellow onions","100 ml Spanish extra-virgin olive oil, 2 cloves minced garlic, flaky sea salt","Optional: Salted Cantabrian anchovy fillets & toasted country bread"],"instructions":["Roast whole unpeeled eggplants, peppers, and onions over open flame, grill, or in a 200°C (400°F) oven for 45 minutes until charred and collapsed.","Transfer roasted vegetables to a bowl and cover with foil for 15 minutes to steam.","Peel charred skin away and remove seeds from peppers.","Tear vegetables with your fingers into long, silky strips.","Arrange strips on a serving platter, scatter with minced garlic, sea salt flakes, and generous streams of olive oil.","Top with salted anchovies and serve with toasted bread."],"tips":{"title":"Tear with Fingers","description":"Tearing roasted vegetables by hand preserves the natural juice fibers better than cutting with a knife."},"variations":{"title":"Tostada de Escalivada con Queso de Cabra","description":"Broiled on crusty bread with melted goat cheese."},"faqs":[{"question":"What does Escalivada mean?","answer":"From Catalan \"escalivar,\" meaning to roast in the glowing embers of an open hearth."}],"imageQuery":"escalivada roasted peppers eggplant catalan olive oil","imageUrl":"https://images.unsplash.com/photo-1592417817098-8f3d69109853?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"calamares-a-la-romana","name":"Crispy Calamares a la Romana","nativeName":"Calamares a la Romana Crujientes con Limón","category":"Tapas & Entrantes","prepTime":15,"cookTime":10,"yieldServings":4,"calories":290,"difficulty":"Easy","rating":4.9,"reviewsCount":1670,"intro":"Tender squid rings coated in a light, airy Spanish sparkling batter, fried until golden and crunchy, served with fresh lemon wedges and garlic alioli.","ingredients":["500 g fresh squid rings (calamares limpios)","Batter: 120 g all-purpose flour, 1 egg (separated), 150 ml sparkling mineral water or cold beer, 1/2 tsp baking powder, 1/2 tsp salt","Olive oil for deep frying, lemon wedges & coarse salt"],"instructions":["Pat squid rings thoroughly dry with paper towels.","Whisk egg yolk, cold sparkling water, flour, baking powder, and salt into a smooth batter.","Whip egg white to soft peaks and fold gently into batter for maximum fluffiness.","Heat oil in deep skillet to 185°C (365°F).","Dip squid rings into batter, drop into hot oil in batches without crowding.","Fry for 2 minutes until light golden and crisp; drain on paper towels.","Season with sea salt flakes and serve immediately with fresh lemon wedges."],"tips":{"title":"Dry the Squid","description":"Any surface water will cause batter to slide off and oil to splatter."},"variations":{"title":"Bocadillo de Calamares","description":"Madrid’s famous sandwich: crispy squid piled into crusty baguette with alioli."},"faqs":[{"question":"Why use sparkling water?","answer":"Carbonation bubbles create micro-pockets in the batter, making it shatteringly light."}],"imageQuery":"calamares a la romana fried squid rings lemon spanish","imageUrl":"https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"albondigas-en-salsa","name":"Spanish Meatballs in Almond Sauce","nativeName":"Albóndigas Caseras en Salsa Española","category":"Tapas & Entrantes","prepTime":25,"cookTime":30,"yieldServings":4,"calories":410,"difficulty":"Easy","rating":4.8,"reviewsCount":880,"intro":"Juicy pork and beef meatballs seasoned with garlic and parsley, browned and simmered in a rich tomato, white wine, and ground toasted almond sauce.","ingredients":["Meatballs: 300 g ground beef & 300 g ground pork, 1 egg, 50 g breadcrumbs soaked in milk, 2 cloves minced garlic, 2 tbsp chopped parsley, salt and pepper","Sauce: 1 onion (finely diced), 2 cloves garlic, 1 grated tomato, 150 ml white wine, 300 ml beef broth, 40 g toasted Marcona almonds (crushed into paste/picada)","Flour for dusting & olive oil for frying"],"instructions":["Mix meatball ingredients; form into 3cm balls and roll lightly in flour.","Fry meatballs in olive oil until browned; remove to a plate.","In same oil, sauté onion and garlic until golden; add tomato and cook 5 mins.","Pour in white wine and beef broth; stir in ground almond picada paste.","Add meatballs back to the simmering sauce; cook on low for 20 minutes until sauce is thick and velvety.","Serve with fried potato cubes and crusty bread."],"tips":{"title":"The Almond Picada","description":"Ground toasted almonds act as a natural thickener while imparting rich nutty depth."},"variations":{"title":"Albóndigas con Sepia","description":"Catalan classic pairing meatballs with tender cuttlefish in rich sauce."},"faqs":[{"question":"What is a Picada?","answer":"A traditional Catalan paste of nuts, fried bread, and garlic used to finish and thicken stews."}],"imageQuery":"albondigas en salsa spanish meatballs almond tomato","imageUrl":"https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"paella-de-marisco","name":"Seafood Paella de Marisco","nativeName":"Paella de Marisco con Gambas y Mejillones","category":"Arroces & Paellas","prepTime":25,"cookTime":35,"yieldServings":6,"calories":490,"difficulty":"Advanced","rating":5,"reviewsCount":2100,"intro":"Coastal celebratory rice cooked with giant red prawns (carabineros), jumbo shrimp, fresh mussels, tender squid, and aromatic saffron fish fumet with crispy socarrat.","ingredients":["400 g Spanish Bomba rice","8 large raw prawns/langoustines & 300 g fresh mussels (cleaned)","250 g squid (calamares), cleaned and cut into rings","1.2 L rich seafood stock (fumet de marisco made with prawn heads)","1 large pinch Spanish saffron threads, 1 tsp sweet Pimentón, 1 grated tomato, 3 cloves garlic, 1 green pepper","Spanish olive oil, fresh lemon wedges & parsley"],"instructions":["Sear prawns in olive oil in paella pan for 1 min per side; remove and set aside.","Sauté squid rings for 2 minutes; push to edge and cook garlic, pepper, and tomato sofrito.","Stir in sweet pimentón and crushed saffron.","Add Bomba rice and coat in sofrito for 2 minutes.","Pour in boiling seafood stock; bring to high boil for 8 minutes without stirring.","Reduce heat to low; arrange seared prawns and mussels over top for final 10 minutes.","Increase heat for final 90 seconds to form crispy socarrat crust on bottom.","Rest 5 minutes off heat before serving with lemon wedges."],"tips":{"title":"Prawn Head Fumet","description":"Crush the roasted prawn heads into the stock for an intense deep-orange seafood broth."},"variations":{"title":"Arroz Caldoso de Bogavante","description":"Soupy lobster rice cooked in clay cazuela."},"faqs":[{"question":"Why no chorizo in seafood paella?","answer":"Traditional Spanish chefs consider chorizo overwhelming to delicate fresh Mediterranean seafood."}],"imageQuery":"seafood paella marisco prawns mussels saffron lemon","imageUrl":"https://images.unsplash.com/photo-1534080564583-6be75777b70a?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"cochinillo-asado","name":"Segovia Roast Suckling Pig","nativeName":"Cochinillo Asado de Segovia Tradicional","category":"Guisados & Moles","prepTime":15,"cookTime":180,"yieldServings":8,"calories":610,"difficulty":"Advanced","rating":5,"reviewsCount":1540,"intro":"Castile’s legendary culinary icon: whole suckling pig slow-roasted in wood-fired ovens with lard, water, and sea salt until the skin is glass-brittle and meat is so tender it can be cut with a ceramic plate.","ingredients":["1 half suckling pig (approx. 2-2.5 kg cochinillo lechal)","50 g pure pork lard (manteca de cerdo) or olive oil","Coarse sea salt & 500 ml water","3 bay leaves & rustic wooden slats or trivet"],"instructions":["Season the inside of the suckling pig with coarse sea salt.","Place wooden slats on bottom of large earthenware roasting dish (cazuela de barro); pour water and bay leaves into bottom (keeping skin out of water).","Lay pig skin-side down on wooden slats.","Roast at 160°C (320°F) for 90 minutes, basting meat occasionally with pan juices.","Turn pig skin-side up; prick skin with a needle and brush surface generously with melted lard and salt.","Increase oven temperature to 210°C (410°F) and roast for 45-50 minutes until skin blisters into a brittle, golden-mahogany glass-like crackling.","Rest 10 minutes, slice into portions, and serve with natural roasting juices."],"tips":{"title":"Plate Test","description":"In Segovia taverns (Mesón de Cándido), the host cuts the pig using the edge of a porcelain plate to prove tenderness."},"variations":{"title":"Cordero Lechal Asado","description":"Suckling milk-fed lamb roasted with same technique."},"faqs":[{"question":"What is Cochinillo Lechal?","answer":"A young pig fed exclusively on mother’s milk (under 3 weeks old) for ultra-tender, delicate white meat."}],"imageQuery":"cochinillo asado roast suckling pig segovia crispy skin","imageUrl":"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"pintxos-gilda","name":"San Sebastián Gilda & Tavern Pintxos","nativeName":"Pintxo de Gilda Donostiarra Clásica","category":"Tapas & Entrantes","prepTime":10,"cookTime":0,"yieldServings":6,"calories":90,"difficulty":"Easy","rating":5,"reviewsCount":1450,"intro":"The mother of all Basque pintxos (created in San Sebastián in 1948): pickled Basque piparra pepper, salty Cantabrian anchovy fillet, and plump Manzanilla olive on a skewer bathed in olive oil.","ingredients":["12 pickled Basque Guindilla/Piparra peppers (stemmed)","12 premium salted Cantabrian anchovy fillets in olive oil","12 pitted Spanish Manzanilla green olives","Top-tier Spanish extra-virgin olive oil & wooden skewers"],"instructions":["Thread one pitted green olive onto a wooden skewer.","Fold one pickled piparra pepper into an accordion shape and slide onto the skewer.","Wrap an anchovy fillet around the skewer.","Add a second piparra piece or olive to cap the skewer.","Arrange on a platter and drizzle liberally with fruity extra-virgin olive oil.","Eat in one single bite to experience the explosion of briny, spicy, and acidic harmony."],"tips":{"title":"Eat in One Bite","description":"The magic of Gilda relies on tasting all three components simultaneously."},"variations":{"title":"Gilda con Boquerón","description":"Add a white pickled anchovy fillet."},"faqs":[{"question":"Why is it named Gilda?","answer":"Named after Rita Hayworth’s 1946 film character Gilda because the pintxo is \"verde, salada y un poco picante\" (green, salty, and a little spicy/saucy)."}],"imageQuery":"gilda pintxo basque skewer anchovy olive piparra","imageUrl":"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"manchego-membrillo","name":"Aged Queso Manchego with Membrillo","nativeName":"Queso Manchego Curado con Dulce de Membrillo","category":"Tapas & Entrantes","prepTime":5,"cookTime":0,"yieldServings":4,"calories":220,"difficulty":"Easy","rating":4.9,"reviewsCount":910,"intro":"Spain’s timeless pairing: sharp, nutty 12-month aged Manchego sheep’s milk cheese served with ruby slabs of sweet aromatic quince fruit paste (dulce de membrillo) and toasted Marcona almonds.","ingredients":["200 g aged Queso Manchego D.O.P. (curado/viejo), sliced into thin triangles","150 g artisanal Dulce de Membrillo (sweet quince paste), sliced","50 g fried and salted Spanish Marcona almonds","Crusty rustic bread or picos camperos breadsticks"],"instructions":["Bring Manchego cheese to room temperature (20°C) 30 minutes before serving to awaken complex buttery aromas.","Slice cheese into classic triangle wedges.","Slice membrillo into matching small squares or wedges.","Place a slice of sweet ruby quince paste directly on top of each sharp Manchego wedge.","Scatter crunchy Marcona almonds around the board and serve with crisp breadsticks."],"tips":{"title":"Marcona Almonds","description":"Marcona almonds are rounder and sweeter than regular almonds, providing the ultimate crunchy counterpoint."},"variations":{"title":"Manchego con Miel de Romero","description":"Drizzle with wild Spanish rosemary honey and walnuts."},"faqs":[{"question":"What is D.O.P. Manchego?","answer":"Protected cheese made exclusively from the whole milk of Manchega sheep raised in the La Mancha plains."}],"imageQuery":"queso manchego membrillo quince paste marcona almonds","imageUrl":"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"callos-a-la-madrilena","name":"Madrid Callos a la Madrileña","nativeName":"Callos a la Madrileña con Morcilla y Chorizo","category":"Guisados & Moles","prepTime":20,"cookTime":180,"yieldServings":6,"calories":480,"difficulty":"Medium","rating":4.8,"reviewsCount":670,"intro":"Madrid’s winter tavern soul: slow-simmered beef honeycomb tripe, calves’ trotters, spicy chorizo, and morcilla in a smoky, spicy paprika broth that leaves lips sticky with gelatin.","ingredients":["1 kg beef honeycomb tripe (callos), cleaned and cut into bite-sized squares","1 calf’s foot (pata de ternera) or pig’s trotter (halved)","2 Spanish chorizos & 2 morcillas (blood sausages)","150 g cured Jamón Serrano (diced)","1 onion, 4 cloves garlic, 1 tbsp sweet Pimentón de la Vera, 1 tsp hot Pimentón","2 bay leaves, 1 dried Guindilla chile, 2 tbsp olive oil, sea salt"],"instructions":["Blanch tripe and calf’s foot in boiling water with vinegar for 5 minutes; drain thoroughly.","Place blanched tripe, calf’s foot, whole onion, and bay leaves in a pot; cover with fresh water and simmer gently for 2.5 hours until gelatinous and tender.","In a skillet, sauté diced jamón and sliced garlic in olive oil; remove from heat and stir in pimentón and guindilla.","Pour pimentón sofrito into the tripe pot.","Add sliced chorizo and morcilla; simmer gently for another 30 minutes until broth is thick, glossy, and intensely rich.","Serve bubbling hot in clay cazuelas with plenty of crusty bread."],"tips":{"title":"Better the Next Day","description":"Callos develops deeper gelatinous richness after resting overnight in the refrigerator."},"variations":{"title":"Callos con Garbanzos","description":"Popular in Andalusia, cooked with tender chickpeas."},"faqs":[{"question":"Why add the calf foot?","answer":"The calf foot releases natural collagen that gives the broth its signature sticky, unctuous texture."}],"imageQuery":"callos a la madrilena tripe stew chorizo morcilla","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]}];
+    let activeRecipeId = 'paella-valenciana';
+    let activeCategory = 'All';
+
+    function getCategories() {
+      const cats = { 'All': recipes.length };
+      recipes.forEach(r => {
+        cats[r.category] = (cats[r.category] || 0) + 1;
+      });
+      return cats;
+    }
+
+    function renderCategories() {
+      const container = document.getElementById('categoriesBar');
+      if (!container) return;
+      const cats = getCategories();
+      container.innerHTML = Object.keys(cats).map(cat => {
+        const isActive = cat === activeCategory;
+        return `<button class="cat-chip ${isActive ? 'active' : ''}" onclick="filterCategory('${cat}')">${cat} (${cats[cat]})</button>`;
+      }).join('');
+    }
+
+    function filterCategory(cat) {
+      activeCategory = cat;
+      renderCategories();
+      renderGrid(document.getElementById('recipeSearchInput')?.value || '');
+    }
+
+    function renderGrid(filter = '') {
+      const grid = document.getElementById('recipeGrid');
+      const filtered = recipes.filter(r => {
+        const matchSearch = r.name.toLowerCase().includes(filter.toLowerCase()) || 
+                            r.nativeName.toLowerCase().includes(filter.toLowerCase()) ||
+                            r.category.toLowerCase().includes(filter.toLowerCase());
+        const matchCat = activeCategory === 'All' || r.category === activeCategory;
+        return matchSearch && matchCat;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; padding: 24px; text-align: center; color: #6b7280; background: #fff; border-radius: 4px; border: 1px dashed #d1d5db;">No recipes found matching your query. <a href="javascript:void(0)" onclick="viewAllRecipes()" style="color:#d97706; font-weight:bold;">View all ' + recipes.length + ' recipes</a></div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map((r) => {
+        const isActive = r.id === activeRecipeId;
+        return `
+          <article class="recipe-card ${isActive ? 'active-card' : ''}" onclick="selectRecipe('${r.id}')" title="Click to view details for ${r.name}">
+            <div class="card-photo" style="background-image:url('${r.imageUrl}')">
+              <span class="card-badge">${r.category}</span>
+            </div>
+            <div class="recipe-card-content">
+              <h3>${r.name}</h3>
+              <p><span>◷ ${r.prepTime + r.cookTime}m</span> <span>♨ ${r.difficulty}</span></p>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function selectRecipe(id) {
+      const recipe = recipes.find(r => r.id === id);
+      if (!recipe) return;
+      activeRecipeId = id;
+
+      document.getElementById('detailImage').style.backgroundImage = 
+        "linear-gradient(90deg, rgba(5,15,16,.95) 0%, rgba(5,15,16,.55) 42%, transparent 70%), url('" + recipe.imageUrl + "')";
+      
+      document.getElementById('detailBreadcrumbs').innerText = 'Home　›　Recipes　›　' + recipe.category;
+      document.getElementById('detailTitle').innerHTML = recipe.name + '<br>(' + recipe.nativeName + ')';
+      document.getElementById('detailRating').innerHTML = '★★★★★ <small>' + recipe.rating + ' (' + recipe.reviewsCount + ' reviews)</small>';
+      document.getElementById('detailIntro').innerText = recipe.intro;
+
+      document.getElementById('detailFacts').innerHTML = 
+        '<span>◉ Prep ' + recipe.prepTime + ' min</span>' +
+        '<span>◉ Cook ' + recipe.cookTime + ' min</span>' +
+        '<span>◉ Yield ' + recipe.yieldServings + ' serv</span>' +
+        '<span>◉ ' + recipe.calories + ' kcal</span>';
+
+      document.getElementById('detailIngredients').innerHTML = 
+        recipe.ingredients.map(ing => '<li>' + ing + '</li>').join('');
+
+      document.getElementById('detailInstructions').innerHTML = 
+        recipe.instructions.map(ins => '<li>' + ins + '</li>').join('');
+
+      document.getElementById('detailTips').innerHTML = 
+        '<strong>' + recipe.tips.title + '</strong><p>' + recipe.tips.description + '</p>';
+
+      document.getElementById('detailVariations').innerHTML = 
+        '<strong>' + recipe.variations.title + '</strong><p>' + recipe.variations.description + '</p>';
+
+      document.getElementById('faqContainer').innerHTML = 
+        recipe.faqs.map(faq => 
+          '<div class="faq-item" onclick="this.classList.toggle(\'open\')">' +
+          '<div><span>' + faq.question + '</span><b>⌄</b></div>' +
+          '<small>' + faq.answer + '</small>' +
+          '</div>'
+        ).join('');
+
+      const recs = (recipe.alsoLike && recipe.alsoLike.length > 0) 
+        ? recipe.alsoLike 
+        : recipes.filter(r => r.id !== recipe.id).slice(0, 4);
+
+      document.getElementById('alsoContainer').innerHTML = 
+        recs.map((also) => 
+          '<article class="also-card" onclick="selectRecipeByName(\'' + also.name.replace(/'/g, "\\'") + '\')">' +
+          '<div class="mini" style="background-image:url(\'' + also.imageUrl + '\')"></div>' +
+          '<span>' + also.name + '</span>' +
+          '</article>'
+        ).join('');
+
+      renderGrid(document.getElementById('recipeSearchInput')?.value || '');
+
+      if (window.innerWidth <= 950) {
+        document.getElementById('detailPanel').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function selectRecipeByName(name) {
+      const found = recipes.find(r => r.name.toLowerCase().includes(name.toLowerCase()) || r.nativeName.toLowerCase().includes(name.toLowerCase()));
+      if (found) {
+        selectRecipe(found.id);
+      }
+    }
+
+    function viewAllRecipes() {
+      activeCategory = 'All';
+      renderCategories();
+      const input = document.getElementById('recipeSearchInput');
+      if (input) input.value = '';
+      renderGrid('');
+      document.getElementById('recipeGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function focusCategories() {
+      document.getElementById('recipeGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* Modal Handlers */
+    function openAboutModal() {
+      document.getElementById('aboutModal').classList.add('open');
+    }
+    function closeAboutModal(e) {
+      if (!e || e.target === document.getElementById('aboutModal') || e.target.classList.contains('modal-close')) {
+        document.getElementById('aboutModal').classList.remove('open');
+      }
+    }
+    function switchModalTab(tabId) {
+      document.querySelectorAll('.modal-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.modal-section').forEach(s => s.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(tabId)?.classList.add('active');
+    }
+    function jumpToRecipe(id) {
+      closeAboutModal();
+      selectRecipe(id);
+      document.getElementById('detailPanel').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCategories();
+      renderGrid();
+
+      const searchInput = document.getElementById('recipeSearchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          renderGrid(e.target.value);
+        });
+      }
+
+      const searchBtn = document.getElementById('recipeSearchBtn');
+      if (searchBtn) {
+        searchBtn.addEventListener('click', () => {
+          renderGrid(searchInput.value);
+        });
+      }
+    });
+
+    renderCategories();
+    renderGrid();
+  </script>
+</body>
+</html>

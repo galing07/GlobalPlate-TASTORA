@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>India Recipes - INDIAN SPICE FEAST</title>
+  <meta name="description" content="Centuries of Aromatic Royal Curries - Authentic India culinary traditions, recipes, and culture." />
+  <style>
+    /* Reset & Base Setup */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100%;
+      background: #110e0c;
+      color: #fbf4e8;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    /* Magazine App Shell */
+    .app-shell {
+      width: 100%;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(650px, 62%) minmax(400px, 38%);
+      gap: 7px;
+      padding: 6px 14px;
+    }
+
+    .main-column, .detail-panel {
+      border: 1px solid #8c6b4b;
+      border-radius: 9px;
+      overflow: hidden;
+      background: #181310;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Topbar */
+    .topbar {
+      height: 48px;
+      background: #0a0705;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: Georgia, serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .brand-mark {
+      font-size: 20px;
+      color: #f09e2e;
+    }
+    .topbar nav {
+      display: flex;
+      gap: 16px;
+    }
+    .topbar nav a {
+      color: #d1d5db;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 11px;
+      transition: color 0.15s ease;
+      cursor: pointer;
+    }
+    .topbar nav a:hover, .topbar nav a.active {
+      color: #f09e2e;
+    }
+    .search {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 28px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid #4b5563;
+      border-radius: 4px;
+      overflow: hidden;
+      width: 170px;
+    }
+    .search input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 10px;
+      padding: 0 8px;
+      width: 135px;
+    }
+    .search input::placeholder { color: #9ca3af; }
+    .search b {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 28px;
+      background: #f09e2e;
+      color: #261502;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 290px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #111;
+    }
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      padding: 24px 28px;
+      max-width: 440px;
+    }
+    .hero-copy em {
+      display: block;
+      font-family: Georgia, serif;
+      font-style: italic;
+      color: #f09e2e;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+    .hero-copy h1 {
+      font-family: Georgia, serif;
+      font-size: 32px;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 7px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    }
+    .hero-copy p {
+      font-size: 12px;
+      color: #e5e7eb;
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+    .hero-actions button {
+      background: #f09e2e;
+      color: #261502;
+      border: 1px solid #f09e2e;
+      font-weight: bold;
+      font-size: 11px;
+      padding: 7px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .hero-actions button:hover { opacity: 0.9; transform: translateY(-1px); }
+    .hero-actions button.dark-button {
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      border: 1px solid #6b7280;
+      backdrop-filter: blur(4px);
+    }
+    .hero-actions button.dark-button:hover {
+      background: rgba(0,0,0,0.8);
+      border-color: #f09e2e;
+    }
+
+    /* Popular Section */
+    .popular {
+      background: #ede0ce;
+      color: #261b11;
+      padding: 14px 16px;
+      flex: 1;
+    }
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .section-heading h2 {
+      font-family: Georgia, serif;
+      font-size: 17px;
+      font-weight: bold;
+      color: #261b11;
+    }
+    .section-heading button {
+      background: #fff;
+      border: 1px solid #d7c4aa;
+      color: #261b11;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .section-heading button:hover { background: #f3f4f6; }
+
+    /* Category Filter Chips */
+    .categories-bar {
+      display: flex;
+      gap: 5px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+    }
+    .cat-chip {
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 9px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #374151;
+      transition: all 0.15s ease;
+    }
+    .cat-chip:hover { background: #f9fafb; }
+    .cat-chip.active {
+      background: #b45309;
+      color: #fff;
+      border-color: #92400e;
+    }
+
+    /* Grid */
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+      gap: 7px;
+    }
+    .recipe-card {
+      background: #faf5eb;
+      border: 1px solid #d7c4aa;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+    .recipe-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    }
+    .recipe-card.active-card {
+      border: 2px solid #f09e2e;
+      box-shadow: 0 0 0 1px #f09e2e;
+    }
+    .card-photo {
+      height: 75px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      background-color: #374151;
+    }
+    .card-badge {
+      position: absolute;
+      bottom: 4px;
+      left: 4px;
+      background: rgba(0,0,0,0.75);
+      color: #fff;
+      font-size: 7px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+    .recipe-card-content {
+      padding: 6px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .recipe-card h3 {
+      font-size: 10px;
+      font-weight: bold;
+      color: #111827;
+      line-height: 1.25;
+      margin-bottom: 2px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .recipe-card p {
+      font-size: 8px;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 3px;
+      margin-top: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Detail Panel */
+    .detail-panel {
+      background: #f5eee3;
+      color: #261b11;
+    }
+    .detail-image {
+      min-height: 175px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .detail-content {
+      padding: 10px 14px;
+    }
+    .breadcrumbs {
+      font-size: 9px;
+      color: #6b7280;
+      margin-bottom: 3px;
+    }
+    .detail-content h2 {
+      font-family: Georgia, serif;
+      font-size: 19px;
+      color: #261b11;
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+    .rating {
+      color: #d97706;
+      font-size: 11px;
+      margin-bottom: 6px;
+    }
+    .rating small { color: #6b7280; font-size: 9px; }
+    .intro {
+      font-size: 10px;
+      color: #374151;
+      line-height: 1.45;
+      margin-bottom: 8px;
+    }
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      background: rgba(0,0,0,0.04);
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,0,0,0.06);
+      font-size: 9px;
+      color: #1f2937;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* 2 Column Ingredients & Instructions */
+    .ingredients-instructions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 10px 14px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.4);
+    }
+    .ingredients-instructions h3 {
+      font-family: Georgia, serif;
+      font-size: 12px;
+      font-weight: bold;
+      color: #111827;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+    }
+    .ingredients-instructions ul, .ingredients-instructions ol {
+      padding-left: 14px;
+      font-size: 9.5px;
+      color: #374151;
+      line-height: 1.5;
+    }
+    .ingredients-instructions li { margin-bottom: 3px; }
+
+    /* Tips & Variations */
+    .tips {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      padding: 6px 14px 10px;
+    }
+    .tip-card {
+      background: #15313d;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 1.35;
+    }
+    .tip-card strong {
+      display: block;
+      color: #f09e2e;
+      font-size: 10px;
+      margin-bottom: 2px;
+      font-family: Georgia, serif;
+    }
+    .variation-card {
+      background: #164332;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 1.35;
+    }
+    .variation-card strong {
+      display: block;
+      color: #a7f3d0;
+      font-size: 10px;
+      margin-bottom: 2px;
+      font-family: Georgia, serif;
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 6px 14px;
+    }
+    .faq h3 {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #111827;
+    }
+    .faq-item {
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 3px;
+      margin-bottom: 4px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .faq-item div {
+      padding: 5px 8px;
+      font-weight: bold;
+      font-size: 9.5px;
+      color: #1f2937;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-item small {
+      display: none;
+      padding: 5px 8px 7px;
+      font-size: 9px;
+      color: #4b5563;
+      border-top: 1px solid #f3f4f6;
+      line-height: 1.4;
+      background: #f9fafb;
+    }
+    .faq-item.open small { display: block; }
+
+    /* You Might Also Like */
+    .also {
+      background: #143c30;
+      color: #fff;
+      padding: 10px 14px;
+      margin-top: auto;
+    }
+    .also h3 {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .also-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+    .also-card {
+      cursor: pointer;
+      text-align: center;
+    }
+    .also-card .mini {
+      height: 48px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 3px;
+      transition: border-color 0.15s;
+    }
+    .also-card:hover .mini { border-color: #f09e2e; }
+    .also-card span {
+      font-size: 8.5px;
+      font-weight: bold;
+      color: #e5e7eb;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Modal for About Swedish Cuisine */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(6px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-container {
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      background: #0e161c;
+      border: 1px solid rgba(217, 119, 6, 0.4);
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      color: #e2e8f0;
+    }
+    .modal-header {
+      padding: 16px 20px;
+      background: linear-gradient(90deg, #0d222b, #122c37);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-header h2 {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      color: #fff;
+    }
+    .modal-close {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-nav {
+      display: flex;
+      gap: 6px;
+      padding: 8px 16px;
+      background: #091116;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      overflow-x: auto;
+    }
+    .modal-tab-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .modal-tab-btn.active {
+      background: #d97706;
+      color: #0f172a;
+      font-weight: bold;
+    }
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .modal-section { display: none; }
+    .modal-section.active { display: block; }
+    .modal-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .modal-card h4 {
+      font-size: 12px;
+      color: #fbbf24;
+      margin-bottom: 4px;
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 950px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+        padding: 4px 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-shell" id="topAnchor">
+    <!-- LEFT MAIN COLUMN -->
+    <main class="main-column">
+      <header class="topbar">
+        <div class="brand" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+          <span class="brand-mark">ॐ</span>
+          <span>INDIAN<br>SPICE FEAST</span>
+        </div>
+        <nav>
+          <a href="javascript:void(0)" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="active">Home</a>
+          <a href="javascript:void(0)" onclick="viewAllRecipes()">Recipes</a>
+          <a href="javascript:void(0)" onclick="focusCategories()">Categories</a>
+          <a href="javascript:void(0)" onclick="openAboutModal()">About</a>
+        </nav>
+        <div class="search">
+          <input type="text" id="recipeSearchInput" placeholder="Search 30 recipes..." aria-label="Search recipes" />
+          <b id="recipeSearchBtn">⌕</b>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-photo" style="background-image: linear-gradient(90deg, #110e0cF2 0%, #110e0cB8 41%, #110e0c0D 80%), url('https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=1200&q=85');"></div>
+        <div class="hero-copy">
+          <em>Centuries of Aromatic Royal Curries</em>
+          <h1>Authentic Indian<br>Recipes</h1>
+          <p>Velvety Old Delhi butter chicken, fragrant saffron Hyderabadi biryani,<br>and slow-cooked 24-hour dal makhani with tandoori garlic naan.</p>
+          <div class="hero-actions">
+            <button onclick="document.getElementById('recipeGridSection').scrollIntoView({behavior:'smooth'})">Explore Indian Recipes</button>
+            <button class="dark-button" onclick="openAboutModal()">About Indian Gastronomy</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="popular" id="recipeGridSection">
+        <div class="section-heading">
+          <h2>❧ Treasures of Indian Royal Kitchens ❧</h2>
+          <button id="viewAllBtn" onclick="viewAllRecipes()">View All (30) →</button>
+        </div>
+
+        <div class="categories-bar" id="categoriesBar"></div>
+
+        <div class="recipe-grid" id="recipeGrid"></div>
+      </section>
+    </main>
+
+    <!-- RIGHT DETAIL PANEL -->
+    <aside class="detail-panel" id="detailPanel">
+      <div class="detail-image" id="detailImage" style="background-image: linear-gradient(90deg, rgba(5,15,16,.95) 0%, rgba(5,15,16,.55) 42%, transparent 70%), url('https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80');"></div>
+      <div class="detail-content" id="detailContent">
+        <div class="breadcrumbs" id="detailBreadcrumbs">Home　›　Recipes　›　शाही करी (Royal Curries)</div>
+        <h2 id="detailTitle">Old Delhi Murgh Makhani (Butter Chicken)<br>(पुरानी दिल्ली मुर्ग मखनी (बटर चिकन))</h2>
+        <div class="rating" id="detailRating">★★★★★ <small>5 (3800 reviews)</small></div>
+        <p class="intro" id="detailIntro">Charcoal-grilled smoky chicken tikka simmered in a velvety, satin-smooth sauce of sun-ripened tomatoes, sweet cashews, aromatic dried fenugreek (kasuri methi), generous European butter, and fresh cream.</p>
+        <div class="facts" id="detailFacts">
+          <span>◉ Prep 30 min</span>
+          <span>◉ Cook 30 min</span>
+          <span>◉ Yield 4 serv</span>
+          <span>◉ 540 kcal</span>
+        </div>
+      </div>
+
+      <div class="ingredients-instructions" id="ingredientsInstructions">
+        <section>
+          <h3>Ingredients</h3>
+          <ul id="detailIngredients">
+            <li>Chicken Tikka: 700 g boneless chicken thighs, marinated in 150 g hung curd (Greek yogurt), 1 tbsp ginger-garlic paste, 1 tbsp Kashmiri red chili powder, 1 tsp garam masala, 1 tbsp mustard oil, juice of 1 lemon</li><li>Makhani Gravy: 1 kg ripe red Roma tomatoes (quartered), 50 g raw cashew nuts, 4 green cardamom pods, 1 black cardamom, 1 cinnamon stick, 3 cloves, 1 bay leaf, 1 tbsp ginger-garlic paste</li><li>Finishing: 60 g cold butter (cubed), 80 ml heavy fresh cream, 1 tbsp crushed Kasuri Methi (dried fenugreek leaves), 1 tsp honey or sugar</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Instructions</h3>
+          <ol id="detailInstructions">
+            <li>Marinate chicken in yogurt and spices for at least 4 hours. Skewer and broil/grill at 240°C (465°F) for 15 minutes until charred at edges.</li><li>In a pot, boil quartered tomatoes, cashews, whole spices, ginger-garlic paste, and 1 cup water for 20 minutes until tomatoes collapse.</li><li>Discard cinnamon stick and bay leaf; blend tomato-cashew mixture in high-speed blender until mirror-smooth.</li><li>Strain puree through a fine-mesh sieve (chinois) into a clean pot for pure velvet texture.</li><li>Simmer strained gravy; stir in Kashmiri chili powder, salt, and honey.</li><li>Add charred chicken tikka pieces; simmer gently for 8 minutes.</li><li>Whisk in cold butter cubes and heavy cream over low heat.</li><li>Crush Kasuri Methi between your palms to release herbal fragrance and stir into gravy.</li><li>Garnish with a swirl of cream and serve with hot garlic butter naan.</li>
+          </ol>
+        </section>
+      </div>
+
+      <div class="tips" id="tipsBlock">
+        <div class="tip-card" id="detailTips">
+          <strong>Strain the Gravy</strong>
+          <p>Passing the blended tomato-cashew gravy through a fine sieve is the professional secret to Moti Mahal’s iconic silky texture.</p>
+        </div>
+        <div class="variation-card" id="detailVariations">
+          <strong>Paneer Makhani</strong>
+          <p>Swap chicken for soft cubes of fresh Indian paneer.</p>
+        </div>
+      </div>
+
+      <section class="faq" id="faqSection">
+        <h3>Frequently Asked Questions</h3>
+        <div id="faqContainer">
+          
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+              <div><span>Who invented Butter Chicken?</span><b>⌄</b></div>
+              <small>Kundan Lal Gujral at Moti Mahal restaurant in Daryaganj, Old Delhi, in the 1950s to rescue leftover tandoori chicken.</small>
+            </div>
+          
+        </div>
+      </section>
+
+      <section class="also" id="alsoSection">
+        <h3>You Might Also Like</h3>
+        <div class="also-grid" id="alsoContainer">
+          
+            <article class="also-card" onclick="selectRecipeByName('Hyderabadi Dum Biryani')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Hyderabadi Dum Biryani</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Paneer Tikka Masala')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Paneer Tikka Masala</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Dal Makhani')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Dal Makhani</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Warm Gulab Jamun')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Warm Gulab Jamun</span>
+            </article>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- ABOUT EDITORIAL MODAL -->
+  <div class="modal-overlay" id="aboutModal" onclick="closeAboutModal(event)">
+    <div class="modal-container" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div>
+          <span style="font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #fbbf24; font-weight: bold;">Editorial Compendium</span>
+          <h2>About Swedish Cuisine</h2>
+        </div>
+        <button class="modal-close" onclick="closeAboutModal()">✕</button>
+      </div>
+
+      <div class="modal-nav">
+        <button class="modal-tab-btn active" onclick="switchModalTab('mod-intro')">Introduction & Pillars</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-dishes')">Popular Dishes</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-fika')">Fika & Baking</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-ingredients')">Ingredients</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-traditions')">Traditions</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-regional')">Regional</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-faq')">FAQ</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- INTRO TAB -->
+        <div class="modal-section active" id="mod-intro">
+          <div class="modal-card" style="background: linear-gradient(135deg, rgba(217,119,6,0.15), rgba(15,23,42,0.6)); border-color: rgba(217,119,6,0.3);">
+            <em style="color: #fbbf24; font-family: Georgia, serif; font-size: 13px; display: block; margin-bottom: 4px;">From Viking hearths to Michelin tables: a deep journey into Nordic culinary heritage.</em>
+            <h3 style="font-family: Georgia, serif; font-size: 15px; color: #fff; margin-bottom: 8px;">Introduction to Swedish Food</h3>
+            <p style="margin-bottom: 6px;">Swedish gastronomy is defined by an intimate connection with nature, shaped by dramatic northern seasons, vast archipelagos, dense boreal forests, and long Arctic winters.</p><p style="margin-bottom: 6px;">Historically, surviving sub-zero Nordic winters required master craftsmanship in preservation: curing with sea salt, pickling with vinegar and mustard, smoking over juniper wood, drying, and fermenting.</p><p style="margin-bottom: 6px;">Today, Swedish food combines these ancestral preservation arts with pure simplicity, seasonal foraging, and a reverence for pristine ingredients — creating one of the most vibrant and sustainable food cultures in the modern world.</p>
+          </div>
+
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin: 14px 0 8px;">What Is Swedish Cuisine?</h3>
+          <p style="margin-bottom: 10px;">At its essence, Swedish food is grounded in the concept of "Husmanskost" — traditional, unpretentious home-cooked meals originally prepared by agrarian families. It emphasizes warmth, honest nourishment, and the golden principle of "Lagom" (not too little, not too much, but just right).</p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>01. Husmanskost (Heritage Comfort)</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Satisfying, wholesome dishes made with root vegetables, pork, wild game, dairy butter, and pantry staples designed to sustain hard-working bodies.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>02. The Smörgåsbord Concept</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">A grand buffet of cold and hot courses, eaten in strict traditional sequence starting with pickled herring, progressing to cold meats and salmon, then warm casseroles, and ending with cheese.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>03. Allemansrätten (Right to Roam)</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Constitutional freedom allowing every citizen to forage wild lingonberries, cloudberries, blueberries, and golden chanterelle mushrooms in forests across Sweden.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>04. Purity & Seasonality</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Minimalist preparation where the natural flavors of cold-water seafood, fresh dill, butter, and pristine root vegetables take center stage.</p>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- DISHES TAB -->
+        <div class="modal-section" id="mod-dishes">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 6px;">Traditional Swedish Foods & Popular Dishes</h3>
+          <p style="margin-bottom: 12px; color: #94a3b8;">While modern Sweden embraces global flavors, these iconic cornerstone dishes represent the heart and soul of authentic Swedish dining.</p>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Swedish Meatballs <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Köttbullar med Gräddsås)</em></h4>
+                <p style="margin-bottom: 4px;">Tender meatballs made from a blend of pork and beef, soaked breadcrumbs, onion, and a hint of allspice. Simmered in velvety cream sauce with buttery mashed potatoes and tart lingonberries.</p>
+                <small style="color: #93c5fd;">Cultural Note: The undisputed national dish, immortalized worldwide and cherished at every Swedish family table.</small>
+              </div>
+              <button onclick="jumpToRecipe('meatballs')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Gravlax <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Gravad Lax med Hovmästarsås)</em></h4>
+                <p style="margin-bottom: 4px;">Fresh Nordic salmon cured for 48 hours in coarse sea salt, sugar, cracked white pepper, and mountains of fresh dill. Sliced paper-thin and paired with sweet dill mustard sauce.</p>
+                <small style="color: #93c5fd;">Cultural Note: Dating back to medieval times when fishermen buried salted salmon in the earth ("grava") to cure.</small>
+              </div>
+              <button onclick="jumpToRecipe('gravlax')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Raggmunk <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Raggmunk med Stekt Fläsk)</em></h4>
+                <p style="margin-bottom: 4px;">Crisp, lacy potato pancakes prepared with freshly grated starchy potatoes in a light flour-milk batter, fried in rich butter until shatteringly crisp at the perimeter.</p>
+                <small style="color: #93c5fd;">Cultural Note: Served with thick salted crispy pork belly and tart lingonberries, the benchmark of Swedish weekday comfort.</small>
+              </div>
+              <button onclick="jumpToRecipe('raggmunk')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Janssons Frestelse <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Janssons Frestelse)</em></h4>
+                <p style="margin-bottom: 4px;">A decadent gratin of julienned potatoes, caramelized onions, and spiced sprats (ansjovis) baked in heavy cream and breadcrumbs until bubbling golden.</p>
+                <small style="color: #93c5fd;">Cultural Note: The essential midnight centerpiece of every Christmas Julbord, Easter, and Midsummer celebration.</small>
+              </div>
+              <button onclick="jumpToRecipe('janssons-frestelse')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Kåldolmar <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Kåldolmar med Gräddsås)</em></h4>
+                <p style="margin-bottom: 4px;">Tender cabbage rolls packed with spiced pork, beef, and rice, browned in dark syrup and butter, then braised with rich stock and cream.</p>
+                <small style="color: #93c5fd;">Cultural Note: Brought back by King Charles XII from the Ottoman Empire in the 1700s, adapted with Nordic white cabbage and lingonberries.</small>
+              </div>
+              <button onclick="jumpToRecipe('kaldolmar')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+        </div>
+
+        <!-- CULTURE / FIKA TAB -->
+        <div class="modal-section" id="mod-fika">
+          <div class="modal-card" style="background: rgba(180,83,9,0.15);">
+            <h4>Swedish Baking Culture & Fika Tradition</h4>
+            <p style="margin-bottom: 6px;">Fika is far more than a simple coffee break — it is an essential Swedish social institution and a state of mind. Twice a day, colleagues, friends, and families set aside work to sit down together over freshly brewed filter coffee and freshly baked pastries.</p>
+            <p style="font-style: italic; color: #fde68a;">"In Sweden, enjoying fika represents slowing down, cultivating genuine human presence, and savoring sweet craftsmanship. Historic etiquette honored "Sju sorters kakor" (Seven Types of Cookies) served from elegant porcelain tins."</p>
+          </div>
+          <h4 style="color:#fff; margin: 12px 0 8px;">Popular Regional Treats & Specialties</h4>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>Kanelbullar (Svenska Kanelbullar)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Scented with freshly ground cardamom, filled with cinnamon-sugar butter, and baked with crunchy pearl sugar. Celebrated every October 4th on National Cinnamon Bun Day.</p>
+                <button onclick="jumpToRecipe('kanelbullar')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+              <div class="modal-card">
+                <h4>Semlor (Klassiska Semlor)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">A cardamom wheat bun filled with almond paste and billowing whipped cream. Traditionally eaten on Fettisdagen (Fat Tuesday) and throughout winter.</p>
+                <button onclick="jumpToRecipe('semlor')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+              <div class="modal-card">
+                <h4>Kladdkaka (Svensk Kladdkaka)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Sweden’s signature gooey, fudgy sticky chocolate cake with a paper-thin crackly crust, served warm with unsweetened whipped cream and tart raspberries.</p>
+                <button onclick="jumpToRecipe('kladdkaka')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- INGREDIENTS TAB -->
+        <div class="modal-section" id="mod-ingredients">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Key Swedish Ingredients</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🥔 <strong style="color:#fff; font-size:11px;">Potatoes</strong> <em style="font-size:9px; color:#fbbf24;">(Potatis)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">The foundational carbohydrate of Nordic cuisine since the 18th century, prepared boiled with dill, whipped into velvety mos, or grated into raggmunk.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Mashed with meatballs, boiled with herring, or julienned into Janssons gratin.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🐟 <strong style="color:#fff; font-size:11px;">Salmon</strong> <em style="font-size:9px; color:#fbbf24;">(Lax)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Pristine cold-water fish prepared cured (gravlax), hot-smoked, cold-smoked, pan-seared, or baked into celebratory smörgåstårta.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Cured with dill and sea salt, or poached with hollandaise sauce.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌊 <strong style="color:#fff; font-size:11px;">Herring</strong> <em style="font-size:9px; color:#fbbf24;">(Sill & Strömming)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">The silver of the sea. Baltic herring (strömming) and Atlantic herring (sill) are preserved in sweet-tangy vinegar brines with onion, mustard, or fried crisp in rye flour.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Pickled with red onion and allspice, or pan-fried with potatoes.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🍒 <strong style="color:#fff; font-size:11px;">Lingonberries</strong> <em style="font-size:9px; color:#fbbf24;">(Lingon)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Tart, ruby-red wild berries foraged in autumn pine forests. Stirred raw with sugar (rårörda lingon) to provide sweet-sour balance to rich meat dishes.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Essential companion for meatballs, cabbage rolls, blood pudding, and potato pancakes.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌿 <strong style="color:#fff; font-size:11px;">Dill</strong> <em style="font-size:9px; color:#fbbf24;">(Dill)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">The quintessential green herb of Scandinavia, providing fresh aniseed aroma to seafood, sauces, potato salads, and crayfish broths.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Chopped over boiled potatoes, infused into gravlax cure, and tossed into Skagen mayonnaise.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌾 <strong style="color:#fff; font-size:11px;">Rye</strong> <em style="font-size:9px; color:#fbbf24;">(Råg)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Hearty whole-grain cereal used for centuries to bake sturdy sourdough loaves and crisp, dry knäckebröd flatbreads with extraordinary shelf life.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Knäckebröd crispbreads with butter and aged cheese, or dark limpa loaves.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">✨ <strong style="color:#fff; font-size:11px;">Cardamom</strong> <em style="font-size:9px; color:#fbbf24;">(Kardemumma)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Introduced by Viking trade routes with Constantinople, whole green cardamom pods are freshly crushed into virtually all Swedish bakery doughs.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Cardamom knots (kardemummabullar), cinnamon buns, semlor, and holiday cakes.</small>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- TRADITIONS TAB -->
+        <div class="modal-section" id="mod-traditions">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Swedish Food Traditions & Celebrations</h3>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Midsummer (Midsommar)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">Late June (Summer Solstice)</span>
+              </div>
+              <p style="margin-bottom: 6px;">The most magical Swedish holiday celebrating endless daylight. Families gather around maypoles for an open-air banquet of pickled herring, boiled fresh new potatoes with dill and sour cream, Västerbotten cheese tart, snaps songs, and fresh Swedish strawberries with cream.</p>
+              <small style="color: #fbbf24;">Staples: Inlagd Sill, New Potatoes with Dill, Västerbottensostpaj, Fresh Strawberries & Cream, Akvavit</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Christmas (Julbord)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">December</span>
+              </div>
+              <p style="margin-bottom: 6px;">A lavish multi-course holiday feast starting with glögg and gingerbread with blue cheese, followed by herring and salmon, then warm meatballs, prince sausages (prinskorv), Jansson’s Temptation, Christmas ham (julskinka), and saffron buns (lussekatter).</p>
+              <small style="color: #fbbf24;">Staples: Julskinka (Christmas Ham), Janssons Frestelse, Köttbullar, Lussekatter, Pepparkakor med Ädelost</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Easter (Påsk)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">Spring (March/April)</span>
+              </div>
+              <p style="margin-bottom: 6px;">A cheerful springtime smörgåsbord filled with decorated eggs, cured gravlax, lamb roast with herbs, gubbröra on crispbread, and vibrant candy-filled Easter eggs.</p>
+              <small style="color: #fbbf24;">Staples: Hard-boiled Eggs with Kalles Kaviar, Gravlax, Gubbröra, Roast Lamb</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Crayfish Party (Kräftskiva)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">August</span>
+              </div>
+              <p style="margin-bottom: 6px;">Boisterous outdoor gatherings under moon-shaped paper lanterns. Swedes slurp boiled freshwater crayfish cooked in beer and dill-seed broth, wearing funny paper hats and singing traditional snapsvisor.</p>
+              <small style="color: #fbbf24;">Staples: Dill-boiled Crayfish, Västerbottensostpaj, Crispbread & Butter, Chilled Aquavit</small>
+            </div>
+          
+        </div>
+
+        <!-- REGIONAL TAB -->
+        <div class="modal-section" id="mod-regional">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Regional Swedish Cuisine</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>🧭 Norrland & Lapland (The Great North)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Dominated by Arctic forests and indigenous Sámi traditions. Rich in wild game like moose (älg) and reindeer (ren), arctic char, wild cloudberries (hjortron), and thin soft flatbread (tunnbröd).</p>
+                <small style="color: #fbbf24;">Specialties: Suovas (Smoked Reindeer), Älgkalops (Moose Stew), Hjortronsylt (Cloudberry Jam), Västerbotten Cheese</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 Skåne & Southern Farmlands</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Sweden’s fertile breadbasket with rich European influences, producing grain, sugar beets, smoked pork, goose dinners on Saint Martin’s Eve (Mårten Gås), and towering spettekaka cakes.</p>
+                <small style="color: #fbbf24;">Specialties: Gåslever & Roast Goose, Svartsoppa, Spettekaka, Rökt Fläsk (Smoked Pork)</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 The West Coast (Bohuslän & Gothenburg)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">World-renowned for cold, nutrient-rich waters yielding sweet Norway lobsters (havskräftor), deep-sea prawns, oysters, and fresh Atlantic herring.</p>
+                <small style="color: #fbbf24;">Specialties: Toast Skagen, Kräftor (Boiled Crayfish), Fresh Oysters, Stekt Strömming</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 Dalarna & Central Lake District</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Deep folklore heritage, home to the iconic Falukorv sausage, traditional rye crispbread mills, and freshwater pike and perch from Lake Siljan.</p>
+                <small style="color: #fbbf24;">Specialties: Falukorv i Ugn, Leksands Knäckebröd, Lake Fish Terrines</small>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- FAQ TAB -->
+        <div class="modal-section" id="mod-faq">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Frequently Asked Questions</h3>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">What is the philosophy behind Swedish Husmanskost?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Husmanskost refers to honest, nourishing home cooking rooted in Swedish agrarian history. It prioritizes wholesome local ingredients, balanced portions (Lagom), and satisfying flavors made from scratch.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">Why is Fika so culturally important in Sweden?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Fika is a valued daily ritual that fosters social connection and mindfulness. It is a scheduled opportunity to step away from screens, enjoy high-quality coffee and freshly baked cardamom or cinnamon buns, and bond with peers.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">What is the difference between Swedish ansjovis and Mediterranean anchovies?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Swedish ansjovis are actually small sprats (skarpsill) cured in a sweet, aromatic brine with cinnamon, ginger, cloves, and sandalwood. Mediterranean anchovies are salty, fermented true anchovies in oil. They cannot be directly substituted in Janssons Frestelse.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">Why do Swedish cinnamon buns taste different from American cinnamon rolls?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Swedish Kanelbullar incorporate freshly crushed cardamom into the yeast dough, are folded into intricate knotted buns rather than thick spiral slabs, are crowned with crunchy pearl sugar, and do not use heavy powdered sugar glaze or cream cheese frosting.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">How does the Swedish right of public access (Allemansrätten) influence cooking?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Allemansrätten legally allows anyone to forage wild berries (lingonberries, bilberries, cloudberries) and wild mushrooms (chanterelles, porcini) freely in nature, keeping wild foraging at the heart of home cooking.</p>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const recipes = [{"id":"butter-chicken-makhani","name":"Old Delhi Murgh Makhani (Butter Chicken)","nativeName":"पुरानी दिल्ली मुर्ग मखनी (बटर चिकन)","category":"शाही करी (Royal Curries)","prepTime":30,"cookTime":30,"yieldServings":4,"calories":540,"difficulty":"Medium","rating":5,"reviewsCount":3800,"intro":"Charcoal-grilled smoky chicken tikka simmered in a velvety, satin-smooth sauce of sun-ripened tomatoes, sweet cashews, aromatic dried fenugreek (kasuri methi), generous European butter, and fresh cream.","ingredients":["Chicken Tikka: 700 g boneless chicken thighs, marinated in 150 g hung curd (Greek yogurt), 1 tbsp ginger-garlic paste, 1 tbsp Kashmiri red chili powder, 1 tsp garam masala, 1 tbsp mustard oil, juice of 1 lemon","Makhani Gravy: 1 kg ripe red Roma tomatoes (quartered), 50 g raw cashew nuts, 4 green cardamom pods, 1 black cardamom, 1 cinnamon stick, 3 cloves, 1 bay leaf, 1 tbsp ginger-garlic paste","Finishing: 60 g cold butter (cubed), 80 ml heavy fresh cream, 1 tbsp crushed Kasuri Methi (dried fenugreek leaves), 1 tsp honey or sugar"],"instructions":["Marinate chicken in yogurt and spices for at least 4 hours. Skewer and broil/grill at 240°C (465°F) for 15 minutes until charred at edges.","In a pot, boil quartered tomatoes, cashews, whole spices, ginger-garlic paste, and 1 cup water for 20 minutes until tomatoes collapse.","Discard cinnamon stick and bay leaf; blend tomato-cashew mixture in high-speed blender until mirror-smooth.","Strain puree through a fine-mesh sieve (chinois) into a clean pot for pure velvet texture.","Simmer strained gravy; stir in Kashmiri chili powder, salt, and honey.","Add charred chicken tikka pieces; simmer gently for 8 minutes.","Whisk in cold butter cubes and heavy cream over low heat.","Crush Kasuri Methi between your palms to release herbal fragrance and stir into gravy.","Garnish with a swirl of cream and serve with hot garlic butter naan."],"tips":{"title":"Strain the Gravy","description":"Passing the blended tomato-cashew gravy through a fine sieve is the professional secret to Moti Mahal’s iconic silky texture."},"variations":{"title":"Paneer Makhani","description":"Swap chicken for soft cubes of fresh Indian paneer."},"faqs":[{"question":"Who invented Butter Chicken?","answer":"Kundan Lal Gujral at Moti Mahal restaurant in Daryaganj, Old Delhi, in the 1950s to rescue leftover tandoori chicken."}],"imageQuery":"butter chicken murgh makhani creamy tomato curry naan","imageUrl":"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Hyderabadi Dum Biryani","imageQuery":"chicken biryani","imageUrl":"https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80"},{"name":"Paneer Tikka Masala","imageQuery":"paneer tikka","imageUrl":"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80"},{"name":"Dal Makhani","imageQuery":"dal makhani","imageUrl":"https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&q=80"},{"name":"Warm Gulab Jamun","imageQuery":"gulab jamun","imageUrl":"https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=800&q=80"}]},{"id":"hyderabadi-biryani","name":"Royal Hyderabadi Dum Biryani","nativeName":"हैदराबादी दम बिरयानी","category":"शाही चावल (Royal Rice)","prepTime":45,"cookTime":45,"yieldServings":6,"calories":620,"difficulty":"Advanced","rating":5,"reviewsCount":4200,"intro":"The crowning jewel of Nizami gastronomy: long-grain aged Basmati rice layered with raw marinated chicken, golden caramelized onions (birista), saffron milk, mint, cilantro, and pure desi ghee, slow-steamed under a dough-sealed lid (Dum).","ingredients":["800 g bone-in chicken pieces (marinated in 200 g thick yogurt, 2 tbsp ginger-garlic paste, 2 tbsp biryani masala, 1 tbsp Kashmiri chili, 1/2 tsp turmeric, juice of 1 lemon, half of the fried onions, fresh mint & cilantro)","500 g aged long-grain Basmati rice (soaked for 30 minutes)","Aromatic Boiling Water: 4 green cardamoms, 2 black cardamoms, 1 star anise, 1 cinnamon stick, 4 cloves, 1 bay leaf, 2 tbsp sea salt","Birista: 3 large onions, thinly sliced and fried in oil until deep golden-brown and crispy","Topping: 1 pinch Kashmiri saffron soaked in 60 ml warm milk, 3 tbsp pure desi ghee, rose water & kewra water (few drops)","Atta dough ribbon (flour + water) to seal the pot lid"],"instructions":["Place marinated chicken directly in the bottom of a heavy copper handi or Dutch oven.","Boil soaked Basmati rice with whole spices and salt until 70% par-cooked (grains still have a firm bite in center); drain.","Spread par-cooked steaming rice evenly over the raw marinated chicken.","Top rice with crispy golden fried onions (birista), chopped mint, fresh cilantro, pure desi ghee, and saffron-infused milk.","Place lid on pot; seal the edge hermetically with a rolled rope of wheat dough (atta).","Cook over high heat for 10 minutes (to generate steam inside), then place a cast-iron tawa/griddle underneath and cook on very low heat for 35 minutes.","Rest 15 minutes. Slice through the dough seal tableside to release the magnificent cloud of saffron aroma.","Gently scoop from the bottom up to mix fragrant spiced chicken with pristine orange and white rice grains. Serve with Mirchi Ka Salan and Raita."],"tips":{"title":"Dum Cooking Principle","description":"The dough seal traps every molecule of steam, cooking the chicken in its own juices while perfuming the rice."},"variations":{"title":"Mutton Dum Biryani","description":"Made with tender bone-in baby goat/mutton."},"faqs":[{"question":"What is Dum Pukht?","answer":"Persian-Mughal slow-cooking method meaning \"breathe inside the sealed vessel.\""}],"imageQuery":"hyderabadi dum biryani saffron basmati rice chicken mint","imageUrl":"https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"paneer-tikka-masala","name":"Charred Paneer Tikka Masala","nativeName":"पनीर टिक्का मसाला","category":"शाही करी (Royal Curries)","prepTime":25,"cookTime":25,"yieldServings":4,"calories":480,"difficulty":"Easy","rating":5,"reviewsCount":2900,"intro":"Golden, blistered cubes of fresh Indian cottage cheese (paneer), bell peppers, and red onions marinated in spiced yogurt, charred in a tandoor and simmered in a spiced onion-tomato cashew gravy.","ingredients":["400 g fresh paneer cheese, cut into 3cm cubes","1 red bell pepper, 1 green bell pepper & 1 onion (cut into 3cm squares)","Tikka Marinade: 100 g Greek yogurt, 1 tbsp chickpea flour (besan, roasted), 1 tbsp ginger-garlic paste, 1 tbsp Kashmiri chili, 1 tsp chaat masala, 1 tbsp mustard oil","Gravy: 2 onions (finely chopped), 3 large tomatoes (pureed), 1 tbsp ginger-garlic paste, 1 tsp cumin seeds, 1 tsp coriander powder, 1/2 tsp turmeric, 1/2 tsp garam masala, 50 ml heavy cream","Kasuri Methi & fresh cilantro for garnish"],"instructions":["Toss paneer cubes, bell peppers, and onion squares in tikka marinade. Skewer and sear in hot cast-iron pan or broil at 230°C for 10 minutes until charred in spots.","In a skillet, heat 2 tbsp oil; crackle cumin seeds, then sauté chopped onions for 10 minutes until golden brown.","Add ginger-garlic paste, coriander powder, turmeric, and Kashmiri chili; sauté 2 minutes.","Pour in tomato puree and salt; cook over medium heat until oil separates from the masala (bhuna technique).","Add 150ml water and simmer into a rich gravy.","Gently add charred paneer cubes and vegetables into the gravy; simmer 3 minutes.","Stir in heavy cream and crushed Kasuri Methi.","Serve warm with tandoori roti or jeera rice."],"tips":{"title":"Roast the Besan","description":"Roasting gram flour (besan) in a dry pan before adding to marinade prevents raw flour flavor and binds spices to the paneer."},"variations":{"title":"Paneer Butter Masala","description":"Milder and sweeter, cooked in smooth strained tomato makhani sauce."},"faqs":[{"question":"Is Paneer melting cheese?","answer":"No, paneer is a non-melting acid-set cheese that holds its firm, juicy shape when grilled."}],"imageQuery":"paneer tikka masala cottage cheese bell peppers curry","imageUrl":"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"dal-makhani-24hr","name":"24-Hour Punjabi Dal Makhani","nativeName":"दाल मखनी (धीमी आंच पर पकी काली दाल)","category":"दाल & दालें (Lentils & Pulses)","prepTime":20,"cookTime":180,"yieldServings":6,"calories":360,"difficulty":"Medium","rating":5,"reviewsCount":3400,"intro":"Whole black urad lentils and red kidney beans slow-simmered overnight over smoldering coals with pure tomato puree, Kashmiri chili, generous white butter (makhan), and heavy cream into velvety black gold.","ingredients":["250 g whole black gram lentils (sabut urad dal), soaked overnight for 12 hours","50 g red kidney beans (rajma), soaked overnight","Tomato Puree: 5 large ripe tomatoes (pureed smooth)","Aromatics: 2 tbsp ginger-garlic paste, 1 tbsp Kashmiri red chili powder, 1 tsp cumin powder, 1 tsp salt","Dairy Richness: 100 g unsalted butter (divided), 100 ml fresh heavy cream","1 tbsp crushed Kasuri Methi & live lump of hardwood charcoal (for Dhungar smoke infusion)"],"instructions":["Rinse soaked lentils thoroughly until water runs clear (essential to remove bitter starch).","Pressure cook lentils, kidney beans, 1 tbsp ginger-garlic paste, salt, and 1 L water for 30 minutes until beans mash easily with a fork.","In a heavy-bottomed pot, melt 40g butter; add remaining ginger-garlic paste and Kashmiri chili powder; cook 1 min.","Add tomato puree and cook until oil separates.","Pour cooked lentils and their cooking broth into the tomato masala.","Using the back of a ladle, mash some lentils against the side of the pot (this releases natural creaminess).","Simmer on very low heat for at least 90 minutes (up to 3 hours), adding splashes of hot water and stirring frequently.","Stir in remaining butter, heavy cream, and crushed Kasuri Methi.","Dhungar Smoke (Optional): Place a small steel bowl on top of the dal, drop a red-hot charcoal inside, pour 1 tsp ghee over coal to create thick smoke, cover lid tightly for 5 minutes.","Serve velvety dal with hot garlic naan."],"tips":{"title":"Low and Slow","description":"The longer dal makhani simmers, the more the lentil starches break down into naturally creamy velvet."},"variations":{"title":"Dal Bukhara","description":"ITC Maurya style made purely with black lentils and no kidney beans."},"faqs":[{"question":"What is Dhungar?","answer":"The ancient Indian smoking technique using a glowing charcoal lump and ghee inside a sealed pot."}],"imageQuery":"dal makhani black lentils creamy butter cream indian","imageUrl":"https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"gulab-jamun-saffron","name":"Warm Saffron Gulab Jamun","nativeName":"गुलाब जामुन (केसर और गुलाब जल की चाशनी में)","category":"मिठाइयां (Desserts & Sweets)","prepTime":25,"cookTime":20,"yieldServings":15,"calories":180,"difficulty":"Medium","rating":5,"reviewsCount":3950,"intro":"Pillowy, melt-in-the-mouth dumplings made from fresh reduced milk solids (khoya) and paneer, deep-fried in desi ghee to a deep golden mahogany, soaked in hot green cardamom, rosewater, and saffron sugar syrup.","ingredients":["Khoya Dough: 200 g fresh soft unsweetened mawa/khoya (grated), 50 g fresh paneer (grated), 40 g all-purpose flour (maida), 1/4 tsp baking powder, 2 tbsp milk (if needed)","Pure desi ghee or oil for deep frying","Rose-Saffron Syrup: 300 g granulated sugar, 250 ml water, 6 green cardamom pods (crushed), 1 large pinch Kashmiri saffron threads, 1 tbsp pure culinary rosewater","Garnish: Slivered green pistachios and edible silver leaf (vark)"],"instructions":["For Syrup: Boil sugar, water, crushed cardamom, and saffron in saucepan for 6 minutes until syrup is sticky (half-string consistency); stir in rosewater and keep warm on low heat.","In a wide plate, rub grated khoya and paneer with the heel of your palm for 5 minutes until completely smooth with zero lumps.","Gently fold in flour and baking powder into a soft, pliable dough (do not over-knead!).","Divide into 15 smooth, crack-free marble-sized balls.","Heat desi ghee in a deep pan over low heat (approx. 140°C/285°F).","Gently slide balls into warm ghee; stir the ghee around the balls without touching them directly so they rotate evenly.","Fry slowly on low heat for 10-12 minutes until they expand and turn uniform deep golden-mahogany brown.","Drain and drop immediately into the warm saffron-rose syrup.","Soak for at least 2 hours so dumplings absorb syrup all the way to the core and double in size.","Serve warm garnished with slivered pistachios."],"tips":{"title":"Crack-Free Rolling & Low Heat","description":"Smooth crack-free dough balls fried over gentle low heat ensure they cook evenly without an uncooked raw center."},"variations":{"title":"Kala Jamun","description":"Fried longer until the exterior turns almost black with caramelized sugar."},"faqs":[{"question":"What is Khoya?","answer":"Whole milk slow-reduced over hours in an open iron wok until all liquid evaporates into rich milk fudge."}],"imageQuery":"gulab jamun warm sweet balls saffron syrup pistachios indian","imageUrl":"https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"garlic-butter-naan","name":"Tandoori Garlic Butter Naan","nativeName":"तंदूरी बटर गार्लिक नान","category":"रोटियां (Breads)","prepTime":20,"cookTime":10,"yieldServings":6,"calories":260,"difficulty":"Easy","rating":5,"reviewsCount":3600,"intro":"Pillowy, blistered flatbreads made with fermented yogurt dough, cooked on a smoking cast-iron tawa and flipped directly over open gas flame until charred and bubbly, slathered in garlic butter and cilantro.","ingredients":["300 g all-purpose flour (maida), 1 tsp baking powder, 1/4 tsp baking soda, 1 tsp sugar, 1/2 tsp salt","80 g plain yogurt (dahi), 2 tbsp oil, 120 ml lukewarm milk or water","Topping: 6 cloves garlic (finely minced), 1/4 cup fresh cilantro (chopped), 1 tsp nigella seeds (kalonji)","Finishing: 50 g melted butter for brushing"],"instructions":["Knead flour, baking powder, baking soda, sugar, salt, yogurt, oil, and lukewarm milk into a soft, elastic dough; rest covered in a warm place for 2 hours.","Divide dough into 6 balls. Roll each ball into a teardrop oval (4mm thick).","Press minced garlic, chopped cilantro, and nigella seeds into the top surface of the dough with rolling pin.","Flip naan over and brush the back side generously with plain water (this makes it stick to the hot pan).","Slap water-side down onto a smoking-hot iron tawa/skillet (do not use non-stick!).","Cook for 1 minute until large bubbles puff up across the surface.","Invert the skillet directly upside-down over open gas flame, rotating pan so the top of the naan chars and blisters into smoky golden-brown bubbles.","Scrape naan off the skillet with a spatula, brush immediately with garlic melted butter, and serve piping hot."],"tips":{"title":"The Inverted Pan Trick","description":"Cooking the water-stuck naan upside-down directly over the gas flame replicates the blistering 480°C heat of a traditional clay tandoor."},"variations":{"title":"Peshwari Naan","description":"Stuffed with sweet almond paste, coconut, and golden raisins."},"faqs":[{"question":"Why use plain yogurt in dough?","answer":"Lactic acid in yogurt reacts with baking soda to create fluffy air pockets and signature tang."}],"imageQuery":"garlic butter naan tandoori flatbread charred cilantro indian","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"palak-paneer","name":"Dhaba-Style Palak Paneer","nativeName":"पालक पनीर (मखमली हरी पालक में पनीर)","category":"शाही करी (Royal Curries)","prepTime":20,"cookTime":20,"yieldServings":4,"calories":340,"difficulty":"Easy","rating":4.9,"reviewsCount":2650,"intro":"Vibrant emerald-green spinach gravy pureed with garlic, green chilies, and ginger, simmered with golden pan-seared paneer cubes, finished with cream, butter, and a hint of garam masala.","ingredients":["500 g fresh baby spinach (palak), washed thoroughly","350 g fresh paneer (cut into 2.5cm cubes, lightly pan-seared in ghee)","Aromatics: 2 green chilies, 1 inch ginger, 6 cloves garlic (finely minced)","Gravy Masala: 1 onion (finely chopped), 1 tomato (finely chopped), 1 tsp cumin seeds, 1 tsp coriander powder, 1/2 tsp garam masala","Finishing: 2 tbsp butter, 2 tbsp heavy cream, 1/2 tsp Kasuri Methi, squeeze of fresh lemon"],"instructions":["Blanch spinach leaves and green chilies in boiling water for 2 minutes; immediately plunge into ice-cold water (this locks in the vibrant emerald green color!).","Blend blanched spinach in blender with 2 tbsp cold water into a smooth, bright green puree.","Heat ghee in a pan; crackle cumin seeds, then sauté chopped onions and garlic until golden.","Add chopped tomato, coriander powder, and salt; cook until soft.","Pour in the bright green spinach puree and simmer on low for 5 minutes (do not cover, to prevent discoloration).","Gently slide in pan-seared paneer cubes and simmer 3 minutes.","Stir in butter, heavy cream, garam masala, and a squeeze of fresh lemon juice.","Serve warm with hot rotis or jeera rice."],"tips":{"title":"Ice Water Shock for Green Color","description":"Shocking blanched spinach in ice water stops cooking instantly and preserves natural chlorophyll."},"variations":{"title":"Aloo Palak","description":"Made with crispy fried potato cubes instead of paneer."},"faqs":[{"question":"What is the difference between Saag and Palak?","answer":"Palak refers specifically to spinach, while Saag can be a blend of mustard greens (sarson), bathua, and spinach."}],"imageQuery":"palak paneer spinach gravy cottage cheese cream indian","imageUrl":"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"chana-masala-amritsari","name":"Amritsari Chana Masala (Pindi Chole)","nativeName":"अमृतसरी चना मसाला (पिंडी छोले)","category":"दाल & दालें (Lentils & Pulses)","prepTime":20,"cookTime":45,"yieldServings":4,"calories":320,"difficulty":"Easy","rating":5,"reviewsCount":2800,"intro":"Punjab’s legendary dark spiced chickpeas boiled with black tea bags and whole spices, simmered in a tangy pomegranate-anardana and dried mango (amchur) masala, served with puffy bhature.","ingredients":["300 g dried kabuli chickpeas (chana), soaked overnight with 1/2 tsp baking soda","Tea Bag Infusion: 2 black tea bags (for authentic dark color), 1 black cardamom, 1 cinnamon stick, 2 bay leaves (tied in cheesecloth)","Chole Masala: 2 onions (pureed), 3 tomatoes (pureed), 1 tbsp ginger-garlic paste, 2 tbsp roasted anardana powder (dried pomegranate seeds), 1 tbsp amchur (dried mango powder), 1 tbsp coriander powder, 1 tsp cumin powder, 1 tsp red chili","Tadka: 2 tbsp desi ghee, 1 inch ginger (julienned), 2 green chilies (slit), fresh cilantro"],"instructions":["Boil soaked chickpeas with the tea bag parcel, whole spices, salt, and water in pressure cooker for 25 minutes until chickpeas crush effortlessly between thumb and finger; discard tea bags.","In a heavy skillet, heat ghee/oil; sauté pureed onions until deep dark brown (12 mins).","Add ginger-garlic paste, dry spices (coriander, cumin, chili, tangy anardana, and amchur); sauté 2 minutes.","Add tomato puree and cook until oil glistens on surface.","Pour cooked chickpeas and some of the dark cooking broth into the pan.","Mash a ladleful of chickpeas to thicken the gravy naturally; simmer on low for 20 minutes.","Tadka: Heat 2 tbsp ghee in small pan; fry ginger juliennes and slit green chilies until blistering; pour sizzling over the chole.","Serve hot with puffy deep-fried Bhature and pickled onions."],"tips":{"title":"Black Tea Bag Secret","description":"Simmering chickpeas with black tea bags imparts the traditional deep dark brown color of authentic Amritsari roadside dhabas."},"variations":{"title":"Chole Kulche","description":"Served dry with soft pan-toasted fermented kulchas in Delhi."},"faqs":[{"question":"What is Anardana?","answer":"Dried wild pomegranate seeds that provide fruity, tart acidity characteristic of North Indian cooking."}],"imageQuery":"chana masala amritsari chickpeas dark spiced curry bhature","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"samosas-punjabi","name":"Crispy Punjabi Samosas with Mint Chutney","nativeName":"हलवाई जैसे खस्ता पंजाबी समोसे","category":"चाट & स्नैक्स (Street & Snacks)","prepTime":35,"cookTime":25,"yieldServings":10,"calories":220,"difficulty":"Medium","rating":5,"reviewsCount":3700,"intro":"Flaky, buttery pastry cones stuffed with spiced potatoes, green peas, roasted coriander seeds, ginger, and cashews, fried gently in desi ghee until crisp and shatteringly golden, served with mint-coriander and sweet tamarind chutneys.","ingredients":["Khasta Pastry Dough: 250 g all-purpose flour (maida), 50 g melted desi ghee (moyan), 1/2 tsp carom seeds (ajwain), 1/2 tsp salt, cold water for stiff dough","Spiced Potato Filling: 4 large potatoes (boiled, peeled, and crumbled by hand), 1/2 cup green peas, 1 tbsp crushed coriander seeds & cumin seeds (toasted), 1 tbsp minced ginger, 2 green chilies, 1 tsp amchur (dry mango), 1 tsp garam masala, 20 g cashews and raisins","Oil or ghee for slow deep frying","Chutneys: Fresh spicy green mint-coriander chutney & sweet date-tamarind chutney"],"instructions":["Rub ghee into flour and ajwain with your fingers until mixture resembles breadcrumbs; add cold water gradually to form a very stiff, hard dough. Rest covered for 30 minutes.","Sauté ginger, green chilies, and crushed toasted spices in 1 tbsp oil; add green peas, crumbled potatoes, amchur, garam masala, salt, cashews, and raisins. Cook 3 minutes; cool filling completely.","Divide dough into 5 balls; roll each into an oval, cut in half to make two semicircles.","Apply water along the straight edge; fold into a cone and seal seam tightly.","Fill cone with potato masala; apply water to inner rim and pleat the back, sealing the top into a standing pyramid.","Slow Frying: Heat oil to low heat (140°C/285°F); drop samosas in batches. Fry slowly for 20-25 minutes, gently turning until crust turns pale golden, then increase heat for last 2 minutes for deep golden blistered crunch.","Drain on paper towels and serve piping hot with sweet tamarind and spicy mint chutneys."],"tips":{"title":"Stiff Dough + Low Heat Frying","description":"A stiff dough and slow frying in low-heat oil is the secret to blister-free, shatteringly flaky halwai-style samosas."},"variations":{"title":"Keema Samosa","description":"Stuffed with spiced minced lamb and mint."},"faqs":[{"question":"Why add Ajwain to dough?","answer":"Carom seeds (ajwain) add thyme-like aroma and aid digestion."}],"imageQuery":"crispy samosas potato peas fried pastry mint chutney indian","imageUrl":"https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"rogan-josh-kashmiri","name":"Authentic Kashmiri Mutton Rogan Josh","nativeName":"कश्मीरी मटन रोगन जोश (रतनजोत और सौंठ के साथ)","category":"शाही करी (Royal Curries)","prepTime":25,"cookTime":90,"yieldServings":6,"calories":580,"difficulty":"Advanced","rating":5,"reviewsCount":2150,"intro":"Kashmir’s royal celebration feast: tender bone-in mutton slow-braised in mustard oil with fennel powder (saunf), dried ginger powder (sonth), Kashmiri red chilies, asafoetida, and ratanjot bark into a deep ruby-red aromatic gravy.","ingredients":["1 kg bone-in lamb or goat meat (shoulder and shank cuts)","100 ml pure mustard oil (heated to smoking point and cooled slightly)","Aromatics: 1 pinch hing (asafoetida), 4 green cardamoms, 2 black cardamoms, 1 cinnamon stick, 4 cloves, 2 bay leaves","Kashmiri Spice Paste: 2 tbsp Kashmiri red chili powder dissolved in 4 tbsp water (for bright red color without excessive heat)","150 g thick yogurt (whisked thoroughly with 1 tbsp flour to prevent curdling)","Ground Spices: 2 tbsp fennel powder (saunf), 1 tbsp dry ginger powder (sonth), 1/2 tsp black pepper, 1/2 tsp garam masala, salt","Ratanjot (alkanet root bark infused in warm oil) for natural ruby red hue"],"instructions":["Heat mustard oil in heavy Dutch oven until smoking; cool slightly, then add whole spices and pinch of hing.","Add mutton pieces; sear over high heat for 10 minutes until browned.","Pour in dissolved Kashmiri red chili paste; stir continuously for 3 minutes to coat meat in vibrant crimson red.","Lower heat; gradually whisk in yogurt in small batches, stirring constantly so it emulsifies smoothly without curdling.","Add ground fennel powder (saunf), dry ginger powder (sonth), and salt.","Pour in 400ml warm water; bring to boil, cover tightly, and simmer on low for 75-80 minutes until mutton is meltingly tender.","Pour in ratanjot-infused oil and sprinkle with garam masala.","Serve with fragrant steaming Basmati rice."],"tips":{"title":"Fennel & Dry Ginger","description":"Unlike regular curries, authentic Kashmiri Rogan Josh uses zero onions or tomatoes, deriving its distinct perfume entirely from fennel and dry ginger."},"variations":{"title":"Rogan Josh with Lamb Shanks","description":"Slow-braised whole lamb shanks with marrow."},"faqs":[{"question":"What does Rogan Josh mean?","answer":"From Persian \"rogan\" (clarified butter/oil) and \"josh\" (intense passion/heat)."}],"imageQuery":"kashmiri rogan josh lamb mutton red curry saffron rice","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"masala-dosa-south-indian","name":"Crispy South Indian Masala Dosa with Sambar & Chutney","nativeName":"मसाला डोसा, सांभर और नारियल की चटनी","category":"अल्पाहार (Tiffins & Breakfast)","prepTime":30,"cookTime":20,"yieldServings":4,"calories":340,"difficulty":"Medium","rating":5,"reviewsCount":3890,"intro":"The pride of South India: a paper-thin, golden-lacy fermented rice and urad dal crepe cooked in fragrant ghee on a hot cast-iron tawa, folded around turmeric-spiced potato masala and served with piping hot vegetable sambar and fresh coconut chutney.","ingredients":["Fermented Dosa Batter: 3 cups parboiled idli rice & 1 cup whole skinless black gram (urad dal), 1 tsp fenugreek seeds (soaked, ground fine, and fermented 12 hours)","Potato Masala: 4 large potatoes (boiled and crushed), 1 onion (sliced), 2 green chilies, 1 tsp mustard seeds, 1 tsp cumin seeds, 1 sprig curry leaves, 1/2 tsp turmeric, 1 tbsp ginger, fresh cilantro","Cooking: 4 tbsp pure cow ghee or cold-pressed sesame oil","Accompaniments: Drumstick and lentil sambar, fresh grated coconut chutney with mustard-curry leaf tadka, spicy tomato-onion chutney"],"instructions":["In a pan, temper mustard seeds, cumin seeds, curry leaves, and green chilies in oil.","Add sliced onions and grated ginger; sauté until translucent.","Add turmeric powder, salt, and crushed boiled potatoes; mix well with a splash of water for a soft, spreadable potato masala. Finish with cilantro.","Heat a seasoned cast iron tawa until water droplets sizzle and dance.","Pour a ladleful of dosa batter in the center and quickly spiral outwards with the base of the ladle into a thin, even disc.","Drizzle melted ghee around edges and across the surface; cook on medium-high heat until golden brown and crisp.","Spoon a generous mound of potato masala in the center.","Fold the dosa into a cylinder or triangle; serve hot with sambar and fresh coconut chutney."],"tips":{"title":"Fenugreek Seeds in Batter","description":"Adding fenugreek seeds (methi) to the soaking dal aids fermentation and gives dosa its distinctive golden color and crispness."},"variations":{"title":"Mysore Masala Dosa","description":"Spread with fiery red garlic-chili chutney inside before adding potato masala."},"faqs":[{"question":"Why use a cast iron tawa?","answer":"Cast iron holds uniform high heat necessary to develop a crisp, honeycomb golden crust without sticking."}],"imageQuery":"masala dosa south indian crispy crepe potato sambar chutney","imageUrl":"https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"shahi-paneer","name":"Royal Shahi Paneer in White Cashew Saffron Gravy","nativeName":"शाही पनीर - बादाम, काजू और केसर की मखमली ग्रेवी","category":"शाही भोजन (Mughlai Curries)","prepTime":20,"cookTime":25,"yieldServings":4,"calories":460,"difficulty":"Medium","rating":4.9,"reviewsCount":2450,"intro":"An opulent Mughal court delicacy: pillowy soft malai paneer cubes simmered in a luscious, ivory-white sauce of soaked cashew nuts, blanched almonds, sweet cream, saffron strands, and green cardamom.","ingredients":["350 g fresh malai paneer (cut into triangles or thick cubes)","Cashew-Almond Paste: 25 whole cashews & 15 blanched almonds (soaked in hot water and ground silky smooth with 1/2 cup milk)","Aromatics: 2 white onions (boiled and pureed pale), 1 tbsp ginger-garlic paste, 4 green cardamoms, 1 blade mace (javitri), 2 bay leaves","Gravy: 100 ml heavy cream, 100 ml whole milk, 1 tbsp pure ghee, 1 tbsp butter","Finishing: 1 pinch saffron strands (infused in 2 tbsp warm milk), 1/2 tsp green cardamom powder, 1/2 tsp crushed kasuri methi, 1/2 tsp rose water"],"instructions":["Boil chopped onions with whole cardamoms and mace for 10 minutes; drain and blend into a pale onion puree.","Heat ghee and butter in a pan; add bay leaves and ginger-garlic paste, cooking gently without browning.","Add boiled onion paste; cook on low heat for 5 minutes until glossy and fragrant.","Pour in smooth cashew-almond paste and milk; simmer gently on low heat while stirring continuously.","Season with salt, a pinch of white pepper, and cardamom powder.","Gently slide in fresh paneer cubes and heavy cream; simmer for 4 minutes to absorb the creamy sauce.","Drizzle saffron milk and rose water; garnish with crushed kasuri methi and silver vark.","Serve with hot butter naan or saffron pulao."],"tips":{"title":"Boiling the Onions","description":"Boiling onions before pureeing eliminates raw pungency without caramelization, preserving the signature luminous royal ivory hue."},"variations":{"title":"Shahi Malai Kofta","description":"The same royal gravy served over stuffed cottage cheese and dry fruit dumplings."},"faqs":[{"question":"What makes Shahi Paneer distinct from Paneer Butter Masala?","answer":"Shahi Paneer uses a cashew, almond, and yogurt/cream base with saffron and cardamom, with minimal or zero tomato, whereas Butter Masala relies on a tangy tomato gravy."}],"imageQuery":"shahi paneer creamy cashew saffron white gravy indian royal","imageUrl":"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"awadhi-chicken-korma","name":"Awadhi Dum Chicken Korma","nativeName":"अवधी दम चिकन कोरमा - लखनवी नवाबी ज़ायका","category":"शाही भोजन (Mughlai Curries)","prepTime":25,"cookTime":45,"yieldServings":5,"calories":520,"difficulty":"Advanced","rating":5,"reviewsCount":1980,"intro":"From the royal kitchens of the Nawabs of Lucknow: succulent chicken pieces slow-braised on \"dum\" with golden caramelized onion paste (birista), whisked yogurt, fried cashew puree, kewra water, and fragrant royal potli spices.","ingredients":["800 g bone-in chicken (curry cut)","Birista Paste: 3 large onions (thinly sliced and fried to deep golden brown, crushed into paste)","200 g thick plain yogurt (whisked until completely smooth)","Cashew-Melon Seed Paste: 20 cashews & 1 tbsp chironji / melon seeds soaked and pureed","Whole Spices: 4 green cardamoms, 1 black cardamom, 4 cloves, 1 cinnamon stick, 1 star anise, 1 mace flower","Ghee: 4 tbsp pure desi ghee","Seasoning: 1.5 tbsp ginger-garlic paste, 1 tbsp Kashmiri chili powder, 1.5 tbsp coriander powder, 1/2 tsp turmeric, salt","Finishing: 4 drops kewra water & 1/4 tsp freshly grated nutmeg and mace powder"],"instructions":["Heat ghee in a thick-bottomed handi; temper with whole cardamoms, cloves, cinnamon, and mace.","Add chicken pieces; fry on high heat for 6 minutes until chicken turns opaque white and seals juices.","Add ginger-garlic paste, Kashmiri chili powder, coriander powder, and turmeric; sauté for 3 minutes.","Lower flame completely; whisk in smooth yogurt in batches, stirring constantly to prevent splitting.","Add crushed fried onion paste (birista) and cashew puree; stir well and pour in 250ml warm water.","Cover handi with heavy lid (seal edges with dough for authentic dum); simmer on lowest flame for 25 minutes.","Uncover, stir in nutmeg-mace powder and fragrant kewra water.","Rest for 10 minutes for fragrant red Rogan oil to float to the top; serve with Sheermal or Roomali roti."],"tips":{"title":"Birista Secret","description":"Evenly browning the onions to rich amber without burning is the foundation of authentic Awadhi korma gravy body and sweetness."},"variations":{"title":"Mutton Korma","description":"Cooked with goat shoulder cuts slow-simmered for 60 minutes."},"faqs":[{"question":"What is Kewra water?","answer":"An aromatic extract distilled from the pandanus flowers, essential for Lucknowi royal meat dishes."}],"imageQuery":"awadhi chicken korma royal lucknowi rich gravy ghee naan","imageUrl":"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"goan-pork-vindaloo","name":"Traditional Goan Pork Vindaloo","nativeName":"पारंपरिक गोवा पोर्क विंदालू - तीखा और खट्टा","category":"तटीय व्यंजन (Coastal Curries)","prepTime":30,"cookTime":50,"yieldServings":6,"calories":490,"difficulty":"Medium","rating":4.8,"reviewsCount":1740,"intro":"An iconic Indo-Portuguese masterpiece from Goa: tender marbled pork shoulder marinated in aged coconut toddy vinegar, fiery red Kashmiri chilies, fresh garlic, ginger, and aromatic roasted spices, slow-braised to tangy, fiery perfection.","ingredients":["1 kg pork shoulder or pork belly (cut into 3cm cubes with some fat)","Vindaloo Spice Paste: 12 dried Kashmiri red chilies, 6 fiery Guntur chilies, 10 cloves garlic, 1 inch ginger, 1 tbsp cumin seeds, 1 tsp black peppercorns, 6 cloves, 1 inch cinnamon stick, 1 tsp mustard seeds, 1/2 tsp turmeric, ground with 100 ml Goan palm vinegar (or cider vinegar) into a smooth, thick red paste","2 large onions (finely chopped)","3 tbsp vegetable oil or lard","1 tbsp dark jaggery (palm sugar) & 1 tsp sea salt"],"instructions":["Coat pork cubes with the freshly ground vindaloo vinegar spice paste and salt; marinate in refrigerator for at least 4 hours (or overnight).","Heat oil in a heavy Dutch oven; add chopped onions and fry over medium heat until deep golden brown.","Add marinated pork along with all spice paste; sear over high heat for 8 minutes until pork is browned and aromatic vinegar oils release.","Add 200ml water; bring to boil, cover tightly, and simmer on gentle low flame for 45 minutes until meat is melt-in-the-mouth tender.","Stir in jaggery to round out the sharp tang and fiery heat.","Allow Vindaloo to rest (it tastes even better the next day as vinegar cures the meat).","Serve with crusty Goan poi bread or steamed basmati rice."],"tips":{"title":"Aged Vinegar Fermentation","description":"The word Vindaloo comes from Portuguese \"Vinha d'Alhos\" (wine and garlic). Authentic Goan vinegar tenderizes the meat while preserving it."},"variations":{"title":"Chicken Vindaloo","description":"Prepared with boneless chicken thighs for a quicker weeknight version."},"faqs":[{"question":"Is Vindaloo only about extreme heat?","answer":"No, true Goan Vindaloo is a delicate balance of deep tart acidity from vinegar, sweetness from onions and jaggery, and complex spice warmth."}],"imageQuery":"goan pork vindaloo fiery red curry vinegar indian coastal","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"mumbai-pav-bhaji","name":"Mumbai Street-Style Butter Pav Bhaji","nativeName":"मुंबई स्ट्रीट स्टाइल बटर पाव भाजी","category":"चाट और स्ट्रीट फ़ूड (Street Food)","prepTime":20,"cookTime":25,"yieldServings":4,"calories":430,"difficulty":"Easy","rating":5,"reviewsCount":4650,"intro":"Mumbai’s ultimate street food obsession: a luscious, spiced mash of potatoes, cauliflower, green peas, and tomatoes sizzled on an iron tawa with Pav Bhaji masala and copious slabs of salted Amul butter, served with golden pan-toasted buttered buns.","ingredients":["Vegetable Mash: 4 potatoes, 1 cup cauliflower florets, 1/2 cup green peas, 1/2 cup diced carrots, 1 small beetroot (boiled together until tender and mashed smooth)","Aromatics: 2 onions (finely diced), 1 green bell pepper (finely diced), 4 ripe tomatoes (finely chopped), 2 tbsp ginger-garlic paste, 2 green chilies","Spices: 2.5 tbsp authentic Pav Bhaji Masala powder, 1 tbsp Kashmiri chili powder (for vibrant red color), 1/2 tsp turmeric, 1 tsp kasuri methi, salt","Butter: 100 g salted Amul butter (essential for authentic Mumbai street taste)","Serving: 8 soft Pav buns, diced red onions, fresh cilantro, lime wedges"],"instructions":["Boil potatoes, cauliflower, carrots, peas, and beetroot; mash thoroughly with a potato masher.","Melt 2 tbsp butter with 1 tbsp oil on a wide tawa or skillet; sauté onions until translucent.","Add ginger-garlic paste and diced bell peppers; cook for 3 minutes.","Add chopped tomatoes, Pav Bhaji masala, Kashmiri chili powder, and salt; cook until tomatoes break down into a glossy, mushy sauce.","Add boiled mashed vegetables and 1/2 cup water; use potato masher directly on the pan to vigorously mash everything into a smooth, thick bhaji.","Simmer for 10 minutes, stirring in a generous slab of butter and crushed kasuri methi.","Slit Pav buns horizontally; melt 2 tbsp butter on the tawa with a pinch of Pav Bhaji masala and chopped cilantro, then toast buns until golden and crispy.","Serve hot bhaji topped with a melting cube of butter, alongside toasted pav, raw onions, and lime wedges."],"tips":{"title":"Beetroot for Natural Ruby Color","description":"Street vendors boil a small piece of beetroot with the vegetables to achieve the iconic fiery red street color without artificial dyes."},"variations":{"title":"Cheese Pav Bhaji","description":"Topped with a thick blanket of grated processed cheddar cheese."},"faqs":[{"question":"Where was Pav Bhaji invented?","answer":"In Mumbai during the American Civil War cotton boom in the 1860s, created as a quick midnight meal for textile mill workers."}],"imageQuery":"mumbai pav bhaji butter toasted buns lemon street food india","imageUrl":"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"aloo-gobi-matar","name":"Dhaba-Style Aloo Gobi Matar","nativeName":"ढाबा स्टाइल आलू गोभी मटर - भुनी हुई सूखी सब्ज़ी","category":"शाकाहारी करी (Vegetarian Mains)","prepTime":15,"cookTime":20,"yieldServings":4,"calories":220,"difficulty":"Easy","rating":4.9,"reviewsCount":3120,"intro":"North India’s most comforting dry vegetable classic: tender cauliflower florets, crisp golden potatoes, and sweet green peas tossed with cumin seeds, ginger juliennes, turmeric, and freshly ground garam masala.","ingredients":["1 medium cauliflower (cut into medium florets, soaked in warm salted water)","2 large potatoes (peeled and cut into wedges)","1/2 cup green peas (fresh or frozen)","Aromatics: 1 tsp cumin seeds, 1 pinch hing (asafoetida), 2 tbsp ginger (cut into thin juliennes), 2 green chilies (slit), 2 ripe tomatoes (pureed)","Spices: 1 tsp turmeric powder, 1 tsp Kashmiri red chili powder, 1.5 tsp coriander powder, 1/2 tsp dry mango powder (amchur), 1/2 tsp garam masala, salt","3 tbsp mustard oil or vegetable oil, 2 tbsp chopped cilantro"],"instructions":["Heat oil in a heavy kadai; shallow-fry potato wedges and cauliflower florets for 5-6 minutes until edges are golden and half-cooked; drain and set aside.","In the remaining oil, crackle cumin seeds and a pinch of hing.","Add ginger juliennes and slit green chilies; sauté for 30 seconds.","Add pureed tomatoes, turmeric, red chili powder, coriander powder, and salt; cook until oil separates from the masala.","Add fried potatoes, cauliflower florets, and green peas; gently toss to coat vegetables evenly with spices.","Cover with lid; cook on low heat for 8-10 minutes until vegetables are fork-tender yet retain their crisp shape.","Sprinkle amchur (dry mango powder) for a pleasant tang and freshly crushed garam masala.","Garnish generously with fresh cilantro and ginger juliennes; serve with hot phulkas or parathas."],"tips":{"title":"Par-Frying Florets","description":"Shallow-frying cauliflower before simmering ensures the florets stay intact and caramelized rather than turning mushy."},"variations":{"title":"Aloo Methi","description":"Potatoes tossed with bitter fresh fenugreek leaves."},"faqs":[{"question":"What is Amchur powder?","answer":"Sun-dried unripe green mango powder used across North India to add a tart, fruity acidity without adding liquid."}],"imageQuery":"aloo gobi matar dry spiced potato cauliflower curry indian kadai","imageUrl":"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"malai-kofta","name":"Malai Kofta in Creamy Tomato Cashew Gravy","nativeName":"मलाई कोफ्ता - पनीर और मेवे के नर्म कोफ्ते मखमली ग्रेवी में","category":"शाही भोजन (Mughlai Curries)","prepTime":30,"cookTime":30,"yieldServings":4,"calories":540,"difficulty":"Advanced","rating":5,"reviewsCount":2780,"intro":"The ultimate celebration centerpiece: melt-in-the-mouth golden koftas made of fresh grated paneer, mashed potatoes, and crushed cashews with raisins, bathed in a silky, rich Mughlai tomato-cashew satin gravy.","ingredients":["Kofta Mixture: 200 g fresh paneer (grated), 2 medium boiled potatoes (grated), 2 tbsp cornstarch, 1/4 tsp cardamom powder, 1/2 tsp salt","Kofta Stuffing: 2 tbsp chopped cashews, 1 tbsp golden raisins, 1 chopped green chili","Satin Gravy: 4 ripe tomatoes (chopped), 1 onion (chopped), 15 whole cashews, 1 inch ginger, 4 cloves garlic, 3 green cardamoms, 1 cinnamon stick, 1 tbsp butter, 1 tbsp ghee","Seasoning: 1 tsp Kashmiri chili powder, 1/2 tsp coriander powder, 1/2 tsp sugar, 1/2 tsp kasuri methi, 60 ml fresh cream","Oil for deep frying koftas"],"instructions":["To make gravy: boil tomatoes, onions, cashews, ginger, garlic, and whole spices with 1 cup water for 15 minutes; cool and puree until silky smooth; strain through a fine sieve.","Heat butter and ghee in a pan; add Kashmiri chili powder, then pour in strained tomato-cashew puree.","Simmer on low for 10 minutes until sauce thickens; season with salt, sugar, kasuri methi, and swirl in fresh cream.","To make koftas: knead grated paneer, potatoes, cornstarch, and salt into a smooth dough.","Divide into 8 balls; flatten, stuff center with cashews and raisins, seal tightly, and roll in cornstarch.","Deep fry koftas in medium-hot oil until golden brown and crisp; drain on paper towels.","To serve: place warm koftas in a serving dish and pour piping hot creamy gravy over top immediately before serving.","Garnish with cream drizzle and cilantro."],"tips":{"title":"Do Not Simmer Koftas in Sauce","description":"Because these koftas are cloud-soft, never cook them inside the gravy; pour the hot sauce over the fried koftas right at the dining table."},"variations":{"title":"White Malai Kofta","description":"Served in a rich cashew-khoya white sauce without tomatoes."},"faqs":[{"question":"What does \"Malai\" mean?","answer":"Malai means rich milk cream, reflecting the velvety, melt-in-mouth texture of both the dumplings and gravy."}],"imageQuery":"malai kofta creamy rich tomato cashew gravy paneer dumplings","imageUrl":"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"kolkata-kathi-roll","name":"Kolkata Street-Style Chicken Kathi Roll","nativeName":"कोलकाता काठी रोल - लच्छा पराठा और जूसी चिकन टिक्का","category":"चाट और स्ट्रीट फ़ूड (Street Food)","prepTime":25,"cookTime":15,"yieldServings":4,"calories":460,"difficulty":"Easy","rating":5,"reviewsCount":3410,"intro":"Invented at Kolkata’s legendary Nizam’s eatery: flaky, layered laccha paratha griddled with egg, wrapped around smoky spiced chicken tikka strips, crunchy red onion rings, fresh green chilies, and a squeeze of lime with Chaat masala.","ingredients":["4 flaky Parathas / layered flatbreads","4 eggs (whisked with pinch of salt)","Chicken Tikka Filling: 400 g boneless chicken breast strips marinated in 2 tbsp yogurt, 1 tbsp ginger-garlic paste, 1 tsp chili powder, 1/2 tsp cumin, 1/2 tsp garam masala, 1 tbsp mustard oil, and pan-seared until smoky","Roll Garnishes: 1 large red onion (thinly sliced), 2 green chilies (finely sliced), 2 tbsp fresh cilantro, 1 tsp tangy Chaat masala powder, 1 tbsp green mint chutney, 1 tbsp lemon juice"],"instructions":["Sear marinated chicken strips in a smoking hot skillet until charred at edges and cooked through.","Heat a wide tawa; cook paratha until golden brown on both sides with a brushing of oil or ghee.","Pour half a beaten egg directly onto the hot tawa; immediately press the cooked paratha on top of the egg so it adheres.","Flip over and cook for 30 seconds until egg is set and golden.","Transfer egg-paratha onto parchment paper, egg side facing up.","Arrange a generous line of hot chicken tikka in the center.","Top with sliced red onions, green chilies, cilantro, drizzle of green mint chutney, a squeeze of fresh lemon juice, and a heavy pinch of Chaat masala.","Roll tightly into a cylinder, wrapping the bottom half in parchment paper for easy handheld eating."],"tips":{"title":"The Egg-Paratha Bond","description":"Pressing the paratha onto wet beaten egg on the hot griddle fuses the two into a single flaky, protein-rich wrap."},"variations":{"title":"Paneer Kathi Roll","description":"Prepared with marinated grilled spiced paneer cubes."},"faqs":[{"question":"Why is it called \"Kathi\" roll?","answer":"Originally cooked on iron skewers, Nizam’s transitioned to bamboo skewers (called \"kathi\" in Bengali) in the 1960s, giving the iconic street roll its name."}],"imageQuery":"kolkata chicken kathi roll egg paratha wrap street food india","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"tandoori-chicken","name":"Charred Tandoori Whole Chicken (Murgh Tandoori)","nativeName":"तंदूरी चिकन - लाल मिर्च, दही और सरसों के तेल में मैरीनेटेड","category":"तंदूरी और कबाब (Tandoori & Grills)","prepTime":30,"cookTime":35,"yieldServings":4,"calories":420,"difficulty":"Medium","rating":5,"reviewsCount":4250,"intro":"The global ambassador of Indian cuisine: whole bone-in chicken deeply slashed and double-marinated in mustard oil, Kashmiri red chilies, hung curd, ginger-garlic paste, and tandoori spices, roasted at intense heat until charred, smoky, and succulent.","ingredients":["1 kg whole chicken (cut into 4 pieces with deep slashes made across the meat)","First Marinade: 2 tbsp lemon juice, 1 tbsp Kashmiri chili powder, 1 tsp salt (rub into slashes; rest 20 mins)","Second Marinade: 200 g hung curd (thick yogurt), 2 tbsp pure mustard oil, 2 tbsp ginger-garlic paste, 1 tbsp Kashmiri chili powder, 1 tsp roasted cumin powder, 1 tsp garam masala, 1/2 tsp black salt (kala namak), 1 tbsp crushed kasuri methi","Basting: 3 tbsp melted butter with pinch of chaat masala","Serving: Lemon wedges, sliced onion rings, fresh mint chutney"],"instructions":["Rub chicken slashes with lemon juice, salt, and chili powder; rest for 20 minutes.","Whisk hung curd with mustard oil, ginger-garlic paste, kasuri methi, and all spices until thick and vibrant red.","Massage second marinade thoroughly into the chicken pieces, ensuring marinade enters every deep cut; refrigerate for at least 6 hours.","Preheat oven to 220°C (425°F) or prepare outdoor charcoal grill with high direct heat.","Place chicken on a wire rack over a baking tray; roast for 25-30 minutes, turning once.","Baste generously with melted butter mixed with chaat masala; broil on high heat for 3-4 minutes until edges are charred and smoky.","Rest for 5 minutes; sprinkle with chaat masala and serve with onion rings and mint chutney."],"tips":{"title":"Mustard Oil Emulsion","description":"Whisking raw mustard oil directly into hung curd emulsifies the marinade and imparts the authentic smoky tandoori aroma."},"variations":{"title":"Tandoori Chicken Tikka","description":"Boneless chicken thigh cubes skewered and grilled."},"faqs":[{"question":"Who popularized Tandoori Chicken?","answer":"Kundan Lal Gujral at Moti Mahal in Peshawar and Old Delhi in the 1940s, using clay tandoor ovens originally reserved for bread."}],"imageQuery":"tandoori chicken roasted charred red whole chicken tikka mint chutney","imageUrl":"https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"bengali-macher-jhol","name":"Bengali Spiced Fish Curry (Macher Jhol)","nativeName":"बंगाली माछेर झोल - सरसों के तेल और कालो जीरे का स्वाद","category":"तटीय व्यंजन (Coastal Curries)","prepTime":20,"cookTime":20,"yieldServings":4,"calories":310,"difficulty":"Easy","rating":4.9,"reviewsCount":1890,"intro":"The heart and soul of Bengali homes: sweet Rohu or Katla fish steaks marinated in golden turmeric and mustard oil, pan-fried and simmered in a light, comforting broth infused with panch phoron, ginger, green chilies, potato wedges, and cauliflower.","ingredients":["500 g Rohu or Katla carp fish steaks (or sea bass / salmon fillets)","Fish Rub: 1 tsp turmeric powder, 1 tsp salt, 1 tbsp mustard oil","Vegetables: 1 potato (peeled and cut into lengthwise wedges), 1/2 cup cauliflower florets, 1 pointed gourd (potol, optional)","Aromatics: 1 tsp panch phoron (Bengali 5-spice blend: cumin, brown mustard, fenugreek, nigella, fennel seeds) or pure nigella seeds (kalo jeere), 3 green chilies (slit), 1 tbsp ginger paste, 1 tomato (chopped)","Spices: 1 tsp turmeric, 1 tsp cumin powder, 1/2 tsp Kashmiri chili powder, salt","4 tbsp pure mustard oil, fresh cilantro"],"instructions":["Rub fish steaks with turmeric, salt, and mustard oil; rest 10 minutes.","Heat mustard oil in a kadai until smoking point; shallow fry fish steaks for 2 minutes per side until golden; remove and set aside.","In the same fragrant oil, fry potato wedges and cauliflower until golden; set aside.","Add panch phoron (or kalo jeere) and slit green chilies to the hot oil; let them splutter.","Add ginger paste, chopped tomatoes, cumin powder, turmeric, and chili powder dissolved in 2 tbsp water; sauté until oil separates.","Add 400ml warm water; bring to boil, add fried potatoes and cauliflower, and cook for 6 minutes until tender.","Gently slide in fried fish steaks; simmer for 4 minutes so the fish absorbs the aromatic broth.","Garnish with fresh cilantro and serve hot over steaming fragrant Gobindobhog or Basmati rice."],"tips":{"title":"Mustard Oil Smoking Point","description":"Heating mustard oil to the smoking point before cooking removes its sharp eye-watering pungency while preserving its nutty flavor."},"variations":{"title":"Shorshe Ilish","description":"Hilsa fish cooked in a pungent freshly ground yellow mustard paste gravy."},"faqs":[{"question":"What is Macher Jhol?","answer":"In Bengali, \"Mach\" means fish and \"Jhol\" means light, digestible seasoned gravy."}],"imageQuery":"bengali macher jhol fish curry mustard oil potato rice","imageUrl":"https://images.unsplash.com/photo-1534080564583-6be75777b70a?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"dhaba-dal-tadka","name":"Homestyle Dhaba Dal Tadka with Ghee & Hing","nativeName":"ढाबा दाल तड़का - देसी घी, जीरा और हींग का छौंक","category":"शाकाहारी करी (Vegetarian Mains)","prepTime":15,"cookTime":25,"yieldServings":4,"calories":260,"difficulty":"Easy","rating":5,"reviewsCount":3950,"intro":"The quintessential highway dhaba comfort staple: yellow pigeon pea lentils (toor dal) and red lentils (masoor dal) pressure-cooked to creamy perfection, finished with a sizzling double tadka of desi ghee, crackling cumin, crushed garlic, and whole dried red chilies.","ingredients":["Lentils: 1/2 cup toor dal (arhar) & 1/2 cup masoor dal (washed and soaked 30 mins)","Lentil Boiling: 3 cups water, 1/2 tsp turmeric, 1 tsp salt, 1 green chili, 1 tsp ghee","First Tadka (Base): 2 tbsp ghee, 1 onion (finely chopped), 1 tbsp ginger-garlic paste, 2 ripe tomatoes (finely chopped), 1/2 tsp coriander powder, 1/2 tsp chili powder","Second Smoking Tadka (Dhungar / Top Tempering): 2 tbsp pure desi ghee, 1 tsp cumin seeds, 1 pinch hing (asafoetida), 4 cloves garlic (thinly sliced), 3 dry red Kashmiri chilies, 1/2 tsp Kashmiri red chili powder, 2 tbsp fresh cilantro"],"instructions":["Pressure cook soaked toor and masoor dal with water, turmeric, salt, green chili, and 1 tsp ghee for 4 whistles until completely tender; whisk lightly.","In a pan, heat 2 tbsp ghee; sauté chopped onions until golden.","Add ginger-garlic paste and tomatoes; cook until tomatoes turn soft and mushy with oil separating.","Pour cooked dal into the tomato-onion masala; adjust water consistency and simmer for 5 minutes.","Prepare second sizzling tadka: heat 2 tbsp ghee in a small tadka pan over high flame; add cumin seeds, hing, sliced garlic, and whole red chilies until garlic turns golden brown.","Turn off heat, stir in Kashmiri red chili powder, and immediately pour the sizzling hot tadka over the dal.","Cover with lid for 2 minutes to trap the aromatic ghee vapors.","Garnish with chopped cilantro and serve with hot steamed rice or rotis."],"tips":{"title":"Double Tadka Technique","description":"The first tadka builds the tomato-onion base; the second top tadka delivers the crackling aroma of roasted garlic, ghee, and whole chilies."},"variations":{"title":"Dal Palak","description":"Cooked with finely chopped fresh spinach leaves for an earthy twist."},"faqs":[{"question":"Why mix Toor and Masoor dal?","answer":"Toor dal provides deep nutty flavor while masoor dal breaks down quickly to give the broth its rich, velvety body."}],"imageQuery":"dal tadka yellow lentils ghee cumin garlic tempering indian bowl","imageUrl":"https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"steamed-idli-sambar","name":"Steamed Soft Idli with Coconut Chutney & Sambar","nativeName":"सॉफ्ट स्पंजी इडली, सांभर और ताज़ा नारियल चटनी","category":"अल्पाहार (Tiffins & Breakfast)","prepTime":20,"cookTime":15,"yieldServings":4,"calories":190,"difficulty":"Medium","rating":5,"reviewsCount":3100,"intro":"South India’s healthiest, cloud-soft breakfast: naturally fermented steamed rice and black gram cakes (idli) that are fluffy, pillowy, and gluten-free, served swimming in a bowl of hot spiced vegetable sambar with fresh coconut chutney.","ingredients":["Fermented Idli Batter: 3 cups parboiled idli rice & 1 cup whole urad dal (ground fine with cold water, aerated by hand, and naturally fermented 12 hours until doubled in volume)","1 tsp sea salt (folded into batter after fermentation)","Fresh Coconut Chutney: 1 cup fresh grated coconut, 2 tbsp roasted chana dal (dalia), 2 green chilies, 1 inch ginger, salt (blended fine and tempered with mustard seeds, urad dal, curry leaves, and dry chili in coconut oil)","Hot Vegetable Drumstick Sambar"],"instructions":["Gently fold salt into the fermented, bubbly idli batter without deflating the trapped air pockets.","Grease idli steamer plates lightly with sesame oil or ghee.","Pour ladlefuls of batter into each indentation.","Bring water in the idli steamer to a rolling boil.","Place idli plates inside, cover tightly with lid, and steam on high heat for 10-12 minutes.","Remove from heat; let rest for 2 minutes, then sprinkle a splash of cold water around the edges.","Use a wet spoon to scoop out cloud-soft, pillowy idlis seamlessly.","Serve piping hot with fresh coconut chutney and hot drumstick sambar."],"tips":{"title":"Hands Aeration","description":"Mixing the batter by hand introduces natural wild yeasts from the skin that ensure vigorous, airy fermentation and pillow-soft idlis."},"variations":{"title":"Rava Idli","description":"Instant semolina idlis tempered with mustard seeds, cashews, and carrots."},"faqs":[{"question":"Are Idlis healthy?","answer":"Idlis are steamed with zero added oil during cooking, rich in prebiotic lactic acid bacteria from natural fermentation, making them light on digestion."}],"imageQuery":"steamed idli soft spongy rice cakes south indian sambar coconut chutney","imageUrl":"https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"street-pani-puri","name":"Crispy Street Pani Puri / Golgappe","nativeName":"तीखी-चटपटी पानी पूरी और गोलगप्पे","category":"चाट और स्ट्रीट फ़ूड (Street Food)","prepTime":25,"cookTime":10,"yieldServings":4,"calories":210,"difficulty":"Easy","rating":5,"reviewsCount":5200,"intro":"India’s most electrifying street snack: hollow, crisp golden semolina puris cracked open, stuffed with spiced boiled potatoes and black chickpeas, and flooded with ice-cold spicy mint-coriander water and sweet date-tamarind chutney.","ingredients":["30 crispy round puris (golgappa)","Spiced Potato-Chana Filling: 3 boiled potatoes (mashed), 1/2 cup boiled black chickpeas (kala chana), 1/2 tsp roasted cumin powder, 1/2 tsp chaat masala, salt","Teekha Pani (Spicy Mint Water): 1 cup fresh mint leaves, 1 cup fresh coriander leaves, 3 green chilies, 1 inch ginger, 1 tbsp Pani Puri masala, 1 tsp black salt, 1 tsp roasted cumin powder, juice of 2 lemons, 4 cups ice-cold water, salted boondi","Meetha Pani (Sweet Tamarind Water): 1/2 cup sweet date-tamarind chutney thinned with 1 cup cold water"],"instructions":["To make Teekha Pani: blend mint, coriander, green chilies, and ginger into a smooth green paste; mix with 4 cups chilled water, lemon juice, Pani Puri masala, roasted cumin, and black salt. Stir in salted boondi.","To make filling: combine mashed potatoes, boiled black chickpeas, roasted cumin, chaat masala, and salt.","To serve: use your thumb to crack a hole in the top center of a crisp puri.","Spoon in a small mound of potato-chickpea filling.","Drizzle a teaspoon of sweet date-tamarind chutney.","Submerge and fill the hollow puri to the brim with ice-cold spicy mint water.","Pop the entire filled puri into your mouth in one single bite for an explosive burst of spicy, tangy, sweet, and crisp flavors!"],"tips":{"title":"Ice-Cold Water","description":"The mint-coriander water must be served ice-cold to maximize the refreshing sensory explosion against the spicy seasonings."},"variations":{"title":"Dahi Puri (Sev Puri)","description":"The same hollow puris filled with chilled sweetened yogurt, tamarind chutney, and fine chickpea sev noodles."},"faqs":[{"question":"What are the regional names of Pani Puri?","answer":"Known as Golgappe in Delhi and Punjab, Puchka in West Bengal, Pani ke Patashe in Uttar Pradesh, and Gupchup in Odisha."}],"imageQuery":"pani puri golgappe crispy puris spicy mint water street food india","imageUrl":"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"mutton-seekh-kebab","name":"Lucknowi Royal Mutton Seekh Kebab","nativeName":"लखनवी मटन सीख कबाब - रसीले और मुलायम","category":"तंदूरी और कबाब (Tandoori & Grills)","prepTime":30,"cookTime":15,"yieldServings":4,"calories":410,"difficulty":"Medium","rating":5,"reviewsCount":2310,"intro":"Masterpieces of Awadhi charcoal grilling: finely minced lean lamb and lamb fat worked with raw papaya, roasted gram flour (besan), mint, ginger, green chilies, and aromatic kebab masala, molded onto long skewers and grilled over hot coals.","ingredients":["600 g finely minced lamb or mutton (with 20% fat content, ground twice)","1 tbsp raw green papaya paste (natural meat tenderizer)","Aromatics: 1 onion (finely minced and squeezed dry of all moisture), 2 tbsp ginger-garlic paste, 3 green chilies (finely minced), 1/2 cup fresh mint and coriander (finely chopped)","Binder: 2 tbsp roasted chickpea flour (bhuna besan) & 1 egg yolk","Spices: 1 tsp roasted cumin powder, 1 tsp coriander powder, 1 tsp garam masala, 1 tsp Kashmiri chili powder, 1/2 tsp black salt, 1/2 tsp crushed black pepper","Basting: 3 tbsp melted butter"],"instructions":["In a large mixing bowl, combine twice-minced mutton with raw papaya paste, roasted besan, egg yolk, and all spices.","Knead the meat vigorously for 8-10 minutes like bread dough until proteins denature and the mixture turns sticky and uniform.","Refrigerate meat mixture for 1 hour to firm up.","Divide mixture into 6 equal portions; with damp hands, press and shape the meat along flat stainless-steel seekh skewers into 15cm long cylinders.","Grill over hot charcoal embers or in a 230°C (450°F) oven for 10-12 minutes, turning frequently.","Baste with melted butter during the final 2 minutes until browned with charred edges.","Gently slide kebabs off skewers using a piece of warm naan bread.","Dust with chaat masala and serve with onion rings, lemon wedges, and mint chutney."],"tips":{"title":"Squeeze the Onions Dry","description":"Always squeeze out every drop of water from minced onions before adding to meat, or the seekh kebabs will slip off skewers."},"variations":{"title":"Chicken Seekh Kebab","description":"Prepared with minced chicken thighs and fresh herbs."},"faqs":[{"question":"Why is fat essential in seekh kebabs?","answer":"A 20% fat ratio renders during grilling, keeping the inside juicy and tender rather than dry and crumbly."}],"imageQuery":"mutton seekh kebab minced lamb skewers grilled mint chutney","imageUrl":"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"chicken-jalfrezi","name":"Spicy Chicken Tikka Jalfrezi","nativeName":"चिकन टिक्का जालफ्रेजी - शिमला मिर्च और प्याज के साथ भुना चिकन","category":"शाही भोजन (Mughlai Curries)","prepTime":20,"cookTime":20,"yieldServings":4,"calories":440,"difficulty":"Easy","rating":4.9,"reviewsCount":2650,"intro":"A fiery stir-fried British-Indian restaurant favorite: marinated boneless chicken chunks flashed in a hot wok with crunchy bell peppers, thick onion petals, ripe tomatoes, green chilies, and a spiced sweet-and-sour tomato glaze.","ingredients":["500 g boneless chicken breast or thighs (cut into bite-sized strips)","Marinade: 1 tbsp yogurt, 1 tsp ginger-garlic paste, 1/2 tsp turmeric, 1/2 tsp cumin, salt","Stir-Fry Vegetables: 1 green bell pepper & 1 red bell pepper (cut into square chunks), 1 large onion (cut into thick petals), 2 tomatoes (seeded and diced), 3 green chilies (slit lengthwise)","Jalfrezi Sauce: 2 tbsp oil, 1 tsp cumin seeds, 1 tbsp ginger juliennes, 1/2 cup tomato puree, 1 tbsp tomato paste, 1 tbsp Worcestershire sauce or vinegar, 1 tsp sugar, 1 tsp garam masala, 1 tsp Kashmiri chili powder"],"instructions":["Sear marinated chicken pieces in a hot skillet with 1 tbsp oil for 5 minutes until golden and cooked through; set aside.","In the same skillet, heat remaining oil; crackle cumin seeds and ginger juliennes.","Add onion petals, green and red bell peppers, and slit green chilies; stir-fry on high heat for 3 minutes until crisp-tender.","Stir in tomato puree, tomato paste, Kashmiri chili powder, and vinegar/sugar balance.","Add cooked chicken and diced tomatoes; toss furiously over high heat for 3 minutes so the thick spiced glaze clings to the chicken and vegetables.","Sprinkle garam masala and fresh cilantro.","Serve piping hot with tandoori garlic naan or steamed rice."],"tips":{"title":"Retain the Crunch","description":"Stir-fry bell peppers and onions over high flame for a short duration so they retain their crisp texture."},"variations":{"title":"Paneer Jalfrezi","description":"Prepared with seared paneer cubes instead of chicken."},"faqs":[{"question":"What does \"Jalfrezi\" mean?","answer":"From Bengali \"jhal\" (spicy hot) and \"porhez\" (stir-fried/diet)."}],"imageQuery":"chicken jalfrezi spicy stir fry bell peppers onions tomato curry","imageUrl":"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"kolkata-rasgulla","name":"Spongy Kolkata Rasgulla (Rosogolla)","nativeName":"कोलकाता का स्पंजी रसगुल्ला - छेना और इलायची की चाशनी","category":"मिठाई (Desserts & Sweets)","prepTime":30,"cookTime":25,"yieldServings":6,"calories":180,"difficulty":"Medium","rating":5,"reviewsCount":3120,"intro":"Bengal’s legendary sweet pride: delicate, spongy, snowball-white dumplings hand-rolled from fresh cow milk chhena (curd cheese), boiled in light cardamom-infused sugar syrup until they expand into airy, springy, melt-in-mouth spheres.","ingredients":["1 liter full-fat cow milk (essential for soft chhena)","2 tbsp lemon juice or vinegar (diluted in 2 tbsp water to curdle milk)","1 tsp fine semolina (sooji) or all-purpose flour","Light Sugar Syrup: 1.5 cups granulated sugar, 6 cups water, 4 crushed green cardamom pods, 1 tsp rose water"],"instructions":["Bring milk to a gentle boil; turn off heat and let cool for 2 minutes.","Slowly pour in diluted lemon juice while gently stirring until milk curdles into green whey and soft white chhena cheese solids.","Strain through a cheesecloth; rinse under cold running water to wash away lemon acidity.","Hang cheesecloth for 30 minutes to drain excess moisture without over-drying.","Transfer chhena onto a clean plate; use the heel of your palm to knead the chhena with 1 tsp semolina for 5-7 minutes until silky smooth and non-sticky.","Roll into 12 smooth, crack-free small spheres (they will double in size).","In a wide, deep pot, bring sugar, water, and crushed cardamom to a vigorous rolling boil.","Drop chhena balls into bubbling syrup; cover tightly with lid and boil on high heat for 12-15 minutes.","Turn off heat; drop one rasgulla into a bowl of clean water (if it sinks to the bottom, it is perfectly cooked).","Let rasgullas cool completely in syrup, chill for 2 hours, and serve juicy and cool."],"tips":{"title":"Cow Milk & Moisture Balance","description":"Cow milk yields soft chhena ideal for rasgulla; buffalo milk fat is too heavy. The chhena must retain slight moisture so balls expand evenly."},"variations":{"title":"Nolen Gurer Rosogolla","description":"Boiled in aromatic date palm jaggery syrup during Bengali winter."},"faqs":[{"question":"Who created the modern sponge Rosogolla?","answer":"Confectioner Nobin Chandra Das in Kolkata in 1868 perfected the technique of boiling chhena in sugar syrup."}],"imageQuery":"kolkata rasgulla spongy white sweet dumplings sugar syrup bengali","imageUrl":"https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"saffron-shrikhand","name":"Saffron Cardamom Shrikhand (Kesar Elaichi Shrikhand)","nativeName":"केसर इलायची श्रीखंड - गाढ़ा चक्का दही और सूखे मेवे","category":"मिठाई (Desserts & Sweets)","prepTime":20,"cookTime":0,"yieldServings":6,"calories":260,"difficulty":"Easy","rating":5,"reviewsCount":2450,"intro":"A luxurious Gujarati and Maharashtrian festive dessert: whole milk yogurt strained overnight into a dense hung curd (chakka), whipped with powdered sugar, fragrant saffron-infused milk, crushed green cardamom, and toasted pistachios.","ingredients":["1 kg fresh whole milk plain yogurt (curd)","1/2 cup powdered sugar (confectioners’ sugar)","1 pinch premium saffron strands (soaked in 2 tbsp warm whole milk)","1/2 tsp freshly crushed green cardamom powder","1/4 tsp ground nutmeg powder","Garnish: 2 tbsp slivered pistachios and blanched almond slivers, edible dried rose petals","Accompaniment: Piping hot, puffed whole-wheat pooris"],"instructions":["Line a colander with cheesecloth or muslin; pour in fresh yogurt.","Tie cloth ends tightly and hang over a bowl in the refrigerator for 8-10 hours to drain all whey, yielding a thick, velvety block of \"chakka\" hung curd.","Transfer chakka into a large mixing bowl.","Add powdered sugar, saffron-infused golden milk, crushed cardamom, and nutmeg.","Whisk vigorously with a balloon whisk or wooden churner (mathani) for 4-5 minutes until ultra-creamy, glossy, and golden-yellow with no lumps.","Fold in half of the slivered pistachios and almonds.","Refrigerate for at least 2 hours until thoroughly chilled.","Scoop into bowls, garnish with remaining nuts and rose petals, and serve chilled with warm pooris."],"tips":{"title":"Refrigerated Straining","description":"Always strain yogurt inside the refrigerator to prevent the curd from turning sour while draining."},"variations":{"title":"Amrakhand","description":"Whipped with fresh Alphonso mango pulp for the quintessential summer variation."},"faqs":[{"question":"What is Chakka?","answer":"Chakka is the traditional Indian culinary term for dense, completely dehydrated yogurt cheese."}],"imageQuery":"kesar elaichi shrikhand saffron yogurt dessert pistachio indian sweet","imageUrl":"https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"royal-mango-kulfi","name":"Royal Alphonso Mango Kulfi (Aam Kulfi)","nativeName":"शाही आम की मटका कुल्फी - रबड़ी, केसर और पिस्ता","category":"मिठाई (Desserts & Sweets)","prepTime":20,"cookTime":40,"yieldServings":6,"calories":290,"difficulty":"Medium","rating":5,"reviewsCount":3820,"intro":"Traditional Indian slow-cooked frozen dessert: full-cream milk reduced for hours into caramelized nutty rabri, blended with sweet Alphonso mango pulp, saffron, cardamom, and pistachios, frozen in clay matka pots or cones.","ingredients":["1.5 liters full-cream whole milk","1 cup sweet Alphonso mango pulp (fresh or canned)","1/2 cup sweetened condensed milk or 1/3 cup sugar","1/4 tsp green cardamom powder","1 pinch saffron strands (kesar)","3 tbsp chopped pistachios and almonds","1 tbsp mawa / khoya (dried milk solids, optional for extra richness)"],"instructions":["In a wide heavy-bottomed pan, bring milk to a boil; lower heat and simmer, stirring frequently and scraping dried milk solids from sides back into the pan.","Cook for 35-40 minutes until milk reduces to one-third of its original volume and thickens into rich rabri.","Stir in condensed milk (or sugar), mawa, saffron, and cardamom powder; simmer 3 minutes until dissolved.","Remove from heat and cool rabri completely to room temperature.","Whisk in fresh Alphonso mango pulp and chopped nuts until smoothly blended.","Pour kulfi mixture into traditional aluminum kulfi cones or terracotta matka pots.","Insert wooden popsicle sticks; freeze for at least 8 hours (or overnight) until firm.","To unmold: rub mold between palms or dip in warm water for 5 seconds; slide out kulfi, slice into discs, and garnish with pistachios."],"tips":{"title":"Why Kulfi is Denser than Ice Cream","description":"Unlike Western ice cream which is churned with air, kulfi is slow-reduced milk frozen without aeration, resulting in a dense, velvety chew that melts slowly."},"variations":{"title":"Malai Pista Kulfi","description":"Classic white kulfi flavored purely with cardamom, rose water, and pistachios."},"faqs":[{"question":"What makes Alphonso mangoes special for kulfi?","answer":"Alphonso (Hapus) mangoes possess an intense floral fragrance, non-fibrous silky texture, and high natural brix sweetness."}],"imageQuery":"mango kulfi indian ice cream saffron pistachio alphonso matka","imageUrl":"https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"crispy-saffron-jalebi","name":"Crispy Spiral Saffron Jalebi","nativeName":"कुरकुरी रसीली केसर जलेबी - हलवाई स्टाइल","category":"मिठाई (Desserts & Sweets)","prepTime":20,"cookTime":20,"yieldServings":6,"calories":320,"difficulty":"Medium","rating":5,"reviewsCount":4100,"intro":"India’s most celebrated street confectionery: fermented flour batter piped in rapid swirling spirals into hot ghee, fried until crunchy and golden, and immediately dunked into warm saffron-cardamom sugar syrup so it fills with sweet juice.","ingredients":["Jalebi Batter: 1 cup all-purpose flour (maida), 2 tbsp besan (gram flour), 1/2 tsp baking powder, 2 tbsp sour yogurt (dahi), 1/2 tsp turmeric or saffron powder (for golden hue), 3/4 cup water (whisked into smooth, pourable pancake-like batter)","Saffron Sugar Syrup: 1.5 cups sugar, 1 cup water, 1 pinch saffron strands (kesar), 1/2 tsp cardamom powder, 1 tsp lemon juice (to prevent crystallization), 1/2 tsp rose water","Ghee or oil for deep frying in a wide flat-bottomed pan","Equipment: Squeeze bottle or cloth jalebi piping bag with a 3mm nozzle"],"instructions":["To make syrup: boil sugar, water, saffron, and cardamom for 8 minutes until it reaches a single-string consistency (ek taar); stir in lemon juice and keep warm.","Whisk flour, besan, baking powder, yogurt, and water for 5 minutes until smooth, glossy, and free of lumps.","Pour batter into a squeeze bottle with a fine nozzle.","Heat ghee in a wide, shallow pan over medium flame (approx 175°C / 350°F).","Squeeze batter into hot ghee in concentric circular motions from inside out, finishing with an overlapping lock stroke to form crisp spiral jalebis.","Fry for 2-3 minutes, flipping once, until golden and crisp.","Lift fried jalebis with tongs, drain excess ghee, and immediately immerse into warm saffron syrup for 45-60 seconds to absorb the syrup.","Lift out onto a serving tray; serve piping hot with chilled creamy rabri."],"tips":{"title":"Single-String Syrup Consistency","description":"If the syrup is too thin, jalebis turn soggy; if too thick, syrup won’t penetrate the crisp shell. Single-string consistency guarantees a crunch that gushes with juice."},"variations":{"title":"Imarti (Jangiri)","description":"Elaborate floral spirals made from urad dal batter."},"faqs":[{"question":"Why eat Jalebi with Rabri?","answer":"The piping hot, crispy, sweet jalebi contrasts with the cool, creamy, cardamom-scented rabri for one of India’s most revered dessert pairings."}],"imageQuery":"crispy saffron jalebi spiral sweet indian dessert ghee rabri","imageUrl":"https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"kadak-masala-chai","name":"Kadak Masala Chai with Cardamom & Ginger","nativeName":"कड़क मसाला चाय - अदरक, इलायची और कुल्हड़ का स्वाद","category":"पेय (Beverages & Chai)","prepTime":5,"cookTime":10,"yieldServings":4,"calories":110,"difficulty":"Easy","rating":5,"reviewsCount":6500,"intro":"The heartbeat of daily Indian life: strong Assam CTC black tea simmered with fresh crushed ginger, green cardamoms, cinnamon, cloves, whole buffalo milk, and sugar, strained piping hot into traditional terracotta kulhar cups.","ingredients":["2 cups water & 2 cups whole full-cream milk","3 tbsp strong Indian CTC black tea leaves (Assam / Darjeeling blend)","Fresh Aromatics: 1 inch fresh ginger root (crushed in mortar), 4 green cardamom pods (cracked open), 2 cloves, 1 small cinnamon stick, 3 black peppercorns","Sweetener: 3 tsp raw cane sugar or jaggery (adjust to taste)"],"instructions":["In a saucepan, bring 2 cups of water to a rolling boil.","Add crushed ginger, cracked green cardamoms, cloves, cinnamon, and black peppercorns; boil for 3 minutes so the essential oils infuse the water.","Add strong CTC black tea leaves; boil for 2 minutes until dark and fragrant.","Pour in 2 cups of cold whole milk and add sugar.","Bring chai to a boil; lower heat and let it rise and fall 3 times (the \"kadak\" boiling technique) to emulsify the tea tannins with milk fats.","Simmer on gentle flame for 2 minutes until rich golden-tan in color.","Strain through a fine mesh tea sieve directly into clay kulhar cups or glasses.","Serve steaming hot with crispy Punjabi samosas or butter biscuits."],"tips":{"title":"Crush Aromatics Fresh","description":"Pounding fresh ginger and cardamom in a stone mortar right before brewing releases volatile essential oils that powdered spices cannot match."},"variations":{"title":"Kashmiri Kahwa","description":"Green tea brewed with saffron, cinnamon, and slivered almonds without milk."},"faqs":[{"question":"What is CTC tea?","answer":"CTC stands for \"Crush, Tear, Curl,\" a processing method producing dense black tea pellets designed specifically for brisk, bold, milky chai."}],"imageQuery":"masala chai steaming hot indian spiced tea cardamom ginger clay cup","imageUrl":"https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=800&q=80","alsoLike":[]}];
+    let activeRecipeId = 'butter-chicken-makhani';
+    let activeCategory = 'All';
+
+    function getCategories() {
+      const cats = { 'All': recipes.length };
+      recipes.forEach(r => {
+        cats[r.category] = (cats[r.category] || 0) + 1;
+      });
+      return cats;
+    }
+
+    function renderCategories() {
+      const container = document.getElementById('categoriesBar');
+      if (!container) return;
+      const cats = getCategories();
+      container.innerHTML = Object.keys(cats).map(cat => {
+        const isActive = cat === activeCategory;
+        return `<button class="cat-chip ${isActive ? 'active' : ''}" onclick="filterCategory('${cat}')">${cat} (${cats[cat]})</button>`;
+      }).join('');
+    }
+
+    function filterCategory(cat) {
+      activeCategory = cat;
+      renderCategories();
+      renderGrid(document.getElementById('recipeSearchInput')?.value || '');
+    }
+
+    function renderGrid(filter = '') {
+      const grid = document.getElementById('recipeGrid');
+      const filtered = recipes.filter(r => {
+        const matchSearch = r.name.toLowerCase().includes(filter.toLowerCase()) || 
+                            r.nativeName.toLowerCase().includes(filter.toLowerCase()) ||
+                            r.category.toLowerCase().includes(filter.toLowerCase());
+        const matchCat = activeCategory === 'All' || r.category === activeCategory;
+        return matchSearch && matchCat;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; padding: 24px; text-align: center; color: #6b7280; background: #fff; border-radius: 4px; border: 1px dashed #d1d5db;">No recipes found matching your query. <a href="javascript:void(0)" onclick="viewAllRecipes()" style="color:#d97706; font-weight:bold;">View all ' + recipes.length + ' recipes</a></div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map((r) => {
+        const isActive = r.id === activeRecipeId;
+        return `
+          <article class="recipe-card ${isActive ? 'active-card' : ''}" onclick="selectRecipe('${r.id}')" title="Click to view details for ${r.name}">
+            <div class="card-photo" style="background-image:url('${r.imageUrl}')">
+              <span class="card-badge">${r.category}</span>
+            </div>
+            <div class="recipe-card-content">
+              <h3>${r.name}</h3>
+              <p><span>◷ ${r.prepTime + r.cookTime}m</span> <span>♨ ${r.difficulty}</span></p>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function selectRecipe(id) {
+      const recipe = recipes.find(r => r.id === id);
+      if (!recipe) return;
+      activeRecipeId = id;
+
+      document.getElementById('detailImage').style.backgroundImage = 
+        "linear-gradient(90deg, rgba(5,15,16,.95) 0%, rgba(5,15,16,.55) 42%, transparent 70%), url('" + recipe.imageUrl + "')";
+      
+      document.getElementById('detailBreadcrumbs').innerText = 'Home　›　Recipes　›　' + recipe.category;
+      document.getElementById('detailTitle').innerHTML = recipe.name + '<br>(' + recipe.nativeName + ')';
+      document.getElementById('detailRating').innerHTML = '★★★★★ <small>' + recipe.rating + ' (' + recipe.reviewsCount + ' reviews)</small>';
+      document.getElementById('detailIntro').innerText = recipe.intro;
+
+      document.getElementById('detailFacts').innerHTML = 
+        '<span>◉ Prep ' + recipe.prepTime + ' min</span>' +
+        '<span>◉ Cook ' + recipe.cookTime + ' min</span>' +
+        '<span>◉ Yield ' + recipe.yieldServings + ' serv</span>' +
+        '<span>◉ ' + recipe.calories + ' kcal</span>';
+
+      document.getElementById('detailIngredients').innerHTML = 
+        recipe.ingredients.map(ing => '<li>' + ing + '</li>').join('');
+
+      document.getElementById('detailInstructions').innerHTML = 
+        recipe.instructions.map(ins => '<li>' + ins + '</li>').join('');
+
+      document.getElementById('detailTips').innerHTML = 
+        '<strong>' + recipe.tips.title + '</strong><p>' + recipe.tips.description + '</p>';
+
+      document.getElementById('detailVariations').innerHTML = 
+        '<strong>' + recipe.variations.title + '</strong><p>' + recipe.variations.description + '</p>';
+
+      document.getElementById('faqContainer').innerHTML = 
+        recipe.faqs.map(faq => 
+          '<div class="faq-item" onclick="this.classList.toggle(\'open\')">' +
+          '<div><span>' + faq.question + '</span><b>⌄</b></div>' +
+          '<small>' + faq.answer + '</small>' +
+          '</div>'
+        ).join('');
+
+      const recs = (recipe.alsoLike && recipe.alsoLike.length > 0) 
+        ? recipe.alsoLike 
+        : recipes.filter(r => r.id !== recipe.id).slice(0, 4);
+
+      document.getElementById('alsoContainer').innerHTML = 
+        recs.map((also) => 
+          '<article class="also-card" onclick="selectRecipeByName(\'' + also.name.replace(/'/g, "\\'") + '\')">' +
+          '<div class="mini" style="background-image:url(\'' + also.imageUrl + '\')"></div>' +
+          '<span>' + also.name + '</span>' +
+          '</article>'
+        ).join('');
+
+      renderGrid(document.getElementById('recipeSearchInput')?.value || '');
+
+      if (window.innerWidth <= 950) {
+        document.getElementById('detailPanel').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function selectRecipeByName(name) {
+      const found = recipes.find(r => r.name.toLowerCase().includes(name.toLowerCase()) || r.nativeName.toLowerCase().includes(name.toLowerCase()));
+      if (found) {
+        selectRecipe(found.id);
+      }
+    }
+
+    function viewAllRecipes() {
+      activeCategory = 'All';
+      renderCategories();
+      const input = document.getElementById('recipeSearchInput');
+      if (input) input.value = '';
+      renderGrid('');
+      document.getElementById('recipeGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function focusCategories() {
+      document.getElementById('recipeGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* Modal Handlers */
+    function openAboutModal() {
+      document.getElementById('aboutModal').classList.add('open');
+    }
+    function closeAboutModal(e) {
+      if (!e || e.target === document.getElementById('aboutModal') || e.target.classList.contains('modal-close')) {
+        document.getElementById('aboutModal').classList.remove('open');
+      }
+    }
+    function switchModalTab(tabId) {
+      document.querySelectorAll('.modal-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.modal-section').forEach(s => s.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(tabId)?.classList.add('active');
+    }
+    function jumpToRecipe(id) {
+      closeAboutModal();
+      selectRecipe(id);
+      document.getElementById('detailPanel').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCategories();
+      renderGrid();
+
+      const searchInput = document.getElementById('recipeSearchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          renderGrid(e.target.value);
+        });
+      }
+
+      const searchBtn = document.getElementById('recipeSearchBtn');
+      if (searchBtn) {
+        searchBtn.addEventListener('click', () => {
+          renderGrid(searchInput.value);
+        });
+      }
+    });
+
+    renderCategories();
+    renderGrid();
+  </script>
+</body>
+</html>

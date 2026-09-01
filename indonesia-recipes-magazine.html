@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Indonesia Recipes - INDONESIAN CULINARY HERITAGE</title>
+  <meta name="description" content="Rich Spices of the Thousand Islands - Authentic Indonesia culinary traditions, recipes, and culture." />
+  <style>
+    /* Reset & Base Setup */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100%;
+      background: #110e0c;
+      color: #fbf4e8;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    /* Magazine App Shell */
+    .app-shell {
+      width: 100%;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(650px, 62%) minmax(400px, 38%);
+      gap: 7px;
+      padding: 6px 14px;
+    }
+
+    .main-column, .detail-panel {
+      border: 1px solid #8c6b4b;
+      border-radius: 9px;
+      overflow: hidden;
+      background: #181310;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Topbar */
+    .topbar {
+      height: 48px;
+      background: #0a0705;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: Georgia, serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .brand-mark {
+      font-size: 20px;
+      color: #f09e2e;
+    }
+    .topbar nav {
+      display: flex;
+      gap: 16px;
+    }
+    .topbar nav a {
+      color: #d1d5db;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 11px;
+      transition: color 0.15s ease;
+      cursor: pointer;
+    }
+    .topbar nav a:hover, .topbar nav a.active {
+      color: #f09e2e;
+    }
+    .search {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 28px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid #4b5563;
+      border-radius: 4px;
+      overflow: hidden;
+      width: 170px;
+    }
+    .search input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 10px;
+      padding: 0 8px;
+      width: 135px;
+    }
+    .search input::placeholder { color: #9ca3af; }
+    .search b {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 28px;
+      background: #f09e2e;
+      color: #261502;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 290px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #111;
+    }
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      padding: 24px 28px;
+      max-width: 440px;
+    }
+    .hero-copy em {
+      display: block;
+      font-family: Georgia, serif;
+      font-style: italic;
+      color: #f09e2e;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+    .hero-copy h1 {
+      font-family: Georgia, serif;
+      font-size: 32px;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 7px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    }
+    .hero-copy p {
+      font-size: 12px;
+      color: #e5e7eb;
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+    .hero-actions button {
+      background: #f09e2e;
+      color: #261502;
+      border: 1px solid #f09e2e;
+      font-weight: bold;
+      font-size: 11px;
+      padding: 7px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .hero-actions button:hover { opacity: 0.9; transform: translateY(-1px); }
+    .hero-actions button.dark-button {
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      border: 1px solid #6b7280;
+      backdrop-filter: blur(4px);
+    }
+    .hero-actions button.dark-button:hover {
+      background: rgba(0,0,0,0.8);
+      border-color: #f09e2e;
+    }
+
+    /* Popular Section */
+    .popular {
+      background: #ede0ce;
+      color: #261b11;
+      padding: 14px 16px;
+      flex: 1;
+    }
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .section-heading h2 {
+      font-family: Georgia, serif;
+      font-size: 17px;
+      font-weight: bold;
+      color: #261b11;
+    }
+    .section-heading button {
+      background: #fff;
+      border: 1px solid #d7c4aa;
+      color: #261b11;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .section-heading button:hover { background: #f3f4f6; }
+
+    /* Category Filter Chips */
+    .categories-bar {
+      display: flex;
+      gap: 5px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+    }
+    .cat-chip {
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 9px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #374151;
+      transition: all 0.15s ease;
+    }
+    .cat-chip:hover { background: #f9fafb; }
+    .cat-chip.active {
+      background: #b45309;
+      color: #fff;
+      border-color: #92400e;
+    }
+
+    /* Grid */
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+      gap: 7px;
+    }
+    .recipe-card {
+      background: #faf5eb;
+      border: 1px solid #d7c4aa;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+    .recipe-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    }
+    .recipe-card.active-card {
+      border: 2px solid #f09e2e;
+      box-shadow: 0 0 0 1px #f09e2e;
+    }
+    .card-photo {
+      height: 75px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      background-color: #374151;
+    }
+    .card-badge {
+      position: absolute;
+      bottom: 4px;
+      left: 4px;
+      background: rgba(0,0,0,0.75);
+      color: #fff;
+      font-size: 7px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+    .recipe-card-content {
+      padding: 6px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .recipe-card h3 {
+      font-size: 10px;
+      font-weight: bold;
+      color: #111827;
+      line-height: 1.25;
+      margin-bottom: 2px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .recipe-card p {
+      font-size: 8px;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 3px;
+      margin-top: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Detail Panel */
+    .detail-panel {
+      background: #f5eee3;
+      color: #261b11;
+    }
+    .detail-image {
+      min-height: 175px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .detail-content {
+      padding: 10px 14px;
+    }
+    .breadcrumbs {
+      font-size: 9px;
+      color: #6b7280;
+      margin-bottom: 3px;
+    }
+    .detail-content h2 {
+      font-family: Georgia, serif;
+      font-size: 19px;
+      color: #261b11;
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+    .rating {
+      color: #d97706;
+      font-size: 11px;
+      margin-bottom: 6px;
+    }
+    .rating small { color: #6b7280; font-size: 9px; }
+    .intro {
+      font-size: 10px;
+      color: #374151;
+      line-height: 1.45;
+      margin-bottom: 8px;
+    }
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      background: rgba(0,0,0,0.04);
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,0,0,0.06);
+      font-size: 9px;
+      color: #1f2937;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* 2 Column Ingredients & Instructions */
+    .ingredients-instructions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 10px 14px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.4);
+    }
+    .ingredients-instructions h3 {
+      font-family: Georgia, serif;
+      font-size: 12px;
+      font-weight: bold;
+      color: #111827;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+    }
+    .ingredients-instructions ul, .ingredients-instructions ol {
+      padding-left: 14px;
+      font-size: 9.5px;
+      color: #374151;
+      line-height: 1.5;
+    }
+    .ingredients-instructions li { margin-bottom: 3px; }
+
+    /* Tips & Variations */
+    .tips {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      padding: 6px 14px 10px;
+    }
+    .tip-card {
+      background: #15313d;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 1.35;
+    }
+    .tip-card strong {
+      display: block;
+      color: #f09e2e;
+      font-size: 10px;
+      margin-bottom: 2px;
+      font-family: Georgia, serif;
+    }
+    .variation-card {
+      background: #164332;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 1.35;
+    }
+    .variation-card strong {
+      display: block;
+      color: #a7f3d0;
+      font-size: 10px;
+      margin-bottom: 2px;
+      font-family: Georgia, serif;
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 6px 14px;
+    }
+    .faq h3 {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #111827;
+    }
+    .faq-item {
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 3px;
+      margin-bottom: 4px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .faq-item div {
+      padding: 5px 8px;
+      font-weight: bold;
+      font-size: 9.5px;
+      color: #1f2937;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-item small {
+      display: none;
+      padding: 5px 8px 7px;
+      font-size: 9px;
+      color: #4b5563;
+      border-top: 1px solid #f3f4f6;
+      line-height: 1.4;
+      background: #f9fafb;
+    }
+    .faq-item.open small { display: block; }
+
+    /* You Might Also Like */
+    .also {
+      background: #143c30;
+      color: #fff;
+      padding: 10px 14px;
+      margin-top: auto;
+    }
+    .also h3 {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .also-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+    .also-card {
+      cursor: pointer;
+      text-align: center;
+    }
+    .also-card .mini {
+      height: 48px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 3px;
+      transition: border-color 0.15s;
+    }
+    .also-card:hover .mini { border-color: #f09e2e; }
+    .also-card span {
+      font-size: 8.5px;
+      font-weight: bold;
+      color: #e5e7eb;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Modal for About Swedish Cuisine */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(6px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-container {
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      background: #0e161c;
+      border: 1px solid rgba(217, 119, 6, 0.4);
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      color: #e2e8f0;
+    }
+    .modal-header {
+      padding: 16px 20px;
+      background: linear-gradient(90deg, #0d222b, #122c37);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-header h2 {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      color: #fff;
+    }
+    .modal-close {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-nav {
+      display: flex;
+      gap: 6px;
+      padding: 8px 16px;
+      background: #091116;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      overflow-x: auto;
+    }
+    .modal-tab-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .modal-tab-btn.active {
+      background: #d97706;
+      color: #0f172a;
+      font-weight: bold;
+    }
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .modal-section { display: none; }
+    .modal-section.active { display: block; }
+    .modal-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .modal-card h4 {
+      font-size: 12px;
+      color: #fbbf24;
+      margin-bottom: 4px;
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 950px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+        padding: 4px 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-shell" id="topAnchor">
+    <!-- LEFT MAIN COLUMN -->
+    <main class="main-column">
+      <header class="topbar">
+        <div class="brand" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+          <span class="brand-mark">🪷</span>
+          <span>INDONESIAN<br>CULINARY HERITAGE</span>
+        </div>
+        <nav>
+          <a href="javascript:void(0)" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="active">Home</a>
+          <a href="javascript:void(0)" onclick="viewAllRecipes()">Recipes</a>
+          <a href="javascript:void(0)" onclick="focusCategories()">Categories</a>
+          <a href="javascript:void(0)" onclick="openAboutModal()">About</a>
+        </nav>
+        <div class="search">
+          <input type="text" id="recipeSearchInput" placeholder="Search 30 recipes..." aria-label="Search recipes" />
+          <b id="recipeSearchBtn">⌕</b>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-photo" style="background-image: linear-gradient(90deg, #110e0cF2 0%, #110e0cB8 41%, #110e0c0D 80%), url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85');"></div>
+        <div class="hero-copy">
+          <em>Rich Spices of the Thousand Islands</em>
+          <h1>Authentic Indonesian<br>Recipes</h1>
+          <p>Aromatic galangal, lemongrass, caramelized coconut rendangs,<br>and sizzling satays from the spice islands.</p>
+          <div class="hero-actions">
+            <button onclick="document.getElementById('recipeGridSection').scrollIntoView({behavior:'smooth'})">Explore Spice Recipes</button>
+            <button class="dark-button" onclick="openAboutModal()">About Nusantara Flavors</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="popular" id="recipeGridSection">
+        <div class="section-heading">
+          <h2>❧ Treasures of Nusantara Cuisine ❧</h2>
+          <button id="viewAllBtn" onclick="viewAllRecipes()">View All (30) →</button>
+        </div>
+
+        <div class="categories-bar" id="categoriesBar"></div>
+
+        <div class="recipe-grid" id="recipeGrid"></div>
+      </section>
+    </main>
+
+    <!-- RIGHT DETAIL PANEL -->
+    <aside class="detail-panel" id="detailPanel">
+      <div class="detail-image" id="detailImage" style="background-image: linear-gradient(90deg, rgba(5,15,16,.95) 0%, rgba(5,15,16,.55) 42%, transparent 70%), url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80');"></div>
+      <div class="detail-content" id="detailContent">
+        <div class="breadcrumbs" id="detailBreadcrumbs">Home　›　Recipes　›　Main Feast</div>
+        <h2 id="detailTitle">Padang Beef Rendang<br>(Rendang Daging Sapi Minangkabau)</h2>
+        <div class="rating" id="detailRating">★★★★★ <small>5 (1420 reviews)</small></div>
+        <p class="intro" id="detailIntro">CNN’s World #1 Dish: beef chuck slow-braised in rich coconut milk and aromatic bumbu rempah paste until liquid evaporates and meat caramelizes into dark, tender, intensely spiced perfection.</p>
+        <div class="facts" id="detailFacts">
+          <span>◉ Prep 35 min</span>
+          <span>◉ Cook 180 min</span>
+          <span>◉ Yield 6 serv</span>
+          <span>◉ 540 kcal</span>
+        </div>
+      </div>
+
+      <div class="ingredients-instructions" id="ingredientsInstructions">
+        <section>
+          <h3>Ingredients</h3>
+          <ul id="detailIngredients">
+            <li>1 kg beef chuck, cut into 4 cm cubes</li><li>1 L fresh thick coconut milk & 500 ml thin coconut milk</li><li>Spice Paste (Bumbu): Shallots, garlic, curly red chilies, ginger, galangal, turmeric, candlenuts</li><li>Aromatics: 3 bruised lemongrass stalks, 5 kaffir lime leaves, 2 turmeric leaves, 3 Indonesian bay leaves (daun salam)</li><li>1 piece asam kandis or tamarind paste, sea salt to taste</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Instructions</h3>
+          <ol id="detailInstructions">
+            <li>Blend shallots, garlic, chilies, ginger, galangal, turmeric, and candlenuts into a smooth spice paste.</li><li>Combine spice paste, coconut milk, lemongrass, kaffir lime leaves, turmeric leaves, and bay leaves in a wide wok.</li><li>Bring to a boil while stirring continuously to prevent coconut milk from splitting.</li><li>Add beef chunks, reduce heat to low, and simmer gently for 2 hours until coconut milk turns oily (kalio stage).</li><li>Continue cooking on low heat while stirring carefully until liquid is fully absorbed and the spices turn dark mahogany brown.</li>
+          </ol>
+        </section>
+      </div>
+
+      <div class="tips" id="tipsBlock">
+        <div class="tip-card" id="detailTips">
+          <strong>Continuous Stirring</strong>
+          <p>In the final hour, stir constantly to prevent bottom scorching while spices caramelize.</p>
+        </div>
+        <div class="variation-card" id="detailVariations">
+          <strong>Chicken Rendang</strong>
+          <p>Use bone-in chicken thighs cooked for 60 minutes.</p>
+        </div>
+      </div>
+
+      <section class="faq" id="faqSection">
+        <h3>Frequently Asked Questions</h3>
+        <div id="faqContainer">
+          
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+              <div><span>How long does rendang last?</span><b>⌄</b></div>
+              <small>Properly caramelized dry rendang stays fresh for weeks at room temp.</small>
+            </div>
+          
+        </div>
+      </section>
+
+      <section class="also" id="alsoSection">
+        <h3>You Might Also Like</h3>
+        <div class="also-grid" id="alsoContainer">
+          
+            <article class="also-card" onclick="selectRecipeByName('Nasi Goreng Spesial')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Nasi Goreng Spesial</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Sate Ayam Madura')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Sate Ayam Madura</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Gado-Gado Salad')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1592417817098-8f3d69109853?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Gado-Gado Salad</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Soto Betawi')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Soto Betawi</span>
+            </article>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- ABOUT EDITORIAL MODAL -->
+  <div class="modal-overlay" id="aboutModal" onclick="closeAboutModal(event)">
+    <div class="modal-container" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div>
+          <span style="font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #fbbf24; font-weight: bold;">Editorial Compendium</span>
+          <h2>About Indonesian Cuisine (Nusantara)</h2>
+        </div>
+        <button class="modal-close" onclick="closeAboutModal()">✕</button>
+      </div>
+
+      <div class="modal-nav">
+        <button class="modal-tab-btn active" onclick="switchModalTab('mod-intro')">Introduction & Pillars</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-dishes')">Popular Dishes</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-fika')">Street & Pasar</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-ingredients')">Ingredients</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-traditions')">Traditions</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-regional')">Regional</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-faq')">FAQ</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- INTRO TAB -->
+        <div class="modal-section active" id="mod-intro">
+          <div class="modal-card" style="background: linear-gradient(135deg, rgba(217,119,6,0.15), rgba(15,23,42,0.6)); border-color: rgba(217,119,6,0.3);">
+            <em style="color: #fbbf24; font-family: Georgia, serif; font-size: 13px; display: block; margin-bottom: 4px;">The Spice Islands: thousands of islands, ancient bumbu pastes, and caramelized coconut rendang.</em>
+            <h3 style="font-family: Georgia, serif; font-size: 15px; color: #fff; margin-bottom: 8px;">Introduction to Indonesian Food (Masakan Nusantara)</h3>
+            <p style="margin-bottom: 6px;">Indonesia is the historic Spice Islands of world trade—an archipelago spanning over 17,000 islands and hundreds of ethnic groups, each contributing unique chili sambals, aromatic roots, and heritage cooking techniques.</p><p style="margin-bottom: 6px;">Indonesian cooking is celebrated for its intense, multi-layered depth: sweet palm sugar, sour tamarind, pungent shrimp paste, creamy coconut milk, and fiery bird’s eye chilies harmonizing in perfect balance.</p>
+          </div>
+
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin: 14px 0 8px;">The Core Pillars of Nusantara Cuisine</h3>
+          <p style="margin-bottom: 10px;">Built upon fresh stone-ground spice pastes (Bumbu), fragrant rice accompaniments, and artisanal fermented sambals.</p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>01. The Sacred Bumbu Rempah</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Fresh spice pastes ground on stone cobek mortars using shallots, garlic, galangal, turmeric, and ginger.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>02. Slow Caramelization (Kalio to Rendang)</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Simmering meats in spiced coconut milk until water evaporates and spices fry in pure coconut oil.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>03. Sambal as the Soul of the Meal</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Over 300 regional chili sambals providing personalized heat, acidity, and umami.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>04. Wok Hei & Charcoal Fire</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Fierce street wok tossing and coconut shell charcoal grilling that imparts irresistible smoky perfume.</p>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- DISHES TAB -->
+        <div class="modal-section" id="mod-dishes">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 6px;">Iconic Dishes of Indonesian Gastronomy</h3>
+          <p style="margin-bottom: 12px; color: #94a3b8;">World-renowned masterpieces voted among the most delicious foods on Earth.</p>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Padang Beef Rendang <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Rendang Daging Minangkabau)</em></h4>
+                <p style="margin-bottom: 4px;">Beef chuck slow-braised in rich coconut milk, lemongrass, and 12 spices until dark mahogany and caramelized.</p>
+                <small style="color: #93c5fd;">Cultural Note: Voted CNN’s World #1 Dish, representing Minangkabau hospitality and philosophy.</small>
+              </div>
+              <button onclick="jumpToRecipe('rendang-sapi')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Special Fried Rice <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Nasi Goreng Spesial Komplit)</em></h4>
+                <p style="margin-bottom: 4px;">Smoky wok-tossed chilled rice with sweet soy sauce (kecap manis), shrimp paste, chicken, and sunny-side-up egg.</p>
+                <small style="color: #93c5fd;">Cultural Note: Indonesia’s universal national comfort food eaten from street carts to state banquets.</small>
+              </div>
+              <button onclick="jumpToRecipe('nasi-goreng-spesial')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Madura Chicken Satay <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Sate Ayam Bumbu Kacang)</em></h4>
+                <p style="margin-bottom: 4px;">Charcoal-grilled chicken skewers drenched in roasted sweet peanut sauce, kecap manis, and fried shallots.</p>
+                <small style="color: #93c5fd;">Cultural Note: The world’s most recognized skewered street meat with rich peanut sauce.</small>
+              </div>
+              <button onclick="jumpToRecipe('sate-ayam-madura')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Jakarta Soto Betawi <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Soto Betawi Kuah Santan)</em></h4>
+                <p style="margin-bottom: 4px;">Tender beef shank in a creamy coconut and evaporated milk broth scented with nutmeg and lemongrass.</p>
+                <small style="color: #93c5fd;">Cultural Note: Jakarta’s indigenous heritage soup topped with bitter-crisp emping melinjo crackers.</small>
+              </div>
+              <button onclick="jumpToRecipe('soto-betawi')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Gado-Gado Salad <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Gado-Gado Jakarta)</em></h4>
+                <p style="margin-bottom: 4px;">Blanched greens, bean sprouts, fried tofu, tempeh, and boiled egg drenched in rich tamarind peanut dressing.</p>
+                <small style="color: #93c5fd;">Cultural Note: Indonesia’s national salad celebrating plant-based richness.</small>
+              </div>
+              <button onclick="jumpToRecipe('gado-gado')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+        </div>
+
+        <!-- CULTURE / FIKA TAB -->
+        <div class="modal-section" id="mod-fika">
+          <div class="modal-card" style="background: rgba(180,83,9,0.15);">
+            <h4>Indonesian Jajanan Pasar & Sweets</h4>
+            <p style="margin-bottom: 6px;">Traditional morning market snacks (jajanan pasar) crafted from fragrant pandan juice, glutinous rice flour, fresh coconut, and dark palm sugar.</p>
+            <p style="font-style: italic; color: #fde68a;">"Enjoying hot sweet ginger tea (Wedang Jahe) or thick black tubruk coffee alongside warm steamed market cakes on rainy tropical mornings."</p>
+          </div>
+          <h4 style="color:#fff; margin: 12px 0 8px;">Popular Regional Treats & Specialties</h4>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>Martabak Manis (Terang Bulan) (Martabak Manis Cokelat Keju)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Thick honeycomb pancake slathered with Dutch butter, chocolate sprinkles, roasted peanuts, cheddar cheese, and condensed milk.</p>
+                <button onclick="jumpToRecipe('martabak-manis')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+              <div class="modal-card">
+                <h4>Pandan Klepon Rice Balls (Klepon Gula Merah Lumer)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Green pandan rice balls rolled in grated salted coconut, exploding in the mouth with molten liquid palm sugar.</p>
+                <button onclick="jumpToRecipe('klepon-pandan')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+              <div class="modal-card">
+                <h4>Iced Cendol Dawet (Es Cendol Dawet Ayu)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Chewy pandan droplets over rich coconut milk, dark palm sugar syrup, jackfruit, and crushed ice.</p>
+                <button onclick="jumpToRecipe('es-cendol-dawet')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- INGREDIENTS TAB -->
+        <div class="modal-section" id="mod-ingredients">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Essential Indonesian Pantry Ingredients</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🍶 <strong style="color:#fff; font-size:11px;">Kecap Manis (Sweet Soy Sauce)</strong> <em style="font-size:9px; color:#fbbf24;">(Kecap Manis Tradisional)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Thick, molasses-rich sweet soy sauce infused with palm sugar and star anise.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Stir-fries, satay marinades, fried rice, and dipping sauces.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🫚 <strong style="color:#fff; font-size:11px;">Lengkuas (Galangal)</strong> <em style="font-size:9px; color:#fbbf24;">(Laos / Lengkuas Segar)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Pungent rhizome with a sharp citrusy pine aroma essential to rendang and soto.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Pounded in spice pastes and bruised in simmering curries.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🍃 <strong style="color:#fff; font-size:11px;">Pandan Leaves (Daun Pandan)</strong> <em style="font-size:9px; color:#fbbf24;">(Daun Pandan Wangi)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">The "vanilla of the East" providing intense floral grassy aroma and natural green color.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Steaming fragrant rice, flavoring coconut milk, and traditional desserts.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🦐 <strong style="color:#fff; font-size:11px;">Terasi (Shrimp Paste)</strong> <em style="font-size:9px; color:#fbbf24;">(Terasi Udang Fermentasi)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Sun-dried fermented shrimp blocks delivering deep savory umami when toasted.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Fried rice, spicy sambals, and vegetable stir-fries.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🥥 <strong style="color:#fff; font-size:11px;">Gula Jawa (Palm Sugar)</strong> <em style="font-size:9px; color:#fbbf24;">(Gula Merah Kelapa)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Unrefined dark coconut palm sugar with deep caramel and butterscotch notes.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Sweet peanut sauces, marinades, and traditional desserts.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌿 <strong style="color:#fff; font-size:11px;">Daun Jeruk (Kaffir Lime Leaves)</strong> <em style="font-size:9px; color:#fbbf24;">(Daun Jeruk Purut)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Double leaves packed with refreshing, citrusy essential oils.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Torn fresh into rendang, soups, and fried chicken.</small>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- TRADITIONS TAB -->
+        <div class="modal-section" id="mod-traditions">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Indonesian Culinary Traditions & Feasts</h3>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Tumpeng Cone Celebration</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">Birthdays & Milestones</span>
+              </div>
+              <p style="margin-bottom: 6px;">A majestic golden yellow rice cone representing sacred Mount Meru, surrounded by 7 auspicious side dishes.</p>
+              <small style="color: #fbbf24;">Staples: Nasi Kuning Cone, Ayam Goreng, Sambal Goreng Ati, Urap Sayur</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Lebaran (Eid al-Fitr) Feast</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">End of Ramadan</span>
+              </div>
+              <p style="margin-bottom: 6px;">The grand holiday banquet featuring white chicken curry, woven coconut ketupat rice cakes, and spicy liver sambal.</p>
+              <small style="color: #fbbf24;">Staples: Opor Ayam, Ketupat Rice, Sambal Goreng Kentang, Rendang</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Megibung Communal Feast</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">Balinese Ceremonies</span>
+              </div>
+              <p style="margin-bottom: 6px;">A traditional Balinese feast where 5-8 people sit together around a large banana leaf platter to eat as one family.</p>
+              <small style="color: #fbbf24;">Staples: Ayam Betutu, Lawar, Sambal Matah, Sate Lilit</small>
+            </div>
+          
+        </div>
+
+        <!-- REGIONAL TAB -->
+        <div class="modal-section" id="mod-regional">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Regional Flavors Across the Archipelago</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>🧭 Sumatra (Padang, Palembang, Medan)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Fiery dried chilies, thick coconut milk curries, turmeric leaves, and rich beef rendangs.</p>
+                <small style="color: #fbbf24;">Specialties: Rendang, Sate Padang, Pempek Palembang, Gulai Kambing</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 Java (Jakarta, Yogyakarta, Surabaya)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Sweet palm sugar accents, rich peanut sauces, slow-braised bacem tofu, and savory beef soups.</p>
+                <small style="color: #fbbf24;">Specialties: Soto Betawi, Rawon Surabaya, Gado-Gado, Gudeg Yogya</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 Bali & Lombok (Spice & Fire)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Aromatic bumbu genep pastes, raw sambal matah, roasted duck betutu, and fiery ayam taliwang.</p>
+                <small style="color: #fbbf24;">Specialties: Ayam Betutu, Ikan Bakar Jimbaran, Ayam Taliwang, Sambal Matah</small>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- FAQ TAB -->
+        <div class="modal-section" id="mod-faq">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Frequently Asked Questions</h3>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">Why is Beef Rendang cooked for so many hours?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Slow cooking allows the coconut milk water to evaporate until pure coconut oil separates, naturally caramelizing and preserving the beef.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">What is the secret to authentic Nasi Goreng?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Using chilled, day-old dry jasmine rice tossed in a smoking hot wok with sweet kecap manis and toasted shrimp paste.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">What makes Indonesian peanut sauce different from others?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Indonesian peanut sauce uses fresh roasted peanuts stone-ground with garlic, bird’s eye chilies, kaffir lime, tamarind, and dark palm sugar.</p>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const recipes = [{"id":"rendang-sapi","name":"Padang Beef Rendang","nativeName":"Rendang Daging Sapi Minangkabau","category":"Main Feast","prepTime":35,"cookTime":180,"yieldServings":6,"calories":540,"difficulty":"Advanced","rating":5,"reviewsCount":1420,"intro":"CNN’s World #1 Dish: beef chuck slow-braised in rich coconut milk and aromatic bumbu rempah paste until liquid evaporates and meat caramelizes into dark, tender, intensely spiced perfection.","ingredients":["1 kg beef chuck, cut into 4 cm cubes","1 L fresh thick coconut milk & 500 ml thin coconut milk","Spice Paste (Bumbu): Shallots, garlic, curly red chilies, ginger, galangal, turmeric, candlenuts","Aromatics: 3 bruised lemongrass stalks, 5 kaffir lime leaves, 2 turmeric leaves, 3 Indonesian bay leaves (daun salam)","1 piece asam kandis or tamarind paste, sea salt to taste"],"instructions":["Blend shallots, garlic, chilies, ginger, galangal, turmeric, and candlenuts into a smooth spice paste.","Combine spice paste, coconut milk, lemongrass, kaffir lime leaves, turmeric leaves, and bay leaves in a wide wok.","Bring to a boil while stirring continuously to prevent coconut milk from splitting.","Add beef chunks, reduce heat to low, and simmer gently for 2 hours until coconut milk turns oily (kalio stage).","Continue cooking on low heat while stirring carefully until liquid is fully absorbed and the spices turn dark mahogany brown."],"tips":{"title":"Continuous Stirring","description":"In the final hour, stir constantly to prevent bottom scorching while spices caramelize."},"variations":{"title":"Chicken Rendang","description":"Use bone-in chicken thighs cooked for 60 minutes."},"faqs":[{"question":"How long does rendang last?","answer":"Properly caramelized dry rendang stays fresh for weeks at room temp."}],"imageQuery":"indonesian beef rendang curry rich spices","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Nasi Goreng Spesial","imageQuery":"nasi goreng","imageUrl":"https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=80"},{"name":"Sate Ayam Madura","imageQuery":"satay chicken","imageUrl":"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80"},{"name":"Gado-Gado Salad","imageQuery":"gado gado salad","imageUrl":"https://images.unsplash.com/photo-1592417817098-8f3d69109853?auto=format&fit=crop&w=800&q=80"},{"name":"Soto Betawi","imageQuery":"soto soup","imageUrl":"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80"}]},{"id":"nasi-goreng-spesial","name":"Indonesian Special Fried Rice","nativeName":"Nasi Goreng Spesial Komplit","category":"Street & Wok","prepTime":15,"cookTime":10,"yieldServings":2,"calories":460,"difficulty":"Easy","rating":4.9,"reviewsCount":920,"intro":"Smoky wok-tossed chilled rice with sweet soy sauce (kecap manis), shrimp paste (terasi), chicken strips, sunny-side-up egg, crispy kerupuk prawn crackers, and fresh cucumber slices.","ingredients":["400 g day-old chilled cooked jasmine rice","2 tbsp Indonesian sweet soy sauce (Kecap Manis)","1 tbsp sambal oelek & 1 tsp toasted shrimp paste (terasi)","3 shallots & 2 garlic cloves, finely minced","100 g shredded cooked chicken & 6 peeled prawns","2 eggs (1 scrambled in wok, 1 sunny-side up for topping)","Fried shallots (bawang goreng) & prawn crackers (kerupuk)"],"instructions":["Heat oil in hot wok. Sauté minced shallots, garlic, and shrimp paste until fragrant.","Add prawns and chicken; push to side of wok and scramble 1 egg.","Add cold rice and break up clumps over high heat.","Pour kecap manis, sambal, and soy sauce around rim of wok, tossing rapidly to caramelize (wok hei).","Plate with sunny-side-up egg on top, sprinkle with fried shallots, and serve with kerupuk and pickles."],"tips":{"title":"Day-Old Rice","description":"Cold day-old rice is dry enough to absorb sauces without turning mushy."},"variations":{"title":"Nasi Goreng Seafood","description":"Toss with squid, prawns, and fish cakes."},"faqs":[{"question":"What is Kecap Manis?","answer":"A thick, molasses-like sweet soy sauce infused with star anise and palm sugar."}],"imageQuery":"indonesian nasi goreng fried rice egg","imageUrl":"https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"sate-ayam-madura","name":"Madura Chicken Satay with Peanut Sauce","nativeName":"Sate Ayam Madura Bumbu Kacang","category":"Street & Wok","prepTime":25,"cookTime":12,"yieldServings":4,"calories":420,"difficulty":"Easy","rating":4.9,"reviewsCount":880,"intro":"Charcoal-grilled marinated chicken skewers drenched in velvety, roasted sweet peanut sauce, kecap manis, lime juice, and crispy shallots.","ingredients":["500 g chicken thighs, cut into bite-sized cubes","20 bamboo skewers, soaked in water","Peanut Sauce: 200 g fried peanuts ground fine, 3 cloves garlic, 3 red chilies, 3 tbsp palm sugar, 3 tbsp kecap manis, lime juice","Basting: Kecap manis, oil, and a spoonful of peanut sauce","Garnishes: Lontong rice cakes, sliced shallots, bird’s eye chilies"],"instructions":["Thread 4-5 chicken cubes onto each bamboo skewer.","Dip skewers into basting sauce (kecap manis and peanut oil).","Grill over hot coconut shell charcoal for 8-10 minutes, turning and basting until charred and caramelized.","Simmer ground peanuts with aromatics, palm sugar, and water until thick and aromatic.","Douse hot skewers with warm peanut sauce, drizzle extra kecap manis, and squeeze fresh kaffir lime."],"tips":{"title":"Grind Peanuts Fresh","description":"Frying raw peanuts and grinding with garlic creates an irresistible aromatic oil."},"variations":{"title":"Sate Kambing","description":"Tender young mutton skewers served with kecap manis and shallot salsa."},"faqs":[{"question":"What is Lontong?","answer":"Compressed rice cakes wrapped in banana leaves, the classic pairing for satay."}],"imageQuery":"indonesian chicken satay skewers peanut sauce","imageUrl":"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"soto-betawi","name":"Jakarta Soto Betawi Beef Soup","nativeName":"Soto Betawi Daging Kuah Santan Susu","category":"Soups & Soto","prepTime":20,"cookTime":60,"yieldServings":4,"calories":480,"difficulty":"Medium","rating":4.9,"reviewsCount":710,"intro":"Jakarta’s aromatic heritage soup: tender braised beef shank in a creamy coconut milk and evaporated milk broth infused with nutmeg, cloves, lemongrass, and crispy emping crackers.","ingredients":["600 g beef brisket or shank, cubed & boiled tender","500 ml beef broth & 400 ml fresh coconut milk + 200 ml evaporated milk","Spice Paste: Shallots, garlic, candlenuts, ginger, coriander, nutmeg","Whole Spices: 2 lemongrass stalks, 4 cloves, 1 cinnamon stick, 3 cardamom pods","Toppings: Diced boiled potatoes, sliced tomatoes, emping melinjo crackers, sambal, lime"],"instructions":["Boil beef until tender; reserve clear broth.","Sauté blended spice paste with whole spices until fragrant and oil separates.","Pour spices into beef broth; add coconut milk and evaporated milk.","Simmer on low heat while stirring gently so milk does not curdle.","Add cooked beef chunks and simmer 15 minutes to absorb flavors.","Serve in bowls with potato cubes, tomato slices, crispy emping crackers, and lime juice."],"tips":{"title":"Evaporated Milk Addition","description":"Blending evaporated milk with coconut milk gives Soto Betawi its signature silky richness."},"variations":{"title":"Soto Tangkar","description":"Made with beef ribs and an extra spicy red chili broth."},"faqs":[{"question":"What are Emping crackers?","answer":"Slightly bitter, crunchy crackers made from pounded melinjo tree seeds."}],"imageQuery":"soto betawi beef coconut soup emping","imageUrl":"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"gado-gado","name":"Jakarta Gado-Gado Salad","nativeName":"Gado-Gado Jakarta Bumbu Kacang","category":"Vegetarian & Fresh","prepTime":20,"cookTime":15,"yieldServings":4,"calories":340,"difficulty":"Easy","rating":4.8,"reviewsCount":650,"intro":"Indonesia’s iconic national salad: blanched water spinach, bean sprouts, green beans, boiled potatoes, fried tofu and tempeh, hard-boiled eggs, drenched in rich aromatic tamarind-peanut dressing.","ingredients":["Blanched veggies: 1 bunch kangkung (water spinach), 100 g bean sprouts, 100 g long beans, 1 sliced cucumber","Proteins: 1 block fried firm tofu, 1 block fried tempeh (cubed), 2 hard-boiled eggs","1 boiled potato, sliced","Peanut Dressing: 200 g fried peanuts, 2 garlic cloves, 3 bird’s eye chilies, 1 tbsp tamarind pulp, 2 tbsp palm sugar, 1 tsp shrimp paste (optional), water to emulsify","Emping melinjo crackers & fried shallots"],"instructions":["Grind garlic, chilies, palm sugar, tamarind, and fried peanuts on a stone cobek mortar.","Add warm water gradually until a thick, glossy peanut sauce forms.","Arrange blanched vegetables, sliced potato, fried tofu, tempeh, and egg quarters on a platter.","Pour rich peanut dressing generously over all ingredients.","Top with crispy emping crackers and a shower of golden fried shallots."],"tips":{"title":"Grind on Stone Cobek","description":"Grinding peanut sauce directly on stone mortar releases natural peanut oils."},"variations":{"title":"Karedok","description":"Sundanese version using entirely raw, crunchy vegetables."},"faqs":[{"question":"Is Gado-Gado vegetarian?","answer":"Yes! Simply omit shrimp paste (terasi) for a 100% plant-based feast."}],"imageQuery":"gado gado indonesian peanut salad egg tofu","imageUrl":"https://images.unsplash.com/photo-1592417817098-8f3d69109853?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"rawon-surabaya","name":"Surabaya Black Beef Soup (Rawon)","nativeName":"Rawon Daging Sapi Kluwek Jawa Timur","category":"Soups & Soto","prepTime":25,"cookTime":90,"yieldServings":4,"calories":490,"difficulty":"Medium","rating":5,"reviewsCount":820,"intro":"East Java’s dark jewel: tender beef brisket slow-simmered in an inky black broth flavored with fermented keluak black nuts, lemongrass, kaffir lime leaves, and served with salted duck egg.","ingredients":["700 g beef brisket or chuck, cut into 3 cm cubes","5 black fermented Keluak nuts (cracked open, soft black pulp soaked in warm water)","Spice Paste: Shallots, garlic, candlenuts, ginger, galangal, turmeric, coriander, cumin","Aromatics: 2 lemongrass stalks, 4 kaffir lime leaves, 2 daun salam bay leaves","Accompaniments: Short bean sprouts (tauge pendek), salted duck egg, sambal terasi, shrimp crackers"],"instructions":["Scoop black keluak pulp from shells, soak in warm water, and blend with spice paste into a smooth dark paste.","Sauté dark spice paste in oil with lemongrass and kaffir lime leaves until deeply fragrant.","Add beef chunks and toss to coat in black spices.","Pour in 1.5 L water or beef stock, bring to a boil, then simmer on low heat for 1.5 hours until beef is tender.","Serve in deep bowls with steamed white rice, raw short bean sprouts, halved salted egg, and fiery sambal."],"tips":{"title":"Taste Keluak First","description":"Always taste a tiny pinch of raw keluak pulp; discard any nuts that taste bitter."},"variations":{"title":"Rawon Buntut","description":"Made with rich, gelatinous oxtail."},"faqs":[{"question":"What gives Rawon its black color?","answer":"Keluak (Pangium edule) nuts undergo fermentation to create their unique earthy black color and nutty flavor."}],"imageQuery":"rawon surabaya black beef soup salted egg","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"ayam-betutu-bali","name":"Balinese Roast Chicken (Ayam Betutu)","nativeName":"Ayam Betutu Khas Gilimanuk","category":"Main Feast","prepTime":30,"cookTime":120,"yieldServings":4,"calories":520,"difficulty":"Advanced","rating":4.9,"reviewsCount":760,"intro":"Bali’s ceremonial masterpiece: whole free-range chicken marinated in 15-spice Bumbu Genep paste, wrapped in banana leaves, and slow-roasted until fall-apart tender.","ingredients":["1 whole chicken (1.2 kg)","Bumbu Genep Paste: Shallots, garlic, red chilies, galangal, turmeric, ginger, lesser galangal (kencur), candlenuts, shrimp paste, coriander, pepper","2 lemongrass stalks & 4 kaffir lime leaves","Banana leaves & aluminum foil for wrapping","Accompaniments: Sambal matah, fried peanuts, plecing kangkung"],"instructions":["Finely chop or blend all bumbu genep aromatics; sauté in coconut oil until fragrant.","Massage two-thirds of warm spice paste all over the chicken, stuffing remaining paste into cavity.","Wrap chicken tightly in several layers of banana leaves, then seal with foil.","Slow-roast in oven at 160°C (320°F) for 2 hours (or steam 90 mins then bake 30 mins).","Unwrap fragrant steaming chicken and serve with raw sambal matah and roasted peanuts."],"tips":{"title":"Use Banana Leaves","description":"Banana leaves infuse the roasting chicken with an authentic herbal, smoky aroma."},"variations":{"title":"Bebek Betutu","description":"Traditional whole duck wrapped in palm bark and baked in rice husk embers."},"faqs":[{"question":"What is Sambal Matah?","answer":"A raw Balinese salsa of sliced shallots, bird’s eye chilies, lemongrass, kaffir lime, and hot coconut oil."}],"imageQuery":"ayam betutu balinese chicken banana leaf","imageUrl":"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"bakso-sapi","name":"Indonesian Meatball Soup (Bakso Sapi)","nativeName":"Bakso Sapi Komplit Wonogiri","category":"Street & Wok","prepTime":30,"cookTime":45,"yieldServings":4,"calories":420,"difficulty":"Medium","rating":4.9,"reviewsCount":950,"intro":"Bouncy, springy beef meatballs in clear rich marrow bone broth with yellow egg noodles, rice vermicelli, fried wontons (pangsit), and sweet soy chili sauce.","ingredients":["500 g lean beef (cold) + 150 g ice cubes & 100 g tapioca starch","1 egg white, 1 tbsp fried garlic, 1 tbsp fried shallots, 1/2 tsp baking powder, salt & white pepper","Broth: 1 kg beef marrow bones, garlic, ginger, scallions, celery leaves","Accompaniments: Yellow noodles, bihun rice vermicelli, crispy fried wontons, bok choy, sambal rawit"],"instructions":["Process cold beef with ice cubes in food processor until finely pureed.","Add tapioca starch, egg white, fried garlic, shallots, baking powder, and salt; process into a bouncy paste.","Squeeze paste through thumb and index finger into balls, drop into 80°C hot water (do not boil) until they float.","Simmer beef marrow bones with aromatics for 2 hours for a clear savory broth.","Assemble noodles, meatballs, and greens in bowls; ladle piping hot broth and garnish with fried shallots and celery."],"tips":{"title":"Ice Cubes Secret","description":"Ice keeps meat cold during processing, creating the signature bouncy \"kenyal\" snap."},"variations":{"title":"Bakso Urat","description":"Made with coarse beef tendon for extra hearty chew."},"faqs":[{"question":"Why is bakso so springy?","answer":"Cold processing and tapioca starch bind muscle proteins into an elastic matrix."}],"imageQuery":"bakso sapi indonesian meatball noodle soup","imageUrl":"https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"nasi-uduk-betawi","name":"Betawi Fragrant Coconut Rice (Nasi Uduk)","nativeName":"Nasi Uduk Betawi Komplit","category":"Street & Wok","prepTime":15,"cookTime":30,"yieldServings":4,"calories":460,"difficulty":"Easy","rating":4.9,"reviewsCount":680,"intro":"Aromatic jasmine rice steamed in rich coconut milk infused with lemongrass, pandan leaves, daun salam bay leaves, cloves, and cinnamon, served with side dishes.","ingredients":["400 g jasmine rice, washed","500 ml coconut milk & 200 ml water","2 lemongrass stalks (bruised), 2 pandan leaves (tied), 3 daun salam bay leaves, 4 cloves, 1 tsp salt","Accompaniments: Ayam goreng, sliced omelette (telur dadar), tempe orek, bihun goreng, sambal kacang"],"instructions":["Combine rice, coconut milk, water, lemongrass, pandan, bay leaves, cloves, and salt in a pot or rice cooker.","Bring to a boil, reduce heat, cover, and cook until liquid is absorbed (or press rice cooker start).","Fluff rice gently and let steam covered for 10 minutes.","Serve hot surrounded by fried chicken, shredded omelette, sweet soy tempeh, and spicy peanut sambal."],"tips":{"title":"Knot Pandan Leaves","description":"Bruising and tying pandan leaves extracts maximum floral fragrance into the rice."},"variations":{"title":"Nasi Kuning","description":"Add fresh turmeric juice for celebratory yellow rice cones (tumpeng)."},"faqs":[{"question":"How is it different from Nasi Lemak?","answer":"Nasi Uduk uses cloves and bay leaves in addition to lemongrass and pandan."}],"imageQuery":"nasi uduk coconut rice indonesian feast","imageUrl":"https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"pempek-palembang","name":"Palembang Fish Cakes (Pempek Kapal Selam)","nativeName":"Pempek Palembang Kuah Cuko","category":"Street & Wok","prepTime":35,"cookTime":20,"yieldServings":4,"calories":390,"difficulty":"Medium","rating":4.9,"reviewsCount":770,"intro":"South Sumatra’s pride: bouncy Spanish mackerel fish cakes stuffed with whole egg yolk, deep-fried golden, and submerged in spicy sweet-and-sour brown Cuko tamarind sauce.","ingredients":["500 g Spanish mackerel fillet (Ikan Tenggiri), pureed ice cold","300 g tapioca starch (sagu tani) & 200 ml cold water + 1 tbsp salt","4 fresh egg yolks for stuffing (Kapal Selam)","Cuko Sauce: 300 g dark palm sugar (gula batok), 500 ml water, 50 g garlic, 50 g bird’s eye chilies, 2 tbsp tamarind pulp, 1 tsp salt","Accompaniments: Diced cucumber, yellow noodles, dried shrimp powder (ebi)"],"instructions":["Mix fish puree with cold water and salt until sticky; gently fold in tapioca starch (do not over-knead).","Shape into a pouch, drop a raw egg yolk inside, and pinch edges to seal tightly (Kapal Selam).","Boil in hot water until pempek floats and cooked through (15 mins); drain and cool.","Deep-fry in hot oil at 180°C until golden and crispy.","Simmer cuko ingredients and strain; slice pempek, arrange with noodles and cucumber, and douse with sweet spicy cuko."],"tips":{"title":"Gula Batok Linggau","description":"Authentic dark Sumatran palm sugar creates the deep, pitch-black cuko sauce."},"variations":{"title":"Pempek Lenjer & Adaan","description":"Cylindrical plain fish cakes or fried scallion fish balls."},"faqs":[{"question":"How to drink Cuko?","answer":"Locals in Palembang drink the leftover cuko broth directly from the bowl!"}],"imageQuery":"pempek palembang fish cake cuko sauce","imageUrl":"https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"mie-goreng-jawa","name":"Javanese Wok-Fried Noodles (Mie Goreng Jawa)","nativeName":"Mie Goreng Jawa Tradisional","category":"Street & Wok","prepTime":15,"cookTime":10,"yieldServings":2,"calories":450,"difficulty":"Easy","rating":4.8,"reviewsCount":630,"intro":"Savory sweet street noodles: yellow egg noodles tossed in a smoky wok with candlenut-garlic paste, sweet soy sauce, shredded chicken, cabbage, and pickled bird’s eye chilies.","ingredients":["300 g thick yellow egg noodles, blanched","Spice Paste: 4 shallots, 3 garlic cloves, 3 candlenuts, 1/2 tsp white pepper, 1 tsp shrimp paste","2 tbsp Indonesian Kecap Manis & 1 tbsp oyster sauce","100 g shredded chicken, 1 egg, sliced cabbage, tomato, mustard greens (caisim)","Fried shallots & kerupuk crackers"],"instructions":["Sauté blended candlenut-garlic spice paste in hot wok until fragrant.","Push spices to side, crack egg, and scramble.","Add chicken, cabbage, and mustard greens; toss over high heat.","Add blanched noodles, sweet soy sauce, and seasonings.","Toss rapidly over fierce wok heat for 2 minutes to caramelize (wok hei).","Garnish with sliced tomatoes, crispy shallots, and fresh pickles."],"tips":{"title":"Candlenuts (Kemiri)","description":"Toasted candlenuts give Javanese fried noodles their rich, creamy mouthfeel and nutty aroma."},"variations":{"title":"Mie Godhog","description":"Soup version simmered with rich chicken broth and egg."},"faqs":[{"question":"Can I substitute noodles?","answer":"Ramen or fresh lo mein noodles make excellent alternatives."}],"imageQuery":"mie goreng indonesian fried noodles egg chicken","imageUrl":"https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"ayam-goreng-lengkuas","name":"Galangal Spiced Crispy Fried Chicken","nativeName":"Ayam Goreng Lengkuas Serundeng","category":"Main Feast","prepTime":20,"cookTime":35,"yieldServings":4,"calories":470,"difficulty":"Easy","rating":4.9,"reviewsCount":710,"intro":"Juicy chicken braised in turmeric and lemongrass, deep-fried until golden and smothered in a mountain of crispy, shredded fried galangal floss.","ingredients":["1 kg bone-in chicken pieces (drumsticks and thighs)","150 g fresh galangal (lengkuas), finely grated","Bumbu Ungkep: Shallots, garlic, turmeric, ginger, coriander, candlenuts","2 lemongrass stalks, 3 daun salam bay leaves, 4 kaffir lime leaves","Oil for deep frying & Sambal terasi"],"instructions":["Combine chicken, bumbu paste, grated galangal, aromatics, and 200 ml water in a pot.","Simmer (ungkep) on medium heat for 25 minutes until chicken is tender and liquid is absorbed.","Remove chicken and drain the grated galangal paste separately.","Deep-fry chicken pieces in hot oil (180°C) until deep golden brown (4 mins); drain.","Fry the grated galangal residue in the hot oil until golden and crispy; drain on paper towels.","Scatter the crispy galangal floss over the hot fried chicken."],"tips":{"title":"Grate Galangal Fine","description":"Finely grating fresh galangal creates the iconic airy, crispy golden floss."},"variations":{"title":"Ayam Goreng Kalasan","description":"Braised in sweet coconut water and palm sugar before frying."},"faqs":[{"question":"What is Ungkep?","answer":"The traditional Indonesian method of slow-braising meat in aromatic spices before frying."}],"imageQuery":"ayam goreng lengkuas fried chicken galangal","imageUrl":"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"sop-buntut","name":"Indonesian Oxtail Soup (Sop Buntut)","nativeName":"Sop Buntut Sapi Rempah","category":"Soups & Soto","prepTime":25,"cookTime":150,"yieldServings":4,"calories":560,"difficulty":"Medium","rating":5,"reviewsCount":890,"intro":"Hotel Borobudur’s legendary oxtail soup: gelatinous beef oxtails slow-cooked until falling off the bone in a clear broth fragrant with nutmeg, cinnamon, and cloves, accompanied by potatoes and carrots.","ingredients":["1 kg beef oxtail, cut into 4 cm segments","Whole Spices: 1 whole nutmeg (cracked), 5 cloves, 1 cinnamon stick, 3 star anise","Aromatics: 6 shallots, 4 garlic cloves (sautéed and pureed), ginger, leek, celery","2 carrots (sliced), 2 potatoes (cubed), 2 tomatoes (wedged)","Accompaniments: Emping crackers, lime wedges, sambal rawit"],"instructions":["Blanch oxtail segments in boiling water for 10 mins; rinse clean.","Boil oxtails in fresh water with nutmeg, cloves, cinnamon, and ginger on low heat for 2.5 hours until fork-tender.","Sauté pureed shallots and garlic; stir into simmering broth.","Add carrots and potatoes; simmer 15 minutes until vegetables are tender.","Ladle piping hot soup and tender oxtails into bowls with tomato wedges, fried shallots, emping, and lime."],"tips":{"title":"Whole Nutmeg","description":"Freshly cracked whole nutmeg is the secret soul of Indonesian oxtail soup."},"variations":{"title":"Sop Buntut Bakar","description":"Oxtails are glazed in sweet soy sauce and grilled over charcoal, served with soup on the side."},"faqs":[{"question":"Can I use a pressure cooker?","answer":"Yes! Pressure cook oxtails for 45 minutes to achieve fall-apart tenderness."}],"imageQuery":"sop buntut indonesian oxtail soup clear broth","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"sambal-goreng-ati","name":"Spiced Liver & Potato Sambal","nativeName":"Sambal Goreng Ati Ampela & Kentang","category":"Main Feast","prepTime":20,"cookTime":25,"yieldServings":4,"calories":380,"difficulty":"Easy","rating":4.8,"reviewsCount":460,"intro":"Festive holiday favorite: diced crispy potatoes and beef liver tossed in aromatic coconut cream sambal with sliced red chilies and stink beans (petai).","ingredients":["300 g beef liver or chicken gizzards, boiled and cubed","2 large potatoes, peeled, cubed, and deep-fried until golden","1 board Petai (stink beans), halved (optional)","Spice Paste: Shallots, garlic, curly red chilies, candlenuts, ginger","150 ml coconut milk, 2 daun salam bay leaves, 2 cm galangal, 1 tbsp palm sugar"],"instructions":["Sauté blended spice paste with galangal and bay leaves until oil separates.","Add petai beans and boiled liver cubes; toss 2 minutes.","Pour in coconut milk and palm sugar; simmer on low until sauce thickens.","Add fried potato cubes; toss gently until evenly coated in rich red sambal.","Serve hot alongside festive holiday rice."],"tips":{"title":"Fry Potatoes First","description":"Deep-frying potato cubes prevents them from breaking down in the sauce."},"variations":{"title":"Sambal Goreng Kentang Udang","description":"Substitute liver with fresh prawns."},"faqs":[{"question":"When is it served?","answer":"A staple centerpiece during Lebaran (Eid al-Fitr) celebrations alongside Opor Ayam."}],"imageQuery":"sambal goreng kentang ati spicy indonesian","imageUrl":"https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"sate-padang","name":"West Sumatran Padang Satay","nativeName":"Sate Padang Kuah Kuning Kental","category":"Street & Wok","prepTime":30,"cookTime":20,"yieldServings":4,"calories":410,"difficulty":"Medium","rating":4.9,"reviewsCount":680,"intro":"Padang’s fiery street skewers: tender spiced beef tongue and beef cubes grilled over charcoal, drenched in a thick, golden turmeric and rice-flour curry gravy with crispy fried shallots.","ingredients":["500 g beef chuck and beef tongue, boiled tender and cubed","Bumbu Rebus: Shallots, garlic, red chilies, turmeric, galangal, ginger, coriander, cumin, lemongrass, turmeric leaves","Thickener: 4 tbsp rice flour dissolved in 100 ml cold water","Accompaniments: Lontong rice cakes, crispy red shallots, cassava chips (keripik balado)"],"instructions":["Boil beef and tongue in 800 ml water with spice paste and aromatics for 45 minutes until deeply seasoned.","Remove meat, cut into cubes, and thread onto bamboo skewers.","Grill skewers over hot charcoal for 4-5 minutes, basting with cooking oil and spices.","Bring remaining spiced beef broth to a boil; whisk in rice flour slurry until gravy turns thick, golden, and glossy.","Place sliced lontong on banana leaf plate, lay hot skewers on top, and smother in thick yellow curry gravy."],"tips":{"title":"Beef Tongue","description":"Beef tongue provides an exceptionally tender, melt-in-the-mouth texture."},"variations":{"title":"Sate Pariaman","description":"Redder, spicier chili gravy style from coastal Pariaman."},"faqs":[{"question":"Why is the gravy yellow?","answer":"Fresh ground turmeric root and 12 mountain herbs give the sauce its iconic golden hue."}],"imageQuery":"sate padang beef satay yellow curry sauce","imageUrl":"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"ikan-bakar-jimbaran","name":"Jimbaran Bay Grilled Fish","nativeName":"Ikan Bakar Jimbaran Bumbu Bali","category":"Main Feast","prepTime":20,"cookTime":15,"yieldServings":4,"calories":380,"difficulty":"Easy","rating":4.9,"reviewsCount":840,"intro":"Sunset beachfront specialty: fresh whole red snapper butterflied and charcoal-grilled with sweet-and-spicy Balinese tomato-shallot bumbu, served with sambal matah.","ingredients":["1 whole fresh Red Snapper or Sea Bass (800 g), butterflied open","Marinade: Lime juice & 1 tsp salt","Jimbaran Bumbu Glaze: Shallots, garlic, red chilies, tomato paste, sweet soy sauce, margarine, coriander, tamarind paste","Accompaniments: Sambal matah, sambal terasi, plecing kangkung, steamed rice"],"instructions":["Butterfly fish flat down the spine, season with lime juice and salt for 10 mins.","Blend shallots, garlic, chilies, and tomato; sauté in margarine with kecap manis and tamarind into a thick paste.","Place fish in a grilling clamp over smoking coconut shell coals; grill 4 mins per side.","Baste both sides lavishly with the spicy sweet bumbu glaze; grill 2 more minutes per side until charred and fragrant.","Serve hot on banana leaf with raw sambal matah and water spinach."],"tips":{"title":"Coconut Shell Coals","description":"Coconut charcoal burns hot and adds a signature tropical sweet smoke."},"variations":{"title":"Udang Bakar Jimbaran","description":"Grilled jumbo king prawns with the same Balinese glaze."},"faqs":[{"question":"What fish is best?","answer":"Red snapper (ikan kakap merah) or sea bass holds up best to open-fire grilling."}],"imageQuery":"ikan bakar jimbaran grilled fish bali","imageUrl":"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"gulai-kambing","name":"Aromatic Goat Curry (Gulai Kambing)","nativeName":"Gulai Kambing Rempah Padang","category":"Main Feast","prepTime":25,"cookTime":75,"yieldServings":4,"calories":520,"difficulty":"Medium","rating":4.8,"reviewsCount":510,"intro":"Tender young mutton slow-simmered in rich coconut milk infused with turmeric, star anise, cardamom, cinnamon, and kaffir lime leaves.","ingredients":["700 g goat meat or lamb shoulder with bone, cut into pieces","700 ml fresh coconut milk","Spice Paste: Shallots, garlic, red chilies, turmeric, ginger, galangal, coriander, cumin, fennel seeds","Whole Spices: 2 lemongrass stalks, 2 star anise, 4 cardamom pods, 1 cinnamon stick, 4 kaffir lime leaves","Salt, palm sugar, and lime juice"],"instructions":["Sauté ground spice paste with whole spices in oil until deeply fragrant (8 mins).","Add goat meat pieces; stir until meat changes color and is coated in spices.","Pour in thin coconut milk and bring to a simmer.","Cook on medium-low heat for 1 hour until meat is tender.","Add thick coconut milk and simmer for 15 more minutes while stirring gently.","Serve with steamed rice, pickles, and crispy emping crackers."],"tips":{"title":"Never Wash Raw Goat in Water","description":"Blanching in boiling water with ginger removes gaminess without spreading odors."},"variations":{"title":"Tongseng Kambing","description":"Sautéed with sweet soy sauce, shredded cabbage, and fresh tomatoes."},"faqs":[{"question":"Can lamb be used?","answer":"Yes, lamb shoulder or shank works wonderfully with the same spice profile."}],"imageQuery":"gulai kambing goat curry coconut spices","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"pepes-ikan","name":"Sundanese Steamed Fish in Banana Leaf","nativeName":"Pepes Ikan Mas Khas Sunda","category":"Main Feast","prepTime":25,"cookTime":40,"yieldServings":2,"calories":290,"difficulty":"Medium","rating":4.8,"reviewsCount":430,"intro":"Fresh carp or tilapia rubbed with turmeric-shallot paste, fresh lemon basil (kemangi), lemongrass, and whole bird’s eye chilies, wrapped in banana leaves and steamed then char-grilled.","ingredients":["2 fresh whole Tilapia or Carp (400 g each), cleaned","Spice Paste: Shallots, garlic, candlenuts, fresh turmeric, ginger, red chilies","Aromatics: 2 bunches Kemangi (Indonesian lemon basil), 2 lemongrass stalks, 4 daun salam bay leaves, 10 whole rawit chilies","Banana leaves & toothpicks for wrapping"],"instructions":["Score fish and rub with lime juice and salt.","Mix blended spice paste with fresh kemangi lemon basil leaves and whole chilies.","Coat fish generously inside and out with the herb-spice mixture.","Place fish on banana leaves with bay leaves and lemongrass; roll tightly and pin ends with toothpicks.","Steam in a steamer for 30 minutes until thoroughly cooked and fragrant.","Char-grill the wrapped parcel over coals for 5 minutes per side to impart a smoky aroma."],"tips":{"title":"Wilt Banana Leaves","description":"Pass banana leaves over an open flame for 5 seconds to soften them so they don’t tear."},"variations":{"title":"Pepes Tahu Jamur","description":"Plant-based version made with crushed tofu and oyster mushrooms."},"faqs":[{"question":"What is Kemangi?","answer":"Indonesian lemon basil with a refreshing citrus-peppery aroma."}],"imageQuery":"pepes ikan steamed fish banana leaf","imageUrl":"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"martabak-manis","name":"Sweet Indonesian Thick Pancake (Martabak Manis)","nativeName":"Martabak Manis Terang Bulan Bangka","category":"Desserts & Sweets","prepTime":20,"cookTime":15,"yieldServings":8,"calories":480,"difficulty":"Medium","rating":5,"reviewsCount":1120,"intro":"Indonesia’s beloved night-market pancake: thick, honeycomb-structured golden sponge drenched in Dutch Wijsman butter, chocolate sprinkles, crushed roasted peanuts, grated cheddar cheese, and sweetened condensed milk.","ingredients":["Batter: 250 g medium flour, 40 g sugar, 1 egg, 300 ml water, 1/2 tsp baking powder, 1/2 tsp vanilla","Activating Agent: 1/2 tsp baking soda + 2 tbsp water","Toppings: Dutch butter (Wijsman), chocolate hagelslag sprinkles, roasted chopped peanuts, grated cheddar cheese, sweetened condensed milk"],"instructions":["Whisk flour, sugar, egg, water, and baking powder for 10 minutes until smooth and bubbly; rest 1 hour.","Stir in dissolved baking soda right before cooking.","Pour into a preheated, heavy cast-iron martabak pan on medium-low heat.","Swirl pan to create a crispy outer crust edge; sprinkle sugar over top when bubbles appear.","Cover with lid and cook on low heat until surface is dry and full of honeycomb tunnels.","Slather lavishly with butter, shower with chocolate, peanuts, cheddar cheese, and condensed milk.","Fold in half, brush outer crust with butter, and slice into thick squares."],"tips":{"title":"Wijsman Butter","description":"Dutch canned Wijsman butter provides the irreplaceable street-market fragrance."},"variations":{"title":"Pandan Martabak","description":"Infused with natural green pandan juice and filled with cream cheese."},"faqs":[{"question":"Why does it have a honeycomb texture?","answer":"Baking soda reacting with resting batter releases gas bubbles that form vertical tunnels."}],"imageQuery":"martabak manis indonesian sweet pancake cheese chocolate","imageUrl":"https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"martabak-telur","name":"Crispy Stuffed Egg & Meat Martabak","nativeName":"Martabak Telur Kulit Renyah","category":"Street & Wok","prepTime":25,"cookTime":15,"yieldServings":4,"calories":440,"difficulty":"Medium","rating":4.9,"reviewsCount":890,"intro":"Paper-thin stretched dough filled with seasoned minced beef, duck eggs, and green scallions, folded into a rectangle and deep-fried in shallow oil to shattering crispness.","ingredients":["Dough: 200 g high-protein flour, 100 ml water, 1 tbsp oil, pinch salt (soaked in oil)","Filling: 200 g ground beef cooked with curry powder and garlic, 3 duck eggs, 4 scallions (finely sliced), salt and pepper","Pickled dip: Vinegar, sugar, shallots, cucumber cubes, bird’s eye chilies"],"instructions":["Spin and stretch dough on an oiled table until paper-thin and translucent.","Whisk cooked minced beef, sliced scallions, and duck eggs in a bowl.","Transfer stretched dough into hot shallow oil in a flat pan.","Pour egg-meat filling in center; quickly fold the four corners over into a tight envelope.","Shallow-fry on medium heat, spooning hot oil over top until puffed, deep golden, and crispy.","Cut into bite-sized squares and serve hot with sweet-sour vinegar pickles."],"tips":{"title":"Use Duck Eggs","description":"Duck eggs provide a richer flavor and firmer structure than chicken eggs."},"variations":{"title":"Martabak Telur Spesial","description":"Made with 4-5 duck eggs for a super thick, meaty filling."},"faqs":[{"question":"What is the dipping sauce?","answer":"Kuah cuko or vinegar shallot pickles that cut through the rich crispy pastry."}],"imageQuery":"martabak telur crispy indonesian egg meat","imageUrl":"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"sayur-asem","name":"Sundanese Sweet & Sour Vegetable Soup","nativeName":"Sayur Asem Khas Sunda","category":"Soups & Soto","prepTime":15,"cookTime":25,"yieldServings":4,"calories":160,"difficulty":"Easy","rating":4.8,"reviewsCount":520,"intro":"Refreshing tamarind broth loaded with sweet corn cob chunks, chayote, yardlong beans, melinjo leaves, peanuts, and tamarind pulp.","ingredients":["1 sweet corn cob (cut into rounds), 1 chayote (cubed), 100 g long beans, melinjo leaves & seeds, raw peanuts","Spice Paste: 4 shallots, 2 garlic cloves, 3 red chilies, 2 candlenuts, 1 tsp shrimp paste","Aromatics: 3 tbsp tamarind pulp, 2 daun salam bay leaves, 2 cm galangal, 2 tbsp palm sugar, salt to taste","1.2 L water"],"instructions":["Boil water with raw peanuts, corn rounds, melinjo seeds, galangal, and bay leaves until corn is tender (10 mins).","Stir in blended spice paste, tamarind water, and palm sugar.","Add chayote cubes and long beans; simmer 5 minutes.","Add melinjo leaves, adjust sweet-sour seasoning, and turn off heat.","Serve hot or room temperature alongside fried fish and sambal terasi."],"tips":{"title":"Balance Sweet & Sour","description":"Authentic Sundanese Sayur Asem harmonizes sharp tamarind sourness with palm sugar sweetness."},"variations":{"title":"Sayur Asem Jakarta","description":"Clearer broth without blended candlenuts."},"faqs":[{"question":"Is it served hot?","answer":"Delicious hot or at room temperature on hot tropical afternoons."}],"imageQuery":"sayur asem indonesian tamarind vegetable soup","imageUrl":"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"tahu-tempe-bacem","name":"Javanese Sweet Braised Tofu & Tempeh","nativeName":"Tahu dan Tempe Bacem Khas Yogya","category":"Vegetarian & Fresh","prepTime":15,"cookTime":40,"yieldServings":4,"calories":260,"difficulty":"Easy","rating":4.8,"reviewsCount":490,"intro":"Yogyakarta heritage comfort: firm tofu and tempeh triangles slow-simmered in sweet coconut water, dark palm sugar, coriander, and tamarind, then lightly pan-seared.","ingredients":["1 block firm tofu & 1 block tempeh, cut into thick triangles","500 ml fresh coconut water","Bumbu: Shallots, garlic, coriander seeds (crushed), 70 g dark Javanese palm sugar (gula jawa), 1 tbsp tamarind pulp, 2 daun salam bay leaves, galangal","Oil for light shallow frying"],"instructions":["Arrange tofu and tempeh in a wide pan.","Add coconut water, bumbu aromatics, crushed coriander, palm sugar, tamarind, and bay leaves.","Simmer on low heat for 35 minutes until the sweet spiced coconut liquid is completely absorbed and mahogany brown.","Cool slightly, then shallow-fry in hot oil for 1-2 minutes per side until caramelized.","Serve hot with fresh green bird’s eye chilies."],"tips":{"title":"Coconut Water","description":"Simmering in fresh coconut water caramelizes naturally and gives deep sweet flavor."},"variations":{"title":"Ayam Bacem","description":"Chicken braised with the same sweet Javanese bacem spices."},"faqs":[{"question":"Can it be eaten un-fried?","answer":"Yes! Bacem is delicious directly after braising, or lightly fried for caramelized edges."}],"imageQuery":"tahu tempe bacem sweet braised tofu tempeh","imageUrl":"https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"opor-ayam","name":"Royal Javanese White Chicken Curry (Opor Ayam)","nativeName":"Opor Ayam Putih Khas Lebaran","category":"Main Feast","prepTime":20,"cookTime":45,"yieldServings":4,"calories":510,"difficulty":"Easy","rating":4.9,"reviewsCount":780,"intro":"Celebratory holiday centerpiece: tender bone-in chicken simmered in a velvety, white coconut milk sauce infused with coriander, lemongrass, galangal, and kaffir lime leaves.","ingredients":["1 whole chicken (1 kg), cut into 8 pieces","700 ml fresh coconut milk (blend of thick and thin)","White Spice Paste: 8 shallots, 4 garlic cloves, 4 candlenuts, 1 tbsp coriander seeds, 1/2 tsp cumin, 2 cm ginger, 1 tsp white pepper","Aromatics: 2 lemongrass stalks (bruised), 3 daun salam bay leaves, 3 kaffir lime leaves, 2 cm galangal","Accompaniments: Ketupat rice cakes, sambal goreng ati, fried shallots"],"instructions":["Sauté the white spice paste with lemongrass, bay leaves, lime leaves, and galangal until fragrant.","Add chicken pieces; toss until chicken changes color.","Pour in coconut milk and bring to a gentle simmer on medium-low heat.","Cook for 35 minutes, stirring occasionally so coconut milk does not split, until chicken is succulent and sauce is rich.","Serve hot with sliced ketupat rice cakes and crispy fried shallots."],"tips":{"title":"White Curry Profile","description":"No turmeric is used in classic Opor Putih, keeping the coconut sauce pure ivory and fragrant."},"variations":{"title":"Opor Ayam Kuning","description":"Add 2 cm fresh turmeric for a golden yellow holiday version."},"faqs":[{"question":"What is Ketupat?","answer":"Rice boiled in woven coconut-leaf pouches, the traditional festive companion to Opor Ayam."}],"imageQuery":"opor ayam white coconut chicken curry","imageUrl":"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"klepon-pandan","name":"Pandan Rice Balls with Palm Sugar (Klepon)","nativeName":"Klepon Pandan Gula Merah Lumer","category":"Desserts & Sweets","prepTime":25,"cookTime":10,"yieldServings":12,"calories":140,"difficulty":"Easy","rating":4.9,"reviewsCount":620,"intro":"Fragrant green pandan glutinous rice balls rolled in freshly grated salted coconut, bursting with molten liquid palm sugar in your mouth.","ingredients":["200 g glutinous rice flour & 25 g rice flour","175 ml warm water infused with fresh pandan juice","100 g dark Javanese palm sugar (gula jawa), finely chopped","150 g freshly grated coconut steamed with 1/2 tsp salt and pandan leaf"],"instructions":["Knead glutinous rice flour and pandan water into a smooth, pliable green dough.","Take 15g dough, flatten in palm, place 1 tsp chopped palm sugar in center.","Carefully pinch edges closed and roll between palms into a smooth sphere.","Drop balls into boiling water; once they float, cook 2 more minutes to ensure palm sugar melts completely.","Lift with slotted spoon and roll immediately in warm steamed salted coconut."],"tips":{"title":"Eat in One Bite","description":"Eat the whole klepon in one bite with mouth closed so the molten palm sugar doesn’t burst out!"},"variations":{"title":"Purple Sweet Potato Klepon","description":"Made with steamed purple sweet potatoes."},"faqs":[{"question":"Why steam the grated coconut?","answer":"Steaming with salt extends freshness and prevents the coconut from souring."}],"imageQuery":"klepon indonesian pandan palm sugar rice balls coconut","imageUrl":"https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"es-cendol-dawet","name":"Iced Pandan Jelly with Coconut & Palm Sugar","nativeName":"Es Cendol Dawet Ayu Banjarnegara","category":"Desserts & Sweets","prepTime":20,"cookTime":10,"yieldServings":4,"calories":280,"difficulty":"Easy","rating":5,"reviewsCount":890,"intro":"Ultimate tropical refreshment: chewy green pandan jelly droplets layered over rich coconut milk, fragrant dark palm sugar syrup, diced jackfruit, and crushed ice.","ingredients":["Cendol: 50 g rice flour, 30 g tapioca starch, 400 ml fresh pandan & suji leaf juice, pinch salt","Palm Sugar Syrup: 200 g dark palm sugar boiled with 100 ml water and 1 pandan leaf","Coconut Milk: 400 ml fresh coconut milk boiled with pinch salt and pandan leaf, cooled","Additions: Diced sweet jackfruit (nangka) & crushed ice"],"instructions":["Cook cendol flours and pandan juice in a pot over medium heat, stirring constantly until thick and translucent.","Press hot mixture through a cendol press or colander into a bowl of ice-cold water; drain.","Pour 3 tbsp dark palm sugar syrup into tall glasses.","Add a generous scoop of green cendol jelly droplets and jackfruit pieces.","Fill with crushed shaved ice and pour rich salted coconut milk over top."],"tips":{"title":"Fresh Pandan & Suji","description":"Blending fresh pandan for aroma and suji leaves for deep emerald green color creates authentic cendol."},"variations":{"title":"Es Cendol Durian","description":"Crowned with fresh rich durian pulp."},"faqs":[{"question":"What is the difference between Cendol and Dawet?","answer":"Dawet is traditionally made from rice flour in Java, while Cendol in Sunda often uses hunkwe mung bean starch."}],"imageQuery":"es cendol dawet indonesian iced dessert coconut palm sugar","imageUrl":"https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"dadar-gulung","name":"Pandan Crepes with Sweet Coconut (Dadar Gulung)","nativeName":"Dadar Gulung Unti Kelapa","category":"Desserts & Sweets","prepTime":20,"cookTime":15,"yieldServings":8,"calories":190,"difficulty":"Easy","rating":4.9,"reviewsCount":540,"intro":"Vibrant green pandan lace crepes rolled around a sweet, caramelized filling of grated coconut simmered in dark palm sugar and fragrant cinnamon.","ingredients":["Pandan Crepe: 150 g flour, 1 egg, 300 ml coconut milk/water with pandan juice, pinch salt","Unti Coconut Filling: 150 g grated coconut, 100 g dark palm sugar, 50 ml water, 1 pandan leaf, 1 cinnamon stick"],"instructions":["Simmer palm sugar, water, and pandan until dissolved; add grated coconut and stir until sweet moisture is absorbed; cool.","Whisk flour, egg, pandan juice, and coconut milk into a thin smooth batter.","Pour a thin ladle of batter into a warm non-stick crepe pan; cook 1-2 minutes without flipping.","Place 2 tbsp sweet coconut filling on crepe, fold sides inward, and roll into a neat cylinder."],"tips":{"title":"Porous Skin","description":"A hot crepe pan creates tiny surface bubbles that form the traditional lacy texture."},"variations":{"title":"Dadar Gulung Cokelat","description":"Chocolate crepes filled with banana and melted chocolate."},"faqs":[{"question":"How long do they keep?","answer":"Best enjoyed the day they are made, or refrigerated for up to 2 days."}],"imageQuery":"dadar gulung indonesian green pandan coconut roll","imageUrl":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"ayam-taliwang-lombok","name":"Lombok Spicy Grilled Chicken (Ayam Taliwang)","nativeName":"Ayam Taliwang Pedas Khas Lombok","category":"Main Feast","prepTime":20,"cookTime":25,"yieldServings":2,"calories":490,"difficulty":"Medium","rating":4.9,"reviewsCount":670,"intro":"Lombok’s fiery signature: young spring chicken pounded flat, charcoal-grilled, and basted with an intense red sambal of garlic, shrimp paste, and roasted candlenuts.","ingredients":["1 young spring chicken (ayam kampung, 700 g), butterflied flat","Bumbu Taliwang: 8 red curly chilies, 6 fiery bird’s eye chilies, 6 shallots, 4 garlic cloves, 1 tomato, 4 roasted candlenuts, 1 tsp roasted shrimp paste (terasi Lombok)","1 tbsp palm sugar, lime juice, oil for sautéing","Accompaniments: Plecing kangkung with tomato sambal & roasted peanuts"],"instructions":["Grill butterflied chicken over medium charcoal for 10 minutes until half-cooked.","Blend bumbu paste ingredients and sauté in coconut oil until aromatic.","Coat the chicken generously with the hot bumbu sauce.","Return to charcoal grill, basting repeatedly until chicken is charred, aromatic, and cooked through.","Serve steaming hot with extra spicy taliwang sambal, lime wedges, and plecing kangkung."],"tips":{"title":"Terasi Lombok","description":"Lombok shrimp paste is sun-dried and intensely savory, giving Taliwang its authentic punch."},"variations":{"title":"Ayam Taliwang Goreng","description":"Deep-fried version before tossing in spicy sauce."},"faqs":[{"question":"How spicy is it?","answer":"Authentic Taliwang is famously among Indonesia’s spiciest regional dishes!"}],"imageQuery":"ayam taliwang spicy grilled chicken lombok","imageUrl":"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"nasi-liwet-solo","name":"Solo Fragrant Savory Rice (Nasi Liwet)","nativeName":"Nasi Liwet Solo Komplit Areh Gurih","category":"Street & Wok","prepTime":20,"cookTime":35,"yieldServings":4,"calories":470,"difficulty":"Medium","rating":4.8,"reviewsCount":510,"intro":"Central Java royalty: rice cooked in coconut broth with lemongrass and salam leaves, topped with shredded chicken opor, chayote squash curry, braised egg, and savory thick coconut curd (areh).","ingredients":["400 g jasmine rice, 600 ml thin coconut milk, 2 lemongrass stalks, 3 daun salam leaves, 1 tsp salt","Sayur Labu Siam: Chayote cut into matchsticks simmered in mild red coconut curry","Toppings: Shredded chicken opor, brown braised egg (telur pindang), and thick steamed coconut cream curd (areh)"],"instructions":["Cook rice with coconut milk, lemongrass, bay leaves, and salt in a clay pot or rice cooker until fluffy.","Prepare spicy chayote squash curry with coconut milk.","Simmer thick coconut milk with salt until it separates into thick savory curds (areh).","Assemble in banana leaf cones (pincuk): mound fragrant rice, ladle chayote curry, add shredded chicken, halved egg, and crown with savory areh curd."],"tips":{"title":"Areh Curd","description":"Areh is the rich coconut cream curd that elevates Nasi Liwet into royal comfort food."},"variations":{"title":"Nasi Liwet Sunda","description":"West Java version cooked in a cast iron pot with whole shallots, salted fish, and petai."},"faqs":[{"question":"What is a Pincuk?","answer":"A traditional folded banana leaf boat pinned with a toothpick."}],"imageQuery":"nasi liwet solo fragrant coconut rice","imageUrl":"https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"soto-ayam-lamongan","name":"Lamongan Yellow Chicken Soup with Koya","nativeName":"Soto Ayam Lamongan Tabur Koya","category":"Soups & Soto","prepTime":20,"cookTime":40,"yieldServings":4,"calories":380,"difficulty":"Easy","rating":4.9,"reviewsCount":860,"intro":"East Java’s beloved street soup: golden turmeric chicken broth served with glass noodles, shredded chicken, boiled egg, and a generous mountain of savory koya prawn cracker powder.","ingredients":["1 whole chicken (1 kg), boiled in 2 L water","Spice Paste: Shallots, garlic, candlenuts, fresh turmeric, ginger, coriander, pepper","Aromatics: Lemongrass, kaffir lime leaves, daun salam, celery","Bubuk Koya: 10 crispy prawn crackers (kerupuk udang) blended with 5 fried garlic cloves","Accompaniments: Soun rice glass noodles, shredded cabbage, boiled eggs, lime, sambal"],"instructions":["Sauté turmeric spice paste with aromatics and add to simmering chicken broth.","Simmer chicken until tender (30 mins); remove chicken, shred meat, and fry lightly.","Blend prawn crackers with fried garlic into a fine savory powder (koya).","Place soaked glass noodles, shredded cabbage, and shredded chicken in bowls.","Ladle boiling golden turmeric broth over top and heap a generous spoonful of koya powder into the center."],"tips":{"title":"Bubuk Koya","description":"Koya powder thickens the broth and infuses each spoonful with savory roasted prawn umami."},"variations":{"title":"Soto Kudus","description":"Served in small traditional bowls with water buffalo meat."},"faqs":[{"question":"How is Koya made?","answer":"By pounding deep-fried garlic chips and crispy prawn crackers together into savory crumbs."}],"imageQuery":"soto ayam lamongan yellow chicken soup koya","imageUrl":"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"perkedel-kentang","name":"Indonesian Crispy Potato Fritters (Perkedel)","nativeName":"Perkedel Kentang Daging Gurih","category":"Vegetarian & Fresh","prepTime":20,"cookTime":15,"yieldServings":6,"calories":180,"difficulty":"Easy","rating":4.8,"reviewsCount":590,"intro":"Golden, crispy potato patties made with fried mashed potatoes, minced beef, fried shallots, nutmeg, and celery leaves, dipped in beaten egg and shallow-fried.","ingredients":["500 g russet potatoes, peeled, sliced, and deep-fried until tender","100 g cooked minced beef (optional)","2 tbsp fried shallots (bawang goreng) & 2 stalks Chinese celery, finely minced","1/2 tsp ground nutmeg, 1/2 tsp white pepper, 1 tsp salt","1 egg yolk (mixed into potatoes) & 1 egg white (beaten for dipping)","Oil for frying"],"instructions":["Fry sliced potatoes in hot oil until tender (do not boil, to prevent excess moisture).","Mash hot fried potatoes until smooth in a bowl.","Add minced beef, fried shallots, minced celery, nutmeg, pepper, salt, and egg yolk; mix thoroughly.","Shape into flat round patties (50 g each).","Dip patties into beaten egg white and shallow-fry in hot oil (180°C) until deep golden brown on both sides (2 mins/side)."],"tips":{"title":"Fry, Don’t Boil Potatoes","description":"Frying potatoes keeps them dry so perkedel patties never disintegrate in hot oil."},"variations":{"title":"Perkedel Jagung","description":"Crispy Indonesian sweet corn fritters with scallions."},"faqs":[{"question":"Where did the name come from?","answer":"Derived from the Dutch word \"frikadeller\" (minced meat patties) adapted into potato fritters."}],"imageQuery":"perkedel kentang indonesian potato fritters","imageUrl":"https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=800&q=80","alsoLike":[]}];
+    let activeRecipeId = 'rendang-sapi';
+    let activeCategory = 'All';
+
+    function getCategories() {
+      const cats = { 'All': recipes.length };
+      recipes.forEach(r => {
+        cats[r.category] = (cats[r.category] || 0) + 1;
+      });
+      return cats;
+    }
+
+    function renderCategories() {
+      const container = document.getElementById('categoriesBar');
+      if (!container) return;
+      const cats = getCategories();
+      container.innerHTML = Object.keys(cats).map(cat => {
+        const isActive = cat === activeCategory;
+        return `<button class="cat-chip ${isActive ? 'active' : ''}" onclick="filterCategory('${cat}')">${cat} (${cats[cat]})</button>`;
+      }).join('');
+    }
+
+    function filterCategory(cat) {
+      activeCategory = cat;
+      renderCategories();
+      renderGrid(document.getElementById('recipeSearchInput')?.value || '');
+    }
+
+    function renderGrid(filter = '') {
+      const grid = document.getElementById('recipeGrid');
+      const filtered = recipes.filter(r => {
+        const matchSearch = r.name.toLowerCase().includes(filter.toLowerCase()) || 
+                            r.nativeName.toLowerCase().includes(filter.toLowerCase()) ||
+                            r.category.toLowerCase().includes(filter.toLowerCase());
+        const matchCat = activeCategory === 'All' || r.category === activeCategory;
+        return matchSearch && matchCat;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; padding: 24px; text-align: center; color: #6b7280; background: #fff; border-radius: 4px; border: 1px dashed #d1d5db;">No recipes found matching your query. <a href="javascript:void(0)" onclick="viewAllRecipes()" style="color:#d97706; font-weight:bold;">View all ' + recipes.length + ' recipes</a></div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map((r) => {
+        const isActive = r.id === activeRecipeId;
+        return `
+          <article class="recipe-card ${isActive ? 'active-card' : ''}" onclick="selectRecipe('${r.id}')" title="Click to view details for ${r.name}">
+            <div class="card-photo" style="background-image:url('${r.imageUrl}')">
+              <span class="card-badge">${r.category}</span>
+            </div>
+            <div class="recipe-card-content">
+              <h3>${r.name}</h3>
+              <p><span>◷ ${r.prepTime + r.cookTime}m</span> <span>♨ ${r.difficulty}</span></p>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function selectRecipe(id) {
+      const recipe = recipes.find(r => r.id === id);
+      if (!recipe) return;
+      activeRecipeId = id;
+
+      document.getElementById('detailImage').style.backgroundImage = 
+        "linear-gradient(90deg, rgba(5,15,16,.95) 0%, rgba(5,15,16,.55) 42%, transparent 70%), url('" + recipe.imageUrl + "')";
+      
+      document.getElementById('detailBreadcrumbs').innerText = 'Home　›　Recipes　›　' + recipe.category;
+      document.getElementById('detailTitle').innerHTML = recipe.name + '<br>(' + recipe.nativeName + ')';
+      document.getElementById('detailRating').innerHTML = '★★★★★ <small>' + recipe.rating + ' (' + recipe.reviewsCount + ' reviews)</small>';
+      document.getElementById('detailIntro').innerText = recipe.intro;
+
+      document.getElementById('detailFacts').innerHTML = 
+        '<span>◉ Prep ' + recipe.prepTime + ' min</span>' +
+        '<span>◉ Cook ' + recipe.cookTime + ' min</span>' +
+        '<span>◉ Yield ' + recipe.yieldServings + ' serv</span>' +
+        '<span>◉ ' + recipe.calories + ' kcal</span>';
+
+      document.getElementById('detailIngredients').innerHTML = 
+        recipe.ingredients.map(ing => '<li>' + ing + '</li>').join('');
+
+      document.getElementById('detailInstructions').innerHTML = 
+        recipe.instructions.map(ins => '<li>' + ins + '</li>').join('');
+
+      document.getElementById('detailTips').innerHTML = 
+        '<strong>' + recipe.tips.title + '</strong><p>' + recipe.tips.description + '</p>';
+
+      document.getElementById('detailVariations').innerHTML = 
+        '<strong>' + recipe.variations.title + '</strong><p>' + recipe.variations.description + '</p>';
+
+      document.getElementById('faqContainer').innerHTML = 
+        recipe.faqs.map(faq => 
+          '<div class="faq-item" onclick="this.classList.toggle(\'open\')">' +
+          '<div><span>' + faq.question + '</span><b>⌄</b></div>' +
+          '<small>' + faq.answer + '</small>' +
+          '</div>'
+        ).join('');
+
+      const recs = (recipe.alsoLike && recipe.alsoLike.length > 0) 
+        ? recipe.alsoLike 
+        : recipes.filter(r => r.id !== recipe.id).slice(0, 4);
+
+      document.getElementById('alsoContainer').innerHTML = 
+        recs.map((also) => 
+          '<article class="also-card" onclick="selectRecipeByName(\'' + also.name.replace(/'/g, "\\'") + '\')">' +
+          '<div class="mini" style="background-image:url(\'' + also.imageUrl + '\')"></div>' +
+          '<span>' + also.name + '</span>' +
+          '</article>'
+        ).join('');
+
+      renderGrid(document.getElementById('recipeSearchInput')?.value || '');
+
+      if (window.innerWidth <= 950) {
+        document.getElementById('detailPanel').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function selectRecipeByName(name) {
+      const found = recipes.find(r => r.name.toLowerCase().includes(name.toLowerCase()) || r.nativeName.toLowerCase().includes(name.toLowerCase()));
+      if (found) {
+        selectRecipe(found.id);
+      }
+    }
+
+    function viewAllRecipes() {
+      activeCategory = 'All';
+      renderCategories();
+      const input = document.getElementById('recipeSearchInput');
+      if (input) input.value = '';
+      renderGrid('');
+      document.getElementById('recipeGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function focusCategories() {
+      document.getElementById('recipeGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* Modal Handlers */
+    function openAboutModal() {
+      document.getElementById('aboutModal').classList.add('open');
+    }
+    function closeAboutModal(e) {
+      if (!e || e.target === document.getElementById('aboutModal') || e.target.classList.contains('modal-close')) {
+        document.getElementById('aboutModal').classList.remove('open');
+      }
+    }
+    function switchModalTab(tabId) {
+      document.querySelectorAll('.modal-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.modal-section').forEach(s => s.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(tabId)?.classList.add('active');
+    }
+    function jumpToRecipe(id) {
+      closeAboutModal();
+      selectRecipe(id);
+      document.getElementById('detailPanel').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCategories();
+      renderGrid();
+
+      const searchInput = document.getElementById('recipeSearchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          renderGrid(e.target.value);
+        });
+      }
+
+      const searchBtn = document.getElementById('recipeSearchBtn');
+      if (searchBtn) {
+        searchBtn.addEventListener('click', () => {
+          renderGrid(searchInput.value);
+        });
+      }
+    });
+
+    renderCategories();
+    renderGrid();
+  </script>
+</body>
+</html>

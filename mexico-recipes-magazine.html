@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mexico Recipes - MEXICAN COCINA TRADICIONAL</title>
+  <meta name="description" content="Vibrant Flavors & Ancient Heirlooms - Authentic Mexico culinary traditions, recipes, and culture." />
+  <style>
+    /* Reset & Base Setup */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100%;
+      background: #140f0c;
+      color: #f9f3ec;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    /* Magazine App Shell */
+    .app-shell {
+      width: 100%;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(650px, 62%) minmax(400px, 38%);
+      gap: 7px;
+      padding: 6px 14px;
+    }
+
+    .main-column, .detail-panel {
+      border: 1px solid #966d51;
+      border-radius: 9px;
+      overflow: hidden;
+      background: #1a1310;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Topbar */
+    .topbar {
+      height: 48px;
+      background: #0d0a08;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: Georgia, serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .brand-mark {
+      font-size: 20px;
+      color: #e07a38;
+    }
+    .topbar nav {
+      display: flex;
+      gap: 16px;
+    }
+    .topbar nav a {
+      color: #d1d5db;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 11px;
+      transition: color 0.15s ease;
+      cursor: pointer;
+    }
+    .topbar nav a:hover, .topbar nav a.active {
+      color: #e07a38;
+    }
+    .search {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 28px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid #4b5563;
+      border-radius: 4px;
+      overflow: hidden;
+      width: 170px;
+    }
+    .search input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 10px;
+      padding: 0 8px;
+      width: 135px;
+    }
+    .search input::placeholder { color: #9ca3af; }
+    .search b {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 28px;
+      background: #e07a38;
+      color: #211208;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 290px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #111;
+    }
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      padding: 24px 28px;
+      max-width: 440px;
+    }
+    .hero-copy em {
+      display: block;
+      font-family: Georgia, serif;
+      font-style: italic;
+      color: #e07a38;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+    .hero-copy h1 {
+      font-family: Georgia, serif;
+      font-size: 32px;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 7px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    }
+    .hero-copy p {
+      font-size: 12px;
+      color: #e5e7eb;
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+    .hero-actions button {
+      background: #e27d3c;
+      color: #211208;
+      border: 1px solid #e07a38;
+      font-weight: bold;
+      font-size: 11px;
+      padding: 7px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .hero-actions button:hover { opacity: 0.9; transform: translateY(-1px); }
+    .hero-actions button.dark-button {
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      border: 1px solid #6b7280;
+      backdrop-filter: blur(4px);
+    }
+    .hero-actions button.dark-button:hover {
+      background: rgba(0,0,0,0.8);
+      border-color: #e07a38;
+    }
+
+    /* Popular Section */
+    .popular {
+      background: #ede0d1;
+      color: #241711;
+      padding: 14px 16px;
+      flex: 1;
+    }
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .section-heading h2 {
+      font-family: Georgia, serif;
+      font-size: 17px;
+      font-weight: bold;
+      color: #241711;
+    }
+    .section-heading button {
+      background: #fff;
+      border: 1px solid #d6c5b2;
+      color: #241711;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .section-heading button:hover { background: #f3f4f6; }
+
+    /* Category Filter Chips */
+    .categories-bar {
+      display: flex;
+      gap: 5px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+    }
+    .cat-chip {
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 9px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #374151;
+      transition: all 0.15s ease;
+    }
+    .cat-chip:hover { background: #f9fafb; }
+    .cat-chip.active {
+      background: #b45309;
+      color: #fff;
+      border-color: #92400e;
+    }
+
+    /* Grid */
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+      gap: 7px;
+    }
+    .recipe-card {
+      background: #faf5ee;
+      border: 1px solid #d6c5b2;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+    .recipe-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    }
+    .recipe-card.active-card {
+      border: 2px solid #e07a38;
+      box-shadow: 0 0 0 1px #e07a38;
+    }
+    .card-photo {
+      height: 75px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      background-color: #374151;
+    }
+    .card-badge {
+      position: absolute;
+      bottom: 4px;
+      left: 4px;
+      background: rgba(0,0,0,0.75);
+      color: #fff;
+      font-size: 7px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+    .recipe-card-content {
+      padding: 6px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .recipe-card h3 {
+      font-size: 10px;
+      font-weight: bold;
+      color: #111827;
+      line-height: 1.25;
+      margin-bottom: 2px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .recipe-card p {
+      font-size: 8px;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 3px;
+      margin-top: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Detail Panel */
+    .detail-panel {
+      background: #f5ede3;
+      color: #241711;
+    }
+    .detail-image {
+      min-height: 175px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .detail-content {
+      padding: 10px 14px;
+    }
+    .breadcrumbs {
+      font-size: 9px;
+      color: #6b7280;
+      margin-bottom: 3px;
+    }
+    .detail-content h2 {
+      font-family: Georgia, serif;
+      font-size: 19px;
+      color: #241711;
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+    .rating {
+      color: #d97706;
+      font-size: 11px;
+      margin-bottom: 6px;
+    }
+    .rating small { color: #6b7280; font-size: 9px; }
+    .intro {
+      font-size: 10px;
+      color: #374151;
+      line-height: 1.45;
+      margin-bottom: 8px;
+    }
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      background: rgba(0,0,0,0.04);
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,0,0,0.06);
+      font-size: 9px;
+      color: #1f2937;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* 2 Column Ingredients & Instructions */
+    .ingredients-instructions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 10px 14px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.4);
+    }
+    .ingredients-instructions h3 {
+      font-family: Georgia, serif;
+      font-size: 12px;
+      font-weight: bold;
+      color: #111827;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+    }
+    .ingredients-instructions ul, .ingredients-instructions ol {
+      padding-left: 14px;
+      font-size: 9.5px;
+      color: #374151;
+      line-height: 1.5;
+    }
+    .ingredients-instructions li { margin-bottom: 3px; }
+
+    /* Tips & Variations */
+    .tips {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      padding: 6px 14px 10px;
+    }
+    .tip-card {
+      background: #15313d;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 1.35;
+    }
+    .tip-card strong {
+      display: block;
+      color: #e07a38;
+      font-size: 10px;
+      margin-bottom: 2px;
+      font-family: Georgia, serif;
+    }
+    .variation-card {
+      background: #164332;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 1.35;
+    }
+    .variation-card strong {
+      display: block;
+      color: #a7f3d0;
+      font-size: 10px;
+      margin-bottom: 2px;
+      font-family: Georgia, serif;
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 6px 14px;
+    }
+    .faq h3 {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #111827;
+    }
+    .faq-item {
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 3px;
+      margin-bottom: 4px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .faq-item div {
+      padding: 5px 8px;
+      font-weight: bold;
+      font-size: 9.5px;
+      color: #1f2937;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-item small {
+      display: none;
+      padding: 5px 8px 7px;
+      font-size: 9px;
+      color: #4b5563;
+      border-top: 1px solid #f3f4f6;
+      line-height: 1.4;
+      background: #f9fafb;
+    }
+    .faq-item.open small { display: block; }
+
+    /* You Might Also Like */
+    .also {
+      background: #213a29;
+      color: #fff;
+      padding: 10px 14px;
+      margin-top: auto;
+    }
+    .also h3 {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .also-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+    .also-card {
+      cursor: pointer;
+      text-align: center;
+    }
+    .also-card .mini {
+      height: 48px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 3px;
+      transition: border-color 0.15s;
+    }
+    .also-card:hover .mini { border-color: #e07a38; }
+    .also-card span {
+      font-size: 8.5px;
+      font-weight: bold;
+      color: #e5e7eb;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Modal for About Swedish Cuisine */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(6px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-container {
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      background: #0e161c;
+      border: 1px solid rgba(217, 119, 6, 0.4);
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      color: #e2e8f0;
+    }
+    .modal-header {
+      padding: 16px 20px;
+      background: linear-gradient(90deg, #0d222b, #122c37);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-header h2 {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      color: #fff;
+    }
+    .modal-close {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-nav {
+      display: flex;
+      gap: 6px;
+      padding: 8px 16px;
+      background: #091116;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      overflow-x: auto;
+    }
+    .modal-tab-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .modal-tab-btn.active {
+      background: #d97706;
+      color: #0f172a;
+      font-weight: bold;
+    }
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .modal-section { display: none; }
+    .modal-section.active { display: block; }
+    .modal-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .modal-card h4 {
+      font-size: 12px;
+      color: #fbbf24;
+      margin-bottom: 4px;
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 950px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+        padding: 4px 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-shell" id="topAnchor">
+    <!-- LEFT MAIN COLUMN -->
+    <main class="main-column">
+      <header class="topbar">
+        <div class="brand" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+          <span class="brand-mark">✦</span>
+          <span>MEXICAN<br>COCINA TRADICIONAL</span>
+        </div>
+        <nav>
+          <a href="javascript:void(0)" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="active">Home</a>
+          <a href="javascript:void(0)" onclick="viewAllRecipes()">Recipes</a>
+          <a href="javascript:void(0)" onclick="focusCategories()">Categories</a>
+          <a href="javascript:void(0)" onclick="openAboutModal()">About</a>
+        </nav>
+        <div class="search">
+          <input type="text" id="recipeSearchInput" placeholder="Search 30 recipes..." aria-label="Search recipes" />
+          <b id="recipeSearchBtn">⌕</b>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-photo" style="background-image: linear-gradient(90deg, #140f0cF2 0%, #140f0cB8 41%, #140f0c0D 80%), url('https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=1200&q=85');"></div>
+        <div class="hero-copy">
+          <em>Vibrant Flavors & Ancient Heirlooms</em>
+          <h1>Authentic Mexican<br>Recipes</h1>
+          <p>Fire-roasted chilies, slow-braised birria, handmade corn tortillas,<br>and rich heritage moles from the heart of Mexico.</p>
+          <div class="hero-actions">
+            <button onclick="document.getElementById('recipeGridSection').scrollIntoView({behavior:'smooth'})">Explore Mexican Recipes</button>
+            <button class="dark-button" onclick="openAboutModal()">About Mexican Gastronomy</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="popular" id="recipeGridSection">
+        <div class="section-heading">
+          <h2>❧ Classic Cocina Tradicional ❧</h2>
+          <button id="viewAllBtn" onclick="viewAllRecipes()">View All (30) →</button>
+        </div>
+
+        <div class="categories-bar" id="categoriesBar"></div>
+
+        <div class="recipe-grid" id="recipeGrid"></div>
+      </section>
+    </main>
+
+    <!-- RIGHT DETAIL PANEL -->
+    <aside class="detail-panel" id="detailPanel">
+      <div class="detail-image" id="detailImage" style="background-image: linear-gradient(90deg, rgba(5,15,16,.95) 0%, rgba(5,15,16,.55) 42%, transparent 70%), url('https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=800&q=80');"></div>
+      <div class="detail-content" id="detailContent">
+        <div class="breadcrumbs" id="detailBreadcrumbs">Home　›　Recipes　›　Antojitos & Tacos</div>
+        <h2 id="detailTitle">Tacos al Pastor<br>(Tacos al Pastor con Piña Asada)</h2>
+        <div class="rating" id="detailRating">★★★★★ <small>5 (1380 reviews)</small></div>
+        <p class="intro" id="detailIntro">Thinly sliced pork shoulder marinated in achiote paste, guajillo chiles, and pineapple juice, seared with caramelized pineapple chunks, chopped cilantro, and salsa verde on warm corn tortillas.</p>
+        <div class="facts" id="detailFacts">
+          <span>◉ Prep 30 min</span>
+          <span>◉ Cook 20 min</span>
+          <span>◉ Yield 4 serv</span>
+          <span>◉ 480 kcal</span>
+        </div>
+      </div>
+
+      <div class="ingredients-instructions" id="ingredientsInstructions">
+        <section>
+          <h3>Ingredients</h3>
+          <ul id="detailIngredients">
+            <li>800 g pork shoulder, sliced paper-thin</li><li>3 dried Guajillo chiles & 2 Ancho chiles, stemmed & seeded</li><li>50 g Achiote paste & 100 ml pineapple juice</li><li>2 tbsp white vinegar, 3 garlic cloves, 1 tsp Mexican oregano</li><li>1 fresh ripe pineapple, peeled and sliced</li><li>16 small warm corn tortillas, chopped white onion, fresh cilantro, lime wedges</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Instructions</h3>
+          <ol id="detailInstructions">
+            <li>Soak dried chiles in hot water 15 mins. Blend with achiote paste, pineapple juice, vinegar, garlic, oregano, and salt.</li><li>Marinate thin pork slices in chile paste for at least 4 hours (or overnight).</li><li>Sear marinated pork in a screaming-hot cast iron skillet with oil until charred at edges (3 mins/batch).</li><li>Grill pineapple slices until caramelized; chop into bite-sized pieces.</li><li>Mound crispy pork onto warm double corn tortillas, crown with roasted pineapple, onion, cilantro, and fresh salsa.</li>
+          </ol>
+        </section>
+      </div>
+
+      <div class="tips" id="tipsBlock">
+        <div class="tip-card" id="detailTips">
+          <strong>High Heat Sear</strong>
+          <p>Cooking in small batches on a smoking cast iron replicates the vertical trompo grill char.</p>
+        </div>
+        <div class="variation-card" id="detailVariations">
+          <strong>Tacos de Birria</strong>
+          <p>Braised beef in chile consomé with melty Oaxaca cheese.</p>
+        </div>
+      </div>
+
+      <section class="faq" id="faqSection">
+        <h3>Frequently Asked Questions</h3>
+        <div id="faqContainer">
+          
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+              <div><span>Where does Pastor originate?</span><b>⌄</b></div>
+              <small>Created by Lebanese immigrants in Puebla who adapted shawarma with Mexican pork and chilies.</small>
+            </div>
+          
+        </div>
+      </section>
+
+      <section class="also" id="alsoSection">
+        <h3>You Might Also Like</h3>
+        <div class="also-grid" id="alsoContainer">
+          
+            <article class="also-card" onclick="selectRecipeByName('Birria de Res')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Birria de Res</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Mole Poblano')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Mole Poblano</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Enchiladas Verdes')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Enchiladas Verdes</span>
+            </article>
+          
+            <article class="also-card" onclick="selectRecipeByName('Guacamole & Totopos')">
+              <div class="mini" style="background-image:url('https://images.unsplash.com/photo-1592417817098-8f3d69109853?auto=format&fit=crop&w=800&q=80')"></div>
+              <span>Guacamole & Totopos</span>
+            </article>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- ABOUT EDITORIAL MODAL -->
+  <div class="modal-overlay" id="aboutModal" onclick="closeAboutModal(event)">
+    <div class="modal-container" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div>
+          <span style="font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #fbbf24; font-weight: bold;">Editorial Compendium</span>
+          <h2>About Mexican Cuisine (Cocina Tradicional)</h2>
+        </div>
+        <button class="modal-close" onclick="closeAboutModal()">✕</button>
+      </div>
+
+      <div class="modal-nav">
+        <button class="modal-tab-btn active" onclick="switchModalTab('mod-intro')">Introduction & Pillars</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-dishes')">Popular Dishes</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-fika')">Postres & Dulces</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-ingredients')">Ingredients</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-traditions')">Traditions</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-regional')">Regional</button>
+        <button class="modal-tab-btn" onclick="switchModalTab('mod-faq')">FAQ</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- INTRO TAB -->
+        <div class="modal-section active" id="mod-intro">
+          <div class="modal-card" style="background: linear-gradient(135deg, rgba(217,119,6,0.15), rgba(15,23,42,0.6)); border-color: rgba(217,119,6,0.3);">
+            <em style="color: #fbbf24; font-family: Georgia, serif; font-size: 13px; display: block; margin-bottom: 4px;">UNESCO World Heritage: ancient corn nixtamalization, fire-roasted chilies, and complex heirloom moles.</em>
+            <h3 style="font-family: Georgia, serif; font-size: 15px; color: #fff; margin-bottom: 8px;">Introduction to Traditional Mexican Cuisine</h3>
+            <p style="margin-bottom: 6px;">Recognized by UNESCO in 2010 as an Intangible Cultural Heritage, traditional Mexican cuisine is a comprehensive cultural model spanning ancient Mesoamerican agriculture, nixtamalization of native maize, and celebratory communal rituals.</p><p style="margin-bottom: 6px;">Far beyond fast-food stereotypes, authentic Mexican cooking is an ancient alchemy of fire-roasted dried chilies, fragrant Mexican oregano, Mexican cinnamon (canela), fresh epazote, and velvety slow-simmered moles.</p>
+          </div>
+
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin: 14px 0 8px;">The Sacred Pillars of Mexican Cooking</h3>
+          <p style="margin-bottom: 10px;">Rooted in the Mesoamerican "Milpa" triad—corn, beans, and squash—enhanced with native chilies and wild herbs.</p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>01. Nixtamalization of Maize</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Boiling corn kernels in alkaline lime water to unlock nutrients and form pliable masa dough for tortillas.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>02. The Holy Trinity of Chilies</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Poblano, Guajillo, Ancho, and Pasilla chiles toasted to release smoky, fruity, and raisin notes.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>03. Molcajete Stone Grinding</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Hand-grinding roasted aromatics in volcanic basalt mortars to extract essential botanical oils.</p>
+              </div>
+            
+              <div class="modal-card">
+                <h4>04. The Complexity of Mole</h4>
+                <p style="font-size: 10px; color: #cbd5e1;">Layering up to 30 ingredients—seeds, dried fruits, chiles, and Mexican chocolate—into a unified symphony.</p>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- DISHES TAB -->
+        <div class="modal-section" id="mod-dishes">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 6px;">Popular Traditional Mexican Dishes</h3>
+          <p style="margin-bottom: 12px; color: #94a3b8;">Beloved culinary treasures from the fondas, street taquerías, and family kitchens of Mexico.</p>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Tacos al Pastor <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Tacos al Pastor con Piña)</em></h4>
+                <p style="margin-bottom: 4px;">Achiote and guajillo-marinated pork shoulder seared crisp with caramelized pineapple, white onion, and cilantro.</p>
+                <small style="color: #93c5fd;">Cultural Note: Mexico City’s iconic street taco born from Lebanese culinary fusion.</small>
+              </div>
+              <button onclick="jumpToRecipe('tacos-al-pastor')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Jalisco Quesabirria Tacos <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Quesabirria con Consomé)</em></h4>
+                <p style="margin-bottom: 4px;">Braised beef in rich dried chile broth, folded into crispy corn tortillas with melted Oaxaca cheese, dipped in hot consomé.</p>
+                <small style="color: #93c5fd;">Cultural Note: Jalisco’s festive stew transformed into the world’s most viral dipped taco.</small>
+              </div>
+              <button onclick="jumpToRecipe('birria-de-res')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Puebla Mole Poblano <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Mole Poblano con Pollo)</em></h4>
+                <p style="margin-bottom: 4px;">Chicken simmered in a velvety dark sauce of 4 dried chilies, Mexican chocolate, almonds, raisins, and sesame seeds.</p>
+                <small style="color: #93c5fd;">Cultural Note: Mexico’s national dish created in 17th-century Puebla convents.</small>
+              </div>
+              <button onclick="jumpToRecipe('mole-poblano')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Enchiladas Verdes Suizas <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Enchiladas Suizas Gratinadas)</em></h4>
+                <p style="margin-bottom: 4px;">Rolled corn tortillas with shredded chicken, covered in roasted tomatillo-serrano cream salsa and broiled bubbly cheese.</p>
+                <small style="color: #93c5fd;">Cultural Note: The ultimate Mexican comfort food comfort bake.</small>
+              </div>
+              <button onclick="jumpToRecipe('enchiladas-verdes')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+            <div class="modal-card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <h4>Molcajete Guacamole <em style="font-size: 10px; color: #fbbf24; font-weight: normal;">(Guacamole Tradicional)</em></h4>
+                <p style="margin-bottom: 4px;">Fresh Hass avocados crushed in volcanic stone mortar with serrano chilies, lime, cilantro, and warm corn totopos.</p>
+                <small style="color: #93c5fd;">Cultural Note: Ancient Aztec dish celebrated across the globe.</small>
+              </div>
+              <button onclick="jumpToRecipe('guacamole-totopos')" style="background:#d97706; color:#0f172a; border:none; padding:6px 10px; border-radius:4px; font-weight:bold; font-size:10px; cursor:pointer; white-space:nowrap;">Cook Recipe →</button>
+            </div>
+          
+        </div>
+
+        <!-- CULTURE / FIKA TAB -->
+        <div class="modal-section" id="mod-fika">
+          <div class="modal-card" style="background: rgba(180,83,9,0.15);">
+            <h4>Mexican Sweet Breads & Holiday Treats</h4>
+            <p style="margin-bottom: 6px;">Pan dulce culture and afternoon café de olla flavored with cinnamon, piloncillo raw sugar, and roasted coffee beans in clay pots.</p>
+            <p style="font-style: italic; color: #fde68a;">"Dipping warm sugary churros or conchas into thick, spiced Mexican hot chocolate whisked frothy with a wooden molinillo."</p>
+          </div>
+          <h4 style="color:#fff; margin: 12px 0 8px;">Popular Regional Treats & Specialties</h4>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>Crispy Cinnamon Churros (Churros con Chocolate)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Golden star-piped pastries tossed in fragrant cinnamon sugar, dipped in spiced dark Mexican chocolate.</p>
+                <button onclick="jumpToRecipe('churros-con-chocolate')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+              <div class="modal-card">
+                <h4>Pastel de Tres Leches (Pastel de Tres Leches)</h4>
+                <p style="font-size: 10px; color: #cbd5e1; margin-bottom: 8px;">Airy sponge cake soaked in sweetened condensed milk, evaporated milk, and heavy cream, topped with cinnamon.</p>
+                <button onclick="jumpToRecipe('tres-leches-cake')" style="background:rgba(255,255,255,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.4); padding:4px 8px; border-radius:4px; font-size:9px; font-weight:bold; cursor:pointer; width:100%;">View Recipe</button>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- INGREDIENTS TAB -->
+        <div class="modal-section" id="mod-ingredients">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Essential Mexican Ingredients</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌽 <strong style="color:#fff; font-size:11px;">Masa Harina (Nixtamalized Corn)</strong> <em style="font-size:9px; color:#fbbf24;">(Masa de Maíz Nixtamalizado)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Fine flour made from stone-ground corn treated with calcium hydroxide.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Handmade corn tortillas, tamales, and sopes.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌶️ <strong style="color:#fff; font-size:11px;">Dried Guajillo & Ancho Chiles</strong> <em style="font-size:9px; color:#fbbf24;">(Chiles Secos Tradicionales)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Sun-dried chiles with sweet berry notes (Ancho) and bright tangy heat (Guajillo).</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Marinades, birria broths, red salsas, and moles.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🍈 <strong style="color:#fff; font-size:11px;">Fresh Tomatillos</strong> <em style="font-size:9px; color:#fbbf24;">(Tomate Verde / Tomatillo)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Tart green fruits encased in papery husks with refreshing acidity.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Roasted and blended for Salsa Verde and enchilada sauces.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🍫 <strong style="color:#fff; font-size:11px;">Mexican Chocolate (Canela)</strong> <em style="font-size:9px; color:#fbbf24;">(Chocolate de Mesa con Canela)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Coarsely ground cacao blended with cinnamon, sugar, and almond.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Mole Poblano and frothy hot drinking chocolate.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🧀 <strong style="color:#fff; font-size:11px;">Queso Oaxaca</strong> <em style="font-size:9px; color:#fbbf24;">(Queso Oaxaca / Quesillo)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Semi-soft stringy white melting cheese from Oaxaca.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Quesabirrias, quesadillas, and melted cheese bakes.</small>
+              </div>
+            
+              <div class="modal-card">
+                <div style="font-size: 16px; margin-bottom: 2px;">🌿 <strong style="color:#fff; font-size:11px;">Fresh Epazote & Cilantro</strong> <em style="font-size:9px; color:#fbbf24;">(Hierbas Aromáticas Mexicanas)</em></div>
+                <p style="font-size: 10px; margin-bottom: 4px;">Ancient aromatic herbs with pungent earthy and citrus notes.</p>
+                <small style="color: #94a3b8; display: block; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px;">Use: Simmered in black beans, quesadillas, and fresh salsas.</small>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- TRADITIONS TAB -->
+        <div class="modal-section" id="mod-traditions">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Mexican Food Traditions & Feasts</h3>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Día de los Muertos (Day of the Dead)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">November 1-2 (Autumn)</span>
+              </div>
+              <p style="margin-bottom: 6px;">Families create vibrant altars (ofrendas) loaded with marigolds, Pan de Muerto sugar bread, and the favorite foods of departed loved ones.</p>
+              <small style="color: #fbbf24;">Staples: Pan de Muerto, Mole Negro, Tamales, Atole</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Las Posadas & Christmas (Nochebuena)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">December (Winter)</span>
+              </div>
+              <p style="margin-bottom: 6px;">Nine nights of community processions celebrating with sweet fruit punch (Ponche Navideño), pork tamales, and buñuelos with piloncillo syrup.</p>
+              <small style="color: #fbbf24;">Staples: Tamales de Puerco, Ponche Navideño, Bacalao a la Vizcaína, Buñuelos</small>
+            </div>
+          
+            <div class="modal-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <h4 style="margin:0;">Fiestas Patrias (Independence Feast)</h4>
+                <span style="font-size:9px; background:rgba(217,119,6,0.3); color:#fbbf24; padding:2px 6px; border-radius:10px; font-weight:bold;">September 15-16</span>
+              </div>
+              <p style="margin-bottom: 6px;">Celebrating Mexican independence with patriotic red, white, and green dishes honoring the national flag.</p>
+              <small style="color: #fbbf24;">Staples: Chiles en Nogada, Pozole Rojo, Tacos al Pastor, Tequila</small>
+            </div>
+          
+        </div>
+
+        <!-- REGIONAL TAB -->
+        <div class="modal-section" id="mod-regional">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Regional Mexican Diversity</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px;">
+            
+              <div class="modal-card">
+                <h4>🧭 Oaxaca (Land of the Seven Moles)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Complex moles, tlayudas, stringy quesillo cheese, chapulines, and artisanal mezcal.</p>
+                <small style="color: #fbbf24;">Specialties: Mole Negro, Tlayudas, Quesillo, Hot Chocolate</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 Jalisco & North (Birria & Asada)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Slow-braised birria, slow-cooked carnitas, charro beans, and Sonora flour tortillas.</p>
+                <small style="color: #fbbf24;">Specialties: Birria de Res, Carne Asada, Pozole Rojo, Torta Ahogada</small>
+              </div>
+            
+              <div class="modal-card">
+                <h4>🧭 Yucatán Peninsula (Mayan Roots)</h4>
+                <p style="font-size: 10px; margin-bottom: 6px;">Sour oranges, achiote paste, pit-roasted cochinita pibil, habanero chiles, and black beans.</p>
+                <small style="color: #fbbf24;">Specialties: Cochinita Pibil, Sopa de Lima, Papadzules, Panuchos</small>
+              </div>
+            
+          </div>
+        </div>
+
+        <!-- FAQ TAB -->
+        <div class="modal-section" id="mod-faq">
+          <h3 style="font-family: Georgia, serif; font-size: 14px; color: #fff; margin-bottom: 8px;">Frequently Asked Questions</h3>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">What is Nixtamalization and why is it essential?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Soaking corn in alkaline water softens the hard outer pericarp, releases vitamin B3 (niacin), and allows it to grind into elastic dough for tortillas.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">Is Mexican chocolate only for sweet desserts?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">No; in Mole Poblano and savory sauces, dark chocolate adds earthy bitterness and velvety thickness that balances roasted chiles.</p>
+            </div>
+          
+            <div class="modal-card">
+              <h4 style="color:#fff;">What gives Quesabirria its famous crispy orange crust?</h4>
+              <p style="font-size:10px; color:#cbd5e1;">Tortillas are dipped directly in the spiced chile fat rendered from the braised beef before frying on the hot flat comal griddle.</p>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const recipes = [{"id":"tacos-al-pastor","name":"Tacos al Pastor","nativeName":"Tacos al Pastor con Piña Asada","category":"Antojitos & Tacos","prepTime":30,"cookTime":20,"yieldServings":4,"calories":480,"difficulty":"Medium","rating":5,"reviewsCount":1380,"intro":"Thinly sliced pork shoulder marinated in achiote paste, guajillo chiles, and pineapple juice, seared with caramelized pineapple chunks, chopped cilantro, and salsa verde on warm corn tortillas.","ingredients":["800 g pork shoulder, sliced paper-thin","3 dried Guajillo chiles & 2 Ancho chiles, stemmed & seeded","50 g Achiote paste & 100 ml pineapple juice","2 tbsp white vinegar, 3 garlic cloves, 1 tsp Mexican oregano","1 fresh ripe pineapple, peeled and sliced","16 small warm corn tortillas, chopped white onion, fresh cilantro, lime wedges"],"instructions":["Soak dried chiles in hot water 15 mins. Blend with achiote paste, pineapple juice, vinegar, garlic, oregano, and salt.","Marinate thin pork slices in chile paste for at least 4 hours (or overnight).","Sear marinated pork in a screaming-hot cast iron skillet with oil until charred at edges (3 mins/batch).","Grill pineapple slices until caramelized; chop into bite-sized pieces.","Mound crispy pork onto warm double corn tortillas, crown with roasted pineapple, onion, cilantro, and fresh salsa."],"tips":{"title":"High Heat Sear","description":"Cooking in small batches on a smoking cast iron replicates the vertical trompo grill char."},"variations":{"title":"Tacos de Birria","description":"Braised beef in chile consomé with melty Oaxaca cheese."},"faqs":[{"question":"Where does Pastor originate?","answer":"Created by Lebanese immigrants in Puebla who adapted shawarma with Mexican pork and chilies."}],"imageQuery":"tacos al pastor pork pineapple cilantro","imageUrl":"https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=800&q=80","alsoLike":[{"name":"Birria de Res","imageQuery":"birria tacos","imageUrl":"https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=800&q=80"},{"name":"Mole Poblano","imageQuery":"mole poblano","imageUrl":"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80"},{"name":"Enchiladas Verdes","imageQuery":"enchiladas verdes","imageUrl":"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80"},{"name":"Guacamole & Totopos","imageQuery":"guacamole","imageUrl":"https://images.unsplash.com/photo-1592417817098-8f3d69109853?auto=format&fit=crop&w=800&q=80"}]},{"id":"birria-de-res","name":"Jalisco Quesabirria Tacos","nativeName":"Quesabirria Tacos con Consomé","category":"Antojitos & Tacos","prepTime":30,"cookTime":180,"yieldServings":6,"calories":580,"difficulty":"Advanced","rating":5,"reviewsCount":1650,"intro":"Jalisco’s internet-famous sensation: beef chuck and short ribs slow-braised in rich dried chile consomé, shredded into crispy corn tortillas with melted Oaxaca cheese, dipped in hot spiced broth.","ingredients":["1.2 kg beef chuck & bone-in beef short ribs","Dried Chiles: 4 Guajillo, 3 Ancho, 2 Pasilla, 2 Chiles de Árbol","Aromatics: 1 onion, 6 garlic cloves, 1 cinnamon stick, 3 bay leaves, 1 tsp cumin, 1 tsp Mexican oregano, 2 tbsp cider vinegar","300 g Queso Oaxaca or Mozzarella (shredded)","16 corn tortillas, chopped white onion, cilantro, fresh lime wedges"],"instructions":["Toast dried chiles and rehydrate in hot broth; blend with garlic, vinegar, cinnamon, oregano, and cumin.","Sear beef in Dutch oven, pour blended chile marinade and 1 L beef stock over top.","Cover and simmer on low for 3 hours until beef falls apart effortlessly.","Shred beef and skim flavorful orange chile fat from top of consomé.","Dip corn tortillas in hot chile fat, lay on hot flat griddle (comal), top with Oaxaca cheese and shredded beef.","Fold in half, crisp until golden and cheese is molten; serve steaming hot with cups of rich consomé for dipping."],"tips":{"title":"Dip in Chile Fat","description":"Dipping tortillas in the rendered top fat gives Quesabirria its iconic deep red crispy crust."},"variations":{"title":"Birria Ramen","description":"Serve rich birria consomé over fresh ramen noodles with soft egg."},"faqs":[{"question":"What is Queso Oaxaca?","answer":"A semi-soft, stringy Mexican melting cheese with delicate salty richness."}],"imageQuery":"quesabirria tacos consume dipping broth cheese","imageUrl":"https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"mole-poblano","name":"Puebla Mole Poblano with Chicken","nativeName":"Mole Poblano Tradicional con Pollo","category":"Guisados & Moles","prepTime":45,"cookTime":90,"yieldServings":6,"calories":520,"difficulty":"Advanced","rating":4.9,"reviewsCount":890,"intro":"Mexico’s national culinary monument: chicken simmered in a velvety sauce of 4 dried chiles, Mexican dark chocolate, raisins, pumpkin seeds, almonds, plantains, and warm spices, sprinkled with toasted sesame.","ingredients":["1 whole chicken (cut into pieces) poached in aromatic broth","Dried Chiles: 4 Mulato, 4 Ancho, 3 Pasilla chiles (seeded and toasted)","Rich Base: 70 g Mexican chocolate (Ibarra/Abuelita with cinnamon), 1/2 ripe plantain (fried), 30 g raisins, 30 g pumpkin seeds (pepitas), 30 g almonds, 1 charred tortilla, 2 bolillo bread slices","Spices: Clove, allspice, Mexican cinnamon, coriander seeds, aniseed, charred onion & garlic","Garnish: Toasted white sesame seeds & warm Mexican red rice"],"instructions":["Toast chiles in lard; soak in hot chicken broth until soft.","Fry nuts, seeds, raisins, plantains, spices, and tortillas in lard until golden and fragrant.","Puree chiles and fried aromatics in high-speed blender with chicken broth until satin-smooth.","Heat 2 tbsp lard in a clay cazuela; pour in mole puree and fry vigorously (chillar el mole) for 10 mins.","Stir in chopped Mexican chocolate until melted; simmer on low for 45 minutes until deep dark mahogany.","Add cooked chicken pieces to heat through; plate and crown with a shower of toasted sesame seeds."],"tips":{"title":"Fry the Mole","description":"Frying pureed mole in hot lard awakens the roasted spices and caramelizes the chocolate."},"variations":{"title":"Mole Verde","description":"Fresh green mole made with pumpkin seeds, tomatillos, and fresh epazote."},"faqs":[{"question":"Is mole sweet?","answer":"No; chocolate is used as a bitter-sweet savory balancing agent, not a dessert."}],"imageQuery":"mole poblano chicken dark chocolate sesame seeds","imageUrl":"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"enchiladas-verdes","name":"Enchiladas Verdes Suizas","nativeName":"Enchiladas Suizas Gratinadas","category":"Guisados & Moles","prepTime":25,"cookTime":25,"yieldServings":4,"calories":460,"difficulty":"Easy","rating":4.9,"reviewsCount":920,"intro":"Warm corn tortillas rolled with tender shredded chicken, bathed in tangy roasted tomatillo-serrano cream salsa, covered with Mexican melting cheese, and broiled bubbly.","ingredients":["12 corn tortillas (lightly passed through hot oil)","400 g poached chicken breast, shredded","Salsa Verde: 500 g fresh husked tomatillos, 2-3 serrano peppers, 1/2 white onion, 2 garlic cloves, 1 bunch cilantro","100 ml Mexican Crema or sour cream","200 g Chihuahua or Monterey Jack cheese, shredded","Thinly sliced red onion & avocado slices for garnish"],"instructions":["Boil or broil tomatillos, serrano chiles, onion, and garlic until soft and charred; blend with fresh cilantro and crema into a velvety green salsa.","Simmer green salsa in a saucepan with 1 tsp oil for 5 mins.","Pass tortillas briefly through warm oil to make pliable; fill with shredded chicken and roll into tight cylinders.","Arrange rolled tortillas seam-side down in a baking dish, pour warm green salsa generously over top.","Cover with shredded cheese and bake at 200°C (400°F) for 15 minutes until bubbly and lightly browned.","Garnish with crema, red onion rings, and cilantro."],"tips":{"title":"Brief Oil Dip","description":"Passing corn tortillas in oil for 3 seconds prevents them from absorbing salsa and becoming soggy."},"variations":{"title":"Enchiladas Rojas","description":"Made with roasted guajillo and tomato salsa."},"faqs":[{"question":"Why are they called Suizas?","answer":"\"Swiss\" refers to the generous addition of cream and melted cheese introduced by Sanborns café in Mexico City."}],"imageQuery":"enchiladas verdes suizas melted cheese chicken","imageUrl":"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"chiles-en-nogada","name":"Chiles en Nogada","nativeName":"Chiles en Nogada con Salsa de Nuez","category":"Guisados & Moles","prepTime":40,"cookTime":40,"yieldServings":6,"calories":540,"difficulty":"Advanced","rating":5,"reviewsCount":780,"intro":"Mexico’s patriotic Independence centerpiece: roasted Poblano peppers stuffed with sweet-savory spiced meat and fruit picadillo, draped in a silky walnut-goat cheese sauce and ruby pomegranate seeds.","ingredients":["6 large fresh Poblano peppers, roasted and peeled","Picadillo: 400 g ground pork & beef, 1 apple, 1 pear, 1 peach (diced), 50 g raisins, 40 g pine nuts, cinnamon, clove, tomato sauce","Nogada Sauce: 150 g peeled fresh walnuts (nogal), 100 g fresh goat cheese (queso de cabra), 150 ml heavy cream, 1 tbsp sherry wine, pinch of cinnamon and sugar","Garnish: Fresh pomegranate seeds (granada) & flat-leaf parsley"],"instructions":["Roast poblano chiles over open flame until blistered; steam in a plastic bag 10 mins, peel skin, slit side and deseed carefully.","Sauté garlic and onion in oil; add ground meat and brown. Stir in diced fruits, raisins, pine nuts, spices, and tomato puree; simmer 20 mins until thick.","Blend walnuts, goat cheese, heavy cream, sherry, and pinch of sugar into a smooth, thick white nogada cream.","Stuff roasted poblano peppers generously with warm fruit-meat picadillo.","Plate chiles, drape completely in chilled white walnut nogada sauce, and garnish with red pomegranate seeds and green parsley."],"tips":{"title":"Peel the Walnuts","description":"Skinning walnuts prevents the nogada sauce from turning bitter and ensures an immaculate white color."},"variations":{"title":"Vegetarian Nogada","description":"Stuff with wild mushrooms, plantains, and roasted almonds."},"faqs":[{"question":"What do the colors represent?","answer":"The green parsley, white nogada, and red pomegranate represent the Mexican flag."}],"imageQuery":"chiles en nogada walnut cream pomegranate parsley","imageUrl":"https://images.unsplash.com/photo-1592417817098-8f3d69109853?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"pozole-rojo","name":"Jalisco Pozole Rojo","nativeName":"Pozole Rojo con Carne de Cerdo","category":"Sopas & Caldos","prepTime":25,"cookTime":120,"yieldServings":8,"calories":450,"difficulty":"Medium","rating":4.9,"reviewsCount":1120,"intro":"Celebratory ceremonial hominy soup simmered with pork shoulder, ribs, and an aromatic broth of guajillo and ancho chiles, served with shredded cabbage, radishes, oregano, and crispy tostadas.","ingredients":["1 kg pork shoulder & pork ribs cut into pieces","800 g cooked nixtamalized hominy corn (maíz pozolero)","Chile Puree: 5 Guajillo chiles & 3 Ancho chiles, 4 garlic cloves, 1/2 onion, 1 tsp cumin","Broth Aromatics: 1 whole onion, 1 garlic head, 2 bay leaves, Mexican oregano","Table Condiments: Finely shredded cabbage, sliced red radishes, diced onions, Mexican oregano, chile piquín, lime halves, crispy corn tostadas"],"instructions":["Simmer pork shoulder, ribs, whole onion, garlic head, and bay leaves in 3 L water for 90 mins until meat is tender.","Rehydrate seeded dried chiles in hot water; blend with garlic and cumin until velvety smooth. Strain into soup.","Rinse hominy corn and add to the pot; simmer together for another 30-40 minutes so kernels blossom (florear).","Remove pork, shred into succulent pieces, and return to simmering deep red broth.","Ladle piping hot pozole into deep bowls with generous hominy and pork.","Serve alongside platters of crisp cabbage, radishes, oregano, limes, and tostadas."],"tips":{"title":"Maíz Cacahuazintle","description":"Authentic large-kernel Mexican hominy bursts open like flowers when simmered properly."},"variations":{"title":"Pozole Verde Guerrero","description":"Made with pumpkin seeds, tomatillos, poblano, and epazote."},"faqs":[{"question":"Is Pozole ancient?","answer":"Yes, it was a sacred Aztec ritual dish dedicated to the god Xipe Totec."}],"imageQuery":"pozole rojo mexican soup hominy pork radishes","imageUrl":"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"cochinita-pibil","name":"Yucatán Cochinita Pibil","nativeName":"Cochinita Pibil en Hoja de Plátano","category":"Guisados & Moles","prepTime":30,"cookTime":180,"yieldServings":6,"calories":510,"difficulty":"Medium","rating":5,"reviewsCount":1450,"intro":"Yucatecan masterpiece: pork shoulder marinated in sour Seville orange juice and ground achiote paste, wrapped in fragrant banana leaves and slow-roasted until meltingly tender, served with pickled pink habanero onions.","ingredients":["1.5 kg pork shoulder (pork butt), cut into 5 cm pieces","100 g authentic Yucatecan Achiote paste (recado rojo)","150 ml bitter Seville orange juice (naranja agria) or mix of sweet orange and lime juice","1 tbsp lard, 1 tsp dried oregano, 1/2 tsp ground cumin, 1/2 tsp allspice, 1 tbsp sea salt","Large banana leaves (hojas de plátano) lightly softened over flame","Pickled Red Onions: Sliced red onion, fresh lime juice, Mexican oregano, minced habanero pepper"],"instructions":["Dissolve achiote paste completely in bitter orange juice with cumin, oregano, allspice, and salt.","Coat pork pieces in marinade and let marinate for at least 6 hours.","Line a roasting pan or Dutch oven with overlapping charred banana leaves.","Place marinated pork and juices inside; fold banana leaves over to seal tightly.","Cover with foil and bake at 160°C (325°F) for 3 hours until pork shreds at the touch of a fork.","Shred meat in its rich red juices and serve on warm tortillas with pickled habanero onions."],"tips":{"title":"Banana Leaves Flavor","description":"Banana leaves infuse the pork with a distinct smoky tea-like herbal perfume during the long roast."},"variations":{"title":"Pollo Pibil","description":"Made with bone-in chicken thighs and drumsticks."},"faqs":[{"question":"What does Pibil mean?","answer":"In Mayan, \"pib\" refers to an underground earth oven lined with hot stones."}],"imageQuery":"cochinita pibil pork banana leaves pickled red onions","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"tamales-oaxaquenos","name":"Tamales Oaxaqueños de Pollo con Mole","nativeName":"Tamales en Hoja de Plátano con Mole Negro","category":"Antojitos & Tacos","prepTime":50,"cookTime":75,"yieldServings":12,"calories":320,"difficulty":"Advanced","rating":4.9,"reviewsCount":860,"intro":"Silky whipped nixtamal corn masa wrapped in glossy banana leaves, stuffed with shredded chicken smothered in dark Oaxacan mole negro, steamed until light and aromatic.","ingredients":["500 g fresh nixtamal corn masa (masa para tamales)","150 g whipped pork lard (manteca de cerdo) or vegetable shortening","250 ml rich chicken broth","1 tsp baking powder & 1 tsp salt","Filling: 300 g shredded chicken tossed in warm Mole Oaxaqueño","Banana leaves (cut into 20x25cm rectangles, softened over open gas flame)"],"instructions":["Beat lard with electric mixer until pale, fluffy, and doubled in volume (5 mins).","Gradually beat in masa, salt, baking powder, and warm chicken broth until batter floats in a cup of water.","Lay a softened banana leaf on workspace; spread 3 tbsp masa evenly in center.","Place a generous spoonful of chicken mole in the middle.","Fold leaf into a tidy flat rectangle packet and secure with a leaf strip tie.","Stand tamales upright in a steamer pot (vaporera); steam on medium heat for 75 minutes until leaf peels away cleanly from masa."],"tips":{"title":"The Float Test","description":"Drop 1/2 tsp of masa into cold water. If it floats instantly, your tamales will be feather-light."},"variations":{"title":"Tamales Verdes","description":"Wrapped in corn husks with shredded pork in salsa verde."},"faqs":[{"question":"Why use banana leaves?","answer":"In southern Mexico (Oaxaca/Veracruz), banana leaves keep the masa moister than corn husks."}],"imageQuery":"tamales oaxaquenos banana leaf steamed chicken mole","imageUrl":"https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"carnitas-michoacanas","name":"Michoacán Carnitas","nativeName":"Carnitas Michoacanas Tradicionales","category":"Antojitos & Tacos","prepTime":20,"cookTime":150,"yieldServings":8,"calories":560,"difficulty":"Medium","rating":5,"reviewsCount":1520,"intro":"Pork shoulder slow-confit in copper kettles with lard, orange peels, Mexican Coca-Cola, and evaporated milk until caramelized and crispy outside while succulent and tender inside.","ingredients":["1.5 kg pork shoulder (Boston butt), cut into 6 cm chunks","500 g pure pork lard (manteca de cerdo)","1 whole orange (halved & juiced), 100 ml Mexican Coca-Cola, 2 tbsp condensed milk","4 garlic cloves, 2 bay leaves, 1 tsp Mexican oregano, 1 cinnamon stick, 1 tbsp sea salt","Warm corn tortillas, pickled jalapeños, salsa taquera, cilantro, and white onion"],"instructions":["Melt lard in heavy Dutch oven; add pork chunks, orange halves, orange juice, Mexican Coke, condensed milk, garlic, and spices.","Bring to a boil, then reduce heat to low and simmer uncovered for 2 hours until fork-tender.","Increase heat to medium-high for 10-15 minutes, allowing remaining juices to evaporate so meat crisps in pure lard.","Transfer to cutting board and chop coarsely with a cleaver.","Mound on warm corn tortillas and crown with salsa, cilantro, and lime."],"tips":{"title":"Condensed Milk & Coke","description":"The sugars caramelize in the final minutes, creating the legendary golden crunchy edges."},"variations":{"title":"Carnitas Surtidas","description":"Include pork belly (costilla) and crispy skin (cuerito)."},"faqs":[{"question":"What is a Cazo de Cobre?","answer":"Traditional hammered copper kettle used by Michoacán master taqueros for even heat."}],"imageQuery":"carnitas tacos pork michoacan crispy","imageUrl":"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"tres-leches-cake","name":"Authentic Pastel de Tres Leches","nativeName":"Pastel de Tres Leches con Canela","category":"Postres & Dulces","prepTime":25,"cookTime":30,"yieldServings":12,"calories":380,"difficulty":"Easy","rating":5,"reviewsCount":1240,"intro":"Light, airy sponge cake pierced and soaked in a sweet trio of condensed milk, evaporated milk, and heavy cream, topped with fresh whipped cream and ground cinnamon.","ingredients":["Sponge Cake: 5 eggs (separated), 150 g sugar, 150 g flour, 1 tsp baking powder, 1 tsp vanilla, 50 ml milk","Tres Leches Soaking Liquid: 1 can (395 g) sweetened condensed milk, 1 can (354 ml) evaporated milk, 200 ml heavy cream, 1 tbsp rum (optional)","Topping: 300 ml heavy cream whipped with 3 tbsp powdered sugar, ground Ceylon cinnamon & fresh strawberries"],"instructions":["Whip egg whites to stiff peaks; in separate bowl beat yolks and sugar until pale. Gently fold together with flour.","Bake in 23x33cm dish at 175°C (350°F) for 25 minutes until golden and toothpick comes out clean; cool completely.","Whisk condensed milk, evaporated milk, heavy cream, and rum together.","Poke holes all over the cooled sponge cake with a fork; slowly pour the three-milk mixture evenly over the entire cake.","Refrigerate for at least 6 hours (or overnight) so cake absorbs every drop.","Spread whipped cream over top, dust with ground cinnamon, and decorate with strawberries."],"tips":{"title":"Airy Sponge","description":"A fat-free sponge cake has maximum open pores to absorb the entire milk syrup without collapsing."},"variations":{"title":"Cuatro Leches (Dulce de Leche)","description":"Drizzle with thick cajeta (caramelized goat’s milk)."},"faqs":[{"question":"Why does it not turn soggy?","answer":"The sponge cake’s whipped egg structure holds the rich milks like a honeycomb."}],"imageQuery":"tres leches cake whipped cream cinnamon strawberry","imageUrl":"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"ceviche-de-camaron","name":"Mazatlán Shrimp Ceviche","nativeName":"Ceviche de Camarón Estilo Mazatlán","category":"Mariscos & Pescados","prepTime":20,"cookTime":0,"yieldServings":4,"calories":220,"difficulty":"Easy","rating":4.9,"reviewsCount":650,"intro":"Fresh Pacific shrimp diced and cured in tart key lime juice, tossed with crunchy cucumber, red onion, serrano chile, ripe avocado, and fresh cilantro, piled high on crisp tostadas with salsa macha.","ingredients":["500 g fresh raw Pacific shrimp, peeled, deveined and diced","150 ml freshly squeezed lime juice (about 8 key limes)","1 English cucumber (diced), 1/2 red onion (finely diced), 2 Roma tomatoes (seeded & diced)","1-2 serrano chiles (minced), 1/2 bunch cilantro (chopped), 1 ripe avocado (cubed)","Sea salt, cracked black pepper, crispy corn tostadas & Valentina hot sauce"],"instructions":["Place diced shrimp in a glass bowl, pour lime juice over to submerge, season with salt, and chill for 15 minutes until shrimp turns opaque pink.","Add diced cucumber, red onion, tomatoes, serrano peppers, and cilantro.","Gently fold in avocado cubes so they stay intact.","Serve immediately chilled over crispy tostadas with a drizzle of hot salsa."],"tips":{"title":"Fast Lime Cure","description":"Fresh shrimp only needs 15-20 minutes in lime to cure without turning tough."},"variations":{"title":"Ceviche de Pescado","description":"Use fresh red snapper or sea bass fillets."},"faqs":[{"question":"Is ceviche cooked?","answer":"The citric acid in lime juice denatures the shrimp proteins, effectively \"cooking\" without heat."}],"imageQuery":"ceviche shrimp lime avocado tostadas mexican","imageUrl":"https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"aguachile-verde","name":"Sinaloa Aguachile Verde","nativeName":"Aguachile Verde de Camarón de Sinaloa","category":"Mariscos & Pescados","prepTime":15,"cookTime":0,"yieldServings":4,"calories":210,"difficulty":"Easy","rating":5,"reviewsCount":940,"intro":"Butterflied raw shrimp flash-cured in a fiery, electric-green marinade of blended lime juice, serrano peppers, cilantro, and garlic, crowned with crisp cucumber half-moons and shaved purple onions.","ingredients":["500 g ultra-fresh jumbo shrimp, butterflied down the back","120 ml fresh lime juice","3 fresh serrano peppers or chiltepín peppers","1/2 cup fresh cilantro leaves, 1 garlic clove, 1/2 tsp sea salt","1 cucumber (thinly sliced), 1/2 red onion (shaved into thin crescents), crispy tostadas"],"instructions":["Blend lime juice, serrano peppers, cilantro, garlic, and sea salt until vibrant neon green.","Arrange butterflied raw shrimp in a single flat layer on a chilled serving platter.","Pour green aguachile liquid over shrimp; let sit 5-10 minutes.","Top with shaved red onion and crisp cucumber slices; serve immediately with tostadas."],"tips":{"title":"Serve Immediately","description":"Unlike ceviche, aguachile is served immediately so the shrimp retains a sashimi-like sweetness."},"variations":{"title":"Aguachile Negro","description":"Made with charred habaneros, soy sauce, and Worcestershire sauce."},"faqs":[{"question":"Where is Aguachile from?","answer":"Originated in the coastal state of Sinaloa, Mexico."}],"imageQuery":"aguachile verde shrimp cucumber red onion lime","imageUrl":"https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"elote-callejero","name":"Mexican Street Corn (Elotes & Esquites)","nativeName":"Elote Callejero con Mayonesa y Queso Cotija","category":"Antojitos & Tacos","prepTime":10,"cookTime":15,"yieldServings":4,"calories":280,"difficulty":"Easy","rating":5,"reviewsCount":1780,"intro":"Charred sweet corn on the cob slathered in rich Mexican crema and mayonnaise, blanketed in salty crumbled Cotija cheese, dusted with smoky chile powder, and squeezed with fresh lime.","ingredients":["4 ears fresh sweet corn, husked","60 ml Mexican crema & 60 ml mayonnaise (mixed together)","100 g Queso Cotija (finely crumbled)","1 tbsp Tajín or ground ancho chile powder","2 fresh limes cut into wedges, wooden skewers"],"instructions":["Grill corn on hot grill or open flame until blistered and charred in spots on all sides (10-12 mins).","Insert wooden skewer into base of each ear.","Brush warm corn generously with the crema-mayo mixture.","Roll corn in crumbled Cotija cheese until completely coated.","Dust generously with Tajín chile powder and serve with lime wedges."],"tips":{"title":"Cotija Cheese","description":"Cotija is the \"Parmesan of Mexico,\" providing a sharp, salty contrast to sweet corn."},"variations":{"title":"Esquites (Corn in a Cup)","description":"Sautéed corn kernels served warm in cups with broth, epazote, and toppings."},"faqs":[{"question":"What is Tajín?","answer":"A blend of mild chili peppers, sea salt, and dehydrated lime juice."}],"imageQuery":"elote mexican street corn cotija cheese lime","imageUrl":"https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"huevos-rancheros","name":"Classic Huevos Rancheros","nativeName":"Huevos Rancheros con Salsa Ranchera Casera","category":"Desayunos & Huevos","prepTime":10,"cookTime":15,"yieldServings":2,"calories":390,"difficulty":"Easy","rating":4.8,"reviewsCount":710,"intro":"Warm corn tortillas topped with fried sunny-side-up eggs, smothered in a warm, chunky roasted tomato-serrano salsa ranchera, with refried black beans, avocado, and crumbled queso fresco.","ingredients":["4 fresh farm eggs","4 corn tortillas, lightly fried in oil","Salsa Ranchera: 4 roasted Roma tomatoes, 1 serrano chile, 1/2 onion, 1 garlic clove, simmered and lightly crushed","1 cup refried black beans (frijoles refritos)","50 g Queso Fresco, fresh cilantro leaves, sliced avocado"],"instructions":["Simmer roasted tomato salsa in a pan with 1 tsp oil for 8 minutes until thickened.","Spread warm refried beans over lightly fried tortillas.","Fry eggs sunny-side up in butter or oil with crispy edges and runny yolks.","Slide fried eggs onto bean-topped tortillas.","Ladle hot salsa ranchera over egg whites, leaving yolks visible; sprinkle with queso fresco and cilantro."],"tips":{"title":"Runny Yolks","description":"Letting the warm salsa mingle with the rich runny yolk creates the ultimate breakfast sauce."},"variations":{"title":"Huevos Divorciados","description":"One egg covered in red salsa and one in green salsa with beans in the middle."},"faqs":[{"question":"Why \"Rancheros\"?","answer":"Traditional hearty mid-morning breakfast served to rural ranch workers across Mexico."}],"imageQuery":"huevos rancheros fried eggs salsa refried beans","imageUrl":"https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"tinga-de-pollo","name":"Puebla Chicken Tinga Tostadas","nativeName":"Tinga de Pollo Poblana con Chipotle","category":"Guisados & Moles","prepTime":20,"cookTime":25,"yieldServings":6,"calories":360,"difficulty":"Easy","rating":4.9,"reviewsCount":880,"intro":"Shredded poached chicken braised in a smoky, rich sauce of fire-roasted tomatoes, caramelized sliced onions, and chipotle chiles in adobo, served atop crunchy tostadas with crema and cotija.","ingredients":["500 g cooked chicken breast, shredded","2 large white onions, thinly sliced into crescents","Salsa: 5 roasted Roma tomatoes, 2-3 canned chipotle chiles in adobo sauce, 2 garlic cloves, 1/2 tsp dried Mexican oregano","1 tbsp cooking oil or lard","Crispy corn tostadas, refried beans, Mexican crema, shredded iceberg lettuce, crumbled Cotija cheese"],"instructions":["Blend roasted tomatoes, chipotles with adobo sauce, garlic, and oregano until smooth.","In a skillet, sauté sliced onions in oil over medium heat for 8 minutes until golden and sweet.","Pour blended chipotle sauce into onions; simmer 5 minutes.","Stir in shredded chicken and simmer on low for 15 minutes until sauce clings to the meat.","Spread refried beans on crispy tostadas, pile high with warm chicken tinga, shredded lettuce, crema, and Cotija."],"tips":{"title":"Abundant Onions","description":"Caramelized onions provide natural sweetness that balances the smoky heat of chipotle."},"variations":{"title":"Tinga de Res","description":"Made with slow-cooked shredded beef brisket."},"faqs":[{"question":"What is Chipotle?","answer":"Ripe, red jalapeño peppers that have been smoke-dried for days."}],"imageQuery":"chicken tinga tostadas chipotle shredded chicken","imageUrl":"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"chilaquiles-verdes","name":"Chilaquiles Verdes con Huevo","nativeName":"Chilaquiles Verdes Tradicionales","category":"Desayunos & Huevos","prepTime":15,"cookTime":15,"yieldServings":4,"calories":420,"difficulty":"Easy","rating":5,"reviewsCount":1610,"intro":"Crispy fried corn tortilla triangles tossed in boiling roasted tomatillo-epazote green salsa, topped with sunny-side-up fried eggs, Mexican crema, crumbled queso fresco, and cilantro.","ingredients":["8 corn tortillas, cut into triangles and fried until crispy (totopos)","Salsa Verde: 500 g roasted tomatillos, 2 serrano chiles, 1/2 onion, 2 garlic cloves, 1 sprig fresh epazote, 1/2 cup cilantro","4 fried sunny-side-up eggs","80 ml Mexican crema, 80 g Queso Fresco (crumbled)","Thinly sliced red onion rings, fresh cilantro, sliced avocado"],"instructions":["Blend roasted tomatillos, chiles, onion, garlic, and cilantro. Pour into hot oiled skillet with epazote and simmer 8 minutes.","Add crispy fried tortilla chips to the bubbling salsa; toss quickly so chips absorb salsa but stay semi-crispy.","Transfer immediately to warm plates.","Crown with sunny-side-up fried eggs, drizzle with crema, sprinkle with queso fresco, sliced red onions, and avocado."],"tips":{"title":"Do Not Over-Soak","description":"Toss chips in salsa for only 30 seconds before plating so they maintain their textural bite."},"variations":{"title":"Chilaquiles Rojos con Cecina","description":"Tossed in roasted red tomato salsa with grilled cured beef."},"faqs":[{"question":"What is Epazote?","answer":"A pungent Mexican aromatic herb essential for traditional bean and salsa dishes."}],"imageQuery":"chilaquiles verdes tortilla chips eggs cream cheese","imageUrl":"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"sopa-de-tortilla","name":"Authentic Sopa Azteca (Tortilla Soup)","nativeName":"Sopa de Tortilla Tradicional Azteca","category":"Sopas & Caldos","prepTime":20,"cookTime":30,"yieldServings":6,"calories":310,"difficulty":"Easy","rating":4.9,"reviewsCount":950,"intro":"Aromatic roasted tomato and pasilla chile broth poured tableside over crispy fried tortilla strips, avocado cubes, melted Oaxaca cheese, fried pasilla rings, and Mexican crema.","ingredients":["6 corn tortillas, cut into thin strips and fried golden-crisp","Broth: 4 roasted Roma tomatoes, 2 dried Pasilla chiles (deseeded), 1/2 onion, 2 garlic cloves, 1 sprig epazote, 1 L rich chicken broth","1 dried Pasilla chile, sliced into thin rings and fried crisp in oil for garnish","150 g Queso Oaxaca or Panela (cubed), 1 ripe avocado (diced)","Mexican crema, fresh lime wedges & cilantro"],"instructions":["Toast dried pasilla chiles lightly; blend with roasted tomatoes, onion, and garlic until smooth.","Heat 1 tbsp oil in soup pot, pour in puree and fry 5 minutes. Add chicken broth and epazote; simmer 20 minutes.","Divide crispy fried tortilla strips, diced avocado, and cheese cubes into soup bowls.","Ladle piping hot pasilla-tomato broth over the bowls.","Garnish with fried crispy pasilla rings, a swirl of crema, and serve with lime wedges."],"tips":{"title":"Pasilla Perfume","description":"Dried pasilla chili gives the broth its signature dark color and raisin-like herbal fragrance."},"variations":{"title":"Sopa con Pollo","description":"Add shredded chicken breast and corn kernels."},"faqs":[{"question":"What is Sopa Azteca?","answer":"One of the oldest pre-Hispanic fusion soups originating in central Mexico."}],"imageQuery":"sopa de tortilla mexican tortilla soup avocado cheese","imageUrl":"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"tlayuda-oaxaquena","name":"Oaxaca Tlayuda with Tasajo","nativeName":"Tlayuda Oaxaqueña con Tasajo y Asiento","category":"Antojitos & Tacos","prepTime":20,"cookTime":15,"yieldServings":2,"calories":620,"difficulty":"Medium","rating":5,"reviewsCount":1100,"intro":"Known as \"Mexican Pizza\": giant 30cm crispy toasted Oaxacan corn tortilla smeared with rich asiento pork lard, refried black bean paste, shredded Queso Oaxaca, avocado, and grilled tasajo beef.","ingredients":["2 large Oaxacan Tlayuda tortillas (30cm diameter)","2 tbsp asiento (unrefined roasted pork lard sediment)","1 cup black bean paste pureed with avocado leaves (hoja de aguacate)","200 g Queso Oaxaca (quesillo), shredded into fine strings","300 g Tasajo (thinly sliced cured Oaxacan beef) or Cecina","Finely shredded cabbage, sliced tomatoes, avocado, and smoky salsa de molcajete"],"instructions":["Grill tasajo beef over charcoal until seared and juicy; slice into strips.","Spread 1 tbsp asiento and a thin layer of seasoned black bean puree over the giant tortilla.","Cover with shredded cabbage, tomatoes, and generous mounds of shredded Quesillo string cheese.","Place over hot charcoal grill (or comal) for 5-8 minutes until tortilla is shatteringly crisp and cheese melts.","Top with grilled tasajo strips, avocado, and salsa; fold in half or serve open-faced."],"tips":{"title":"Avocado Leaves","description":"Simmering black beans with dried Mexican avocado leaves gives authentic Oaxacan flavor."},"variations":{"title":"Tlayuda Mixta","description":"Topped with tasajo, cecina enchilada, and chorizo."},"faqs":[{"question":"What is Asiento?","answer":"The savory, roasted pork crackling sediment collected from the bottom of lard rendered kettles."}],"imageQuery":"tlayuda oaxaquena mexican pizza oaxaca cheese tasajo","imageUrl":"https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"flan-casero","name":"Classic Mexican Vanilla Flan","nativeName":"Flan Casero Tradicional de Vainilla","category":"Postres & Dulces","prepTime":20,"cookTime":60,"yieldServings":8,"calories":310,"difficulty":"Easy","rating":5,"reviewsCount":1390,"intro":"Silky, velvety baked egg custard infused with pure Mexican vanilla beans, baked in a water bath over deep amber liquid caramel that cascades over the flan upon unmolding.","ingredients":["Caramel: 150 g granulated white sugar & 2 tbsp water","Custard: 1 can (395 g) sweetened condensed milk, 1 can (354 ml) evaporated milk","5 large whole eggs + 2 egg yolks","100 g cream cheese (softened) for extra creaminess","1 tbsp pure Mexican vanilla extract, pinch of salt"],"instructions":["Melt sugar and water in a heavy saucepan over medium heat until it turns deep golden amber; pour immediately into 22cm round flan mold, swirling to coat bottom.","Blend condensed milk, evaporated milk, eggs, egg yolks, cream cheese, vanilla, and pinch of salt until smooth.","Pour custard through a fine-mesh sieve over the hardened caramel in the mold.","Place mold in a large baking dish; pour boiling water halfway up sides (baño maría).","Bake at 175°C (350°F) for 55-60 minutes until center is barely set with a gentle jiggle.","Chill in refrigerator for at least 6 hours (or overnight). Run a thin knife around edge and invert onto rimmed platter."],"tips":{"title":"Strain Custard","description":"Passing custard through a sieve removes air bubbles and ensures a mirror-smooth texture."},"variations":{"title":"Flan de Cajeta","description":"Substitute caramel with Mexican goat’s milk cajeta."},"faqs":[{"question":"Why use a water bath?","answer":"The water bath gently moderates oven heat, preventing the eggs from curdling or creating bubbles."}],"imageQuery":"mexican flan caramel custard vanilla dessert","imageUrl":"https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"churros-con-chocolate-mex","name":"Mexican Churros with Spiced Chocolate","nativeName":"Churros Crujientes con Chocolate Abuelita","category":"Postres & Dulces","prepTime":20,"cookTime":15,"yieldServings":6,"calories":340,"difficulty":"Medium","rating":5,"reviewsCount":1850,"intro":"Piped star-shaped choux dough fried until deep golden and crunchy outside, pillowy inside, rolled in cinnamon sugar, and served with thick spiced Mexican hot chocolate.","ingredients":["Churro Dough: 250 ml water, 50 g butter, 1 tbsp sugar, 1/2 tsp salt, 150 g all-purpose flour, 1 egg, 1 tsp vanilla","Coating: 100 g granulated sugar mixed with 1 tbsp ground Ceylon cinnamon","Frying: 1 L vegetable oil for deep frying","Hot Dipping Chocolate: 1 tablet Mexican chocolate (Abuelita/Ibarra) simmered with 500 ml whole milk and 1 cinnamon stick until thick"],"instructions":["Bring water, butter, sugar, and salt to a boil in saucepan; remove from heat, dump in flour all at once, and stir vigorously until a dough ball forms.","Let cool 3 minutes, then beat in egg and vanilla until smooth and glossy.","Transfer dough to a piping bag fitted with a large closed star tip (Ateco 846).","Pipe 12cm strips of dough directly into 180°C (350°F) hot oil, snipping with kitchen shears.","Fry 3-4 minutes until dark golden and crisp; drain on paper towels.","Roll immediately in cinnamon sugar while warm; serve with piping hot spiced chocolate for dipping."],"tips":{"title":"Closed Star Tip","description":"A star tip creates deep ridges that catch more cinnamon sugar and prevent dough bursting."},"variations":{"title":"Churros Rellenos","description":"Injected with dulce de leche, Nutella, or cajeta."},"faqs":[{"question":"What makes Mexican chocolate unique?","answer":"It is stone-ground with coarse sugar, Ceylon cinnamon, and ground almonds."}],"imageQuery":"churros cinnamon sugar hot dipping chocolate mexican","imageUrl":"https://images.unsplash.com/photo-1624300629298-e9de39c13be5?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"pescado-a-la-veracruzana","name":"Veracruz-Style Red Snapper","nativeName":"Pescado a la Veracruzana con Alcaparras","category":"Mariscos & Pescados","prepTime":20,"cookTime":25,"yieldServings":4,"calories":340,"difficulty":"Easy","rating":4.8,"reviewsCount":620,"intro":"Fresh red snapper fillets pan-seared and simmered in a vibrant Spanish-Mexican Mediterranean fusion sauce of ripe tomatoes, capers, green Manzanilla olives, garlic, oregano, and pickled güero chiles.","ingredients":["4 fresh red snapper or sea bass fillets (huachinango)","Salsa: 500 g crushed ripe tomatoes, 1 onion (sliced), 4 garlic cloves (minced), 2 bay leaves, 1 tsp Mexican oregano","60 g pitted green Spanish olives, 2 tbsp capers (rinsed)","4 pickled Chiles Güeros or jalapeños (sliced)","3 tbsp extra-virgin olive oil, fresh parsley & white rice for serving"],"instructions":["Season fish fillets with salt, pepper, and fresh lime juice.","Heat olive oil in large skillet; sauté onions and garlic until translucent.","Add crushed tomatoes, olives, capers, chiles güeros, bay leaves, and oregano; simmer 10 minutes.","Nestle fish fillets gently into the simmering sauce.","Cover and simmer on medium-low for 10-12 minutes until fish is flaky and tender.","Garnish with fresh parsley and serve over fluffy white rice."],"tips":{"title":"Briny Balance","description":"The salty capers and olives beautifully cut the sweetness of ripe tomatoes."},"variations":{"title":"Huachinango Entero","description":"Bake a whole scored 1.5kg red snapper smothered in Veracruzana sauce."},"faqs":[{"question":"Where did this recipe originate?","answer":"In the port of Veracruz, blending indigenous Mexican ingredients with Spanish maritime pantry staples."}],"imageQuery":"pescado a la veracruzana red snapper olives capers tomato","imageUrl":"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"chocoflan-imposible","name":"Pastel Imposible (Chocoflan)","nativeName":"Pastel Imposible Chocoflan Napolitano","category":"Postres & Dulces","prepTime":30,"cookTime":55,"yieldServings":12,"calories":420,"difficulty":"Advanced","rating":5,"reviewsCount":1470,"intro":"The famous \"Impossible Cake\": rich Mexican chocolate cake on bottom, velvety vanilla flan on top, united under golden cajeta caramel. The layers miraculously swap positions during baking!","ingredients":["Base: 100 ml Cajeta or caramel syrup (coating the Bundt pan)","Chocolate Cake Batter: 150 g flour, 150 g sugar, 40 g Dutch cocoa powder, 1 tsp baking powder, 100 ml milk, 60 ml melted butter, 1 egg","Flan Custard: 1 can condensed milk, 1 can evaporated milk, 4 eggs, 100 g cream cheese, 1 tbsp vanilla","Garnish: Toasted chopped pecans & fresh cajeta drizzle"],"instructions":["Coat the bottom and sides of a 10-cup Bundt pan generously with cajeta caramel.","Whisk chocolate cake ingredients into a smooth batter and pour into bottom of Bundt pan.","Blend flan ingredients together; gently pour flan mixture over the chocolate batter (they will settle separately).","Cover tightly with foil and place in large roasting pan filled halfway with hot water (baño maría).","Bake at 175°C (350°F) for 55 minutes until toothpick inserted in cake comes out clean.","Cool completely at room temperature, then chill in fridge 6 hours before inverting onto a platter."],"tips":{"title":"Why is it \"Impossible\"?","description":"The lighter cake batter rises while dense custard sinks, reversing layers in the oven."},"variations":{"title":"Red Velvet Chocoflan","description":"Use red velvet cake base for festive holidays."},"faqs":[{"question":"How do you invert it cleanly?","answer":"Dip the chilled pan bottom in warm water for 15 seconds to loosen caramel before flipping."}],"imageQuery":"chocoflan impossible cake chocolate flan caramel pecans","imageUrl":"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"guacamole-molcajete","name":"Authentic Molcajete Guacamole","nativeName":"Guacamole Tradicional en Molcajete","category":"Salsas & Botanas","prepTime":10,"cookTime":0,"yieldServings":4,"calories":190,"difficulty":"Easy","rating":5,"reviewsCount":2150,"intro":"Fresh Hass avocados hand-mashed in a volcanic stone molcajete with a crushed paste of serrano chiles, white onion, cilantro, and sea salt, served with warm homemade corn totopos.","ingredients":["3 ripe Hass avocados (halved and pitted)","1-2 serrano or jalapeño chiles (finely minced)","1/2 white onion (finely diced), 1/2 cup fresh cilantro leaves","1 fresh lime (juiced), 1 tsp coarse sea salt","Warm crispy corn totopos (tortilla chips)"],"instructions":["In a volcanic stone molcajete, grind 1 tbsp onion, 1 serrano chile, cilantro stems, and sea salt with the pestle (tejolote) into a fragrant green paste.","Scoop avocado flesh into the molcajete.","Coarsely mash with pestle or fork, leaving rustic chunks.","Gently fold in lime juice, remaining diced onions, cilantro leaves, and diced tomato if desired.","Serve immediately in the stone molcajete with warm tortilla chips."],"tips":{"title":"Crush the Aromatics First","description":"Mashing chiles and onion releases aromatic oils that flavor the avocado paste completely."},"variations":{"title":"Guacamole con Granada","description":"Garnished with sweet red pomegranate seeds and crumbled Cotija."},"faqs":[{"question":"Why does guacamole turn brown?","answer":"Enzyme oxidation; lime citric acid slows browning, but freshness is king."}],"imageQuery":"guacamole molcajete avocado tortilla chips lime cilantro","imageUrl":"https://images.unsplash.com/photo-1592417817098-8f3d69109853?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"barbacoa-hidalgo","name":"Hidalgo Pit-Style Beef Barbacoa","nativeName":"Barbacoa de Res Estilo Hidalgo","category":"Guisados & Moles","prepTime":25,"cookTime":240,"yieldServings":8,"calories":520,"difficulty":"Medium","rating":5,"reviewsCount":970,"intro":"Beef brisket and beef cheek wrapped in charred maguey (agave) leaves with avocado leaves, roasted slowly for hours until succulent, served with hot spicy salsa borracha and warm tortillas.","ingredients":["1.5 kg beef chuck roast, brisket, and beef cheek","Marinade: 4 Guajillo chiles, 2 Ancho chiles, 6 garlic cloves, 1 tsp cumin, 4 whole cloves, 1 cinnamon stick, 2 tbsp cider vinegar","4 dried avocado leaves (hojas de aguacate) & 2 bay leaves","Banana leaves or parchment for wrapping","Salsa Borracha: Pasilla chiles, pulque/dark beer, garlic, and Cotija cheese"],"instructions":["Toast dried chiles and blend with garlic, vinegar, cumin, cloves, cinnamon, and 1 tbsp salt into a thick rub.","Rub chile marinade generously all over beef.","Line a heavy roasting pot with banana leaves and aromatic avocado leaves; place meat inside and fold leaves tightly.","Pour 200 ml water into bottom of pot, cover tightly with double foil and lid.","Roast in oven at 150°C (300°F) for 4 hours until meat shreds with zero resistance.","Chop coarsely on cutting board and serve with warm corn tortillas and salsa borracha."],"tips":{"title":"Avocado Leaves Magic","description":"Avocado leaves provide a distinctive anise-like herbal aroma authentic to central Mexican barbacoa."},"variations":{"title":"Barbacoa de Borrego","description":"Traditional whole roasted lamb."},"faqs":[{"question":"What is Barbacoa?","answer":"The ancient indigenous cooking technique that is the ancestor of modern barbecue."}],"imageQuery":"barbacoa beef tacos cilantro onion lime mexican","imageUrl":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"arroz-con-leche-mex","name":"Creamy Mexican Arroz con Leche","nativeName":"Arroz con Leche Cremoso con Canela","category":"Postres & Dulces","prepTime":10,"cookTime":35,"yieldServings":6,"calories":280,"difficulty":"Easy","rating":4.9,"reviewsCount":890,"intro":"Short-grain rice simmered with Mexican cinnamon sticks and lime peel, cooked in whole milk, condensed milk, and evaporated milk until thick, creamy, and dusted with cinnamon.","ingredients":["150 g short-grain white rice","400 ml water with 2 Mexican Ceylon cinnamon sticks and strip of lime peel","500 ml whole milk, 1 can (354 ml) evaporated milk, 1/2 can (190 g) sweetened condensed milk","1 tsp pure vanilla extract & ground Ceylon cinnamon for dusting","50 g raisins (optional)"],"instructions":["Bring water, cinnamon sticks, and lime peel to a boil in saucepan; add rinsed rice, reduce heat, cover, and simmer 15 mins until water is absorbed.","Discard cinnamon sticks and lime peel.","Pour in whole milk, evaporated milk, and condensed milk; bring to gentle simmer over medium-low heat.","Cook uncovered, stirring frequently for 20 minutes until rice is tender and pudding is lusciously thick.","Stir in vanilla and raisins; remove from heat.","Spoon into bowls, dust generously with ground cinnamon, and serve warm or chilled."],"tips":{"title":"Ceylon Cinnamon","description":"Soft Mexican Ceylon cinnamon (canela) imparts sweet, warm aromatic depth."},"variations":{"title":"Arroz con Rompope","description":"Stir in 50ml of Mexican eggnog liqueur (rompope)."},"faqs":[{"question":"Why short-grain rice?","answer":"Short-grain rice releases starch that creates a velvety pudding without needing cornstarch."}],"imageQuery":"arroz con leche rice pudding cinnamon mexican","imageUrl":"https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"gorditas-de-chicharron","name":"Gorditas de Chicharrón Prensado","nativeName":"Gorditas Rellenas de Chicharrón Prensado","category":"Antojitos & Tacos","prepTime":25,"cookTime":20,"yieldServings":6,"calories":460,"difficulty":"Medium","rating":4.9,"reviewsCount":750,"intro":"Thick handmade corn masa cakes stuffed with seasoned pressed pork cracklings, cooked on a hot griddle until puffed, sliced open and filled with cilantro, queso fresco, and salsa verde.","ingredients":["400 g fresh nixtamal corn masa & 50 g flour (for pliability)","1 tsp salt & warm water as needed","Filling: 250 g chicharrón prensado (pressed pork cracklings) simmered with guajillo salsa","Toppings: Shredded lettuce, Queso Fresco, Mexican crema, and raw salsa verde"],"instructions":["Knead masa with salt and water until soft like playdough; divide into 6 balls.","Make an indentation in each ball, insert a spoonful of chicharrón filling, seal masa over, and flatten into a 1cm thick disc.","Cook gorditas on a hot comal griddle for 4-5 minutes per side until golden brown with charred spots.","Pass briefly through hot oil if desired for a crisp exterior.","Slice open along the side to create a pocket; stuff with lettuce, crema, queso fresco, and spicy salsa."],"tips":{"title":"Seal Well","description":"Make sure no chicharrón peeks through the dough before cooking so it puffs nicely on the griddle."},"variations":{"title":"Gorditas de Requesón","description":"Filled with seasoned ricotta cheese and epazote."},"faqs":[{"question":"What does Gordita mean?","answer":"In Spanish, \"gordita\" affectionately translates to \"little chubby one.\""}],"imageQuery":"gorditas mexican street food stuffed corn cakes","imageUrl":"https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"quesadillas-flor-calabaza","name":"Oaxaca Squash Blossom Quesadillas","nativeName":"Quesadillas de Flor de Calabaza y Quesillo","category":"Antojitos & Tacos","prepTime":15,"cookTime":10,"yieldServings":4,"calories":290,"difficulty":"Easy","rating":4.8,"reviewsCount":580,"intro":"Delicate orange squash blossoms sautéed with epazote and onions, folded inside freshly pressed handmade corn tortillas with stringy melted Queso Oaxaca on a smoking comal.","ingredients":["12 fresh squash blossoms (flores de calabaza), cleaned and stems removed","1/2 white onion (finely diced), 1 garlic clove (minced), 4 fresh epazote leaves","200 g Queso Oaxaca (quesillo), shredded into strings","8 freshly pressed raw corn masa tortillas","1 tbsp vegetable oil or lard & salsa de molcajete"],"instructions":["Sauté diced onion and garlic in 1 tbsp oil for 3 mins; add squash blossoms and chopped epazote, sautéing 2 minutes until wilted.","Lay raw corn tortilla on hot comal griddle; flip once after 30 seconds.","Place shredded Queso Oaxaca and a generous spoonful of sautéed squash blossoms on one half.","Fold tortilla over into a half-moon; toast on griddle until cheese is completely molten and tortilla has golden toasted spots.","Serve steaming hot with homemade roasted salsa."],"tips":{"title":"Fresh Blossoms","description":"Remove the bitter stamen inside each squash blossom before cooking."},"variations":{"title":"Quesadillas de Huitlacoche","description":"Made with earthy Mexican corn truffle mushrooms."},"faqs":[{"question":"Are authentic quesadillas always cheese-filled?","answer":"In Mexico City, quesadillas are often ordered with or without cheese depending on the filling."}],"imageQuery":"quesadillas squash blossom oaxaca cheese corn tortilla","imageUrl":"https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"sopapillas-miel","name":"Puffy Sopapillas with Piloncillo Honey","nativeName":"Sopapillas Infladas con Miel de Piloncillo","category":"Postres & Dulces","prepTime":20,"cookTime":10,"yieldServings":6,"calories":270,"difficulty":"Easy","rating":4.9,"reviewsCount":820,"intro":"Puffy, golden fried dough pillows with hollow centers, dusted with cinnamon sugar and drizzled with warm spiced piloncillo raw cane sugar honey.","ingredients":["250 g all-purpose flour, 1 tsp baking powder, 1/2 tsp salt","30 g lard or butter (cut in), 150 ml warm water","Oil for deep frying","Piloncillo Honey: 1 cone (200 g) Mexican piloncillo sugar simmered with 100 ml water, 1 cinnamon stick, and 2 cloves until syrupy","Cinnamon sugar for dusting"],"instructions":["Mix flour, baking powder, and salt; cut in lard until crumbly. Stir in warm water to form soft dough; rest 20 mins.","Roll dough out thin (3mm) on floured board; cut into 8cm square pillows.","Drop dough squares into 190°C (375°F) hot oil; tap gently with tongs so they puff up like hollow balloons.","Fry 1 minute per side until pale golden and crisp.","Drain on paper towels, dust with cinnamon sugar, and serve warm with a pitcher of spiced piloncillo syrup."],"tips":{"title":"Hot Oil Puff","description":"Hot oil causes steam to expand inside the dough instantly, creating the iconic hollow pillow."},"variations":{"title":"Stuffed Sopapillas","description":"Slit side and fill with honey or savory taco beef."},"faqs":[{"question":"What is Piloncillo?","answer":"Pure unrefined raw cane sugar pressed into traditional cone shapes."}],"imageQuery":"sopapillas puffy fried dough honey cinnamon sugar","imageUrl":"https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"flautas-de-pollo","name":"Crispy Chicken Flautas Ahogadas","nativeName":"Flautas Ahogadas de Pollo Crujientes","category":"Antojitos & Tacos","prepTime":20,"cookTime":15,"yieldServings":4,"calories":440,"difficulty":"Easy","rating":4.9,"reviewsCount":910,"intro":"Extra-long corn tortillas rolled tightly with seasoned shredded chicken, fried until shatteringly crisp, \"drowned\" in warm tomatillo salsa and topped with crema, cotija, and avocado.","ingredients":["12 corn tortillas (pliable)","350 g shredded cooked chicken seasoned with cumin and garlic","Oil for deep frying & toothpicks to secure","Warm roasted salsa verde or salsa roja for drowning","Toppings: Shredded romaine lettuce, Mexican crema, crumbled Cotija cheese, sliced radishes, avocado"],"instructions":["Place a line of shredded chicken across one side of warm corn tortilla; roll tightly into a thin cylinder.","Secure rolls with wooden toothpicks.","Fry rolled flautas seam-side down in 180°C (350°F) oil for 3-4 minutes until golden and shatteringly crisp.","Remove toothpicks and drain on wire rack.","Arrange 3 flautas on each plate, ladle warm salsa generously over the base, and top with crisp lettuce, crema, Cotija, and avocado."],"tips":{"title":"Warm Tortillas","description":"Always warm tortillas before rolling to prevent them from splitting in the oil."},"variations":{"title":"Flautas de Papa","description":"Filled with seasoned mashed potatoes and cheese."},"faqs":[{"question":"Why are they called Flautas?","answer":"\"Flautas\" translates to \"flutes,\" referring to their long, slender cylindrical shape."}],"imageQuery":"crispy chicken flautas mexican taquitos crema salsa","imageUrl":"https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=800&q=80","alsoLike":[]},{"id":"enmoladas-oaxaquenas","name":"Oaxacan Chicken Enmoladas","nativeName":"Enmoladas de Pollo con Mole Negro Oaxaqueño","category":"Guisados & Moles","prepTime":20,"cookTime":20,"yieldServings":4,"calories":490,"difficulty":"Medium","rating":5,"reviewsCount":1140,"intro":"Warm corn tortillas rolled with shredded chicken, drowned in warm, velvety Oaxacan dark mole, topped with Mexican crema, sliced white onions, crumbled Queso Fresco, and toasted sesame.","ingredients":["12 corn tortillas","400 g shredded chicken breast","2 cups warm authentic Oaxacan Mole Negro (or Mole Poblano)","100 ml chicken broth (to thin mole if needed)","Garnish: Toasted white sesame seeds, thin white onion rings, Mexican crema, and Queso Fresco"],"instructions":["Heat mole in a wide skillet, whisking with chicken broth until it has the consistency of rich heavy cream.","Dip corn tortillas in hot oil for 3 seconds, then dip directly into the warm mole sauce.","Place on a plate, fill with shredded chicken, and roll into cylinders.","Pour extra warm mole sauce generously over the top of the enmoladas.","Drizzle with Mexican crema, sprinkle with Queso Fresco, scatter white onion rings, and shower with toasted sesame seeds."],"tips":{"title":"Double Dip","description":"Dipping the tortilla in hot oil then in mole coats every fiber of the corn with rich flavor."},"variations":{"title":"Enmoladas de Queso","description":"Filled with Quesillo cheese and onions."},"faqs":[{"question":"How do Enmoladas differ from Enchiladas?","answer":"Enmoladas are smothered specifically in complex Mexican mole rather than simple chile salsa."}],"imageQuery":"enmoladas mole sauce chicken sesame seeds crema","imageUrl":"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80","alsoLike":[]}];
+    let activeRecipeId = 'tacos-al-pastor';
+    let activeCategory = 'All';
+
+    function getCategories() {
+      const cats = { 'All': recipes.length };
+      recipes.forEach(r => {
+        cats[r.category] = (cats[r.category] || 0) + 1;
+      });
+      return cats;
+    }
+
+    function renderCategories() {
+      const container = document.getElementById('categoriesBar');
+      if (!container) return;
+      const cats = getCategories();
+      container.innerHTML = Object.keys(cats).map(cat => {
+        const isActive = cat === activeCategory;
+        return `<button class="cat-chip ${isActive ? 'active' : ''}" onclick="filterCategory('${cat}')">${cat} (${cats[cat]})</button>`;
+      }).join('');
+    }
+
+    function filterCategory(cat) {
+      activeCategory = cat;
+      renderCategories();
+      renderGrid(document.getElementById('recipeSearchInput')?.value || '');
+    }
+
+    function renderGrid(filter = '') {
+      const grid = document.getElementById('recipeGrid');
+      const filtered = recipes.filter(r => {
+        const matchSearch = r.name.toLowerCase().includes(filter.toLowerCase()) || 
+                            r.nativeName.toLowerCase().includes(filter.toLowerCase()) ||
+                            r.category.toLowerCase().includes(filter.toLowerCase());
+        const matchCat = activeCategory === 'All' || r.category === activeCategory;
+        return matchSearch && matchCat;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; padding: 24px; text-align: center; color: #6b7280; background: #fff; border-radius: 4px; border: 1px dashed #d1d5db;">No recipes found matching your query. <a href="javascript:void(0)" onclick="viewAllRecipes()" style="color:#d97706; font-weight:bold;">View all ' + recipes.length + ' recipes</a></div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map((r) => {
+        const isActive = r.id === activeRecipeId;
+        return `
+          <article class="recipe-card ${isActive ? 'active-card' : ''}" onclick="selectRecipe('${r.id}')" title="Click to view details for ${r.name}">
+            <div class="card-photo" style="background-image:url('${r.imageUrl}')">
+              <span class="card-badge">${r.category}</span>
+            </div>
+            <div class="recipe-card-content">
+              <h3>${r.name}</h3>
+              <p><span>◷ ${r.prepTime + r.cookTime}m</span> <span>♨ ${r.difficulty}</span></p>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function selectRecipe(id) {
+      const recipe = recipes.find(r => r.id === id);
+      if (!recipe) return;
+      activeRecipeId = id;
+
+      document.getElementById('detailImage').style.backgroundImage = 
+        "linear-gradient(90deg, rgba(5,15,16,.95) 0%, rgba(5,15,16,.55) 42%, transparent 70%), url('" + recipe.imageUrl + "')";
+      
+      document.getElementById('detailBreadcrumbs').innerText = 'Home　›　Recipes　›　' + recipe.category;
+      document.getElementById('detailTitle').innerHTML = recipe.name + '<br>(' + recipe.nativeName + ')';
+      document.getElementById('detailRating').innerHTML = '★★★★★ <small>' + recipe.rating + ' (' + recipe.reviewsCount + ' reviews)</small>';
+      document.getElementById('detailIntro').innerText = recipe.intro;
+
+      document.getElementById('detailFacts').innerHTML = 
+        '<span>◉ Prep ' + recipe.prepTime + ' min</span>' +
+        '<span>◉ Cook ' + recipe.cookTime + ' min</span>' +
+        '<span>◉ Yield ' + recipe.yieldServings + ' serv</span>' +
+        '<span>◉ ' + recipe.calories + ' kcal</span>';
+
+      document.getElementById('detailIngredients').innerHTML = 
+        recipe.ingredients.map(ing => '<li>' + ing + '</li>').join('');
+
+      document.getElementById('detailInstructions').innerHTML = 
+        recipe.instructions.map(ins => '<li>' + ins + '</li>').join('');
+
+      document.getElementById('detailTips').innerHTML = 
+        '<strong>' + recipe.tips.title + '</strong><p>' + recipe.tips.description + '</p>';
+
+      document.getElementById('detailVariations').innerHTML = 
+        '<strong>' + recipe.variations.title + '</strong><p>' + recipe.variations.description + '</p>';
+
+      document.getElementById('faqContainer').innerHTML = 
+        recipe.faqs.map(faq => 
+          '<div class="faq-item" onclick="this.classList.toggle(\'open\')">' +
+          '<div><span>' + faq.question + '</span><b>⌄</b></div>' +
+          '<small>' + faq.answer + '</small>' +
+          '</div>'
+        ).join('');
+
+      const recs = (recipe.alsoLike && recipe.alsoLike.length > 0) 
+        ? recipe.alsoLike 
+        : recipes.filter(r => r.id !== recipe.id).slice(0, 4);
+
+      document.getElementById('alsoContainer').innerHTML = 
+        recs.map((also) => 
+          '<article class="also-card" onclick="selectRecipeByName(\'' + also.name.replace(/'/g, "\\'") + '\')">' +
+          '<div class="mini" style="background-image:url(\'' + also.imageUrl + '\')"></div>' +
+          '<span>' + also.name + '</span>' +
+          '</article>'
+        ).join('');
+
+      renderGrid(document.getElementById('recipeSearchInput')?.value || '');
+
+      if (window.innerWidth <= 950) {
+        document.getElementById('detailPanel').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function selectRecipeByName(name) {
+      const found = recipes.find(r => r.name.toLowerCase().includes(name.toLowerCase()) || r.nativeName.toLowerCase().includes(name.toLowerCase()));
+      if (found) {
+        selectRecipe(found.id);
+      }
+    }
+
+    function viewAllRecipes() {
+      activeCategory = 'All';
+      renderCategories();
+      const input = document.getElementById('recipeSearchInput');
+      if (input) input.value = '';
+      renderGrid('');
+      document.getElementById('recipeGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function focusCategories() {
+      document.getElementById('recipeGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* Modal Handlers */
+    function openAboutModal() {
+      document.getElementById('aboutModal').classList.add('open');
+    }
+    function closeAboutModal(e) {
+      if (!e || e.target === document.getElementById('aboutModal') || e.target.classList.contains('modal-close')) {
+        document.getElementById('aboutModal').classList.remove('open');
+      }
+    }
+    function switchModalTab(tabId) {
+      document.querySelectorAll('.modal-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.modal-section').forEach(s => s.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(tabId)?.classList.add('active');
+    }
+    function jumpToRecipe(id) {
+      closeAboutModal();
+      selectRecipe(id);
+      document.getElementById('detailPanel').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCategories();
+      renderGrid();
+
+      const searchInput = document.getElementById('recipeSearchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          renderGrid(e.target.value);
+        });
+      }
+
+      const searchBtn = document.getElementById('recipeSearchBtn');
+      if (searchBtn) {
+        searchBtn.addEventListener('click', () => {
+          renderGrid(searchInput.value);
+        });
+      }
+    });
+
+    renderCategories();
+    renderGrid();
+  </script>
+</body>
+</html>

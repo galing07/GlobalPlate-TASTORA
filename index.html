@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Culinary Heritage - 10 Nation Recipe Magazines</title>
+  <meta name="description" content="A curated anthology of 10 standalone culinary magazines with 299 authentic world recipes.">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0B0F14;
+      color: #E2E8F0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+    header {
+      background: linear-gradient(180deg, #111827 0%, #0B0F14 100%);
+      border-bottom: 1px solid rgba(217, 119, 6, 0.2);
+      padding: 48px 24px 36px;
+      text-align: center;
+    }
+    .header-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #F59E0B;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-family: Georgia, serif;
+      font-size: 38px;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    p.subtitle {
+      font-size: 16px;
+      color: #94A3B8;
+      max-width: 680px;
+      margin: 0 auto 24px;
+    }
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-val {
+      font-size: 24px;
+      font-weight: 800;
+      color: #F59E0B;
+      font-family: Georgia, serif;
+    }
+    .stat-lbl {
+      font-size: 11px;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .container {
+      max-width: 1240px;
+      margin: 36px auto;
+      padding: 0 20px;
+    }
+    .search-wrapper {
+      max-width: 480px;
+      margin: 0 auto 36px;
+    }
+    .search-input {
+      width: 100%;
+      padding: 12px 18px;
+      background: #151D28;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      color: #FFFFFF;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input:focus {
+      border-color: #F59E0B;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 22px;
+    }
+    .country-card {
+      background: #151D28;
+      border: 1px solid #233044;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .country-card:hover {
+      transform: translateY(-4px);
+      border-color: #F59E0B;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+    }
+    .card-cover {
+      height: 160px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      padding: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .flag-badge {
+      font-size: 26px;
+      background: rgba(0,0,0,0.6);
+      padding: 2px 8px;
+      border-radius: 6px;
+      backdrop-filter: blur(4px);
+    }
+    .recipe-badge {
+      font-size: 10px;
+      font-weight: 700;
+      color: #10B981;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      backdrop-filter: blur(4px);
+    }
+    .card-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+    .card-header h3 {
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #FFFFFF;
+    }
+    .theme-tag {
+      font-size: 10px;
+      color: #F59E0B;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .tagline {
+      font-size: 12px;
+      color: #94A3B8;
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+    .sample-recipes {
+      background: rgba(0,0,0,0.25);
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 11px;
+      color: #CBD5E1;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+    .sample-recipes strong {
+      display: block;
+      color: #E2E8F0;
+      font-size: 10px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .btn-launch {
+      background: #F59E0B;
+      color: #0B0F14;
+      font-weight: 700;
+      font-size: 12px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .btn-launch:hover {
+      background: #FBBF24;
+    }
+    .file-size {
+      font-size: 11px;
+      color: #64748B;
+      font-family: monospace;
+    }
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 12px;
+      color: #64748B;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="header-badge">Standalone Production Compendium</span>
+    <h1>Global Culinary Heritage Magazine Hub</h1>
+    <p class="subtitle">An anthology of 10 fully interactive, zero-dependency editorial food magazines celebrating authentic regional culinary traditions and master techniques.</p>
+    <div class="stats-bar">
+      <div class="stat-item"><div class="stat-val">10</div><div class="stat-lbl">Nations</div></div>
+      <div class="stat-item"><div class="stat-val">299</div><div class="stat-lbl">Authentic Recipes</div></div>
+      <div class="stat-item"><div class="stat-val">100%</div><div class="stat-lbl">Self-Contained HTML5</div></div>
+      <div class="stat-item"><div class="stat-val">0</div><div class="stat-lbl">External Dependencies</div></div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="search-wrapper">
+      <input type="text" class="search-input" id="countrySearch" placeholder="Filter by country or cuisine..." oninput="filterHub(this.value)">
+    </div>
+
+    <div class="grid" id="countriesGrid">
+      
+      <article class="country-card">
+        <div class="card-cover" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), url('https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=1200&q=85')">
+          <span class="flag-badge">🇸🇪</span>
+          <span class="recipe-badge">30 Authentic Recipes</span>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <h3>Sweden</h3>
+            <span class="theme-tag">Nordic Heritage</span>
+          </div>
+          <p class="tagline">Discover the Taste of Sweden</p>
+          <div class="sample-recipes">
+            <strong>Featured Dishes:</strong>
+            <span>Swedish Meatballs, Gravlax with Mustard-Dill Sauce, Swedish Potato Pancakes...</span>
+          </div>
+          <div class="card-footer">
+            <a href="sweden-recipes-magazine.html" class="btn-launch" target="_blank">Open Magazine ↗</a>
+            <span class="file-size">132.9 KB • 0 Deps</span>
+          </div>
+        </div>
+      </article>
+    
+      <article class="country-card">
+        <div class="card-cover" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), url('https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&w=1200&q=85')">
+          <span class="flag-badge">🇮🇹</span>
+          <span class="recipe-badge">30 Authentic Recipes</span>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <h3>Italy</h3>
+            <span class="theme-tag">Tuscan Sun</span>
+          </div>
+          <p class="tagline">Discover the Art of Italian Cooking</p>
+          <div class="sample-recipes">
+            <strong>Featured Dishes:</strong>
+            <span>Spaghetti alla Carbonara, Neapolitan Pizza Margherita, Classic Venetian Tiramisù...</span>
+          </div>
+          <div class="card-footer">
+            <a href="italy-recipes-magazine.html" class="btn-launch" target="_blank">Open Magazine ↗</a>
+            <span class="file-size">97.2 KB • 0 Deps</span>
+          </div>
+        </div>
+      </article>
+    
+      <article class="country-card">
+        <div class="card-cover" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1200&q=85')">
+          <span class="flag-badge">🇯🇵</span>
+          <span class="recipe-badge">30 Authentic Recipes</span>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <h3>Japan</h3>
+            <span class="theme-tag">Kyoto Zen</span>
+          </div>
+          <p class="tagline">The Essence of Washoku Tradition</p>
+          <div class="sample-recipes">
+            <strong>Featured Dishes:</strong>
+            <span>Hakata Tonkotsu Ramen, Artisan Nigiri & Sashimi, Crispy Pork Katsu Curry...</span>
+          </div>
+          <div class="card-footer">
+            <a href="japan-recipes-magazine.html" class="btn-launch" target="_blank">Open Magazine ↗</a>
+            <span class="file-size">100.0 KB • 0 Deps</span>
+          </div>
+        </div>
+      </article>
+    
+      <article class="country-card">
+        <div class="card-cover" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85')">
+          <span class="flag-badge">🇫🇷</span>
+          <span class="recipe-badge">30 Authentic Recipes</span>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <h3>France</h3>
+            <span class="theme-tag">Parisian Bistro</span>
+          </div>
+          <p class="tagline">Master the Flavors of French Elegance</p>
+          <div class="sample-recipes">
+            <strong>Featured Dishes:</strong>
+            <span>Boeuf Bourguignon, Classic French Onion Soup, Burgundian Coq au Vin...</span>
+          </div>
+          <div class="card-footer">
+            <a href="france-recipes-magazine.html" class="btn-launch" target="_blank">Open Magazine ↗</a>
+            <span class="file-size">103.7 KB • 0 Deps</span>
+          </div>
+        </div>
+      </article>
+    
+      <article class="country-card">
+        <div class="card-cover" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85')">
+          <span class="flag-badge">🇮🇩</span>
+          <span class="recipe-badge">30 Authentic Recipes</span>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <h3>Indonesia</h3>
+            <span class="theme-tag">Nusantara Spice</span>
+          </div>
+          <p class="tagline">Rich Spices of the Thousand Islands</p>
+          <div class="sample-recipes">
+            <strong>Featured Dishes:</strong>
+            <span>Padang Beef Rendang, Indonesian Special Fried Rice, Madura Chicken Satay with Peanut Sauce...</span>
+          </div>
+          <div class="card-footer">
+            <a href="indonesia-recipes-magazine.html" class="btn-launch" target="_blank">Open Magazine ↗</a>
+            <span class="file-size">102.9 KB • 0 Deps</span>
+          </div>
+        </div>
+      </article>
+    
+      <article class="country-card">
+        <div class="card-cover" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), url('https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=1200&q=85')">
+          <span class="flag-badge">🇲🇽</span>
+          <span class="recipe-badge">30 Authentic Recipes</span>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <h3>Mexico</h3>
+            <span class="theme-tag">Tuscan Sun</span>
+          </div>
+          <p class="tagline">Vibrant Flavors & Ancient Heirlooms</p>
+          <div class="sample-recipes">
+            <strong>Featured Dishes:</strong>
+            <span>Tacos al Pastor, Jalisco Quesabirria Tacos, Puebla Mole Poblano with Chicken...</span>
+          </div>
+          <div class="card-footer">
+            <a href="mexico-recipes-magazine.html" class="btn-launch" target="_blank">Open Magazine ↗</a>
+            <span class="file-size">105.2 KB • 0 Deps</span>
+          </div>
+        </div>
+      </article>
+    
+      <article class="country-card">
+        <div class="card-cover" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), url('https://images.unsplash.com/photo-1534080564583-6be75777b70a?auto=format&fit=crop&w=1200&q=85')">
+          <span class="flag-badge">🇪🇸</span>
+          <span class="recipe-badge">30 Authentic Recipes</span>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <h3>Spain</h3>
+            <span class="theme-tag">Tuscan Sun</span>
+          </div>
+          <p class="tagline">Sun-Drenched Flavors of Iberia</p>
+          <div class="sample-recipes">
+            <strong>Featured Dishes:</strong>
+            <span>Authentic Paella Valenciana, Spanish Tortilla de Patatas, Sizzling Gambas al Ajillo...</span>
+          </div>
+          <div class="card-footer">
+            <a href="spain-recipes-magazine.html" class="btn-launch" target="_blank">Open Magazine ↗</a>
+            <span class="file-size">115.9 KB • 0 Deps</span>
+          </div>
+        </div>
+      </article>
+    
+      <article class="country-card">
+        <div class="card-cover" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), url('https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=1200&q=85')">
+          <span class="flag-badge">🇬🇷</span>
+          <span class="recipe-badge">29 Authentic Recipes</span>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <h3>Greece</h3>
+            <span class="theme-tag">Kyoto Zen</span>
+          </div>
+          <p class="tagline">Aegean Breezes & Ancient Olives</p>
+          <div class="sample-recipes">
+            <strong>Featured Dishes:</strong>
+            <span>Authentic Greek Moussaka, Pork & Chicken Souvlaki with Tzatziki, Crispy Spanakopita (Spinach & Feta Pie)...</span>
+          </div>
+          <div class="card-footer">
+            <a href="greece-recipes-magazine.html" class="btn-launch" target="_blank">Open Magazine ↗</a>
+            <span class="file-size">117.1 KB • 0 Deps</span>
+          </div>
+        </div>
+      </article>
+    
+      <article class="country-card">
+        <div class="card-cover" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), url('https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=1200&q=85')">
+          <span class="flag-badge">🇹🇭</span>
+          <span class="recipe-badge">30 Authentic Recipes</span>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <h3>Thailand</h3>
+            <span class="theme-tag">Nusantara Spice</span>
+          </div>
+          <p class="tagline">Harmony of Sweet, Sour, Spicy & Umami</p>
+          <div class="sample-recipes">
+            <strong>Featured Dishes:</strong>
+            <span>Authentic Royal Pad Thai Boran, Creamy Tom Yum Goong Mae Nam, Authentic Thai Green Curry with Chicken...</span>
+          </div>
+          <div class="card-footer">
+            <a href="thailand-recipes-magazine.html" class="btn-launch" target="_blank">Open Magazine ↗</a>
+            <span class="file-size">126.8 KB • 0 Deps</span>
+          </div>
+        </div>
+      </article>
+    
+      <article class="country-card">
+        <div class="card-cover" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), url('https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=1200&q=85')">
+          <span class="flag-badge">🇮🇳</span>
+          <span class="recipe-badge">30 Authentic Recipes</span>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <h3>India</h3>
+            <span class="theme-tag">Nusantara Spice</span>
+          </div>
+          <p class="tagline">Centuries of Aromatic Royal Curries</p>
+          <div class="sample-recipes">
+            <strong>Featured Dishes:</strong>
+            <span>Old Delhi Murgh Makhani (Butter Chicken), Royal Hyderabadi Dum Biryani, Charred Paneer Tikka Masala...</span>
+          </div>
+          <div class="card-footer">
+            <a href="india-recipes-magazine.html" class="btn-launch" target="_blank">Open Magazine ↗</a>
+            <span class="file-size">133.4 KB • 0 Deps</span>
+          </div>
+        </div>
+      </article>
+    
+    </div>
+  </div>
+
+  <footer>
+    <p>♛ MAG-GEN AI Editorial Engine • Standalone Production HTML Delivery</p>
+  </footer>
+
+  <script>
+    function filterHub(query) {
+      const q = query.toLowerCase();
+      const cards = document.querySelectorAll('.country-card');
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(q) ? 'flex' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
